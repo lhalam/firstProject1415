@@ -19,34 +19,38 @@ string Message::getMsg() const
 
 ostream& operator<<(ostream& stream, Message _msg)
 {
-	int color;
-	string specialEnd = "\n";
-	switch (_msg.type)
+	if (_msg.getMsg() != "")
 	{
-	case INPUT_MSG:
-		color = WHITE;
-		break;
-	case CONTEXT_MSG:
-		specialEnd = " -> ";
-		color = BLUE;
-		break;
-	case LOG_MSG:
-		color = YELLOW;
-		break;
-	case ALERT_MSG:
-		color = RED;
+		int color;
+		string specialEnd = "\n";
+		switch (_msg.type)
+		{
+		case INPUT_MSG:
+			color = WHITE;
+			break;
+		case CONTEXT_MSG:
+			specialEnd = " -> ";
+			color = BLUE;
+			break;
+		case LOG_MSG:
+			color = YELLOW;
+			break;
+		case ALERT_MSG:
+			color = RED;
+		}
+
+		SetConsoleTextAttribute(hConsole, color);
+		stream << _msg.msg << specialEnd;
+		SetConsoleTextAttribute(hConsole, WHITE);
 	}
-
-	SetConsoleTextAttribute(hConsole, color);
-	stream << _msg.msg << specialEnd;
-	SetConsoleTextAttribute(hConsole, WHITE);
-
 	return stream;
 }
 
 
 
 Error::Error() : Message("", ALERT_MSG), id(SUCCESSFUL)
+{}
+Error::Error(ErrorId _id) : Message("", ALERT_MSG), id(_id)
 {}
 Error::Error(string _msg, ErrorId _id) : Message(_msg, ALERT_MSG), id(_id)
 {}
@@ -58,8 +62,12 @@ ErrorId Error::getId() const
 
 ostream& operator<<(ostream& stream, const Error& error)
 {
-	SetConsoleTextAttribute(hConsole, RED);
-	stream << "Alert: id=" << error.id << " -> " << error.getMsg();
-	SetConsoleTextAttribute(hConsole, WHITE);
+	if (error.getMsg() != "")
+	{
+		SetConsoleTextAttribute(hConsole, RED);
+		stream << "Alert (" << error.id << "): " << error.getMsg() << '\n';
+		SetConsoleTextAttribute(hConsole, WHITE);
+	}
+	
 	return stream;
 }
