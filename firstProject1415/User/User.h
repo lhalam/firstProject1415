@@ -6,6 +6,7 @@
 #include "Person.h"
 #include "Properties.h"
 
+#include "../UI/Command.h"
 using std::ostream;
 using std::istream;
 using std::string;

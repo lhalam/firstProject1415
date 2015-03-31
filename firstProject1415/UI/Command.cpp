@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Command.h"
-
+#include "../User/User.h"
 using std::cout;
 
 /*Command executors*/
@@ -48,24 +47,16 @@ Error logOut()
 Error createUser()
 {
 	using std::cin;
-	cout << Message("Name", CONTEXT_MSG);
-	string name;
-	getline(cin, name, '\n');
-	cout << Message("Password", CONTEXT_MSG);
-	string password;
-	getline(cin, password, '\n');
-	cout << Message("All the other shit you think is important", CONTEXT_MSG);
-	string otherSh;
-	getline(cin, otherSh, '\n');
-
+	User newUser;
+	cin >> newUser;
 	/* Writing to the database */
 	/* Writing user data into global variable 'User'*/
 
-	return Error("Your account was successfully created\nWelcome, " + name, SUCCESSFUL);
+	return Error("Your account was successfully created\nWelcome, ", SUCCESSFUL);
 }
 
 /*Initialization of commands*/
-Command commands[]
+Command commands[] = 
 {
 	Command("help", help, "provides you with the list of available commands and their description"),
 	Command("exit", exit, "exits the program"),

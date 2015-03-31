@@ -34,13 +34,22 @@ User::~User()
 
 istream& operator>>(istream& stream, User& user)
 {
-	stream >> user.name >>
-		user.surname >>
-		user.birthday >>
-		user.login >>
-		user.password >>
-		user.email >>
-		*user.properties;
+	//added all cout messages (User team)
+	using std::cout;
+	cout<<"name : ";
+	stream >> user.name;
+	cout<<"surname : ";
+	stream >> user.surname;
+	cout<<"birthday : ";
+	stream>>user.birthday;
+	cout<<"login : ";
+	stream>>user.login;
+	cout<<"password : ";
+	stream>>user.password; 
+	cout<<"email : ";
+	stream>>user.email;
+	cout<<"properties : \n";
+	stream>>*user.properties;	
 	return stream;
 }
 ostream& operator<<(ostream& stream, const User& user)

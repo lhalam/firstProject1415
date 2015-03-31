@@ -9,8 +9,11 @@ ostream& operator<<(ostream& stream, const Properties& properties)
 
 istream& operator>>(istream& stream, Properties& properties)
 {
-	stream >> properties.role
-		>> properties.id;
+	using std::cout;
+	cout << "role : ";
+	stream >> properties.role;
+	cout << "id : ";
+	stream >> properties.id;
 	return stream;
 }
 
