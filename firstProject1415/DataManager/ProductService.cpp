@@ -20,118 +20,88 @@
 
 using namespace std;
 
-namespace Team4
+void ProductService::save(const Product& prod)
 {
-	void ProductService::save(const Product& prod)
+	ofstream stream("Products.txt", ios_base::app);
+	if (!stream.is_open())
 	{
-		ofstream stream("Products.txt", ios_base::app);
-		if (!stream.is_open())
-		{
-			throw exception("Cannot open file for writing.");
-		}
-		stream << typeid(prod).name() << endl;
-		stream << prod;
-		stream.close();
+		throw exception("Cannot open file for writing.");
 	}
+	stream << typeid(prod).name() << endl;
+	stream << prod;
+	stream.close();
+}
 
-	List<Product&> ProductService::readAll()
+List<Product*> ProductService::readAll()
+{
+	return read(alwaysTrue);
+}
+
+List<Product*> ProductService::read(bool (*predicate)(const Product& prod))
+{
+	ifstream stream("Products.txt");
+	if (!stream.is_open())
 	{
-		return read(alwaysTrue);
+		throw exception("Cannot open file for reading.");
 	}
-
 	
-	List<Product&> ProductService::read(bool (*predicate)(const Product& prod))
+	List<Product*> list;
+	
+	while (!stream.eof())
 	{
-		ifstream stream("Products.txt");
-		if (!stream.is_open())
-		{
-			throw exception("Cannot open file for reading.");
-		}
-
-		List<Product&> list;
-
 		string type;
 		getline(stream, type);
-		
+
+		Product *prod = nullptr;
+
 		if (type == typeid(Appliance).name())
 		{
-			Appliance prod;
-			
+			prod = new Appliance();
 		} else if (type == typeid(AudioAndTv).name())
 		{
-			AudioAndTv prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new AudioAndTv();
 		} else if (type == typeid(LaptopAndComputer).name())
 		{
-			LaptopAndComputer prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new LaptopAndComputer();
 		} else if (type == typeid(PhotoAndVideoCamera).name())
 		{
-			PhotoAndVideoCamera prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new PhotoAndVideoCamera();
 		} else if (type == typeid(PhoneAndTablet).name())
 		{
-			PhoneAndTablet prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new PhoneAndTablet();
 		} else if (type == typeid(Food).name())
 		{
-			Food prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Food();
 		} else if (type == typeid(Drink).name())
 		{
-			Drink prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Drink();
 		} else if (type == typeid(Accessory).name())
 		{
-			Accessory prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Accessory();
 		} else if (type == typeid(Clothing).name())
 		{
-			Clothing prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Clothing();
 		} else if (type == typeid(Footwear).name())
 		{
-			Footwear prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Footwear();
 		} else if (type == typeid(Detergent).name())
 		{
-			Detergent prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Detergent();
 		} else if (type == typeid(Cosmetic).name())
 		{
-			Cosmetic prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new Cosmetic();
 		} else if (type == typeid(PersonalHygiene).name())
 		{
-			PersonalHygiene prod;
-			stream >> prod;
-			if (predicate(prod))
-				list.pushBack(prod);
+			prod = new PersonalHygiene();
+		} else
+		{
+			throw exception("Unknown type of product.");
 		}
-		
-		stream.close();
-		return list;
+
+		stream >> *prod;
+		if (predicate(*prod))
+			list.pushBack(prod);
 	}
+	stream.close();
+	return list;
 }
