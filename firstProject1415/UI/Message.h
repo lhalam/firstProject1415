@@ -27,12 +27,11 @@ private:
 	string msg;
 	MsgType type;
 
-protected:
-	string getMsg() const;
-
 public:
 	Message();
 	Message(string _msg, MsgType _type = LOG_MSG);
+
+	string getMsg() const;
 
 	friend ostream& operator<<(ostream& stream, Message _msg);
 };
@@ -42,9 +41,11 @@ public:
 //Possible error IDs
 enum ErrorId
 {
+	EXIT,
 	SUCCESSFUL,
 	TOTAL_ERROR,
-	NOT_SUCCESSFUL
+	NOT_SUCCESSFUL,
+	ACCESS_ERROR
 };
 
 class Error : public Message
@@ -54,6 +55,7 @@ private:
 
 public:
 	Error();
+	Error(ErrorId _id);
 	Error(string _msg, ErrorId _id);
 	
 	ErrorId getId() const;

@@ -40,24 +40,7 @@ public:
 		return tail->value;
 	}
 
-	//не шарю як написати прототип ф-ції з аргументами за замовчуванням, тому зразу тіло
-	Node<T>* find(const T& value, Node<T>* startPtr = nullptr, Node<T>* endPtr = nullptr) const 
-	{
-		if (!startPtr) startPtr = head;
-
-		Node<T> *ptrToSearch = startPtr;
-
-		do
-		{
-			if (ptrToSearch->value == value)
-			{
-				return ptrToSearch;
-			}
-			ptrToSearch = ptrToSearch->next;
-		} while (ptrToSearch != endPtr);
-
-		return nullptr;
-	}
+	Node<T>* find(const T& value, Node<T>* startPtr = nullptr, Node<T>* endPtr = nullptr) const;
 
 	void insert(Node<T>*, const T&);
 
@@ -110,6 +93,25 @@ void List<T>::pushFront(const T & value)
 	{
 		tail = head = new Node<T>(value);
 	}
+}
+
+template <typename T>
+Node<T>* List<T>::find(const T& value, Node<T>* startPtr, Node<T>* endPtr) const
+{
+	if (!startPtr) startPtr = head;
+
+	Node<T> *ptrToSearch = startPtr;
+
+	do
+	{
+		if (ptrToSearch->value == value)
+		{
+			return ptrToSearch;
+		}
+		ptrToSearch = ptrToSearch->next;
+	} while (ptrToSearch != endPtr);
+
+	return nullptr;
 }
 
 template <typename T>
