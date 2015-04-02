@@ -54,6 +54,10 @@ Error createUser()
 
 	return Error("Your account was successfully created\nWelcome, ", SUCCESSFUL);
 }
+Error changeRole()
+{
+
+}
 
 /*Initialization of commands*/
 Command commands[] = 
@@ -66,3 +70,6 @@ Command commands[] =
 };
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
 
+	/*void changePassword(string);
+	void changeEmail(string);
+	void changeRole(string);*/
