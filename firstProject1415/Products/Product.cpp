@@ -1,6 +1,6 @@
 #include "Product.h"
 
-Product::Product(): 
+Product::Product():
 	name("No name"), manufacturer("No manufacturer"), price(0.0), id(0) { }
 
 istream& operator>>(istream& stream, Product& obj)
@@ -12,10 +12,6 @@ istream& operator>>(istream& stream, Product& obj)
 }
 ostream& operator<<(ostream& stream, const Product& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< endl;
+	stream << obj.name << obj.manufacturer << obj.price << obj.id << endl;
 	return stream;
 }
