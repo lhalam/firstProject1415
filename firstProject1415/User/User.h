@@ -1,12 +1,14 @@
 #pragma once
+#ifndef USER_H_
+#define USER_H_
 
 #include <iostream>
 #include <string>
 
 #include "Person.h"
 #include "Properties.h"
-
 #include "../UI/Command.h"
+
 using std::ostream;
 using std::istream;
 using std::string;
@@ -18,6 +20,7 @@ public:
 	User(string, string, Date, string, string, string, Properties*);
 	User(const User&);
 	~User();
+
 	friend ostream& operator<<(ostream&, const User&);
 	friend istream& operator>>(istream&, User&);
 	void changePassword(string);
@@ -30,3 +33,5 @@ private:
 	string email;
 	Properties* properties;
 };
+
+#endif /* USER_H_ */

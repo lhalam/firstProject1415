@@ -1,4 +1,6 @@
 #pragma once
+#ifndef PROPERTIES_H_
+#define PROPERTIES_H_
 
 #include <iostream>
 #include <string>
@@ -10,21 +12,10 @@ using std::string;
 class Properties
 {
 public:
-	Properties() :
-		role("norole"),
-		id(0)
-	{
-	}
-	Properties(string mrole, int mid) :
-		role(mrole),
-		id(mid)
-	{
-	}
-	Properties(const Properties& properties) :
-		role(properties.role),
-		id(properties.id)
-	{
-	}
+	Properties();
+	Properties(string, int);
+	Properties(const Properties&);
+	
 	friend ostream& operator<<(ostream&, const Properties&);
 	friend istream& operator>>(istream&, Properties&);
 	string getRole();
@@ -36,3 +27,5 @@ private:
 	string role;
 	int id;
 };
+
+#endif /* PROPERTIES_H_ */

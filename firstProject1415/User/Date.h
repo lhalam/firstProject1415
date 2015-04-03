@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DATE_H_
+#define DATE_H_
 
 #include <iostream>
 
@@ -8,9 +10,10 @@ using std::istream;
 class Date
 {
 public:
-	Date() : day(0), month(0), year(0) { }
-	Date(int mday, int mmonth, int myear) : day(mday), month(mmonth), year(myear) { }
-	Date(const Date& date) : day(date.day), month(date.month), year(date.year) { }
+	Date();
+	Date(int, int, int);
+	Date(const Date&);
+
 	friend ostream& operator<<(ostream&, const Date&);
 	friend istream& operator>>(istream&, Date&);
 
@@ -19,3 +22,5 @@ private:
 	int month;
 	int year;
 };
+
+#endif /* DATE_H_ */

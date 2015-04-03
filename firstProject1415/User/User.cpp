@@ -1,28 +1,30 @@
 #include "User.h"
 
 User::User() :
-Person(),
-login("noLogin"),
-password("noPass"),
-email("noEmail")
+	Person(),
+	login("noLogin"),
+	password("noPass"),
+	email("noEmail")
 {
 	properties = new Properties("Guest", 0);
 }
 
-User::User(string mname, string msurname, Date mbirthday, string mlogin, string mpasssword, string memail, Properties* mproperties) :
-Person(mname, msurname, mbirthday),
-login(mlogin),
-password(mpasssword),
-email(memail)
+User::User(string mname, string msurname, Date mbirthday,
+		string mlogin, string mpasssword, string memail,
+		Properties* mproperties) :
+	Person(mname, msurname, mbirthday),
+	login(mlogin),
+	password(mpasssword),
+	email(memail)
 {
 	properties = new Properties(mproperties->getRole(), mproperties->getId());
 }
 
 User::User(const User& user) :
-Person(user),
-login(user.login),
-password(user.password),
-email(user.email)
+	Person(user),
+	login(user.login),
+	password(user.password),
+	email(user.email)
 {
 	properties = new Properties(user.properties->getRole(), user.properties->getId());
 }
@@ -45,11 +47,11 @@ istream& operator>>(istream& stream, User& user)
 	cout<<"login : ";
 	stream>>user.login;
 	cout<<"password : ";
-	stream>>user.password; 
+	stream>>user.password;
 	cout<<"email : ";
 	stream>>user.email;
 	cout<<"properties : \n";
-	stream>>*user.properties;	
+	stream>>*user.properties;
 	return stream;
 }
 ostream& operator<<(ostream& stream, const User& user)

@@ -1,5 +1,23 @@
 #include "Properties.h"
 
+Properties::Properties() :
+	role("norole"),
+	id(0)
+{
+}
+
+Properties::Properties(string mrole, int mid) :
+	role(mrole),
+	id(mid)
+{
+}
+
+Properties::Properties(const Properties& properties) :
+	role(properties.role),
+	id(properties.id)
+{
+}
+
 ostream& operator<<(ostream& stream, const Properties& properties)
 {
 	stream << properties.role << " "
