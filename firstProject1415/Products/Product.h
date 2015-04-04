@@ -47,7 +47,10 @@ public:
 	{
 		this->id = id;	
 	}
+	//method returns a string with ALL product info
+	virtual string getDetails();
 
+	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);
 	friend ostream& operator<<(ostream& stream, const Product& obj);
 };
