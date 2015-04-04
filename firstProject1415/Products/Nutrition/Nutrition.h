@@ -1,6 +1,7 @@
 #pragma once
 #include "../Product.h"
 
+//abstract class Nutrition
 class Nutrition : public Product
 {
 protected:
@@ -13,6 +14,9 @@ public:
 	
 	friend istream& operator>>(istream& stream, Nutrition& obj);
 	friend ostream& operator<<(ostream& stream, const Nutrition& obj);
+
+	//function returns all the info/details about Product in string form
+	virtual string getDetails();
 
 	string getManufactureDate() const { return manufacture_date; }
 	void setManufactureDate(string m_d) { this->manufacture_date = m_d; }

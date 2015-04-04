@@ -16,12 +16,18 @@ istream& operator>>(istream& stream, Nutrition& obj)
 
 ostream& operator<<(ostream& stream, const Nutrition& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nManufacture date : \t" << obj.manufacture_date << "\nExpiration date : \t" << obj.expiration_date
-		<< "\nIngredients : \t" << obj.ingredients
-		<< endl;
+	stream << obj.name << endl;
+	<< obj.manufacturer << endl;
+	<< obj.price << endl;
+	<< obj.id << endl;
+	<< obj.manufacture_date << endl;
+	<< obj.expiration_date << endl;
+	<< obj.ingredients << endl;
 	return stream;
+}
+
+string Nutrition::getDetails()
+{
+	return Product::getDetails() + "\nManufacture date : \t" + manufacture_date
+		+ "\nExpiration date : \t" + expiration_date + "\nIngredients : \t" + obj.ingredients;
 }
