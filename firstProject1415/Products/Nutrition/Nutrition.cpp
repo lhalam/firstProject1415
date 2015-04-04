@@ -28,6 +28,6 @@ ostream& operator<<(ostream& stream, const Nutrition& obj)
 
 string Nutrition::getDetails()
 {
-	return Product::getDetails() + "\nManufacture date : \t" + manufacture_date
-		+ "\nExpiration date : \t" + expiration_date + "\nIngredients : \t" + ingredients;
+	return Product::getDetails() + "\nManufacture date : \t" + this->manufacture_date
+		+ "\nExpiration date : \t" + this->expiration_date + "\nIngredients : \t" + this->ingredients;
 }
