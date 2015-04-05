@@ -50,7 +50,7 @@ public:
 };
 
 /*Array of all Command objects available*/
-Command commands[];
+extern Command commands[];
 
 /*Number of available commands*/
 extern const int numOfCommands;
