@@ -3,6 +3,7 @@
 Accessory::Accessory() :
 	Textile(){}
 
+// overloading operators istream and ostream 
 istream& operator>>(istream& stream, Accessory& obj)
 {
 	getline(stream, obj.name);
@@ -16,25 +17,22 @@ istream& operator>>(istream& stream, Accessory& obj)
 }
 ostream& operator<<(ostream& stream, Accessory& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nMaterial : \t" << obj.material
-		<< "\nFor : \t";
-	switch (obj.category)
-	{
-	case 'm': stream << "male";
-		break;
-	case 'f': stream << "fermale";
-		break;
-	case 'b': stream << "baby";
-		break;
-	default: stream << "unknown";
-		break;
-	}
-	stream << "\nBrand : \t" << obj.brand
-		<< "\nCollection year : \t" << obj.collection_year
-		<< endl;
+	stream << obj.name << endl
+		<< obj.manufacturer << endl
+		<< obj.price << endl
+		<< obj.id << endl
+		<< obj.material << endl
+		<< obj.category << endl
+		<< obj.brand << endl
+		<< obj.collection_year << endl;
 	return stream;
+}
+
+void Accessory::input()
+{
+	Textile::input();
+}
+void Accessory::output()
+{
+	Textile::output();
 }
