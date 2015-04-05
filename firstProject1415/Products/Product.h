@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "..\UI\Message.h"
 
 using namespace std;
 
@@ -47,8 +48,10 @@ public:
 	{
 		this->id = id;	
 	}
-	//method returns a string with ALL product info
-	virtual string getDetails();
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	virtual void Input();
+	virtual void Output() const;
 
 	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);
