@@ -17,37 +17,40 @@ istream& operator>>(istream& stream, Clothing& obj)
 
 ostream& operator<<(ostream& stream, Clothing& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nMaterial : \t" << obj.material
-		<< "\nFor : \t";
-	switch (obj.category)
-	{
-	case 'm': stream << "male";
-		break;
-	case 'f': stream << "fermale";
-		break;
-	case 'b': stream << "baby";
-		break;
-	default: stream << "unknown";
-		break;
-	}
-	stream << "\nBrand : \t" << obj.brand
-		<< "\nCollection year : \t" << obj.collection_year
-		<< "\nSize : \t" << obj.size
-		<< "\nSeason : \t";
-	switch (obj.season)
-	{
-	case 'w': stream << "winter";
-		break;
-	case 's': stream << "summer";
-		break;
-	case 'a': stream << "autumn&spring";
-		break;
-	default: stream << "unknown";
-	}
-		stream << endl;
+	stream << obj.name << endl
+		<< obj.manufacturer << endl
+		<< obj.price << endl
+		<< obj.id << endl
+		<< obj.material << endl
+		<< obj.category << endl
+		<< obj.brand << endl
+		<< obj.collection_year << endl
+		<< obj.size << endl
+		<< obj.season << endl;
 	return stream;
+}
+
+void Clothing::input()
+{
+	Textile::input();
+	cout << "\n Size : \t";
+	cin >> this->size;
+	cout << "\n Season : \t";
+	cin >> this->season;
+}
+void Clothing::output()
+{
+	Textile::output();
+	cout << "\nSize : \t" << this->size
+		<< "\nSeason : \t";
+	switch (this->season)
+	{
+	case 'w': cout << "winter";
+		break;
+	case 's': cout << "summer";
+		break;
+	case 'a': cout << "autumn&spring";
+		break;
+	default: cout << "unknown";
+	}
 }

@@ -1,6 +1,7 @@
 # pragma once
 # include "../Product.h"
 
+// abstract class Textile.
 class Textile : public Product
 {
 protected:
@@ -23,4 +24,7 @@ public:
 	void setBrand(string b) { this->brand = b; }
 	unsigned getCollectionYear() const { return collection_year; }
 	void setCollectionYear(unsigned c_y) { this->collection_year = c_y; }
+	// leading in/out put from the console.
+	virtual void input();
+	virtual void output();
 };
