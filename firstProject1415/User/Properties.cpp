@@ -1,4 +1,5 @@
 #include "Properties.h"
+#include "../UI/Message.h"
 
 Properties::Properties() :
 	role("norole"),
@@ -28,9 +29,9 @@ ostream& operator<<(ostream& stream, const Properties& properties)
 istream& operator>>(istream& stream, Properties& properties)
 {
 	using std::cout;
-	cout << "role : ";
+	cout << Message("Role", CONTEXT_MSG);
 	stream >> properties.role;
-	cout << "id : ";
+	cout << Message("Id", CONTEXT_MSG);
 	stream >> properties.id;
 	return stream;
 }
