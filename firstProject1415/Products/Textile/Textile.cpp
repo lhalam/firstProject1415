@@ -3,6 +3,7 @@
 Textile::Textile() :
 	Product(), material("Unknown material"), category(' '), brand("No brand"), collection_year(0){}
 
+// overloading operators istream and ostream 
 istream& operator>>(istream& stream, Textile& obj)
 {
 	getline(stream, obj.name);
@@ -16,25 +17,55 @@ istream& operator>>(istream& stream, Textile& obj)
 }
 ostream& operator<<(ostream& stream, Textile& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nMaterial : \t" << obj.material
+	stream << obj.name << endl
+		<< obj.manufacturer	<< endl
+		<< obj.price << endl
+		<< obj.id << endl 
+		<< obj.material	<< endl
+		<< obj.category << endl
+		<< obj.brand << endl
+		<< obj.collection_year << endl;
+	return stream;
+}
+
+void Textile::input()
+{
+	cout << "Name : \t";
+	cin >> this->name;
+	cout << "\nManufacturer : \t";
+	cin >> this->manufacturer;
+	cout << "\nPrice : \t";
+	cin >> this->price;
+	cout << "\nId : \t";
+	cin >> this->id;
+	cout << "\nMaterial : \t";
+	cin >> this->material;
+	cout << "\n Category : \t";
+	cin >> this->category;
+	cout << "\nBrand : \t";
+	cin >> this->brand;
+	cout << "\nCollection year : \t";
+	cin >> this->collection_year << endl;
+}
+void Textile::output()
+{
+	cout << "Name : \t" << this->name
+		<< "\nManufacturer : \t" << this->manufacturer
+		<< "\nPrice : \t" << this->price
+		<< "\nId : \t" << this->id
+		<< "\nMaterial : \t" << this->material
 		<< "\nFor : \t";
-	switch (obj.category)
+	switch (this->category)
 	{
-	case 'm': stream << "male";
+	case 'm': cout << "male";
 		break;
-	case 'f': stream << "fermale";
+	case 'f': cout << "fermale";
 		break;
-	case 'b': stream << "baby";
+	case 'b': cout << "baby";
 		break;
-	default: stream << "unknown";
+	default: cout << "unknown";
 		break;
 	}
-	stream << "\nBrand : \t" << obj.brand
-		<< "\nCollection year : \t" << obj.collection_year
-		<< endl;
-	return stream;
+	cout << "\nBrand : \t" << this->brand
+		<< "\nCollection year : \t" << this->collection_year << endl;
 }

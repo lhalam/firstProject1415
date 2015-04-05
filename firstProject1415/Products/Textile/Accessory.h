@@ -8,5 +8,9 @@ public:
 
 	friend istream& operator>>(istream& stream, Accessory& obj);
 	friend ostream& operator<<(ostream& stream, Accessory& obj);
+
+	virtual void input();
+	virtual void output();
+
 	~Accessory(){}
 };
