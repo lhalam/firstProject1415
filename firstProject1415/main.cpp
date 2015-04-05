@@ -29,7 +29,7 @@ int main()
 			if (commands[i].getName() == userCommand)
 			{
 				foundCommand = true;
-				Error executionResult = commands[i].execute();
+				Result executionResult = commands[i].execute();
 				if (executionResult.getId() != SUCCESSFUL)
 				{
 					cerr << executionResult << endl;

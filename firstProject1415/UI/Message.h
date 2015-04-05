@@ -38,8 +38,8 @@ public:
 
 
 
-//Possible error IDs
-enum ErrorId
+//Possible Result IDs
+enum ResultId
 {
 	EXIT,
 	SUCCESSFUL,
@@ -48,17 +48,17 @@ enum ErrorId
 	ACCESS_ERROR
 };
 
-class Error : public Message
+class Result : public Message
 {
 private:
-	ErrorId id;
+	ResultId id;
 
 public:
-	Error();
-	Error(ErrorId _id);
-	Error(string _msg, ErrorId _id);
+	Result();
+	Result(ResultId _id);
+	Result(string _msg, ResultId _id);
 	
-	ErrorId getId() const;
+	ResultId getId() const;
 
-	friend ostream& operator<<(ostream& stream, const Error&);
+	friend ostream& operator<<(ostream& stream, const Result&);
 };

@@ -48,24 +48,24 @@ ostream& operator<<(ostream& stream, Message _msg)
 
 
 
-Error::Error() : Message("", ALERT_MSG), id(SUCCESSFUL)
+Result::Result() : Message("", ALERT_MSG), id(SUCCESSFUL)
 {}
-Error::Error(ErrorId _id) : Message("", ALERT_MSG), id(_id)
+Result::Result(ResultId _id) : Message("", ALERT_MSG), id(_id)
 {}
-Error::Error(string _msg, ErrorId _id) : Message(_msg, ALERT_MSG), id(_id)
+Result::Result(string _msg, ResultId _id) : Message(_msg, ALERT_MSG), id(_id)
 {}
 
-ErrorId Error::getId() const
+ResultId Result::getId() const
 {
 	return id;
 }
 
-ostream& operator<<(ostream& stream, const Error& error)
+ostream& operator<<(ostream& stream, const Result& Result)
 {
-	if (error.getMsg() != "")
+	if (Result.getMsg() != "")
 	{
 		SetConsoleTextAttribute(hConsole, RED);
-		stream << "Alert (" << error.id << "): " << error.getMsg() << '\n';
+		stream << "Alert (" << Result.id << "): " << Result.getMsg() << '\n';
 		SetConsoleTextAttribute(hConsole, WHITE);
 	}
 	

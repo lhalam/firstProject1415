@@ -3,19 +3,19 @@
 using std::cout;
 
 /*Command executors*/
-Error help()
+Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
 	{
 		cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
 	}
-	return Error();
+	return Result();
 }
-Error exit()
+Result exit()
 {
-	return Error(EXIT);
+	return Result(EXIT);
 }
-Error logIn()
+Result logIn()
 {
 	using std::cin;
 
@@ -32,19 +32,19 @@ Error logIn()
 	if (correct)
 	{
 		/* Writing user data into global variable 'User'*/
-		return Error("Authentication successful\nWelcome, " + name + "!", SUCCESSFUL);
+		return Result("Authentication successful\nWelcome, " + name + "!", SUCCESSFUL);
 	}
 	else
 	{
-		return Error("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
+		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
 	}
 }
-Error logOut()
+Result logOut()
 {
 	/*Deletes data of global variable User*/
-	return Error("You logged out successfully", SUCCESSFUL);
+	return Result("You logged out successfully", SUCCESSFUL);
 }
-Error createUser()
+Result createUser()
 {
 	using std::cin;
 	User newUser;
@@ -52,11 +52,11 @@ Error createUser()
 	/* Writing to the database */
 	/* Writing user data into global variable 'User'*/
 
-	return Error("Your account was successfully created\nWelcome, ", SUCCESSFUL);
+	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
 }
-Error changeRole()
+Result changeRole()
 {
-
+	return Result();
 }
 
 /*Initialization of commands*/

@@ -11,12 +11,12 @@ using std::string;
 class Person
 {
 public:
-	Person(const Person&);
-	virtual ~Person();
+	Person(const Person&) { }
+	virtual ~Person() { }
 
 protected:
-	Person();
-	Person(string, string, Date);
+	Person() { }
+	Person(string, string, Date) { }
 
 	string name;
 	string surname;
