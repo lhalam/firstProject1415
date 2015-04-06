@@ -2,6 +2,7 @@
 #include "../Products/Product.h"
 #include "../List/List.h"
 #include <functional>
+using std::function;
 
 //Represents a service for reading and writing product info from/into a file
 class ProductService
