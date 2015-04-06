@@ -7,22 +7,25 @@ using namespace std;
 void UserService::save(const User& user)
 {
 	ofstream stream("Users.txt", ios_base::app);
+
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for writing.");
 	}
+
 	stream << user;
 	stream.close();
 }
 
 List<User*> UserService::readAll()
 {
-	return read(alwaysTrue);
+	return read([](const User& user) { return true; });
 }
 
-List<User*> UserService::read(bool (*predicate)(const User& user))
+List<User*> UserService::read(function<bool(const User&)> predicate)
 {
 	ifstream stream("Users.txt");
+
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for reading.");
@@ -41,6 +44,5 @@ List<User*> UserService::read(bool (*predicate)(const User& user))
 	}
 
 	stream.close();
-
 	return list;
 }

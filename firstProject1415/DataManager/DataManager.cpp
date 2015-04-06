@@ -18,7 +18,7 @@ List<User*> DataManager::readAllUsers()
 	return service.readAll();
 }
 
-List<User*> DataManager::readUsers(bool(*predicate)(const User& user))
+List<User*> DataManager::readUsers(function<bool(const User&)> predicate)
 {
 	UserService service;
 	return service.read(predicate);
@@ -30,7 +30,7 @@ List<Product*> DataManager::readAllProducts()
 	return service.readAll();
 }
 
-List<Product*> DataManager::readProducts(bool(*predicate)(const Product& user))
+List<Product*> DataManager::readProducts(function<bool(const Product&)> predicate)
 {
 	ProductService service;
 	return service.read(predicate);

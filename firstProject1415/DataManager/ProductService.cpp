@@ -23,21 +23,24 @@ using namespace std;
 void ProductService::save(const Product& prod)
 {
 	ofstream stream("Products.txt", ios_base::app);
+
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for writing.");
 	}
+
 	stream << typeid(prod).name() << endl;
 	stream << prod;
+
 	stream.close();
 }
 
 List<Product*> ProductService::readAll()
 {
-	return read(alwaysTrue);
+	return read([](const Product& prod) { return true; });
 }
 
-List<Product*> ProductService::read(bool (*predicate)(const Product& prod))
+List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 {
 	ifstream stream("Products.txt");
 	if (!stream.is_open())
@@ -52,56 +55,64 @@ List<Product*> ProductService::read(bool (*predicate)(const Product& prod))
 		string type;
 		getline(stream, type);
 
-		Product *prod = nullptr;
-
-		if (type == typeid(Appliance).name())
-		{
-			prod = new Appliance();
-		} else if (type == typeid(AudioAndTv).name())
-		{
-			prod = new AudioAndTv();
-		} else if (type == typeid(LaptopAndComputer).name())
-		{
-			prod = new LaptopAndComputer();
-		} else if (type == typeid(PhotoAndVideoCamera).name())
-		{
-			prod = new PhotoAndVideoCamera();
-		} else if (type == typeid(PhoneAndTablet).name())
-		{
-			prod = new PhoneAndTablet();
-		} else if (type == typeid(Food).name())
-		{
-			prod = new Food();
-		} else if (type == typeid(Drink).name())
-		{
-			prod = new Drink();
-		} else if (type == typeid(Accessory).name())
-		{
-			prod = new Accessory();
-		} else if (type == typeid(Clothing).name())
-		{
-			prod = new Clothing();
-		} else if (type == typeid(Footwear).name())
-		{
-			prod = new Footwear();
-		} else if (type == typeid(Detergent).name())
-		{
-			prod = new Detergent();
-		} else if (type == typeid(Cosmetic).name())
-		{
-			prod = new Cosmetic();
-		} else if (type == typeid(PersonalHygiene).name())
-		{
-			prod = new PersonalHygiene();
-		} else
-		{
-			throw exception("Unknown type of product.");
-		}
+		Product *prod = getProduct(type);
 
 		stream >> *prod;
 		if (predicate(*prod))
 			list.pushBack(prod);
 	}
+
 	stream.close();
 	return list;
+}
+
+Product * ProductService::getProduct(string type)
+{
+	Product *prod = nullptr;
+
+	if (type == typeid(Appliance).name())
+	{
+		prod = new Appliance();
+	} else if (type == typeid(AudioAndTv).name())
+	{
+		prod = new AudioAndTv();
+	} else if (type == typeid(LaptopAndComputer).name())
+	{
+		prod = new LaptopAndComputer();
+	} else if (type == typeid(PhotoAndVideoCamera).name())
+	{
+		prod = new PhotoAndVideoCamera();
+	} else if (type == typeid(PhoneAndTablet).name())
+	{
+		prod = new PhoneAndTablet();
+	} else if (type == typeid(Food).name())
+	{
+		prod = new Food();
+	} else if (type == typeid(Drink).name())
+	{
+		prod = new Drink();
+	} else if (type == typeid(Accessory).name())
+	{
+		prod = new Accessory();
+	} else if (type == typeid(Clothing).name())
+	{
+		prod = new Clothing();
+	} else if (type == typeid(Footwear).name())
+	{
+		prod = new Footwear();
+	} else if (type == typeid(Detergent).name())
+	{
+		prod = new Detergent();
+	} else if (type == typeid(Cosmetic).name())
+	{
+		prod = new Cosmetic();
+	} else if (type == typeid(PersonalHygiene).name())
+	{
+		prod = new PersonalHygiene();
+	} else
+	{
+		throw exception("Unknown type of product.");
+	}
+
+	return prod;
 }

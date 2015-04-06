@@ -4,17 +4,28 @@
 #include "../User/User.h"
 #include "../Products/Product.h"
 #include "../List/List.h"
+#include <functional>
 
 //Represents a simle interface for user and product services
-//All objects returned by 'read' functions must be manually deleted
 class DataManager
 {
 public:
-	void saveUser(const User& user); //Saves user info into a file
-	List<User*> readAllUsers(); //Returns a list of all saved users 
-	List<User*> readUsers(bool(*predicate)(const User& user)); //Returns a list of users that match a predicate
+	//Saves user info into a file
+	void saveUser(const User& user);
+
+	//Returns a list of all saved users
+	List<User*> readAllUsers();
+
+	//Returns a list of users that match a predicate
+	List<User*> readUsers(function<bool(const User&)> predicate);
 	
-	void saveProduct(const Product& prod); //Saves product info into a file
-	List<Product*> readAllProducts(); //Returns a list of all saved products
-	List<Product*> readProducts(bool (*predicate)(const Product& user)); //Returns a list of products that match a predicate
+
+	//Saves product info into a file
+	void saveProduct(const Product& prod);
+
+	//Returns a list of all saved products
+	List<Product*> readAllProducts();
+
+	//Returns a list of products that match a predicate
+	List<Product*> readProducts(function<bool(const Product&)> predicate);
 };
