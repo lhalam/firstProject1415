@@ -26,22 +26,22 @@ void Product::Input()
 		}
 		*/
 	
-	cout << Message("Input name: ");
+	cout << Message("Input name: ", CONTEXT_MSG);
 	getline(cin, this->name);
-	cout << Message("Input manufacturer: ");
+	cout << Message("Input manufacturer: ", CONTEXT_MSG);
 	getline(cin, this->manufacturer);
-	cout << Message("Input price: ");
+	cout << Message("Input price: ", CONTEXT_MSG);
 	cin >> this->price;
-	cout << Message("Input id: ");
+	cout << Message("Input id: ", CONTEXT_MSG);
 	cin >> this->id;
 }
 
 void Product::Output() const
 {
-	cout << Message("Name: " + this->name);
-	cout << Message("Manufacturer: " + this->manufacturer);
-	cout << Message("Price: " + to_string(this->price));
-	cout << Message("ID: " + to_string(this->id));
+	cout << Message("Name: " + this->name, INPUT_MSG);
+	cout << Message("Manufacturer: " + this->manufacturer, INPUT_MSG);
+	cout << Message("Price: " + to_string(this->price), INPUT_MSG);
+	cout << Message("ID: " + to_string(this->id), INPUT_MSG);
 }
 
 

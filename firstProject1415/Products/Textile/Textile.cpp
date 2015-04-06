@@ -45,7 +45,7 @@ void Textile::input()
 	cout << "\nBrand : \t";
 	cin >> this->brand;
 	cout << "\nCollection year : \t";
-	cin >> this->collection_year << endl;
+	cin >> this->collection_year;
 }
 void Textile::output()
 {
