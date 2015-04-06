@@ -25,3 +25,22 @@ ostream& operator<<(ostream& stream, const Nutrition& obj)
 	<< obj.ingredients << endl;
 	return stream;
 }
+
+void Nutrition::Input()
+{
+	Product::Input();
+	cout << Message("Input manufacture date: ", CONTEXT_MSG);
+	getline(cin, this->manufacture_date);
+	cout << Message("Input expiration date: ", CONTEXT_MSG);
+	getline(cin, this->expiration_date);
+	cout << Message("Input ingredients: ", CONTEXT_MSG);
+	getline(cin, this->ingredients);
+}
+
+void Nutrition::Output() const
+{
+	Product::Output();
+	cout << Message("Manufacture date: " + this->manufacture_date, INPUT_MSG);
+	cout << Message("Expiration date: " + this->expiration_date, INPUT_MSG);
+	cout << Message("Ingredients: " + this->ingredients, INPUT_MSG);
+}

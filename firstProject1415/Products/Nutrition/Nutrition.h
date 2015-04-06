@@ -15,6 +15,11 @@ public:
 	friend istream& operator>>(istream& stream, Nutrition& obj);
 	friend ostream& operator<<(ostream& stream, const Nutrition& obj);
 
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	virtual void Input();
+	virtual void Output() const;
+
 	string getManufactureDate() const { return manufacture_date; }
 	void setManufactureDate(string m_d) { this->manufacture_date = m_d; }
 	string getExpirationDate() const { return expiration_date; }

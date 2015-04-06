@@ -10,4 +10,9 @@ public:
 
 	friend istream& operator>>(istream& stream, Food& obj);
 	friend ostream& operator<<(ostream& stream, const Food& obj);
+
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	virtual void Input();
+	virtual void Output() const;
 };

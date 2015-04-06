@@ -17,12 +17,26 @@ istream& operator>>(istream& stream, Food& obj)
 
 ostream& operator<<(ostream& stream, const Food& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nManufacture date : \t" << obj.manufacture_date << "\nExpiration date : \t" << obj.expiration_date
-		<< "\nIngredients : \t" << obj.ingredients << "\nGMO: \t" << obj.GMO_content
-		<< endl;
+	stream << obj.name << endl
+		<< obj.manufacturer << endl
+		<< obj.price << endl
+		<< obj.id << endl
+		<< obj.manufacture_date << endl
+		<< obj.expiration_date << endl
+		<< obj.ingredients << endl
+		<< obj.GMO_content << endl;
 	return stream;
+}
+
+void Food::Input()
+{
+	Nutrition::Input();
+	cout << Message("Input GMO: ", CONTEXT_MSG);
+	cin >> this->GMO_content;
+}
+
+void Food::Output() const
+{
+	Nutrition::Output();
+	cout << Message("GMO: " + this->GMO_content, INPUT_MSG);
 }
