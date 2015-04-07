@@ -66,6 +66,29 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 	return list;
 }
 
+int getQuantity(int id)
+{
+	ifstream assortment("Assortment.txt");
+	if (!assortment.is_open())
+	{
+		throw exception("A current file cannot be open for reading!");
+	}
+
+	unsigned currentId, quant;
+
+	while (!assortment.eof())
+	{
+		assortment >> currentId >> quant;
+
+		if (currentId == id)
+		{
+			return quant;
+		}
+	}
+
+	throw exception("The product whith this ID is not exist!");
+}
+
 Product* ProductService::getById(int id)
 {
 	ifstream stream("Products.txt");
