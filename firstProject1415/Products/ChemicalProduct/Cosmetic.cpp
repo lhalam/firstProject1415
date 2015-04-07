@@ -1,7 +1,7 @@
 #include "Cosmetic.h"
 
 Cosmetic::Cosmetic() :
-	ChemicalProduct(), partOfBody(' '){}
+	ChemicalProduct(), part_of_body(' '){}
 
 istream& operator>>(istream& stream, Cosmetic& obj)
 {
@@ -9,7 +9,7 @@ istream& operator>>(istream& stream, Cosmetic& obj)
 	getline(stream, obj.manufacturer);
 	stream >> obj.price >> obj.id;
 	getline(stream, obj.manufacture_date);
-	stream >> obj.volume >> obj.partOfBody;
+	stream >> obj.volume >> obj.part_of_body;
 	return stream;
 }
 ostream& operator<<(ostream& stream, const Cosmetic& obj)
@@ -20,7 +20,7 @@ ostream& operator<<(ostream& stream, const Cosmetic& obj)
 		<< "\nId : \t" << obj.id
 		<< "\nVolume: \t" << obj.volume
 		<< "\nFor: \t";
-	switch (obj.partOfBody)
+	switch (obj.part_of_body)
 	{
 	case 'f': stream << "face";
 		break;
