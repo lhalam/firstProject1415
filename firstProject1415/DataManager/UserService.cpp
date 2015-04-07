@@ -90,7 +90,7 @@ User* UserService::getById(int id)
 
 	User *user = nullptr;
 
-	bool temp = false;
+	bool isSuccessful = false;
 	while (!stream.eof())
 	{
 		User *user = new User();
@@ -98,9 +98,14 @@ User* UserService::getById(int id)
 
 		if (user->getId() == id)
 		{
-			temp = true; 
-					break;
+			isSuccessful = true;
+			break;
 		}
+	}
+
+	if (!isSuccessful)
+	{
+		user = nullptr;
 	}
 
 	stream.close();
