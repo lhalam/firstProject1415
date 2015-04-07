@@ -59,9 +59,9 @@ Result changeRole()
 
 Result showUsers()
 {
- DataManager manager;
- List<User*> list = (manager.readAllUsers());
- List<User*>::iterator iter = list.begin();
+	DataManager manager;
+	List<User*> list = (manager.readAllUsers());
+	List<User*>::iterator iter = list.begin();
 	while(iter != list.end())
 	{
 		int temp = 0;
@@ -70,8 +70,9 @@ Result showUsers()
 		iter ++;
 		if((temp % 5) == 0)
 		{
+			cout << Message("Press Enter to continue... ", LOG_MSG);
 			cin.get();
 		}
 	}
- return Result();
+	return Result();
 }
