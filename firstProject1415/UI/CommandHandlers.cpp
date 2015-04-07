@@ -1,4 +1,9 @@
 #include "CommandHandlers.h"
+#include "../User/User.h"
+#include "Globals.h"
+
+using std::cout;
+
 /*Command executors*/
 Result help()
 {
@@ -38,8 +43,9 @@ Result logIn()
 }
 Result logOut()
 {
-	/*Deletes data of global variable User*/
-	return Result("You logged out successfully", SUCCESSFUL);
+	currentUser = User();
+	cout << Message("You logged out successfully", LOG_MSG);
+	return Result();
 }
 Result createUser()
 {

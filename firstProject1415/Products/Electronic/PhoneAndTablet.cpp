@@ -2,7 +2,7 @@
 
 PhoneAndTablet::PhoneAndTablet() : Electronic(), memory_card(0) {}
 
-friend istream& operator>>(istream& stream, PhoneAndTablet& obj)
+istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
 	getline(stream, obj.category);
 	stream >> obj.weight;
@@ -13,7 +13,7 @@ friend istream& operator>>(istream& stream, PhoneAndTablet& obj)
 	return stream;
 }
 
-friend ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
+ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
 {
 	stream << obj.category << endl 
 		   << obj.weight << endl 
