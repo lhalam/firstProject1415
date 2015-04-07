@@ -80,6 +80,31 @@ User * UserService::getByLogin(string login, string password)
 	return user;
 }
 
+User* UserService::getById(int id)
+{
+	ifstream stream("Products.txt");
+	if (!stream.is_open())
+	{
+		throw exception("A current file cannot be open for reading!");
+	}
+
+	bool temp = false;
+	while (!stream.eof())
+	{
+		User *user = new User();
+		stream >> *user;
+
+		if (user->getId() == id)
+		{
+			temp = true; 
+					break;
+		}
+	}
+
+	stream.close();
+	return user;
+}
+
 void UserService::removeById(int id)
 {
 	ifstream stream("Users.txt");

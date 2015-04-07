@@ -25,6 +25,9 @@ public:
 	//Returns nulltpr if there is no such user
 	User *getByLogin(string login, string password);
 
+	//Returns a user with a given id
+	User *getById(int id);
+
 	//Removes the user with a given id
 	void removeById(int id);
 };

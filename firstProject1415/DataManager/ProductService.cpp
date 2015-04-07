@@ -82,7 +82,7 @@ Product* ProductService::getById(int id)
 		Product *product = getProduct(product_type);
 		stream >> *product;
 
-		if (product->getId == id)
+		if (product->getId() == id)
 		{
 			temp = true; 
 					break;

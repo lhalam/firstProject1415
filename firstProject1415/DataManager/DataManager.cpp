@@ -30,7 +30,11 @@ User * DataManager::getUserByLogin(string login, string password)
 	return service.getByLogin(login, password);
 }
 
-
+User* DataManager::getUserById(int id)
+{
+	UserService user;
+	return user.getById(id);
+}
 void DataManager::removeUserById(int id)
 {
 	UserService user;
