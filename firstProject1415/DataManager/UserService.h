@@ -18,9 +18,13 @@ public:
 	//Calls read(always true)
 	List<User*> readAll();
 
-	//Removes the information about user by it`s ID
-	void removeById(int);
-
 	//Returns a list of users that match a predicate
 	List<User*> read(function<bool(const User&)> predicate);
+
+	//Returns a user with a given login and password
+	//Returns nulltpr if there is no such user
+	User *readByLogin(string login, string password);
+
+	//Removes the user with a given id
+	void removeById(int id);
 };

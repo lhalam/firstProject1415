@@ -47,15 +47,46 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 	return list;
 }
 
+User * UserService::readByLogin(string login, string password)
+{
+	ifstream stream("Users.txt");
 
-void removeById(int id)
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	User *user = nullptr;
+	bool isSuccessful = false;
+
+	while (!stream.eof())
+	{
+		user = new User();
+		stream >> *user;
+
+		if (user->getLogin() == login && user->getPassword() == password)
+		{
+			isSuccessful = true;
+			break;
+		}
+	}
+
+	if (!isSuccessful)
+	{
+		user = nullptr;
+	}
+
+	stream.close();
+	return user;
+}
+
+void UserService::removeById(int id)
 {
 	ifstream stream("Users.txt");
 	if (!stream.is_open())
 	{ 
 		throw exception("Cannot open file!");
 	}
-
 
 	ofstream temp("Temp.txt");
 
