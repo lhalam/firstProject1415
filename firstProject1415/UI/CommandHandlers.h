@@ -3,6 +3,7 @@
 #include "Globals.h"
 
 /*Command executors*/
+Result addToAssortment();
 Result help();
 Result exit();
 Result logIn();

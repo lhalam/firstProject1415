@@ -104,3 +104,15 @@ Result changeProduct()
 	delete[] prod;
 	return Result("Product is changed.", SUCCESSFUL);
 }
+Result addToAssortment()
+ {
+  int id;
+  cout << Message("Enter id: ", CONTEXT_MSG);
+  cin >> id;
+  int quantity;
+  cout << Message("Enter new quantity: ", CONTEXT_MSG);
+  cin >> quantity;
+  DataManager manager;
+  manager.setQuantity(id, quantity);
+  return Result("Product is added to asortment.", SUCCESSFUL);
+ }
