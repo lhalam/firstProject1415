@@ -9,7 +9,10 @@ Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
 	{
-		cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
+		if (commands[i].getAccessLevel() & currentUser.getRole())
+		{
+			cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
+		}
 	}
 	return Result();
 }
