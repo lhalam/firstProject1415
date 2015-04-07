@@ -19,7 +19,7 @@ public:
 	//Returns a product with a given id
 	Product *getById(int id);
 
-	//Removes the information about user by it`s ID
+	//Removes a product with a given id
 	void removeById(int id);
 
 	//Calls read(always true)
