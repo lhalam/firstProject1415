@@ -25,7 +25,6 @@ public:
 	friend istream& operator>>(istream&, User&);
 	void changePassword(string);
 	void changeEmail(string);
-	void changeRole(string);
 
 private:
 	string login;

@@ -2,12 +2,12 @@
 #include "../UI/Message.h"
 
 Properties::Properties() :
-	role("norole"),
+	role(GUEST),
 	id(0)
 {
 }
 
-Properties::Properties(string mrole, int mid) :
+Properties::Properties(Access mrole, int mid) :
 	role(mrole),
 	id(mid)
 {
@@ -36,12 +36,12 @@ istream& operator>>(istream& stream, Properties& properties)
 	return stream;
 }
 
-string Properties::getRole()
+Access Properties::getRole()
 {
 	return role;
 }
 
-void Properties::setRole(string newRole)
+void Properties::setRole(Access newRole)
 {
 	role = newRole;
 }

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#include "../UI/Command.h"
+
 using std::ostream;
 using std::istream;
 using std::string;
@@ -13,18 +15,18 @@ class Properties
 {
 public:
 	Properties();
-	Properties(string, int);
+	Properties(Access, int);
 	Properties(const Properties&);
-	
+
 	friend ostream& operator<<(ostream&, const Properties&);
 	friend istream& operator>>(istream&, Properties&);
-	string getRole();
-	void setRole(string);
+	Access getRole();
+	void setRole(Access);
 	int getId();
 	void setId(int);
 
 private:
-	string role;
+	Access role;
 	int id;
 };
 

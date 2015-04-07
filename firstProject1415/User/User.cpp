@@ -76,8 +76,3 @@ void User::changeEmail(string newEmail)
 {
 	email = newEmail;
 }
-
-void User::changeRole(string newRole)
-{
-	properties->setRole(newRole);
-}
