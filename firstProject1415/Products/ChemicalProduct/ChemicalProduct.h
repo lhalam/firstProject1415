@@ -9,11 +9,11 @@ protected:
 	ChemicalProduct();
 public:
 
-	void setDate(string m_d)
+	void setManufactureDate(string m_d)
 	{
 		this->manufacture_date = m_d;
 	}
-	string getDate() const
+	string getManufactureDate() const
 	{ 
 		return manufacture_date;
 	}
@@ -28,6 +28,11 @@ public:
 
 	friend istream& operator>>(istream& stream, ChemicalProduct& obj);
 	friend ostream& operator<<(ostream& stream, const ChemicalProduct& obj);
+
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	virtual void input();
+	virtual void output() const;
 
 	virtual ~ChemicalProduct(){}
 };

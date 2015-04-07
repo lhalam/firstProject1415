@@ -4,7 +4,7 @@
 class Food : public Nutrition
 {
 private:
-	bool GMO_content; // '+' - with GMOs, '-' - without GMOs
+	bool GMO_content; // '1' - with GMO, '0' - without GMO
 public:
 	Food();
 
@@ -13,9 +13,9 @@ public:
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
-	virtual void input();
-	virtual void output() const;
+	void input();
+	void output() const;
 
 	void setGMOContent(bool GMO_content_) { this->GMO_content = GMO_content_; }
-	bool getGMOContent() { return this->GMO_content; }
+	bool getGMOContent() const { return GMO_content; }
 };

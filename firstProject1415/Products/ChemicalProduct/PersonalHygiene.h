@@ -9,6 +9,11 @@ public:
 	friend istream& operator>>(istream& stream, PersonalHygiene& obj);
 	friend ostream& operator<< (ostream& stream, const PersonalHygiene& obj);
 
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	void input();
+	void output() const;
+
 	~PersonalHygiene(){}
 };
 

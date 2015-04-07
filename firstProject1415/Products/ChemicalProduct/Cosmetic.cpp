@@ -12,25 +12,35 @@ istream& operator>>(istream& stream, Cosmetic& obj)
 	stream >> obj.volume >> obj.part_of_body;
 	return stream;
 }
+
 ostream& operator<<(ostream& stream, const Cosmetic& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nVolume: \t" << obj.volume
-		<< "\nFor: \t";
-	switch (obj.part_of_body)
-	{
-	case 'f': stream << "face";
-		break;
-	case 'h': stream << "hands";
-		break;
-	case 'b': stream << "body";
-		break;
-	default: stream << "unknown";
-		break;
-	}
-		stream << endl;
+	stream << obj.name << endl
+		<< obj.manufacturer << endl
+		<< obj.price << endl
+		<< obj.id << endl
+		<< obj.manufacture_date << endl
+		<< obj.volume << endl
+		<< obj.part_of_body << endl;
 	return stream;
+}
+
+void Cosmetic::input()
+{
+	ChemicalProduct::input();
+	string temp;
+
+	cout << Message("Input part of body it is used for: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->part_of_body = temp[0];
+	}
+	temp.clear();
+}
+
+void Cosmetic::output() const
+{
+	ChemicalProduct::output();
+	cout << Message("Part of body: " + this->part_of_body, INPUT_MSG);
 }

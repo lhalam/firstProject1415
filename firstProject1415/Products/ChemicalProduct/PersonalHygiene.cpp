@@ -14,11 +14,21 @@ istream& operator>>(istream& stream, PersonalHygiene& obj)
 }
 ostream& operator<<(ostream& stream, const PersonalHygiene& obj)
 {
-	stream << "Name : \t" << obj.name
-		<< "\nManufacturer : \t" << obj.manufacturer
-		<< "\nPrice : \t" << obj.price
-		<< "\nId : \t" << obj.id
-		<< "\nVolume: \t" << obj.volume
-		<< endl;
+	stream << obj.name << endl
+		<< obj.manufacturer << endl
+		<< obj.price << endl
+		<< obj.id << endl
+		<< obj.manufacture_date << endl
+		<< obj.volume << endl;
 	return stream;
+}
+
+void PersonalHygiene::input()
+{
+	ChemicalProduct::input();
+}
+
+void PersonalHygiene::output() const
+{
+	ChemicalProduct::output();
 }

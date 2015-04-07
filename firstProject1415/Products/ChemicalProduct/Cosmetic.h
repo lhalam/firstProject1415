@@ -12,5 +12,13 @@ public:
 	friend ostream& operator<<(ostream& stream, const Cosmetic& obj);
 
 	~Cosmetic() {}
+
+	//intput\output methods for command prompt 
+	//in order to create new\modify existing product
+	void input();
+	void output() const;
+
+	void setPartOfBody(char part_of_body_) { this->part_of_body = part_of_body_; }
+	char getPartOfBody() const { return part_of_body; }
 };
 
