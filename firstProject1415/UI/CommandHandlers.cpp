@@ -1,5 +1,6 @@
 #include "CommandHandlers.h"
 #include "../DataManager/DataManager.h"
+#include "Globals.h"
 /*Command executors*/
 Result help()
 {

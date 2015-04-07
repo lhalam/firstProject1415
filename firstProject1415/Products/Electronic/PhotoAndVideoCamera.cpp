@@ -25,9 +25,15 @@ ostream& operator<<(ostream& stream, const PhotoAndVideoCamera& obj)
 void PhotoAndVideoCamera::input()
 {
 	Electronic::input();
+	string temp;
+
 	cout << Message("Input megapixels: ", CONTEXT_MSG);
-	cin >> megapixels;
-	cin.get();
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->megapixels = stod(temp);
+	}
+	temp.clear();
 }
 
 void PhotoAndVideoCamera::output() const

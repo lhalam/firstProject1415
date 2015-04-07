@@ -30,23 +30,42 @@ ostream& operator<<(ostream& stream, Textile& obj)
 
 void Textile::input()
 {
-	cout << "Name : \t";
-	cin >> this->name;
-	cout << "\nManufacturer : \t";
-	cin >> this->manufacturer;
-	cout << "\nPrice : \t";
-	cin >> this->price;
-	cout << "\nId : \t";
-	cin >> this->id;
-	cout << "\nMaterial : \t";
-	cin >> this->material;
-	cout << "\n Category : \t";
-	cin >> this->category;
-	cout << "\nBrand : \t";
-	cin >> this->brand;
-	cout << "\nCollection year : \t";
-	cin >> this->collection_year;
+	Product::input();
+	string temp;
+
+	cout << Message("Input material: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->material = temp;
+	}
+	temp.clear();
+
+	cout << Message("Input category: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->category = temp[0];
+	}
+	temp.clear();
+
+	cout << Message("Input brand: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->brand = temp;
+	}
+	temp.clear();
+
+	cout << Message("Input collection year: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->id = stoi(temp);
+	}
+	temp.clear();
 }
+
 void Textile::output()
 {
 	cout << "Name : \t" << this->name
