@@ -29,8 +29,11 @@ ostream& operator<<(ostream& stream, const Properties& properties)
 istream& operator>>(istream& stream, Properties& properties)
 {
 	using std::cout;
-	cout << Message("Role", CONTEXT_MSG);
-	stream >> properties.role;
+	cout << Message("Role ( 1 - Guest, 2 - User, 4 - Admin)",
+					CONTEXT_MSG);
+	int intRole = 0;
+	stream >> intRole;
+	properties.role = Access(intRole);
 	cout << Message("Id", CONTEXT_MSG);
 	stream >> properties.id;
 	return stream;

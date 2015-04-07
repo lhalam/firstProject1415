@@ -6,7 +6,7 @@ User::User() :
 	password("noPass"),
 	email("noEmail")
 {
-	properties = new Properties("Guest", 0);
+	properties = new Properties(GUEST, 0);
 }
 
 User::User(string mname, string msurname, Date mbirthday,
@@ -50,7 +50,7 @@ istream& operator>>(istream& stream, User& user)
 	stream>>user.password;
 	cout << Message("Email", CONTEXT_MSG);
 	stream>>user.email;
-	cout << Message("Properties", CONTEXT_MSG);
+	//cout << Message("Properties", CONTEXT_MSG);
 	stream>>*user.properties;
 	return stream;
 }
@@ -75,4 +75,29 @@ void User::changePassword(string newPass)
 void User::changeEmail(string newEmail)
 {
 	email = newEmail;
+}
+
+int User::getId()
+{
+	return properties->getId();
+}
+
+Access User::getRole()
+{
+	return properties->getRole();
+}
+
+string User::getLogin()
+{
+	return login;
+}
+
+string User::getPassword()
+{
+	return password;
+}
+
+string User::getEmail()
+{
+	return email;
 }

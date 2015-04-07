@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 #include "../UI/Command.h"
 
