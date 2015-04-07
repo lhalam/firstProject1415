@@ -1,7 +1,7 @@
 #include "Food.h"
 
 Food::Food() :
-	Nutrition(), GMO_content(' ') {}
+	Nutrition(), GMO_content(0) {}
 
 istream& operator>>(istream& stream, Food& obj)
 {
@@ -37,7 +37,10 @@ void Food::input()
 	getline(cin, temp);
 	if (ifValidString(temp))
 	{
-		this->GMO_content = stoi(temp);
+		if (stoi(temp) == 0)
+			this->GMO_content = false;
+		else if (stoi(temp) == 1)
+			this->GMO_content = true;
 	}
 	temp.clear();
 }
