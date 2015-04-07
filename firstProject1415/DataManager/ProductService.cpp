@@ -128,8 +128,6 @@ void ProductService::setQuantity(int id, int add_quantity)
 
 	remove("Assortment.txt");
 	rename("tempAssort.txt", "Assortment.txt");
-
-	throw exception("The product whith this ID is not exist!");
 }
 
 Product* ProductService::getById(int id)
