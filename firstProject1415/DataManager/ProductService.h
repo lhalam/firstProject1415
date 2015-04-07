@@ -13,6 +13,9 @@ public:
 	//Saves product info into a file
 	void save(const Product& prod);
 
+	//Returns a product with a given id
+	Product *getById(int id);
+
 	//Removes the information about user by it`s ID
 	void removeById(int id);
 

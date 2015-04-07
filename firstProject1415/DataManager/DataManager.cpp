@@ -30,6 +30,7 @@ User * DataManager::getUserByLogin(string login, string password)
 	return service.getByLogin(login, password);
 }
 
+
 void DataManager::removeUserById(int id)
 {
 	UserService user;
@@ -46,6 +47,12 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 {
 	ProductService service;
 	return service.read(predicate);
+}
+
+Product* DataManager::getProductById(int id)
+{
+	ProductService product;
+	product.getById(id);
 }
 
 void DataManager::removeProductById(int id)

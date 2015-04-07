@@ -23,6 +23,9 @@ public:
 	//Returnes nullptr if there is no such user
 	User *getUserByLogin(string login, string password);
 
+	//Looks for a user with a given id
+	User *getUserById(int id);
+
 	//Removes a user with a given id
 	void removeUserById(int id);
 	
