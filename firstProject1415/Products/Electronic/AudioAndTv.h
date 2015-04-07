@@ -4,25 +4,15 @@
 class AudioAndTv : public Electronic
 {
 private:
-	double screen_size;
+	int memory_card;
 public:
-	AudioAndTv() : Electronic(), screen_size(0.0) {}
+	AudioAndTv();
 
-	friend istream& operator>>(istream& stream, AudioAndTv& obj)
-    {
-        getline(stream, obj.category);
-        stream >> obj.weight;
-        stream.get();
-        getline(stream, obj.model);
-		stream >> obj.screen_size;
-        return stream;
-    }
+	friend istream& operator>>(istream& stream, AudioAndTv& obj) { }
+	friend ostream& operator<<(ostream& stream, const AudioAndTv& obj) { }
 
-	friend ostream& operator<<(ostream& stream, const AudioAndTv& obj)
-    {
-		stream << obj.category << ' ' << obj.weight << ' '<< obj.model << ' ' << obj.screen_size << endl;
-        return stream;
-    }
+	virtual void input();
+	virtual void output() const;
 
 	~AudioAndTv(){}
 };
