@@ -16,7 +16,9 @@ public:
 	//Returns a list of all saved users
 	List<User*> readAllUsers();
 
-	void removeById(int);
+	void removeUserById(int);
+
+	void removeProductById(int);
 
 	//Returns a list of users that match a predicate
 	List<User*> readUsers(function<bool(const User&)> predicate);

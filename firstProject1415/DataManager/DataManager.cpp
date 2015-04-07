@@ -12,6 +12,18 @@ void DataManager::saveProduct(const Product& prod)
 	service.save(prod);
 }
 
+void DataManager::removeUserById(int id)
+{
+	UserService user;
+	user.removeById(id);
+}
+
+void DataManager::removeProductById(int id)
+{
+	ProductService prod;
+	prod.removeById(id);
+}
+
 List<User*> DataManager::readAllUsers()
 {
 	UserService service;
