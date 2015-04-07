@@ -8,12 +8,12 @@ protected:
     string category;
 	double weight;
 	string model; 
-	Electronic() { }
+	Electronic();
 	
 public:
 	//intput/output methods for user to input/output date
-	virtual void input() { }
-	virtual void output() const { }
+	virtual void input();
+	virtual void output() const;
 
 	friend istream& operator>>(istream&, Electronic&);
 	friend ostream& operator<<(ostream&, const Electronic&);
