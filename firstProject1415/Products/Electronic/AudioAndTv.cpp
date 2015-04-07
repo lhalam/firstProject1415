@@ -1,8 +1,8 @@
-#include "Appliance.h"
+#include "AudioAndTv.h"
 
-Appliance::Appliance() : Electronic(), memory_card(0) {}
+AudioAndTv::AudioAndTv() : Electronic(), memory_card(0) {}
 
-istream& operator>>(istream& stream, Appliance& obj)
+istream& operator>>(istream& stream, AudioAndTv& obj)
 {
 	getline(stream, obj.category);
 	stream >> obj.weight;
@@ -13,7 +13,7 @@ istream& operator>>(istream& stream, Appliance& obj)
 	return stream;
 }
 
-ostream& operator<<(ostream& stream, const Appliance& obj)
+ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 {
 	stream << obj.category << endl
 		<< obj.weight << endl
@@ -22,7 +22,7 @@ ostream& operator<<(ostream& stream, const Appliance& obj)
 	return stream;
 }
 
-void Appliance::input()
+void AudioAndTv::input()
 {
 	Electronic::input();
 	cout << Message("Input memory card: ", CONTEXT_MSG);
@@ -30,7 +30,7 @@ void Appliance::input()
 	cin.get();
 }
 
-void Appliance::output() const
+void AudioAndTv::output() const
 {
 	Electronic::output();
 	cout << Message("Memory card: " + to_string(memory_card), INPUT_MSG);

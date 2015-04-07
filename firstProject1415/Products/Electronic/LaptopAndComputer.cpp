@@ -2,7 +2,7 @@
 
 LaptopAndComputer::LaptopAndComputer() : Electronic(), firm(" ") {}
 
-friend istream& operator>>(istream& stream, LaptopAndComputer& obj)
+istream& operator>>(istream& stream, LaptopAndComputer& obj)
 {
 	getline(stream, obj.category);
 	stream >> obj.weight;
@@ -12,7 +12,7 @@ friend istream& operator>>(istream& stream, LaptopAndComputer& obj)
 	return stream;
 }
 
-friend ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
+ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 {
 	stream << obj.category << endl
 	       << obj.weight << endl
