@@ -28,6 +28,6 @@ public:
 	//Returns a user with a given id
 	User *getById(int id);
 
-	//Removes the user with a given id
+	//Removes a user with a given id
 	void removeById(int id);
 };

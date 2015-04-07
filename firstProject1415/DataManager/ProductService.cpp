@@ -71,7 +71,7 @@ int getQuantity(int id)
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())
 	{
-		throw exception("A current file cannot be open for reading!");
+		throw exception("Cannot open file for reading.");
 	}
 
 	unsigned currentId, quant;
@@ -86,7 +86,7 @@ int getQuantity(int id)
 		}
 	}
 
-	throw exception("The product whith this ID is not exist!");
+	return -1;
 }
 
 Product* ProductService::getById(int id)
@@ -94,7 +94,7 @@ Product* ProductService::getById(int id)
 	ifstream stream("Products.txt");
 	if (!stream.is_open())
 	{
-		throw exception("A current file cannot be open for reading!");
+		throw exception("Cannot open file for reading.");
 	}
 
 	Product *product = nullptr;

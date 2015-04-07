@@ -85,7 +85,7 @@ User* UserService::getById(int id)
 	ifstream stream("Products.txt");
 	if (!stream.is_open())
 	{
-		throw exception("A current file cannot be open for reading!");
+		throw exception("Cannot open file for reading.");
 	}
 
 	User *user = nullptr;
@@ -117,14 +117,14 @@ void UserService::removeById(int id)
 	ifstream stream("Users.txt");
 	if (!stream.is_open())
 	{ 
-		throw exception("Cannot open file!");
+		throw exception("Cannot open file for reading.");
 	}
 
 	ofstream temp("Temp.txt");
 
 	if (!temp.is_open())
 	{ 
-		throw exception("Cannot open file!");
+		throw exception("Cannot open temporary file for writing.");
 	}
 
 	while (!stream.eof())
