@@ -12,7 +12,7 @@ Command commands[] =
 	Command("register", createUser, "create your account", Access::GUEST),
 	Command("show all users", showUsers, "show the list of all users", Access::ADMIN),
 	Command("show cart", showCart, "show all products added to cart", Access::USER),
-	Command("change product", changeProduct, "change product settings", Access::ADMIN)
+	Command("change product", changeProduct, "change product settings", Access::ADMIN),
 	Command("add to assortment", addToAssortment, "add products to assortment", Access::ADMIN)
 };
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
