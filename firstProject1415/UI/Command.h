@@ -7,9 +7,9 @@ using std::string;
 /* Access level specificators */
 enum Access
 {
-	GUEST,
-	USER,
-	ADMIN
+	GUEST = 1,
+	USER = 2,
+	ADMIN = 4
 };
 
 /*Class Command, used to bind a string name to a function-executor*/

@@ -59,14 +59,20 @@ Result changeRole()
 	return Result();
 }
 
+Result showUsers()
+{
+	return Result();
+}
+
 /*Initialization of commands*/
 Command commands[] = 
 {
-	Command("help", help, "provides you with the list of available commands and their description"),
-	Command("exit", exit, "exits the program"),
-	Command("log in", logIn, "performs user authentication"),
-	Command("log out", logOut, "exits user profile"),
-	Command("register", createUser, "create your account")
+	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
+	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
+	Command("log in", logIn, "performs user authentication", Access::GUEST),
+	Command("log out", logOut, "exits user profile", Access(USER | ADMIN)),
+	Command("register", createUser, "create your account", Access::GUEST),
+	Command("show all users", showUsers, "show the list of all users", Access::ADMIN)
 };
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
 
