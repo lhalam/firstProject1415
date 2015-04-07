@@ -1,5 +1,6 @@
 #pragma once
 #include "Message.h"
+#include "Globals.h"
 
 /*Command executors*/
 Result help();

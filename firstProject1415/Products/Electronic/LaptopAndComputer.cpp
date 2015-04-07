@@ -25,8 +25,15 @@ ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 void LaptopAndComputer::input()
 {
 	Electronic::input();
+	string temp;
+
 	cout << Message("Input firm: ", CONTEXT_MSG);
-	cin >> firm;
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->firm = temp;
+	}
+	temp.clear();
 }
 
 void LaptopAndComputer::output() const

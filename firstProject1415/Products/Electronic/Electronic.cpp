@@ -5,13 +5,31 @@
 	void Electronic::input()
 	{
 		Product::input();
+		string temp;
+
 		cout << Message("Input category: ", CONTEXT_MSG);
-		getline(cin, category);
+		getline(cin, temp);
+		if(ifValidString(temp))
+		{
+			this->category = temp;
+		}
+		temp.clear();
+
 		cout << Message("Input weight: ", CONTEXT_MSG);
-		cin >> weight;
-		cin.get();
+		getline(cin, temp);
+		if(ifValidString(temp))
+		{
+			this->weight = stod(temp);
+		}
+		temp.clear();
+
 		cout << Message("Input model: ", CONTEXT_MSG);
-		getline(cin, model);
+		getline(cin, temp);
+		if(ifValidString(temp))
+		{
+			this->model = temp;
+		}
+		temp.clear();
 	}
 
 	void Electronic::output() const

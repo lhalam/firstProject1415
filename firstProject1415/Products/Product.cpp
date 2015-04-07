@@ -1,20 +1,5 @@
 #include "Product.h"
 
-//predicate for correct command prompt input 
-//or skipping entering a field when modifying
-bool ifValidString(string str)
-{
-	if(str[0] == ' ' || str[0] == '\t' || str[0] == '\n' || 
-	   str[0] == '\0' || str[0] == '\a' || str[0] == '.' || 
-	   str[0] == ',' || str[0] == ':' || str[0] == ';' || 
-	   str[0] == '`' || str[0] == '&' || str[0] == '@' )
-	{
-		return false;
-	}
-	return true;
-}
-
-
 Product::Product():
 	name("No name"), manufacturer("No manufacturer"), price(0.0), id(0) 
 	{ 
@@ -44,7 +29,7 @@ void Product::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->name = stod(temp);
+		this->price = stod(temp);
 	}
 	temp.clear();
 
@@ -52,7 +37,7 @@ void Product::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->name = stoi(temp);
+		this->id = stoi(temp);
 	}
 	temp.clear();
 }

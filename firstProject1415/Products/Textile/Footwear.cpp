@@ -33,10 +33,23 @@ ostream& operator<<(ostream& stream, Footwear& obj)
 void Footwear::input()
 {
 	Textile::input();
-	cout << "\n Size : \t";
-	cin >> this->size;
-	cout << "\n Season : \t";
-	cin >> this->season;
+	string temp;
+
+	cout << Message("Input size: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->material = abs(stoi(temp));
+	}
+	temp.clear();
+
+	cout << Message("Input season: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if(ifValidString(temp))
+	{
+		this->material = temp[0];
+	}
+	temp.clear();
 }
 void Footwear::output()
 {
