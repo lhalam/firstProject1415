@@ -12,6 +12,9 @@ class ProductService
 public:
 	//Saves product info into a file
 	void save(const Product& prod);
+	
+	//Returnes a quantity of the product by it`s ID
+	int getQuantity(int id);
 
 	//Returns a product with a given id
 	Product *getById(int id);
