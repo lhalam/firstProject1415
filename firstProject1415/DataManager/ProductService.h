@@ -13,6 +13,9 @@ public:
 	//Saves product info into a file
 	void save(const Product& prod);
 
+	//Removes the information about user by it`s ID
+	void removeById(int id);
+
 	//Calls read(always true)
 	List<Product*> readAll();
 

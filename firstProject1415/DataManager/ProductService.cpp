@@ -66,6 +66,43 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 	return list;
 }
 
+void removeById(int id)
+{
+	ifstream stream("Products.txt");
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file!");
+	}
+
+
+	ofstream temp("Temp.txt");
+
+	if (!temp.is_open())
+	{
+		throw exception("Cannot open file!");
+	}
+
+	while (!stream.eof())
+	{
+		string type;
+		getline(stream, type);
+		Product *prod = getProduct(type);
+		stream >> *prod;
+
+		if (prod->getId() != id)
+		{
+			temp << prod;
+		}
+	}
+
+	temp.close();
+	stream.close();
+
+	remove("Products.txt");
+	rename("Temp.txt", "Products.txt");
+}
+
+
 Product * ProductService::getProduct(string type)
 {
 	Product *prod = nullptr;

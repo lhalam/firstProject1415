@@ -46,3 +46,38 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 	stream.close();
 	return list;
 }
+
+
+void removeById(int id)
+{
+	ifstream stream("Users.txt");
+	if (!stream.is_open())
+	{ 
+		throw exception("Cannot open file!");
+	}
+
+
+	ofstream temp("Temp.txt");
+
+	if (!temp.is_open())
+	{ 
+		throw exception("Cannot open file!");
+	}
+
+	while (!stream.eof())
+	{
+		User *user = new User();
+		stream >> *user;
+		
+		if (user->getId() != id)
+		{ 
+			temp << user;
+		}
+	}
+
+	temp.close();
+	stream.close();
+
+	remove("Users.txt");
+	rename("Temp.txt", "Users.txt");
+}
