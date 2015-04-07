@@ -17,8 +17,8 @@ public:
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
-	virtual void Input();
-	virtual void Output() const;
+	virtual void input();
+	virtual void output() const;
 
 	string getManufactureDate() const { return manufacture_date; }
 	void setManufactureDate(string m_d) { this->manufacture_date = m_d; }

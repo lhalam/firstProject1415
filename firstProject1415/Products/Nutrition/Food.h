@@ -13,6 +13,6 @@ public:
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
-	virtual void Input();
-	virtual void Output() const;
+	virtual void input();
+	virtual void output() const;
 };

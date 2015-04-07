@@ -28,15 +28,15 @@ ostream& operator<<(ostream& stream, const Drink& obj)
 	return stream;
 }
 
-void Drink::Input()
+void Drink::input()
 {
-	Nutrition::Input();
+	Nutrition::input();
 	cout << Message("Input volume: ", CONTEXT_MSG);
 	cin >> this->volume;
 }
 
-void Drink::Output() const
+void Drink::output() const
 {
-	Nutrition::Output();
+	Nutrition::output();
 	cout << Message("Volume: " + to_string(this->volume), INPUT_MSG);
 }
