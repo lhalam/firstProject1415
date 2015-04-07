@@ -72,5 +72,11 @@ Result showUsers()
 
 Result showCart()
 {
-	return Result();
+	List<Product*>::iterator end = cart.end();
+	for (List<Product*>::iterator iterator = cart.begin(); iterator != end; iterator++)
+	{
+		cout << *iterator;
+	}
+	cout << *cart.end();
+	return Result("Listing completed.", SUCCESSFUL);
 }

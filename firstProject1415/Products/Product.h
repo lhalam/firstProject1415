@@ -53,6 +53,20 @@ public:
 	virtual void input();
 	virtual void output() const;
 
+	//predicate for correct command prompt input 
+	//or skipping entering a field when modifying
+	bool ifValidString(string str)
+	{
+		if(str[0] == ' ' || str[0] == '\t' || str[0] == '\n' || 
+			str[0] == '\0' || str[0] == '\a' || str[0] == '.' || 
+			str[0] == ',' || str[0] == ':' || str[0] == ';' || 
+			str[0] == '`' || str[0] == '&' || str[0] == '@' )
+		{
+			return false;
+		}
+		return true;
+	}
+
 	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);
 	friend ostream& operator<<(ostream& stream, const Product& obj);

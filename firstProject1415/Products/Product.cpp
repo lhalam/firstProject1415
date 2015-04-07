@@ -36,7 +36,7 @@ void Product::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->name = temp;
+		this->manufacturer = temp;
 	}
 	temp.clear();
 
@@ -44,7 +44,7 @@ void Product::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->name = temp;
+		this->name = stod(temp);
 	}
 	temp.clear();
 
@@ -52,7 +52,7 @@ void Product::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->name = temp;
+		this->name = stoi(temp);
 	}
 	temp.clear();
 }
