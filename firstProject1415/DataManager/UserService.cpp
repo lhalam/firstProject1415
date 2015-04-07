@@ -88,6 +88,8 @@ User* UserService::getById(int id)
 		throw exception("A current file cannot be open for reading!");
 	}
 
+	User *user = nullptr;
+
 	bool temp = false;
 	while (!stream.eof())
 	{

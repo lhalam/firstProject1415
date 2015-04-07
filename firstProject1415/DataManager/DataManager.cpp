@@ -56,7 +56,7 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 Product* DataManager::getProductById(int id)
 {
 	ProductService product;
-	product.getById(id);
+	return product.getById(id);
 }
 
 void DataManager::removeProductById(int id)

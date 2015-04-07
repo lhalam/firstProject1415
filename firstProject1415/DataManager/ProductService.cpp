@@ -74,6 +74,7 @@ Product* ProductService::getById(int id)
 		throw exception("A current file cannot be open for reading!");
 	}
 
+	Product *product = nullptr;
 	bool temp = false;
 	while (!stream.eof())
 	{
