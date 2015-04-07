@@ -82,10 +82,12 @@ int getQuantity(int id)
 
 		if (currentId == id)
 		{
+			assortment.close();
 			return quant;
 		}
 	}
 
+	assortment.close();
 	return -1;
 }
 
