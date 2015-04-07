@@ -1,16 +1,5 @@
 #include "Product.h"
 
-bool ifValid(string& str)
-{
-	if(str[0] == ' ' || str[0] == '\t' || str[0] == '\n' || 
-	   str[0] == '\0' || str[0] == '/' || str[0] == '.' || 
-	   str[0] == ',' || str[0] == '?' || str[0] == '!')
-	{
-		return false;
-	}
-	return true;
-}
-
 Product::Product():
 	name("No name"), manufacturer("No manufacturer"), price(0.0), id(0) 
 	{ 
@@ -18,39 +7,33 @@ Product::Product():
 
 void Product::input()
 {
-	string temp;
-
+	/*
+		still yet no valid input checking included
+		possible option:
+		char answer;
+		cout << "Message("Do you want to create new / modify existing product? (y/n)", ALERT_MSG);
+		cin >> answer;
+		switch(answer)
+		{
+			case 'y':
+			case 'Y':
+				int _id;
+				cout << Message("Input ID: ", INPUT_MSG);
+				cin >> _id;
+				// Searching database for product . . .
+				//  * found existing product -> modify values
+				//  * not found existing     -> create new one
+		}
+		*/
+	
 	cout << Message("Input name: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValid(temp))
-	{
-		this->name = temp;
-	}
-	temp.clear();
-
+	getline(cin, this->name);
 	cout << Message("Input manufacturer: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValid(temp))
-	{
-		this->manufacturer = temp;
-	}
-	temp.clear();
-
+	getline(cin, this->manufacturer);
 	cout << Message("Input price: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValid(temp))
-	{
-		this->price = stod(temp);
-	}
-	temp.clear();
-
-	cout << Message("Input ID: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValid(temp))
-	{
-		this->id = stoi(temp);
-	}
-	temp.clear();
+	cin >> this->price;
+	cout << Message("Input id: ", CONTEXT_MSG);
+	cin >> this->id;
 }
 
 void Product::output() const
@@ -60,6 +43,7 @@ void Product::output() const
 	cout << Message("Price: " + to_string(this->price), INPUT_MSG);
 	cout << Message("ID: " + to_string(this->id), INPUT_MSG);
 }
+
 
 istream& operator>>(istream& stream, Product& obj)
 {

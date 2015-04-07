@@ -31,7 +31,7 @@ ostream& operator<<(ostream& stream, const Drink& obj)
 void Drink::input()
 {
 	Nutrition::input();
-	cout << Message("Input volume: ", CONTEXT_MSG);
+	cout << Message("input volume: ", CONTEXT_MSG);
 	cin >> this->volume;
 }
 

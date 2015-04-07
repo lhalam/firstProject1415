@@ -15,8 +15,8 @@ public:
 	virtual void input();
 	virtual void output() const;
 
-    friend istream& operator>>(istream& stream, Electronic& obj)  { }
-    friend ostream& operator<<(ostream& stream, const Electronic& obj)  { }
+	friend istream& operator>>(istream&, Electronic&);
+	friend ostream& operator<<(ostream&, const Electronic&);
 
 	string getCategory() const { return category; }
 	void setCategory(const string& c) { category = c; }

@@ -12,9 +12,8 @@ protected:
 	string manufacturer;
 	double price;
 	unsigned id;
-	
-public:
 	Product();
+public:
 	virtual ~Product() { }
 
 	string getName() const

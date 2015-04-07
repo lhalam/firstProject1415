@@ -16,7 +16,7 @@
 
 	void Electronic::output() const
 	{
-		Product::Output();
+		Product::output();
 		cout << Message("Category: " + category, INPUT_MSG);
 		cout << Message("Weight: " + to_string(weight), INPUT_MSG);
 		cout << Message("Model: " + model, INPUT_MSG);
