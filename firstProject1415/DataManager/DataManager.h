@@ -23,7 +23,8 @@ public:
 	//Returnes nullptr if there is no such user
 	User *getUserByLogin(string login, string password);
 
-	//Looks for a user with a diven id
+	//Returnes a user with a diven id
+	//Returns nullptr if there is no such user
 	User* getUserById(int id);
 
 	//Removes a user with a given id
@@ -38,7 +39,8 @@ public:
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 	
-	//Looks for a product with a given id
+	//Returns a product with a given id
+	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
 
 	//Removes a product with a given id

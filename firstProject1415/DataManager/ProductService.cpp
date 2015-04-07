@@ -75,7 +75,7 @@ Product* ProductService::getById(int id)
 	}
 
 	Product *product = nullptr;
-	bool temp = false;
+	bool isSuccessful = false;
 	while (!stream.eof())
 	{
 		string product_type;
@@ -85,9 +85,14 @@ Product* ProductService::getById(int id)
 
 		if (product->getId() == id)
 		{
-			temp = true; 
-					break;
+			isSuccessful = true;
+			break;
 		}
+	}
+
+	if (!isSuccessful)
+	{
+		product = nullptr;
 	}
 
 	stream.close();

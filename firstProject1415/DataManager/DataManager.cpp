@@ -35,6 +35,7 @@ User* DataManager::getUserById(int id)
 	UserService user;
 	return user.getById(id);
 }
+
 void DataManager::removeUserById(int id)
 {
 	UserService user;

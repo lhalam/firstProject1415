@@ -1,18 +1,11 @@
 #include "CommandHandlers.h"
-#include "../User/User.h"
-#include "Globals.h"
-
-using std::cout;
-
+#include "../DataManager/DataManager.h"
 /*Command executors*/
 Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
 	{
-		if (commands[i].getAccessLevel() & currentUser.getRole())
-		{
-			cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
-		}
+		cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
 	}
 	return Result();
 }
@@ -46,9 +39,8 @@ Result logIn()
 }
 Result logOut()
 {
-	currentUser = User();
-	cout << Message("You logged out successfully", LOG_MSG);
-	return Result();
+	/*Deletes data of global variable User*/
+	return Result("You logged out successfully", SUCCESSFUL);
 }
 Result createUser()
 {
@@ -67,6 +59,21 @@ Result changeRole()
 
 Result showUsers()
 {
+	DataManager manager;
+	List<User*> list = (manager.readAllUsers());
+	List<User*>::iterator iter = list.begin();
+	while(iter != list.end())
+	{
+		int temp = 0;
+		std::cout << (*iter);
+		temp ++;
+		iter ++;
+		if((temp % 5) == 0)
+		{
+			cout << Message("Press Enter to continue... ", LOG_MSG);
+			cin.get();
+		}
+	}
 	return Result();
 }
 
