@@ -8,8 +8,8 @@ private:
 public:
 	LaptopAndComputer();
 
-	friend istream& operator>>(istream& stream, LaptopAndComputer& obj)  { }
-	friend ostream& operator<<(ostream& stream, const LaptopAndComputer& obj) { }
+	friend istream& operator>>(istream& stream, LaptopAndComputer& obj);
+	friend ostream& operator<<(ostream& stream, const LaptopAndComputer& obj);
 
 	virtual void input();
 	virtual void output() const;
