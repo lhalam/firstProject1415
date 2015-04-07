@@ -39,6 +39,9 @@ public:
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 	
+	//Returns a quantity of the product by a given id
+	int getQuantity(int id);
+	
 	//Returns a product with a given id
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
