@@ -31,8 +31,15 @@ ostream& operator<<(ostream& stream, const Drink& obj)
 void Drink::input()
 {
 	Nutrition::input();
-	cout << Message("input volume: ", CONTEXT_MSG);
-	cin >> this->volume;
+	string temp;
+
+	cout << Message("Input GMO content: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->volume = stod(temp);
+	}
+	temp.clear();
 }
 
 void Drink::output() const

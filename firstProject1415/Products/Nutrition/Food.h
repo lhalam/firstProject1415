@@ -4,7 +4,7 @@
 class Food : public Nutrition
 {
 private:
-	char GMO_content; // '+' - with GMOs, '-' - without GMOs
+	bool GMO_content; // '+' - with GMOs, '-' - without GMOs
 public:
 	Food();
 
@@ -15,4 +15,7 @@ public:
 	//in order to create new\modify existing product
 	virtual void input();
 	virtual void output() const;
+
+	void setGMOContent(bool GMO_content_) { this->GMO_content = GMO_content_; }
+	bool getGMOContent() { return this->GMO_content; }
 };

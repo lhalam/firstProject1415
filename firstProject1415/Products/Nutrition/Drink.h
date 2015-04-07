@@ -15,4 +15,7 @@ public:
 	//in order to create new\modify existing product
 	virtual void input();
 	virtual void output() const;
+
+	void setVolume(double volume_) { this->volume = volume_; }
+	double getVolume() { return this->volume; }
 };
