@@ -4,7 +4,7 @@
 class Cosmetic : public ChemicalProduct
 {
 private:
-	char organ; // for face - 'f'; for hands - 'h'; for body - 'b'.
+	char partOfBody; // for face - 'f'; for hands - 'h'; for body - 'b'.
 public:
 	Cosmetic();
 
