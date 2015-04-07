@@ -11,3 +11,4 @@ Result createUser();
 Result changeRole();
 Result showUsers();
 Result showCart();
+Result changeProduct();

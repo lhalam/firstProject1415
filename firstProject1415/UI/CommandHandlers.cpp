@@ -88,3 +88,19 @@ Result showCart()
 	cout << *cart.end();
 	return Result("Listing completed.", SUCCESSFUL);
 }
+
+Result changeProduct()
+{
+	int id;
+	cout << Message("Enter id: ", CONTEXT_MSG);
+	cin >> id;
+	DataManager manager;
+	Product *prod = manager.getProductById(id);
+	int quantity = manager.getQuantity(id);
+	prod->input();
+	manager.removeProductById(id);
+	manager.saveProduct(*prod);
+	manager.setQuantity(id, quantity);
+	delete[] prod;
+	return Result("Product is changed.", SUCCESSFUL);
+}
