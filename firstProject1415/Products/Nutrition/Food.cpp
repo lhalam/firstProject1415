@@ -28,15 +28,15 @@ ostream& operator<<(ostream& stream, const Food& obj)
 	return stream;
 }
 
-void Food::Input()
+void Food::input()
 {
-	Nutrition::Input();
+	Nutrition::input();
 	cout << Message("Input GMO: ", CONTEXT_MSG);
 	cin >> this->GMO_content;
 }
 
-void Food::Output() const
+void Food::output() const
 {
-	Nutrition::Output();
+	Nutrition::output();
 	cout << Message("GMO: " + this->GMO_content, INPUT_MSG);
 }
