@@ -76,3 +76,8 @@ Result showUsers()
 	}
 	return Result();
 }
+
+Result showCart()
+{
+	return Result();
+}

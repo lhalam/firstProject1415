@@ -30,7 +30,9 @@ public:
 		Node* ptr;
 
 	public:
+		template <typename T>
 		friend class List;
+
 		iterator() : ptr(nullptr)
 		{
 
