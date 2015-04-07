@@ -54,7 +54,7 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 	return service.read(predicate);
 }
 
-int getQuantity(int id)
+int DataManager::getQuantity(int id)
 {
 	ProductService quantity;
 	return quantity.getQuantity(id);

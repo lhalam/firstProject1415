@@ -66,7 +66,7 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 	return list;
 }
 
-int getQuantity(int id)
+int ProductService::getQuantity(int id)
 {
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())
@@ -189,7 +189,6 @@ void ProductService::removeById(int id)
 	remove("Assortment.txt");
 	rename("tempAsort.txt", "Assortment.txt");
 }
-
 
 Product * ProductService::getProduct(string type)
 {
