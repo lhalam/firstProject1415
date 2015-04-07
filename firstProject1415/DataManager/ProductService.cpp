@@ -66,21 +66,20 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 	return list;
 }
 
-void removeById(int id)
+void ProductService::removeById(int id)
 {
 	ifstream stream("Products.txt");
 	if (!stream.is_open())
 	{
-		throw exception("Cannot open file!");
+		throw exception("Cannot open file for reading.");
 	}
-
 
 	ofstream temp("Temp.txt");
-
 	if (!temp.is_open())
 	{
-		throw exception("Cannot open file!");
+		throw exception("Cannot open temporary file for writing.");
 	}
+
 
 	while (!stream.eof())
 	{
@@ -91,7 +90,8 @@ void removeById(int id)
 
 		if (prod->getId() != id)
 		{
-			temp << prod;
+			temp << typeid(*prod).name() << endl;
+			temp << *prod;
 		}
 	}
 
@@ -100,6 +100,36 @@ void removeById(int id)
 
 	remove("Products.txt");
 	rename("Temp.txt", "Products.txt");
+
+	ifstream asortment("Assortment.txt");
+	if (!asortment.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	ofstream tempAsort("tempAsort");
+	if (!tempAsort.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	unsigned currentId, quant;
+
+	while (!asortment.eof())
+	{
+		asortment >> currentId >> quant;
+
+		if (currentId != id)
+		{
+			tempAsort << currentId << " " << quant << endl;
+		}
+	}
+
+	tempAsort.close();
+	asortment.close();
+
+	remove("Assortment.txt");
+	rename("tempAsort.txt", "Assortment.txt");
 }
 
 
