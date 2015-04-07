@@ -150,24 +150,6 @@ public:
 	}
 };
 
-template<typename T>
-iterator find(const T& value, const iterator& startSearch, const iterator& endSearch) const
-{
-	iterator iterToSearch = startSearch;
-
-	do
-	{
-		if (*iterToSearch == value)
-		{
-			return iterToSearch;
-		}
-		iterToSearch++;
-	} while (iterToSearch != endSearch);
-
-	return endSearch;
-}
-
-
 template <typename T>
 List<T>::~List()
 {
@@ -259,6 +241,9 @@ void List<T>::erase(iterator& iterToDel)
 	delete iterToDel.ptr;
 	iterToDel.ptr = nullptr;
 }
+
+
+
 
 
 
