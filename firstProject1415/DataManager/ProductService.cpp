@@ -91,6 +91,45 @@ int ProductService::getQuantity(int id)
 	return -1;
 }
 
+void ProductService::setQuantity(int id, int add_quantity)
+{
+	ifstream assortment("Assortment.txt");
+	if (!assortment.is_open())
+	{
+		throw exception("A current file cannot be open for reading!");
+	}
+
+	ofstream tempAssort("tempAsort");
+	if (!tempAssort.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	unsigned currentId, quant;
+
+	while (!assortment.eof())
+	{
+		assortment >> currentId >> quant;
+
+		tempAssort << currentId << " ";
+		if (currentId != id)
+		{
+			tempAssort << quant;
+		}
+		else
+		{
+			tempAssort << quant + add_quantity;
+		}
+		tempAssort << endl;
+	}
+
+	tempAssort.close();
+	assortment.close();
+
+	remove("Assortment.txt");
+	rename("tempAssort.txt", "Assortment.txt");
+}
+
 Product* ProductService::getById(int id)
 {
 	ifstream stream("Products.txt");

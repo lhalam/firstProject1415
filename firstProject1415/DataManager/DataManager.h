@@ -42,6 +42,9 @@ public:
 	//Returns a quantity of the product by a given id
 	int getQuantity(int id);
 	
+	//Changes a quantity of the product by a given id
+	void setQuantity(int id, int add_quantity);
+	
 	//Returns a product with a given id
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
