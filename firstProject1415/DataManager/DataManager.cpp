@@ -12,18 +12,6 @@ void DataManager::saveProduct(const Product& prod)
 	service.save(prod);
 }
 
-void DataManager::removeUserById(int id)
-{
-	UserService user;
-	user.removeById(id);
-}
-
-void DataManager::removeProductById(int id)
-{
-	ProductService prod;
-	prod.removeById(id);
-}
-
 List<User*> DataManager::readAllUsers()
 {
 	UserService service;
@@ -36,6 +24,18 @@ List<User*> DataManager::readUsers(function<bool(const User&)> predicate)
 	return service.read(predicate);
 }
 
+User * DataManager::getUserByLogin(string login, string password)
+{
+	UserService service;
+	return service.getByLogin(login, password);
+}
+
+void DataManager::removeUserById(int id)
+{
+	UserService user;
+	user.removeById(id);
+}
+
 List<Product*> DataManager::readAllProducts()
 {
 	ProductService service;
@@ -46,4 +46,10 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 {
 	ProductService service;
 	return service.read(predicate);
+}
+
+void DataManager::removeProductById(int id)
+{
+	ProductService prod;
+	prod.removeById(id);
 }

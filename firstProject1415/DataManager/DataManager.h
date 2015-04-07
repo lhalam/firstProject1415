@@ -16,12 +16,15 @@ public:
 	//Returns a list of all saved users
 	List<User*> readAllUsers();
 
-	void removeUserById(int);
-
-	void removeProductById(int);
-
 	//Returns a list of users that match a predicate
 	List<User*> readUsers(function<bool(const User&)> predicate);
+
+	//Returnes a user with a given login and password
+	//Returnes nullptr if there is no such user
+	User *getUserByLogin(string login, string password);
+
+	//Removes a user with a given id
+	void removeUserById(int id);
 	
 
 	//Saves product info into a file
@@ -32,4 +35,7 @@ public:
 
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
+	
+	//Removes a product with a given id
+	void removeProductById(int id);
 };

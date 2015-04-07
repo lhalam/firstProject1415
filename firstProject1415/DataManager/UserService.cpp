@@ -47,7 +47,7 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 	return list;
 }
 
-User * UserService::readByLogin(string login, string password)
+User * UserService::getByLogin(string login, string password)
 {
 	ifstream stream("Users.txt");
 

@@ -23,7 +23,7 @@ public:
 
 	//Returns a user with a given login and password
 	//Returns nulltpr if there is no such user
-	User *readByLogin(string login, string password);
+	User *getByLogin(string login, string password);
 
 	//Removes the user with a given id
 	void removeById(int id);
