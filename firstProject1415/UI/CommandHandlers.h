@@ -2,14 +2,15 @@
 #include "Message.h"
 #include "Globals.h"
 
-/*Command executors*/
+/*Command executors listed alphabetically*/
+
 Result addToAssortment();
-Result help();
+Result createAdmin();
+Result createUser();
 Result exit();
+Result help();
 Result logIn();
 Result logOut();
-Result createUser();
-Result changeRole();
-Result showUsers();
 Result showCart();
+Result showUsers();
 Result changeProduct();

@@ -36,6 +36,9 @@ private:
 	string password;
 	string email;
 	Properties* properties;
+
+	//createAdmin() must change the role of the user
+	friend Result createAdmin();
 };
 
 #endif /* USER_H_ */
