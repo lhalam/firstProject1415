@@ -25,6 +25,9 @@ public:
 	//Removes a product with a given id
 	void removeById(int id);
 
+	//Removes a product from file ("Products.txt") if the predicate is true
+	void removeByPredicate(function<bool(const Product&)> predicate);
+
 	//Calls read(always true)
 	List<Product*> readAll();
 

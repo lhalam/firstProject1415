@@ -11,7 +11,7 @@ Command commands[] =
 	Command("log out", logOut, "exits user profile", Access(USER | ADMIN)),
 	Command("register", createUser, "create your account", Access::GUEST),
 	Command("show all users", showUsers, "show the list of all users", Access::ADMIN),
-	Command("show cart", showCart, "show all products added to cart", Access::USER),
+	Command("show cart", showCart, "show all products added to cart", Access(GUEST | USER)),
 	Command("change product", changeProduct, "change product settings", Access::ADMIN),
 	Command("add to assortment", addToAssortment, "add products to assortment", Access::ADMIN)
 };

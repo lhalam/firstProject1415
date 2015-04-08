@@ -229,6 +229,78 @@ void ProductService::removeById(int id)
 	rename("tempAsort.txt", "Assortment.txt");
 }
 
+void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
+{
+	ifstream stream("Products.txt");
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	ofstream temp("Temp.txt");
+	if (!temp.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	List<int> ids;
+
+	while (!stream.eof())
+	{
+		string type;
+		getline(stream, type);
+		Product *prod = getProduct(type);
+		stream >> *prod;
+
+		if (!predicate(*prod))
+		{
+			temp << typeid(*prod).name() << endl;
+			temp << *prod;
+		}
+		else
+		{
+			ids.pushBack(prod->getId());
+		}
+	}
+
+	temp.close();
+	stream.close();
+
+	remove("Products.txt");
+	rename("Temp.txt", "Products.txt");
+
+	ifstream asortment("Assortment.txt");
+	if (!asortment.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	ofstream tempAsort("tempAsort");
+	if (!tempAsort.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	unsigned currentId, quant;
+
+	while (!asortment.eof())
+	{
+		asortment >> currentId >> quant;
+
+		/*if (ids.popFront() != currentId)
+		{
+			tempAsort << currentId << " " << quant << endl;
+		}*/
+	}
+
+	tempAsort.close();
+	asortment.close();
+
+	remove("Assortment.txt");
+	rename("tempAsort.txt", "Assortment.txt");
+}
+
+
 Product * ProductService::getProduct(string type)
 {
 	Product *prod = nullptr;

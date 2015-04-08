@@ -6,7 +6,8 @@ Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
 	{
-		cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
+		if (currentUser.getRole() & commands[i].getAccessLevel())
+			cout << Message("[" + commands[i].getName() + "] - " + commands[i].getDescription(), LOG_MSG);
 	}
 	return Result();
 }

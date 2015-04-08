@@ -36,6 +36,8 @@ public:
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();
 
+
+
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 	
@@ -51,4 +53,12 @@ public:
 
 	//Removes a product with a given id
 	void removeProductById(int id);
+
+	//Calls the function from UserService to remove 
+	//user, if the predicate is true
+	void removeUserByPredicate(function<bool(const User&)> predicate);
+
+	//Calls the function from ProductService to remove 
+	//product, if the predicate is true
+	void removeProductByPredicate(function<bool(const Product&)> predicate);
 };

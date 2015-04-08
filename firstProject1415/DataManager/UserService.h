@@ -28,6 +28,9 @@ public:
 	//Returns a user with a given id
 	User *getById(int id);
 
+	//Removes a user from file ("Users.txt") if the predicate is true
+	void removeByPredicate(function<bool(const User&)> predicate);
+
 	//Removes a user with a given id
 	void removeById(int id);
 };
