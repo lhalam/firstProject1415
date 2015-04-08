@@ -7,11 +7,11 @@
 Result addToAssortment()
 {
 	int id;
-	cout << Message("Enter id: ", CONTEXT_MSG);
+	cout << Message("Enter id", CONTEXT_MSG);
 	cin >> id;
 
 	int quantity;
-	cout << Message("Enter new quantity: ", CONTEXT_MSG);
+	cout << Message("Enter new quantity", CONTEXT_MSG);
 	cin >> quantity;
 
 	DataManager manager;
@@ -22,8 +22,8 @@ Result addToAssortment()
 
 Result changeProduct()
 {
-	int id;
-	cout << Message("Enter id: ", CONTEXT_MSG);
+	int id = 0;
+	cout << Message("Enter id", CONTEXT_MSG);
 	cin >> id;
 
 	DataManager manager;
@@ -64,9 +64,14 @@ Result createAdmin()
 		return Result("The id is invalid. Please try again.", NOT_SUCCESSFUL);
 	}
 
+	if (user->getRole() == Access::ADMIN)
+	{
+		return Result("The account already has administrator rights.", SUCCESSFUL);
+	}
+
 	user->properties->setRole(Access::ADMIN);
 
-	return Result("The account was granted an administrator level.", SUCCESSFUL);
+	return Result("The account was granted administrator rights.", SUCCESSFUL);
 }
 
 Result createUser()
@@ -123,7 +128,32 @@ Result logIn()
 Result logOut()
 {
 	/*Deletes data of global variable User*/
-	return Result("You logged out successfully", SUCCESSFUL);
+	return Result("You logged out successfully.", SUCCESSFUL);
+}
+
+Result removeUser()
+{
+	int id = 0;
+	cout << Message("Enter id of the account", CONTEXT_MSG);
+	cin >> id;
+
+	if (id == currentUser.getId())
+	{
+		return Result("You cannot delete yourself.", SUCCESSFUL);
+	}
+
+	DataManager manager;
+
+	try
+	{
+		manager.removeUserById(id);
+	} catch (exception exp)
+	{
+		cin.get();
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
+	return Result("The user was deleted successfully.", SUCCESSFUL);
 }
 
 Result showCart()
@@ -140,19 +170,22 @@ Result showCart()
 Result showUsers()
 {
 	DataManager manager;
-	List<User*> list = (manager.readAllUsers());
+	List<User*> list = manager.readAllUsers();
 	List<User*>::iterator iter = list.begin();
+
 	while(iter != list.end())
 	{
 		int temp = 0;
-		std::cout << (*iter);
+		cout << (*iter);
 		temp ++;
 		iter ++;
+
 		if((temp % 5) == 0)
 		{
 			cout << Message("Press Enter to continue... ", LOG_MSG);
 			cin.get();
 		}
 	}
-	return Result();
+
+	return Result("Listing completed.", SUCCESSFUL);
 }

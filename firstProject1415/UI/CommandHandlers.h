@@ -11,6 +11,7 @@ Result exit();
 Result help();
 Result logIn();
 Result logOut();
+Result removeUser();
 Result showCart();
 Result showUsers();
 Result changeProduct();
