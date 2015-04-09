@@ -44,6 +44,7 @@ Result logOut()
 	/*Deletes data of global variable User*/
 	return Result("You logged out successfully", SUCCESSFUL);
 }
+
 Result createUser()
 {
 	using std::cin;
