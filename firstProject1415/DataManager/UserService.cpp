@@ -114,35 +114,7 @@ User* UserService::getById(int id)
 
 void UserService::removeById(int id)
 {
-	ifstream stream("Users.txt");
-	if (!stream.is_open())
-	{ 
-		throw exception("Cannot open file for reading.");
-	}
-
-	ofstream temp("Temp.txt");
-
-	if (!temp.is_open())
-	{ 
-		throw exception("Cannot open temporary file for writing.");
-	}
-
-	while (!stream.eof())
-	{
-		User *user = new User();
-		stream >> *user;
-		
-		if (user->getId() != id)
-		{ 
-			temp << user;
-		}
-	}
-
-	temp.close();
-	stream.close();
-
-	remove("Users.txt");
-	rename("Temp.txt", "Users.txt");
+	removeByPredicate([id](const User& user) -> bool {	return id == user.getId(); });
 }
 
 void UserService::removeByPredicate(function<bool(const User&)> predicate)

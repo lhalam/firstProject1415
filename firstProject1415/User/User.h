@@ -25,11 +25,11 @@ public:
 	friend istream& operator>>(istream&, User&);
 	void changePassword(string);
 	void changeEmail(string);
-	int getId();
-	Access getRole();
-	string getLogin();
-	string getPassword();
-	string getEmail();
+	int getId() const;
+	Access getRole() const;
+	string getLogin() const;
+	string getPassword() const;
+	string getEmail() const;
 
 private:
 	string login;

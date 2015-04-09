@@ -77,27 +77,27 @@ void User::changeEmail(string newEmail)
 	email = newEmail;
 }
 
-int User::getId()
+int User::getId() const
 {
 	return properties->getId();
 }
 
-Access User::getRole()
+Access User::getRole() const
 {
 	return properties->getRole();
 }
 
-string User::getLogin()
+string User::getLogin() const
 {
 	return login;
 }
 
-string User::getPassword()
+string User::getPassword() const
 {
 	return password;
 }
 
-string User::getEmail()
+string User::getEmail() const
 {
 	return email;
 }
