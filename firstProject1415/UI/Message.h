@@ -12,6 +12,7 @@ enum MsgType
 	LOG_MSG,
 	ALERT_MSG
 };
+
 //Possible message colors
 enum Color
 {
@@ -35,8 +36,6 @@ public:
 
 	friend ostream& operator<<(ostream& stream, Message _msg);
 };
-
-
 
 //Possible Result IDs
 enum ResultId

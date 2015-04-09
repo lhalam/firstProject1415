@@ -1,7 +1,95 @@
 #include "CommandHandlers.h"
 #include "../DataManager/DataManager.h"
 #include "Globals.h"
-/*Command executors*/
+
+/*Command executors listed alphabetically*/
+
+Result addToAssortment()
+{
+	int id;
+	cout << Message("Enter id", CONTEXT_MSG);
+	cin >> id;
+
+	int quantity;
+	cout << Message("Enter new quantity", CONTEXT_MSG);
+	cin >> quantity;
+
+	DataManager manager;
+	manager.setQuantity(id, quantity);
+
+	return Result("Product is added to asortment.", SUCCESSFUL);
+}
+
+Result changeProduct()
+{
+	int id = 0;
+	cout << Message("Enter id", CONTEXT_MSG);
+	cin >> id;
+
+	DataManager manager;
+	Product *prod = manager.getProductById(id);
+	int quantity = manager.getQuantity(id);
+
+	prod->input();
+
+	manager.removeProductById(id);
+	manager.saveProduct(*prod);
+	manager.setQuantity(id, quantity);
+
+	delete[] prod;
+	return Result("Product is changed.", SUCCESSFUL);
+}
+
+Result createAdmin()
+{
+	int id;
+	cout << Message("Enter id of the account", CONTEXT_MSG);
+	cin >> id;
+
+	DataManager manager;
+	User *user = nullptr;
+
+	try
+	{
+		user = manager.getUserById(id);
+	} catch (exception exp)
+	{
+		cin.get();
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
+	if (user == nullptr)
+	{
+		cin.get();
+		return Result("The id is invalid. Please try again.", NOT_SUCCESSFUL);
+	}
+
+	if (user->getRole() == Access::ADMIN)
+	{
+		return Result("The account already has administrator rights.", SUCCESSFUL);
+	}
+
+	user->properties->setRole(Access::ADMIN);
+
+	return Result("The account was granted administrator rights.", SUCCESSFUL);
+}
+
+Result createUser()
+{
+	using std::cin;
+	User newUser;
+	cin >> newUser;
+	/* Writing to the database */
+	/* Writing user data into global variable 'User'*/
+
+	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
+}
+
+Result exit()
+{
+	return Result(EXIT);
+}
+
 Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
@@ -11,10 +99,7 @@ Result help()
 	}
 	return Result();
 }
-Result exit()
-{
-	return Result(EXIT);
-}
+
 Result logIn()
 {
 	using std::cin;
@@ -39,45 +124,36 @@ Result logIn()
 		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
 	}
 }
+
 Result logOut()
 {
 	/*Deletes data of global variable User*/
-	return Result("You logged out successfully", SUCCESSFUL);
+	return Result("You logged out successfully.", SUCCESSFUL);
 }
 
-Result createUser()
+Result removeUser()
 {
-	using std::cin;
-	User newUser;
-	cin >> newUser;
-	/* Writing to the database */
-	/* Writing user data into global variable 'User'*/
+	int id = 0;
+	cout << Message("Enter id of the account", CONTEXT_MSG);
+	cin >> id;
 
-	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
-}
-Result changeRole()
-{
-	return Result();
-}
-
-Result showUsers()
-{
-	DataManager manager;
-	List<User*> list = (manager.readAllUsers());
-	List<User*>::iterator iter = list.begin();
-	while(iter != list.end())
+	if (id == currentUser.getId())
 	{
-		int temp = 0;
-		std::cout << (*iter);
-		temp ++;
-		iter ++;
-		if((temp % 5) == 0)
-		{
-			cout << Message("Press Enter to continue... ", LOG_MSG);
-			cin.get();
-		}
+		return Result("You cannot delete yourself.", SUCCESSFUL);
 	}
-	return Result();
+
+	DataManager manager;
+
+	try
+	{
+		manager.removeUserById(id);
+	} catch (exception exp)
+	{
+		cin.get();
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
+	return Result("The user was deleted successfully.", SUCCESSFUL);
 }
 
 Result showCart()
@@ -91,30 +167,25 @@ Result showCart()
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
-Result changeProduct()
+Result showUsers()
 {
-	int id;
-	cout << Message("Enter id: ", CONTEXT_MSG);
-	cin >> id;
 	DataManager manager;
-	Product *prod = manager.getProductById(id);
-	int quantity = manager.getQuantity(id);
-	prod->input();
-	manager.removeProductById(id);
-	manager.saveProduct(*prod);
-	manager.setQuantity(id, quantity);
-	delete[] prod;
-	return Result("Product is changed.", SUCCESSFUL);
+	List<User*> list = manager.readAllUsers();
+	List<User*>::iterator iter = list.begin();
+
+	while(iter != list.end())
+	{
+		int temp = 0;
+		cout << (*iter);
+		temp ++;
+		iter ++;
+
+		if((temp % 5) == 0)
+		{
+			cout << Message("Press Enter to continue... ", LOG_MSG);
+			cin.get();
+		}
+	}
+
+	return Result("Listing completed.", SUCCESSFUL);
 }
-Result addToAssortment()
- {
-  int id;
-  cout << Message("Enter id: ", CONTEXT_MSG);
-  cin >> id;
-  int quantity;
-  cout << Message("Enter new quantity: ", CONTEXT_MSG);
-  cin >> quantity;
-  DataManager manager;
-  manager.setQuantity(id, quantity);
-  return Result("Product is added to asortment.", SUCCESSFUL);
- }
