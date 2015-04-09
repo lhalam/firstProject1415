@@ -13,7 +13,10 @@ bool ifValidString(string str)
 }
 
 Product::Product():
-	name("No name"), manufacturer("No manufacturer"), price(0.0), id(0) 
+	name("No name"), 
+	manufacturer("No manufacturer"), 
+	price(0.0), 
+	id(0) 
 	{ 
 	}
 
@@ -56,12 +59,11 @@ void Product::input()
 
 void Product::output() const
 {
-	cout << Message("Name: " + this->name, INPUT_MSG);
-	cout << Message("Manufacturer: " + this->manufacturer, INPUT_MSG);
-	cout << Message("Price: " + to_string(this->price), INPUT_MSG);
-	cout << Message("ID: " + to_string(this->id), INPUT_MSG);
+	cout << Message("Name: " + this->name, INPUT_MSG)
+		 << Message("Manufacturer: " + this->manufacturer, INPUT_MSG)
+		 << Message("Price: " + to_string(this->price), INPUT_MSG)
+		 << Message("ID: " + to_string(this->id), INPUT_MSG);
 }
-
 
 istream& operator>>(istream& stream, Product& obj)
 {
@@ -70,8 +72,12 @@ istream& operator>>(istream& stream, Product& obj)
 	stream >> obj.price >> obj.id;
 	return stream;
 }
+
 ostream& operator<<(ostream& stream, const Product& obj)
 {
-	stream << obj.name << '\n' << obj.manufacturer << '\n' << obj.price << '\n' << obj.id << endl;
+	stream << obj.name << '\n' 
+		   << obj.manufacturer << '\n' 
+		   << obj.price << '\n' 
+		   << obj.id << endl;
 	return stream;
 }

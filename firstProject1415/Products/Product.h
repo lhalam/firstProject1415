@@ -18,40 +18,22 @@ protected:
 	unsigned id;
 	Product();
 public:
-	virtual ~Product() { }
+	virtual ~Product() 
+	{ 
+	}
 
-	string getName() const
-	{
-		return name;	
-	}
-	void setName(string name)
-	{
-		this->name = name;	
-	}
-	string getManufacturer() const
-	{
-		return manufacturer;	
-	}
-	void setManufacturer(string manufacturer)
-	{
-		this->manufacturer = manufacturer;	
-	}
-	double getPrice() const
-	{
-		return price;	
-	}
-	void setPrice(double price)
-	{
-		this->price = price;	
-	}
-	unsigned getId() const
-	{
-		return id;	
-	}
-	void setId(unsigned id)
-	{
-		this->id = id;	
-	}
+	string getName() const { return name; }
+	void setName(string name) { this->name = name; }
+
+	string getManufacturer() const { return manufacturer; }
+	void setManufacturer(string manufacturer) { this->manufacturer = manufacturer; }
+
+	double getPrice() const { return price; }
+	void setPrice(double price) { this->price = price; }
+
+	unsigned getId() const { return id; }
+	void setId(unsigned id)	{ this->id = id; }
+
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
 	virtual void input();

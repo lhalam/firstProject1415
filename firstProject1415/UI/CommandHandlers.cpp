@@ -163,7 +163,6 @@ Result showCart()
 	{
 		cout << *iterator;
 	}
-	cout << *cart.end();
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
@@ -189,3 +188,4 @@ Result showUsers()
 
 	return Result("Listing completed.", SUCCESSFUL);
 }
+
