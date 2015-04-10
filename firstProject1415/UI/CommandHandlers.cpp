@@ -79,8 +79,8 @@ Result createUser()
 	using std::cin;
 	User newUser;
 	cin >> newUser;
-	/* Writing to the database */
-	/* Writing user data into global variable 'User'*/
+	DataManager manager;
+	manager.saveUser(newUser);
 
 	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
 }
