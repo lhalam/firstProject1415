@@ -34,10 +34,16 @@ public:
 	unsigned getId() const { return id; }
 	void setId(unsigned id)	{ this->id = id; }
 
-	//intput\output methods for command prompt 
+	//intput method for command prompt 
 	//in order to create new\modify existing product
 	virtual void input();
+
+	//output method for command prompt 
+	//in order to create new\modify existing product
 	virtual void output() const;
+
+	//comparing products by id using its value only
+	bool operator==(const Product&);
 
 	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);

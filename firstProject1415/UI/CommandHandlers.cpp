@@ -131,6 +131,85 @@ Result logOut()
 	return Result("You logged out successfully.", SUCCESSFUL);
 }
 
+Result removeProductFromCart()
+{
+	if(cart.begin() == cart.end())
+	{
+		return Result("Your cart is empty.", NOT_SUCCESSFUL);
+	}
+
+	else if(cart.begin()++ == cart.end())
+	{
+		cout << Message("You currently have one product in your cart.", CONTEXT_MSG)
+			 << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
+
+		char answer;
+		cin >> answer;
+		while(answer != 'y' && answer != 'n')
+		{
+			cout << Message("You may have misunderstood me.", CONTEXT_MSG);
+			cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
+			cin >> answer;
+		}
+		try
+		{
+			switch(answer)
+			{
+			case 'y': 
+				cart.erase(cart.begin()); 
+				return Result("Operation successful.", SUCCESSFUL);
+			case 'n': 
+				return Result("Operation cancelled.", SUCCESSFUL);
+			}
+		}
+		catch(exception exc)
+		{
+			return Result(exc.what(), NOT_SUCCESSFUL);
+		}
+	}
+
+	cout << Message("You currently have " + to_string(cart.size()) + " products in your cart.", CONTEXT_MSG)
+		 << Message("Which product would you like to remove from your cart?", INPUT_MSG)
+		 << Message("Input ID:", INPUT_MSG);
+	int ID;
+	cin >> ID;
+
+	cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
+	char answer;
+	cin >> answer;
+	int stupidityCount = 0;
+	while(answer != 'y' && answer != 'n')
+	{
+		stupidityCount++;
+		if(stupidityCount >= 3)
+		{
+			cout << Message("You aren't smart, are you?..", ALERT_MSG);
+		}
+		else
+		{
+			cout << Message("You may have misunderstood me.", CONTEXT_MSG);
+		}
+		cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
+		cin >> answer;
+	}
+	try
+	{
+		switch(answer)
+		{
+		case 'y': 
+			DataManager manager;
+			cart.erase(cart.find(manager.getProductById(ID), cart.begin(), cart.end()));
+			return Result("Operation successful.", SUCCESSFUL);
+		case 'n': 
+			return Result("Operation cancelled.", SUCCESSFUL);
+		}
+	}
+	catch(exception exc)
+	{
+		return Result(exc.what(), NOT_SUCCESSFUL);
+	}
+}
+
 Result removeUser()
 {
 	int id = 0;
@@ -158,6 +237,12 @@ Result removeUser()
 
 Result showCart()
 {
+	if(cart.begin() == cart.end())
+	{
+		cout << Message("Your cart is empty.", INPUT_MSG);
+		return Result(SUCCESSFUL);
+	}
+
 	List<Product*>::iterator end = cart.end();
 	for (List<Product*>::iterator iterator = cart.begin(); iterator != end; iterator++)
 	{
@@ -188,4 +273,3 @@ Result showUsers()
 
 	return Result("Listing completed.", SUCCESSFUL);
 }
-

@@ -65,6 +65,11 @@ void Product::output() const
 		 << Message("ID: " + to_string(this->id), INPUT_MSG);
 }
 
+bool Product::operator==(const Product& prod)
+{
+	return this->id == prod.id;
+}
+
 istream& operator>>(istream& stream, Product& obj)
 {
 	getline(stream, obj.name);

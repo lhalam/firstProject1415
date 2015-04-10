@@ -9,8 +9,12 @@ private:
 		Node* prev;
 		Node* next;
 		T value;
-		Node(const T& value_ = T(), Node* next_ = nullptr, Node* prev_ = nullptr) :
-			value(value_), next(next_), prev(prev_){}
+		Node(const T& value_ = T(), Node* next_ = nullptr, Node* prev_ = nullptr):
+			value(value_), 
+			next(next_), 
+			prev(prev_)
+		{
+		}
 	};
 
 	Node* head;
@@ -19,9 +23,12 @@ private:
 	int s;
 
 public:
-	List() : head(nullptr), tail(nullptr), emptyNode(new Node()), s(0)
+	List(): 
+		head(nullptr), 
+		tail(nullptr), 
+		emptyNode(new Node()), 
+		s(0)
 	{
-
 	}
 
 	class iterator
@@ -33,37 +40,30 @@ public:
 		template <typename T>
 		friend class List;
 
-		iterator() : ptr(nullptr)
+		iterator() : 
+			ptr(nullptr)
 		{
-
 		}
 
-		explicit iterator(Node* ptr_) : ptr(ptr_)
+		explicit iterator(Node* ptr_): 
+			ptr(ptr_)
 		{
-
 		}
 
-		iterator(const iterator& copy) : ptr(copy.ptr)
+		iterator(const iterator& copy): 
+			ptr(copy.ptr)
 		{
-
 		}
 
-		T& operator*()
-		{
-			return ptr->value;
-		}
+		T& operator*() { return ptr->value; }
 
-		const T& operator*() const
-		{
-			return ptr->value;
-		}
+		const T& operator*() const { return ptr->value; }
 
 		iterator operator++()
 		{
 			ptr = ptr->next;
 			return *this;
 		}
-
 
 		iterator operator++(int)
 		{
@@ -97,6 +97,10 @@ public:
 	//returns iterator to first element
 	iterator begin() const
 	{
+		if(head == nullptr)
+		{
+			return iterator(emptyNode);
+		}
 		return iterator(head);
 	}
 
@@ -112,15 +116,11 @@ public:
 
 	void pushBack(const T&);
 
-	T front() const
-	{
-		return head->value;
-	}
+	//returns first element's value
+	T front() const { return head->value; }
 
-	T back() const
-	{
-		return tail->value;
-	}
+	//returns last element's value
+	T back() const { return tail->value; }
 
 	//returns iterator containing value to find
 	//uses interval to find value (gets also iterator to begin, and iterator to element after last on interval)
@@ -144,14 +144,9 @@ public:
 	void insert(iterator&, const T&);
 
 	//removes element
-	void erase(iterator& );
+	void erase(iterator&);
 
-	int size() const
-	{
-		return s;
-	}
-
-
+	int size() const { return s; }
 };
 
 template <typename T>
@@ -245,9 +240,3 @@ void List<T>::erase(iterator& iterToDel)
 	delete iterToDel.ptr;
 	iterToDel.ptr = nullptr;
 }
-
-
-
-
-
-
