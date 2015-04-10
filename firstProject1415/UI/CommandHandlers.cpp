@@ -166,6 +166,19 @@ Result showCart()
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
+Result showProducts()
+{
+	List<Product*> allProducts = DataManager().readAllProducts();
+	List<Product*>::iterator end = allProducts.end();
+	for (List<Product*>::iterator it = allProducts.begin();
+		it != end;
+		it++)
+	{
+		cout << *it << endl;
+	}
+	return Result("Listing completed.", SUCCESSFUL);
+}
+
 Result showUsers()
 {
 	DataManager manager;

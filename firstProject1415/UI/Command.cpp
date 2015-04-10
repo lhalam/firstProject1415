@@ -14,6 +14,7 @@ Command commands[] =
 	Command("register", createUser, "creates a new account", Access(GUEST | ADMIN)),
 	Command("register admin", createAdmin, "makes a normal user an administrator", Access::ADMIN),
 	Command("remove user", removeUser, "deletes a specified user account", Access::ADMIN),
+	Command("show all products", showProducts, "shows the list of all products", Access(GUEST | USER | ADMIN)),
 	Command("show all users", showUsers, "shows the list of all users", Access::ADMIN),
 	Command("show cart", showCart, "shows all products added to cart", Access(GUEST | USER)),
 };
