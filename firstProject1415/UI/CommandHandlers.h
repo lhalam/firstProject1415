@@ -15,5 +15,6 @@ Result logOut();
 Result removeProductFromCart();
 Result removeUser();
 Result showCart();
+Result showProducts();
 Result showUsers();
 
