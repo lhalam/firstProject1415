@@ -78,13 +78,13 @@ void DataManager::removeProductById(int id)
 	prod.removeById(id);
 }
 
-void DataManager::removeProductByPredicate(function<bool(const Product&)> predicate)
+void DataManager::removeProducts(function<bool(const Product&)> predicate)
 {
 	ProductService prod;
 	prod.removeByPredicate(predicate);
 }
 
-void DataManager::removeUserByPredicate(function<bool(const User&)> predicate)
+void DataManager::removeUsers(function<bool(const User&)> predicate)
 {
 	UserService user;
 	user.removeByPredicate(predicate);

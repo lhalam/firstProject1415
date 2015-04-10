@@ -29,14 +29,16 @@ public:
 
 	//Removes a user with a given id
 	void removeUserById(int id);
+
+	//Removes all users that match a predicate
+	void removeUsers(function<bool(const User&)> predicate);
 	
+
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
 
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();
-
-
 
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
@@ -54,11 +56,6 @@ public:
 	//Removes a product with a given id
 	void removeProductById(int id);
 
-	//Calls the function from UserService to remove 
-	//user, if the predicate is true
-	void removeUserByPredicate(function<bool(const User&)> predicate);
-
-	//Calls the function from ProductService to remove 
-	//product, if the predicate is true
-	void removeProductByPredicate(function<bool(const Product&)> predicate);
+	//Removes all products that match a predicate
+	void removeProducts(function<bool(const Product&)> predicate);
 };

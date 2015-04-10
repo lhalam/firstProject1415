@@ -55,6 +55,11 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 		string type;
 		getline(stream, type);
 
+		if (type.empty())
+		{
+			continue;
+		}
+
 		Product *prod = getProduct(type);
 
 		stream >> *prod;
@@ -96,7 +101,7 @@ void ProductService::setQuantity(int id, int add_quantity)
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())
 	{
-		throw exception("A current file cannot be open for reading!");
+		throw exception("Cannot open file for reading.");
 	}
 
 	ofstream tempAssort("tempAsort");
@@ -140,10 +145,17 @@ Product* ProductService::getById(int id)
 
 	Product *product = nullptr;
 	bool isSuccessful = false;
+
 	while (!stream.eof())
 	{
 		string product_type;
 		getline(stream, product_type);
+
+		if (product_type.empty())
+		{
+			continue;
+		}
+
 		Product *product = getProduct(product_type);
 		stream >> *product;
 
@@ -188,6 +200,12 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	{
 		string type;
 		getline(stream, type);
+
+		if (type.empty())
+		{
+			continue;
+		}
+
 		Product *prod = getProduct(type);
 		stream >> *prod;
 
@@ -238,7 +256,6 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	remove("Assortment.txt");
 	rename("tempAsort.txt", "Assortment.txt");
 }
-
 
 Product * ProductService::getProduct(string type)
 {
