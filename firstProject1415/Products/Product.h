@@ -18,9 +18,7 @@ protected:
 	unsigned id;
 	Product();
 public:
-	virtual ~Product() 
-	{ 
-	}
+	virtual ~Product();
 
 	string getName() const { return name; }
 	void setName(string name) { this->name = name; }
