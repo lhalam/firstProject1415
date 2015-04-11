@@ -17,8 +17,8 @@ Product::Product():
 	manufacturer("No manufacturer"), 
 	price(0.0), 
 	id(0) 
-	{ 
-	}
+{ 
+}
 
 void Product::input()
 {
