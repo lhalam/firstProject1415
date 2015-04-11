@@ -1,15 +1,24 @@
 #include "Nutrition.h"
 
-Nutrition::Nutrition() :
-	Product(), manufacture_date("01.01.1970"), expiration_date("01.01.1970"), ingredients("No ingredients") {}
+Nutrition::Nutrition():
+	Product(),
+	manufactureDate("01.01.1970"),
+	expirationDate("01.01.1970"),
+	ingredients("No ingredients")
+{
+}
+
+Nutrition::~Nutrition()
+{
+}
 
 istream& operator>>(istream& stream, Nutrition& obj)
 {
 	getline(stream, obj.name);
 	getline(stream, obj.manufacturer);
 	stream >> obj.price >> obj.id;
-	getline(stream, obj.manufacture_date);
-	getline(stream, obj.expiration_date);
+	getline(stream, obj.manufactureDate);
+	getline(stream, obj.expirationDate);
 	getline(stream, obj.ingredients);
 	return stream;
 }
@@ -17,12 +26,12 @@ istream& operator>>(istream& stream, Nutrition& obj)
 ostream& operator<<(ostream& stream, const Nutrition& obj)
 {
 	stream << obj.name << endl
-	<< obj.manufacturer << endl
-	<< obj.price << endl
-	<< obj.id << endl
-	<< obj.manufacture_date << endl
-	<< obj.expiration_date << endl
-	<< obj.ingredients << endl;
+		   << obj.manufacturer << endl
+		   << obj.price << endl
+		   << obj.id << endl
+		   << obj.manufactureDate << endl
+		   << obj.expirationDate << endl
+		   << obj.ingredients << endl;
 	return stream;
 }
 
@@ -35,7 +44,7 @@ void Nutrition::input()
 	getline(cin, temp);
 	if (ifValidString(temp))
 	{
-		this->manufacture_date = temp;
+		this->manufactureDate = temp;
 	}
 	temp.clear();
 
@@ -43,7 +52,7 @@ void Nutrition::input()
 	getline(cin, temp);
 	if (ifValidString(temp))
 	{
-		this->expiration_date = temp;
+		this->expirationDate = temp;
 	}
 	temp.clear();
 
@@ -59,7 +68,7 @@ void Nutrition::input()
 void Nutrition::output() const
 {
 	Product::output();
-	cout << Message("Manufacture date: " + this->manufacture_date, INPUT_MSG);
-	cout << Message("Expiration date: " + this->expiration_date, INPUT_MSG);
-	cout << Message("Ingredients: " + this->ingredients, INPUT_MSG);
+	cout << Message("Manufacture date: " + this->manufactureDate, INPUT_MSG) << endl
+		 << Message("Expiration date: " + this->expirationDate, INPUT_MSG) << endl
+		 << Message("Ingredients: " + this->ingredients, INPUT_MSG) << endl;
 }

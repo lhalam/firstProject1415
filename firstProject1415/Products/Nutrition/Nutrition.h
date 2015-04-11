@@ -5,12 +5,12 @@
 class Nutrition : public Product
 {
 protected:
-	string manufacture_date;
-	string expiration_date;
+	string manufactureDate;
+	string expirationDate;
 	string ingredients;
 	Nutrition();
 public:
-	virtual ~Nutrition() {}
+	virtual ~Nutrition();
 	
 	friend istream& operator>>(istream& stream, Nutrition& obj);
 	friend ostream& operator<<(ostream& stream, const Nutrition& obj);
@@ -20,10 +20,12 @@ public:
 	virtual void input();
 	virtual void output() const;
 
-	string getManufactureDate() const { return manufacture_date; }
-	void setManufactureDate(string m_d) { this->manufacture_date = m_d; }
-	string getExpirationDate() const { return expiration_date; }
-	void setExpirationDate(string e_d) { this->expiration_date = e_d; }
+	string getManufactureDate() const { return manufactureDate; }
+	void setManufactureDate(string m_d) { this->manufactureDate = m_d; }
+
+	string getExpirationDate() const { return expirationDate; }
+	void setExpirationDate(string e_d) { this->expirationDate = e_d; }
+
 	string getIngredients() const { return ingredients; }
 	void setIngredients(string ing) { this->ingredients = ing; }
 };

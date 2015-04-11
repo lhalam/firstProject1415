@@ -8,8 +8,8 @@ istream& operator>>(istream& stream, Food& obj)
 	getline(stream, obj.name);
 	getline(stream, obj.manufacturer);
 	stream >> obj.price >> obj.id;
-	getline(stream, obj.manufacture_date);
-	getline(stream, obj.expiration_date);
+	getline(stream, obj.manufactureDate);
+	getline(stream, obj.expirationDate);
 	getline(stream, obj.ingredients);
 	stream >> obj.GMO_content;
 	return stream;
@@ -21,8 +21,8 @@ ostream& operator<<(ostream& stream, const Food& obj)
 		<< obj.manufacturer << endl
 		<< obj.price << endl
 		<< obj.id << endl
-		<< obj.manufacture_date << endl
-		<< obj.expiration_date << endl
+		<< obj.manufactureDate << endl
+		<< obj.expirationDate << endl
 		<< obj.ingredients << endl
 		<< obj.GMO_content << endl;
 	return stream;
