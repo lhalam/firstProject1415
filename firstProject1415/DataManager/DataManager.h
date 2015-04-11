@@ -43,10 +43,10 @@ public:
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 	
-	//Returns a quantity of the product by a given id
+	//Returns quantity of the product with a given id
 	int getQuantity(int id);
 	
-	//Changes a quantity of the product by a given id
+	//Changes quantity of the product with a given id
 	void setQuantity(int id, int add_quantity);
 	
 	//Returns a product with a given id

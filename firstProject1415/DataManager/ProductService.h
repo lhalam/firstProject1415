@@ -8,7 +8,7 @@ using std::function;
 class ProductService
 {
 	//Returnes the product of the specified type
-	Product *getProduct(string type);
+	Product *getProduct(string type, istream& stream);
 public:
 	//Saves product info into a file
 	void save(const Product& prod);

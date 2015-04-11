@@ -60,9 +60,8 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 			continue;
 		}
 
-		Product *prod = getProduct(type);
+		Product *prod = getProduct(type, stream);
 
-		stream >> *prod;
 		if (predicate(*prod))
 			list.pushBack(prod);
 	}
@@ -156,8 +155,7 @@ Product* ProductService::getById(int id)
 			continue;
 		}
 
-		Product *product = getProduct(product_type);
-		stream >> *product;
+		Product *product = getProduct(product_type, stream);
 
 		if (product->getId() == id)
 		{
@@ -206,8 +204,7 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 			continue;
 		}
 
-		Product *prod = getProduct(type);
-		stream >> *prod;
+		Product *prod = getProduct(type, stream);
 
 		if (!predicate(*prod))
 		{
@@ -244,10 +241,12 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	{
 		asortment >> currentId >> quant;
 
-		/*if (ids.popFront() != currentId)
+		if (ids.front() != currentId)
 		{
-			tempAsort << currentId << " " << quant << endl;
-		}*/
+			tempAsort << currentId << ' ' << quant << endl;
+		}
+
+		ids.erase(ids.begin());
 	}
 
 	tempAsort.close();
@@ -257,49 +256,62 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	rename("tempAsort.txt", "Assortment.txt");
 }
 
-Product * ProductService::getProduct(string type)
+Product * ProductService::getProduct(string type, istream& stream)
 {
 	Product *prod = nullptr;
 
 	if (type == typeid(Appliance).name())
 	{
 		prod = new Appliance();
+		stream >> (Appliance&)*prod;
 	} else if (type == typeid(AudioAndTv).name())
 	{
 		prod = new AudioAndTv();
+		stream >> (AudioAndTv&)*prod;
 	} else if (type == typeid(LaptopAndComputer).name())
 	{
 		prod = new LaptopAndComputer();
+		stream >> (LaptopAndComputer&)*prod;
 	} else if (type == typeid(PhotoAndVideoCamera).name())
 	{
 		prod = new PhotoAndVideoCamera();
+		stream >> (PhotoAndVideoCamera&)*prod;
 	} else if (type == typeid(PhoneAndTablet).name())
 	{
 		prod = new PhoneAndTablet();
+		stream >> (PhoneAndTablet&)*prod;
 	} else if (type == typeid(Food).name())
 	{
 		prod = new Food();
+		stream >> (Food&)*prod;
 	} else if (type == typeid(Drink).name())
 	{
 		prod = new Drink();
+		stream >> (Drink&)*prod;
 	} else if (type == typeid(Accessory).name())
 	{
 		prod = new Accessory();
+		stream >> (Accessory&)*prod;
 	} else if (type == typeid(Clothing).name())
 	{
 		prod = new Clothing();
+		stream >> (Clothing&)*prod;
 	} else if (type == typeid(Footwear).name())
 	{
 		prod = new Footwear();
+		stream >> (Footwear&)*prod;
 	} else if (type == typeid(Detergent).name())
 	{
 		prod = new Detergent();
+		stream >> (Detergent&)*prod;
 	} else if (type == typeid(Cosmetic).name())
 	{
 		prod = new Cosmetic();
+		stream >> (Cosmetic&)*prod;
 	} else if (type == typeid(PersonalHygiene).name())
 	{
 		prod = new PersonalHygiene();
+		stream >> (PersonalHygiene&)*prod;
 	} else
 	{
 		throw exception("Unknown type of product.");
