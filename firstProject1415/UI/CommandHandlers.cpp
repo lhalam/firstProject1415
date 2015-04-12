@@ -265,6 +265,11 @@ Result showProducts()
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
+Result showStats()
+{
+
+}
+
 Result showUsers()
 {
 	DataManager manager;
