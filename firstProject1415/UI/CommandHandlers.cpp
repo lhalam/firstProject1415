@@ -269,7 +269,7 @@ Result showProducts()
 
 Result showStats()
 {
-
+	return Result();
 }
 
 Result showUsers()
