@@ -1,6 +1,7 @@
 #include "CommandHandlers.h"
 #include "../DataManager/DataManager.h"
 #include "Globals.h"
+#include "../Products/Product.h"
 
 /*Command executors listed alphabetically*/
 
@@ -286,3 +287,14 @@ Result showUsers()
 
 	return Result("Listing completed.", SUCCESSFUL);
 }
+
+Result buyOneElementById()
+{
+	cout << Message("Enter product id", LOG_MSG);
+	int id;
+	cin >> id;
+	cout << Message("You bought : ", LOG_MSG);
+	cout << ProductService().getById(id);
+	return Result("thank you for buying " ,SUCCESSFUL);
+}
+
