@@ -299,7 +299,8 @@ Result buyOneElementById()
 	int id;
 	cin >> id;
 	cout << Message("You bought : ", LOG_MSG);
-	cout << ProductService().getById(id);
+	cout << DataManager().getProductById(id);
+	DataManager().removeProductById(id);
 	return Result("thank you for buying " ,SUCCESSFUL);
 }
 
