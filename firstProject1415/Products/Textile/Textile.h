@@ -8,7 +8,7 @@ protected:
 	string material;
 	char category; // male - 'm'; female - 'f'; baby - 'b'.
 	string brand;
-	unsigned collection_year;
+	unsigned collectionYear;
 	Textile();
 public:
 	virtual ~Textile(){}
@@ -16,15 +16,47 @@ public:
 	friend istream& operator>>(istream& stream, Textile& obj);
 	friend ostream& operator<<(ostream& stream, Textile& obj);
 
-	string getMaterial() const { return material; }
-	void setMaterial(string m) { this->material = m; }
-	char getCategory() const { return category; }
-	void setCategory(char c) { this->category = c; }
-	string getBrand() const { return brand; }
-	void setBrand(string b) { this->brand = b; }
-	unsigned getCollectionYear() const { return collection_year; }
-	void setCollectionYear(unsigned c_y) { this->collection_year = c_y; }
-	// leading in/out put from the console.
+	string getMaterial() const 
+	{
+		return material;
+	}
+
+	void setMaterial(string material)
+	{
+		this->material = material; 
+	}
+
+	char getCategory() const 
+	{
+		return category;
+	}
+
+	void setCategory(char category) 
+	{
+		this->category = category; 
+	}
+
+	string getBrand() const 
+	{
+		return brand; 
+	}
+
+	void setBrand(string brand) 
+	{
+		this->brand = brand; 
+	}
+
+	unsigned getCollectionYear() const 
+	{
+		return collectionYear; 
+	}
+
+	void setCollectionYear(unsigned collectionYear) 
+	{
+		this->collectionYear = collectionYear; 
+	}
+
+	// leading input/output from the console.
 	virtual void input();
 	virtual void output();
 };

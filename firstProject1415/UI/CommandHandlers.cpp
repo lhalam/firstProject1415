@@ -260,14 +260,16 @@ Result showProducts()
 		it != end;
 		it++)
 	{
-		cout << *it << endl;
+		cout << Message(
+			"#" + to_string((*it)->getId()) + ": " + (*it)->getName() + " " + (*it)->getManufacturer() + " price: " + to_string((*it)->getPrice())
+			, LOG_MSG) << endl;
 	}
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
 Result showStats()
 {
-
+	return Result();
 }
 
 Result showUsers()

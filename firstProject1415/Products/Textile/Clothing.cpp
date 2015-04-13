@@ -1,7 +1,11 @@
 #include "Clothing.h"
 
 Clothing::Clothing() :
-	Textile(), size(' '), season(' '){}
+	Textile(),
+	size(' '),
+	season(' ')
+{
+}
 
 istream& operator>>(istream& stream, Clothing& obj)
 {
@@ -11,7 +15,7 @@ istream& operator>>(istream& stream, Clothing& obj)
 	getline(stream, obj.material);
 	stream >> obj.category;
 	getline(stream, obj.manufacturer);
-	stream >> obj.collection_year >> obj.size >> obj.season;
+	stream >> obj.collectionYear >> obj.size >> obj.season;
 	return stream;
 }
 
@@ -24,7 +28,7 @@ ostream& operator<<(ostream& stream, Clothing& obj)
 		<< obj.material << endl
 		<< obj.category << endl
 		<< obj.brand << endl
-		<< obj.collection_year << endl
+		<< obj.collectionYear << endl
 		<< obj.size << endl
 		<< obj.season << endl;
 	return stream;
@@ -33,24 +37,12 @@ ostream& operator<<(ostream& stream, Clothing& obj)
 void Clothing::input()
 {
 	Textile::input();
-	string temp;
-
-	cout << Message("Input size: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->material = abs(stoi(temp));
-	}
-	temp.clear();
-
-	cout << Message("Input season: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->material = temp[0];
-	}
-	temp.clear();
+	cout << "\n Size : \t";
+	cin >> this->size;
+	cout << "\n Season : \t";
+	cin >> this->season;
 }
+
 void Clothing::output()
 {
 	Textile::output();
