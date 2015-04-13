@@ -134,46 +134,26 @@ Result logOut()
 
 Result removeProductFromCart()
 {
-	if(cart.begin() == cart.end())
-	{
-		return Result("Your cart is empty.", NOT_SUCCESSFUL);
-	}
-
-	else if(cart.begin()++ == cart.end())
-	{
-		cout << Message("You currently have one product in your cart.", CONTEXT_MSG)
-			 << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
-
-		char answer;
-		cin >> answer;
-		while(answer != 'y' && answer != 'n')
-		{
-			cout << Message("You may have misunderstood me.", CONTEXT_MSG);
-			cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
-			cin >> answer;
-		}
-		try
-		{
-			switch(answer)
-			{
-			case 'y': 
-				cart.erase(cart.begin()); 
-				return Result("Operation successful.", SUCCESSFUL);
-			case 'n': 
-				return Result("Operation cancelled.", SUCCESSFUL);
-			}
-		}
-		catch(exception exc)
-		{
-			return Result(exc.what(), NOT_SUCCESSFUL);
-		}
-	}
-
-	cout << Message("You currently have " + to_string(cart.size()) + " products in your cart.", CONTEXT_MSG)
-		 << Message("Which product would you like to remove from your cart?", INPUT_MSG)
-		 << Message("Input ID:", INPUT_MSG);
 	int ID;
-	cin >> ID;
+	bool option;
+
+	if(cart.size() == 0)
+	{
+		return Result("Your cart is empty.", SUCCESSFUL);
+	}
+	else if(cart.size() == 1)
+	{
+		option = true;
+		cout << Message("You currently have one product in your cart.", CONTEXT_MSG);
+	}
+	else
+	{
+		option = false;
+		cout << Message("You currently have " + to_string(cart.size()) + " products in your cart.", CONTEXT_MSG)
+			 << Message("Which product would you like to remove from your cart?", INPUT_MSG)
+			 << Message("Input ID:", INPUT_MSG);
+		cin >> ID;
+	}
 
 	cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
 	char answer;
@@ -199,10 +179,12 @@ Result removeProductFromCart()
 		{
 		case 'y': 
 			DataManager manager;
-			cart.erase(cart.find(manager.getProductById(ID), cart.begin(), cart.end()));
+			cart.erase(option ? cart.begin() : cart.find(manager.getProductById(ID), cart.begin(), cart.end()));
 			return Result("Operation successful.", SUCCESSFUL);
+			break;
 		case 'n': 
 			return Result("Operation cancelled.", SUCCESSFUL);
+			break;
 		}
 	}
 	catch(exception exc)
