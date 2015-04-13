@@ -1,7 +1,9 @@
 #include "Accessory.h"
 
 Accessory::Accessory() :
-	Textile(){}
+	Textile()
+{
+}
 
 // overloading operators istream and ostream 
 istream& operator>>(istream& stream, Accessory& obj)
@@ -12,9 +14,10 @@ istream& operator>>(istream& stream, Accessory& obj)
 	getline(stream, obj.material);
 	stream >> obj.category;
 	getline(stream, obj.manufacturer);
-	stream >> obj.collection_year;
+	stream >> obj.collectionYear;
 	return stream;
 }
+
 ostream& operator<<(ostream& stream, Accessory& obj)
 {
 	stream << obj.name << endl
@@ -24,7 +27,7 @@ ostream& operator<<(ostream& stream, Accessory& obj)
 		<< obj.material << endl
 		<< obj.category << endl
 		<< obj.brand << endl
-		<< obj.collection_year << endl;
+		<< obj.collectionYear << endl;
 	return stream;
 }
 
@@ -32,6 +35,7 @@ void Accessory::input()
 {
 	Textile::input();
 }
+
 void Accessory::output()
 {
 	Textile::output();
