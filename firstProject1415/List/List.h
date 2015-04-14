@@ -9,9 +9,9 @@ private:
 		Node* prev;
 		Node* next;
 		T value;
-		Node(const T& value_ = T(), Node* next_ = nullptr, Node* prev_ = nullptr):
-			value(value_), 
-			next(next_), 
+		Node(const T& value_ = T(), Node* next_ = nullptr, Node* prev_ = nullptr) :
+			value(value_),
+			next(next_),
 			prev(prev_)
 		{
 		}
@@ -23,10 +23,10 @@ private:
 	int s;
 
 public:
-	List(): 
-		head(nullptr), 
-		tail(nullptr), 
-		emptyNode(new Node()), 
+	List() :
+		head(nullptr),
+		tail(nullptr),
+		emptyNode(new Node()),
 		s(0)
 	{
 	}
@@ -40,17 +40,17 @@ public:
 		template <typename T>
 		friend class List;
 
-		iterator() : 
+		iterator() :
 			ptr(nullptr)
 		{
 		}
 
-		explicit iterator(Node* ptr_): 
+		explicit iterator(Node* ptr_) :
 			ptr(ptr_)
 		{
 		}
 
-		iterator(const iterator& copy): 
+		iterator(const iterator& copy) :
 			ptr(copy.ptr)
 		{
 		}
@@ -97,7 +97,7 @@ public:
 	//returns iterator to first element
 	iterator begin() const
 	{
-		if(head == nullptr)
+		if (head == nullptr)
 		{
 			return iterator(emptyNode);
 		}
@@ -145,6 +145,9 @@ public:
 
 	//removes element
 	void erase(iterator&);
+
+	T popBack();
+	T popFront();
 
 	int size() const { return s; }
 };
@@ -239,4 +242,22 @@ void List<T>::erase(iterator& iterToDel)
 	}
 	delete iterToDel.ptr;
 	iterToDel.ptr = nullptr;
+}
+
+template <typename T>
+T List<T>::popBack()
+{
+	iterator iterToDel = --end();
+	T valueToReturn = *iterToDel;
+	erase(iterToDel);
+	return valueToReturn;
+}
+
+template <typename T>
+T List<T>::popFront()
+{
+	iterator iterToDel = begin();
+	T valueToReturn = *iterToDel;
+	erase(iterToDel);
+	return valueToReturn;
 }
