@@ -4,7 +4,7 @@
 
 /*Command executors listed alphabetically*/
 
-Result addToAssortment();
+Result changeAmount();
 Result changeProduct();
 Result createAdmin();
 Result createUser();

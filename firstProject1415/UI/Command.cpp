@@ -5,7 +5,7 @@
 /*Initialization of commands; commands are listed alphabetically*/
 Command commands[] = 
 {
-	Command("add to assortment", addToAssortment, "adds products to the assortment", Access::ADMIN),
+	Command("change amount", changeAmount, "change amount of products", Access::ADMIN),
 	Command("change product", changeProduct, "change product settings", Access::ADMIN),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
