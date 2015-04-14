@@ -4,7 +4,7 @@
 class AudioAndTv : public Electronic
 {
 private:
-	int memory_card;
+	int memoryCard;
 public:
 	AudioAndTv();
 

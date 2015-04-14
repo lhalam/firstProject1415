@@ -1,22 +1,21 @@
 #include "LaptopAndComputer.h"
 
-LaptopAndComputer::LaptopAndComputer() : Electronic(), firm(" ") {}
+LaptopAndComputer::LaptopAndComputer() : 
+Electronic(),
+firm(" ")
+{
+}
 
 istream& operator>>(istream& stream, LaptopAndComputer& obj)
 {
-	getline(stream, obj.category);
-	stream >> obj.weight;
-	stream.get();
-	getline(stream, obj.model);
+	stream >> Electronic(obj);
 	getline(stream, obj.firm);
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 {
-	stream << obj.category << endl
-	       << obj.weight << endl
-	       << obj.model << endl
+	stream << Electronic(obj)
 	       << obj.firm << endl;
 	return stream;
 }
