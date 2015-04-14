@@ -307,3 +307,21 @@ Result showPurchaseHistory()
 
 	return Result();
 }
+Result buyAllProductFromCart()
+{
+	if (cart.size() == 0)
+	{
+		return Result("Your cart is empty.", SUCCESSFUL);
+	}
+	else 
+	{
+		List<Product*> allProducts = DataManager().readAllProducts();
+		List<Product*>::iterator end = allProducts.end();
+		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
+		{
+			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
+			*(it) == nullptr;
+		}
+	}
+	return Result("You bought all products.", SUCCESSFUL);
+}
