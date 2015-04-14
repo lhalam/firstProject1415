@@ -103,3 +103,9 @@ void DataManager::saveStatistics(unsigned quantity, int id)
 	product.saveStatistics(quantity, id);
 
 }
+
+map<Product*, int> DataManager::readAllPurchasedItems()
+{
+	ProductService product;
+	return product.readAllPurchasedItems();
+}

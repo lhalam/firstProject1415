@@ -9,26 +9,13 @@ Clothing::Clothing() :
 
 istream& operator>>(istream& stream, Clothing& obj)
 {
-	getline(stream, obj.name);
-	getline(stream, obj.manufacturer);
-	stream >> obj.price >> obj.id;
-	getline(stream, obj.material);
-	stream >> obj.category;
-	getline(stream, obj.manufacturer);
-	stream >> obj.collectionYear >> obj.size >> obj.season;
+	stream >> Textile(obj) >> obj.size >> obj.season;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, Clothing& obj)
 {
-	stream << obj.name << endl
-		<< obj.manufacturer << endl
-		<< obj.price << endl
-		<< obj.id << endl
-		<< obj.material << endl
-		<< obj.category << endl
-		<< obj.brand << endl
-		<< obj.collectionYear << endl
+	stream << Textile(obj)
 		<< obj.size << endl
 		<< obj.season << endl;
 	return stream;
@@ -37,25 +24,39 @@ ostream& operator<<(ostream& stream, Clothing& obj)
 void Clothing::input()
 {
 	Textile::input();
-	cout << "\n Size : \t";
-	cin >> this->size;
-	cout << "\n Season : \t";
-	cin >> this->season;
+
+	string temp;
+
+	cout << Message("Input size: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->size = temp[0];
+	}
+	temp.clear();
+
+	cout << Message("Input season: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->season = temp[0];
+	}
+	temp.clear();
 }
+
 
 void Clothing::output()
 {
 	Textile::output();
-	cout << "\nSize : \t" << this->size
-		<< "\nSeason : \t";
+	cout << Message("Size:" + this->size, INPUT_MSG);
 	switch (this->season)
 	{
-	case 'w': cout << "winter";
+	case 'w': cout << Message("Season: winter", INPUT_MSG);
 		break;
-	case 's': cout << "summer";
+	case 's': cout << Message("Season: summer", INPUT_MSG);
 		break;
-	case 'a': cout << "autumn&spring";
+	case 'a': cout << Message("Season: autumn&spring", INPUT_MSG);
 		break;
-	default: cout << "unknown";
+	default: cout << Message("Season: unknown", INPUT_MSG);
 	}
 }

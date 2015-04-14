@@ -2,6 +2,7 @@
 #include "../Products/Product.h"
 #include "../List/List.h"
 #include <functional>
+#include <map>
 using std::function;
 
 //Represents a service for reading and writing product info from/into a file
@@ -41,4 +42,7 @@ public:
 
 	//Saves information about purchases into a file
 	void saveStatistics(unsigned quantity, int id);
+
+	//Returns a list of purchased items and their quantity
+	map<Product*, int> readAllPurchasedItems();
 };
