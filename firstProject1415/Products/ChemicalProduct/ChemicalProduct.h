@@ -4,18 +4,18 @@
 class ChemicalProduct : public Product
 {
 protected:
-	string manufacture_date;
+	string manufactureDate;
 	double volume;
 	ChemicalProduct();
 public:
 
-	void setManufactureDate(string m_d)
+	void setManufactureDate(string md)
 	{
-		this->manufacture_date = m_d;
+		this->manufactureDate = md;
 	}
 	string getManufactureDate() const
 	{ 
-		return manufacture_date;
+		return manufactureDate;
 	}
 	void setVolume(double vol)
 	{
