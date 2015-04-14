@@ -4,19 +4,7 @@
 #include <typeinfo>
 #include <string>
 
-#include "../Products/Electronic/Appliance.h"
-#include "../Products/Electronic/AudioAndTv.h"
-#include "../Products/Electronic/LaptopAndComputer.h"
-#include "../Products/Electronic/PhotoAndVideoCamera.h"
-#include "../Products/Electronic/PhoneAndTablet.h"
-#include "../Products/Nutrition/Food.h"
-#include "../Products/Nutrition/Drink.h"
-#include "../Products/Textile/Accessory.h"
-#include "../Products/Textile/Clothing.h"
-#include "../Products/Textile/Footwear.h"
-#include "../Products/ChemicalProduct/Detergent.h"
-#include "../Products/ChemicalProduct/Cosmetic.h"
-#include "../Products/ChemicalProduct/PersonalHygiene.h"
+#include "../Products/Products.h"
 
 using namespace std;
 

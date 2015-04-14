@@ -1,12 +1,41 @@
 #include "CommandHandlers.h"
 #include "../DataManager/DataManager.h"
 #include "Globals.h"
-#include "../Products/Product.h"
+#include "../Products/Products.h"
 
 /*Command executors listed alphabetically*/
 
 Result addNewProduct()
 {
+	Product* prod;
+	string type;
+	string command;
+	cout << Message("Enter [help] to see all the possible product types.", CONTEXT_MSG)
+		<< Message("Enter [continue] to go to creating a new product.", CONTEXT_MSG);
+	if (command == "help")
+	{
+		cout << Message("'appliance' , 'audio&TV' , 'laptop&computer' , 'phone&tablet' , 'photocamera&videocamera' , 'drink' , 'food' , 'accessory' , 'clothing' , 'footwear' , 'cosmetics' , 'detergent' , 'personal hygiene'", CONTEXT_MSG);
+		command.clear();
+	}
+	else if (command == "continue")
+	{
+		cout << Message("Enter type: ", CONTEXT_MSG);
+		cin >> type;
+		//if (type == "appliance")
+		//{
+		//	prod = new Appliance();
+		//}
+		//...
+		//prod->input();
+		//DataManager manager;
+		//manager.saveProduct(*prod);
+		//manager.setQuantity(prod->getId());
+	}
+	else
+	{
+		throw exception("Unknown command.");
+	}
+
 	return Result("New product is added to assortment.", SUCCESSFUL);
 }
 
