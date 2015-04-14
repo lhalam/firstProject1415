@@ -5,7 +5,7 @@
 /*Initialization of commands; commands are listed alphabetically*/
 Command commands[] = 
 {
-	Command("add to assortment", addToAssortment, "adds products to the assortment", Access::ADMIN),
+	Command("change amount", changeAmount, "change amount of products", Access::ADMIN),
 	Command("change product", changeProduct, "change product settings", Access::ADMIN),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
@@ -20,7 +20,8 @@ Command commands[] =
 	Command("show cart", showCart, "shows all products added to cart", Access(GUEST | USER)),
 	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN),
 	Command("buy", buyOneElementById, "buy product by id", Access(GUEST | USER | ADMIN)),
-	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN))
+	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
+	Command("buy all products", buyAllProductFromCart, "buy all product from cart", Access(GUEST | USER | ADMIN))
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);

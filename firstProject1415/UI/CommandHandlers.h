@@ -4,7 +4,7 @@
 
 /*Command executors listed alphabetically*/
 
-Result addToAssortment();
+Result changeAmount();
 Result changeProduct();
 Result createAdmin();
 Result createUser();
@@ -20,3 +20,4 @@ Result showStats();
 Result showUsers();
 Result buyOneElementById();
 Result showPurchaseHistory();
+Result buyAllProductFromCart();

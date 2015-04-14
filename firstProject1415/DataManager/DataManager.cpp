@@ -72,6 +72,7 @@ Product* DataManager::getProductById(int id)
 	return product.getById(id);
 }
 
+
 void DataManager::removeProductById(int id)
 {
 	ProductService prod;

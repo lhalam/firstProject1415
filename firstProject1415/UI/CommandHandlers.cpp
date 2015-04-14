@@ -5,7 +5,7 @@
 
 /*Command executors listed alphabetically*/
 
-Result addToAssortment()
+Result changeAmount()
 {
 	int id;
 	cout << Message("Enter id", CONTEXT_MSG);
@@ -18,7 +18,7 @@ Result addToAssortment()
 	DataManager manager;
 	manager.setQuantity(id, quantity);
 
-	return Result("Product is added to asortment.", SUCCESSFUL);
+	return Result("New quantity is added to assortment.", SUCCESSFUL);
 }
 
 Result changeProduct()
@@ -308,4 +308,22 @@ Result showPurchaseHistory()
 	}
 
 	return Result();
+}
+Result buyAllProductFromCart()
+{
+	if (cart.size() == 0)
+	{
+		return Result("Your cart is empty.", SUCCESSFUL);
+	}
+	else 
+	{
+		List<Product*> allProducts = DataManager().readAllProducts();
+		List<Product*>::iterator end = allProducts.end();
+		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
+		{
+			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
+			*(it) == nullptr;
+		}
+	}
+	return Result("You bought all products.", SUCCESSFUL);
 }

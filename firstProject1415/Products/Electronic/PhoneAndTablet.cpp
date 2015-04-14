@@ -1,6 +1,6 @@
 #include "PhoneAndTablet.h"
 
-PhoneAndTablet::PhoneAndTablet() : Electronic(), memory_card(0) {}
+PhoneAndTablet::PhoneAndTablet() : Electronic(), memoryCard(0) {}
 
 istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
@@ -8,7 +8,7 @@ istream& operator>>(istream& stream, PhoneAndTablet& obj)
 	stream >> obj.weight;
 	stream.get();
 	getline(stream, obj.model);
-	stream >> obj.memory_card;
+	stream >> obj.memoryCard;
 	stream.get();
 	return stream;
 }
@@ -18,7 +18,7 @@ ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
 	stream << obj.category << endl 
 		   << obj.weight << endl 
 		   << obj.model << endl 
-		   << obj.memory_card << endl;
+		   << obj.memoryCard << endl;
 	return stream;
 }
 
@@ -31,7 +31,7 @@ void PhoneAndTablet::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->memory_card = stoi(temp);
+		this->memoryCard = stoi(temp);
 	}
 	temp.clear();
 }
@@ -39,5 +39,5 @@ void PhoneAndTablet::input()
 void PhoneAndTablet::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memory_card), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
 }
