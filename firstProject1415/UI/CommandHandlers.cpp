@@ -79,7 +79,7 @@ Result createUser()
 {
 	using std::cin;
 	User newUser;
-	cin >> newUser;
+	newUser.input();
 	DataManager manager;
 	manager.saveUser(newUser);
 
@@ -132,8 +132,9 @@ Result logIn()
 Result logOut()
 {
 	currentUser = User();
-	/*Update user purchase history*/
-	return Result("You logged out successfully.", SUCCESSFUL);
+
+	cout << Message("You logged out successfully.", LOG_MSG);
+	return Result();
 }
 
 Result removeProductFromCart()
@@ -143,7 +144,8 @@ Result removeProductFromCart()
 
 	if(cart.size() == 0)
 	{
-		return Result("Your cart is empty.", SUCCESSFUL);
+		cout << Message("Your cart is empty.", LOG_MSG);
+		return Result();
 	}
 	else if(cart.size() == 1)
 	{
@@ -226,7 +228,7 @@ Result showCart()
 {
 	if(cart.begin() == cart.end())
 	{
-		cout << Message("Your cart is empty.", INPUT_MSG);
+		cout << Message("Your cart is empty.", CONTEXT_MSG);
 		return Result(SUCCESSFUL);
 	}
 
@@ -235,7 +237,7 @@ Result showCart()
 	{
 		cout << *iterator;
 	}
-	return Result("Listing completed.", SUCCESSFUL);
+	return Result();
 }
 
 Result showProducts()
