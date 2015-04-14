@@ -322,7 +322,7 @@ Result buyAllProductFromCart()
 		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
 		{
 			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
-			*(it) == nullptr;
+			
 		}
 	}
 	return Result("You bought all products.", SUCCESSFUL);
