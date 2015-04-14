@@ -95,7 +95,49 @@ int ProductService::getQuantity(int id)
 	return -1;
 }
 
-void ProductService::setQuantity(int id, int add_quantity)
+void ProductService::setQuantity(int id, int new_quantity)
+{
+	ifstream assortment("Assortment.txt");
+	if (!assortment.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	ofstream tempAssort("tempAsort");
+	if (!tempAssort.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	unsigned currentId, quant;
+
+	while (!assortment.eof())
+	{
+		assortment >> currentId >> quant;
+
+		tempAssort << currentId << " ";
+		if (currentId != id)
+		{
+			tempAssort << quant;
+		}
+		else
+		{
+			cout << "Current quantity of product with id " << id << " is - " << quant << endl;
+			cout << "Enter new quantity : ";
+			cin >> new_quantity;
+			tempAssort << new_quantity;
+		}
+		tempAssort << endl;
+	}
+
+	tempAssort.close();
+	assortment.close();
+
+	remove("Assortment.txt");
+	rename("tempAssort.txt", "Assortment.txt");
+}
+
+void ProductService::changeQuantity(int id, int add_quantity)
 {
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())
