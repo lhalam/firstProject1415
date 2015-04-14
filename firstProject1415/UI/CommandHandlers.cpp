@@ -31,7 +31,7 @@ Result changeProduct()
 
 	manager.removeProductById(id);
 	manager.saveProduct(*prod);
-	manager.setQuantity(id, quantity);
+	manager.changeQuantity(id, quantity);
 
 	delete[] prod;
 	return Result("Product is changed.", SUCCESSFUL);
