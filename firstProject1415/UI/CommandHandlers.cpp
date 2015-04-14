@@ -11,12 +11,8 @@ Result changeAmount()
 	cout << Message("Enter id", CONTEXT_MSG);
 	cin >> id;
 
-	int quantity;
-	cout << Message("Enter new quantity", CONTEXT_MSG);
-	cin >> quantity;
-
 	DataManager manager;
-	manager.setQuantity(id, quantity);
+	manager.setQuantity(id);
 
 	return Result("New quantity is added to assortment.", SUCCESSFUL);
 }
