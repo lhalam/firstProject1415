@@ -5,6 +5,7 @@
 #include "../Products/Product.h"
 #include "../List/List.h"
 #include <functional>
+#include <map>
 
 //Represents a simle interface for user and product services
 class DataManager
@@ -65,4 +66,7 @@ public:
 
 	//Saves information about purchases into a file
 	void saveStatistics(unsigned quantity, int id);
+
+	//Returns a list of purchased items and their quantity
+	map<Product*, int> readAllPurchasedItems();
 };

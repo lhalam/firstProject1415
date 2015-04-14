@@ -376,3 +376,34 @@ void ProductService::saveStatistics(unsigned quantity, int id)
 
  stream.close();
 }
+
+map<Product*, int> ProductService::readAllPurchasedItems()
+{
+	ifstream stream("Stats.txt");
+
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	map<Product*, int> productMap;
+
+	while (!stream.eof())
+	{
+		string productType;
+		getline(stream, productType);
+
+		if (productType.empty())
+		{
+			continue;
+		}
+
+		Product* product = getProduct(productType, stream);
+		int quantity = getQuantity(product->getId());
+
+		productMap.insert(std::pair<Product*, int>(product, quantity));
+	}
+
+	stream.close();
+	return productMap;
+}
