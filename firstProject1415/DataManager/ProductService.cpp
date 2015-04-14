@@ -319,3 +319,18 @@ Product * ProductService::getProduct(string type, istream& stream)
 
 	return prod;
 }
+
+void ProductService::saveStatistics(unsigned quantity, int id)
+{
+	ofstream stream("Stats.txt", ios_base::app);
+
+	if (!stream.is_open())
+	{
+		 throw exception("Cannot open file for writing.");
+	}
+
+	stream << getById(id) << endl;
+	stream << quantity;
+
+ stream.close();
+}
