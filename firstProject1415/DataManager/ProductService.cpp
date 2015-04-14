@@ -189,15 +189,15 @@ Product* ProductService::getById(int id)
 
 	while (!stream.eof())
 	{
-		string product_type;
-		getline(stream, product_type);
+		string productType;
+		getline(stream, productType);
 
-		if (product_type.empty())
+		if (productType.empty())
 		{
 			continue;
 		}
 
-		Product *product = getProduct(product_type, stream);
+		Product *product = getProduct(productType, stream);
 
 		if (product->getId() == id)
 		{

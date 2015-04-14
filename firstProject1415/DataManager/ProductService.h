@@ -22,7 +22,7 @@ public:
 	
 	//Changes a quantity of the product by given id
 	//Adds to the current quantity
-	void changeQuantity(int id, int add_quantity)
+	void changeQuantity(int id, int add_quantity);
 
 	//Returns a product with a given id
 	Product *getById(int id);
