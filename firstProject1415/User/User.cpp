@@ -38,19 +38,12 @@ istream& operator>>(istream& stream, User& user)
 {
 	//added all cout messages (User team)
 	using std::cout;
-	cout<< Message("Name", CONTEXT_MSG);
 	stream >> user.name;
-	cout << Message("Surname", CONTEXT_MSG);
 	stream >> user.surname;
-	cout << Message("Birthday (day month year)", CONTEXT_MSG);
 	stream>>user.birthday;
-	cout << Message("Login", CONTEXT_MSG);
 	stream>>user.login;
-	cout << Message("Password", CONTEXT_MSG);
 	stream>>user.password;
-	cout << Message("Email", CONTEXT_MSG);
 	stream>>user.email;
-	//cout << Message("Properties", CONTEXT_MSG);
 	stream>>*user.properties;
 	return stream;
 }

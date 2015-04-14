@@ -113,17 +113,20 @@ Result logIn()
 	getline(cin, password, '\n');
 
 	/* Checking the database */
-	bool correct = true;
-
-	if (correct)
-	{
-		/* Writing user data into global variable 'User'*/
-		return Result("Authentication successful\nWelcome, " + name + "!", SUCCESSFUL);
-	}
-	else
+	
+	DataManager dataManager;
+	User* existingUser = dataManager.getUserByLogin(name, password);
+	
+	if (existingUser == nullptr) //User with this login exists
 	{
 		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
 	}
+	else
+	{
+		currentUser = *existingUser;
+		cout << Message("Authentication successful\nWelcome, " + name + "!", LOG_MSG);
+	}
+	return Result();
 }
 
 Result logOut()
