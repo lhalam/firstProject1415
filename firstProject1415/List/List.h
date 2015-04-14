@@ -1,4 +1,5 @@
 #pragma once
+#include <exception>
 
 template<typename T>
 class List
@@ -55,30 +56,52 @@ public:
 		{
 		}
 
-		T& operator*() { return ptr->value; }
+		T& operator*() 
+		{ 
+			return ptr->value; 
+		}
 
-		const T& operator*() const { return ptr->value; }
+		const T& operator*() const 
+		{ 
+			return ptr->value; 
+		}
 
-		iterator operator++()
+		iterator operator++() throw (std::out_of_range)
 		{
+			if (ptr->next == nullptr)
+			{
+				throw std::out_of_range("Iterator is out of range");
+			}
 			ptr = ptr->next;
 			return *this;
 		}
 
-		iterator operator++(int)
+		iterator operator++(int) throw (std::out_of_range)
 		{
+			if (ptr->next == nullptr)
+			{
+				throw std::out_of_range("Iterator is out of range");
+			}
 			ptr = ptr->next;
 			return *this;
 		}
 
-		iterator operator--()
+		iterator operator--() throw (std::out_of_range)
 		{
+			if (ptr->prev == nullptr)
+			{
+				throw std::out_of_range("Iterator is out of range");
+			}
 			ptr = ptr->prev;
 			return *this;
 		}
 
-		iterator operator--(int)
+		iterator operator--(int) throw (std::out_of_range)
 		{
+			if (ptr->prev == nullptr)
+			{
+				throw std::out_of_range("Iterator is out of range");
+			}
 			ptr = ptr->prev;
 			return *this;
 		}
