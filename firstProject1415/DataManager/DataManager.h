@@ -46,7 +46,12 @@ public:
 	int getQuantity(int id);
 	
 	//Changes quantity of the product with a given id
-	void setQuantity(int id, int add_quantity);
+	//Sets new quantity
+	void setQuantity(int id, int new_quantity);
+	
+	//Changes quantity of the product with a given id
+	//Adds to the current quantity
+	void changeQuantity(int id, int add_quantity);
 	
 	//Returns a product with a given id
 	//Returns nullptr is there is no such product
