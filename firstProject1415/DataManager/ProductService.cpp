@@ -95,7 +95,7 @@ int ProductService::getQuantity(int id)
 	return -1;
 }
 
-void ProductService::setQuantity(int id, int new_quantity)
+void ProductService::setQuantity(int id)
 {
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())
@@ -110,7 +110,7 @@ void ProductService::setQuantity(int id, int new_quantity)
 	}
 
 	unsigned currentId, quant;
-
+	int new_quantity;
 	while (!assortment.eof())
 	{
 		assortment >> currentId >> quant;
