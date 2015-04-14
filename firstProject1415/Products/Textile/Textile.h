@@ -16,45 +16,21 @@ public:
 	friend istream& operator>>(istream& stream, Textile& obj);
 	friend ostream& operator<<(ostream& stream, Textile& obj);
 
-	string getMaterial() const 
-	{
-		return material;
-	}
+	string getMaterial() const { return material; }
 
-	void setMaterial(string material)
-	{
-		this->material = material; 
-	}
+	void setMaterial(string material) { this->material = material; }
 
-	char getCategory() const 
-	{
-		return category;
-	}
+	char getCategory() const { return category; }
 
-	void setCategory(char category) 
-	{
-		this->category = category; 
-	}
+	void setCategory(char category) { this->category = category; }
 
-	string getBrand() const 
-	{
-		return brand; 
-	}
+	string getBrand() const { return brand; }
 
-	void setBrand(string brand) 
-	{
-		this->brand = brand; 
-	}
+	void setBrand(string brand) { this->brand = brand; }
 
-	unsigned getCollectionYear() const 
-	{
-		return collectionYear; 
-	}
+	unsigned getCollectionYear() const { return collectionYear; }
 
-	void setCollectionYear(unsigned collectionYear) 
-	{
-		this->collectionYear = collectionYear; 
-	}
+	void setCollectionYear(unsigned collectionYear) { this->collectionYear = collectionYear; }
 
 	// leading input/output from the console.
 	virtual void input();

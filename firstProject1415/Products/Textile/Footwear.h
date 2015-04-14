@@ -12,25 +12,13 @@ public:
 	friend istream& operator>>(istream& stream, Footwear& obj);
 	friend ostream& operator<<(ostream& stream, Footwear& obj);
 
-	unsigned getSize() const 
-	{
-		return this->size; 
-	}
+	unsigned getSize() const { return this->size; }
 
-	void setSize(unsigned size) 
-	{
-		this->size = size;
-	}
+	void setSize(unsigned size) { this->size = size; }
 
-	char getSeason() const 
-	{
-		return this->season;
-	}
+	char getSeason() const { return this->season; }
 
-	void setSeason(char season) 
-	{
-		this->season = season; 
-	}
+	void setSeason(char season) { this->season = season; }
 
 	virtual void input();
 	virtual void output();
