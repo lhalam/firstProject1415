@@ -19,3 +19,4 @@ Result showProducts();
 Result showStats();
 Result showUsers();
 Result buyOneElementById();
+Result showPurchaseHistory();

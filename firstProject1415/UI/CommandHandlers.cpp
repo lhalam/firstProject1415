@@ -150,8 +150,8 @@ Result removeProductFromCart()
 	{
 		option = false;
 		cout << Message("You currently have " + to_string(cart.size()) + " products in your cart.", CONTEXT_MSG)
-			 << Message("Which product would you like to remove from your cart?", INPUT_MSG)
-			 << Message("Input ID:", INPUT_MSG);
+			 << Message("Which product would you like to remove from your cart?", CONTEXT_MSG)
+			 << Message("Input ID:", CONTEXT_MSG);
 		cin >> ID;
 	}
 
@@ -168,7 +168,7 @@ Result removeProductFromCart()
 		}
 		else
 		{
-			cout << Message("You may have misunderstood me.", CONTEXT_MSG);
+			cout << Message("You may have misunderstood me.", LOG_MSG);
 		}
 		cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
 		cin >> answer;
@@ -279,12 +279,27 @@ Result showUsers()
 
 Result buyOneElementById()
 {
-	cout << Message("Enter product id", LOG_MSG);
+	cout << Message("Enter product id", CONTEXT_MSG);
 	int id;
 	cin >> id;
-	cout << Message("You bought : ", LOG_MSG);
+	cout << Message("You bought: ", LOG_MSG);
 	cout << DataManager().getProductById(id);
 	DataManager().removeProductById(id);
-	return Result("thank you for buying " ,SUCCESSFUL);
+	return Result("Thank you for buying " ,SUCCESSFUL);
 }
 
+Result showPurchaseHistory()
+{
+	DataManager dataManager;
+	List<Product*> products = dataManager.readAllProducts();
+	List<Product*>::iterator cursor = products.begin();
+
+	while (cursor != products.end())
+	{
+		Product* product = *cursor;
+		cout << Message(product->getName(), LOG_MSG);
+		cursor++;
+	}
+
+	return Result();
+}
