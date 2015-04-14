@@ -131,7 +131,8 @@ Result logIn()
 
 Result logOut()
 {
-	/*Deletes data of global variable User*/
+	currentUser = User();
+	/*Update user purchase history*/
 	return Result("You logged out successfully.", SUCCESSFUL);
 }
 
