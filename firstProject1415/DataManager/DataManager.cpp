@@ -60,10 +60,16 @@ int DataManager::getQuantity(int id)
 	return quantity.getQuantity(id);
 }
 
-void DataManager::setQuantity(int id, int add_quantity)
+void DataManager::setQuantity(int id, int new_quantity)
 {
 	ProductService quantity;
-	quantity.setQuantity(id, add_quantity);
+	quantity.setQuantity(id, new_quantity);
+}
+
+void DataManager::changeQuantity(int id, int add_quantity)
+{
+	ProductService quantity;
+	quantity.changeQuantity(id, add_quantity);
 }
 
 Product* DataManager::getProductById(int id)
