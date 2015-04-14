@@ -19,11 +19,16 @@ public:
 	friend ostream& operator<<(ostream&, const Electronic&);
 
 	string getCategory() const { return category; }
-	void setCategory(const string& c) { category = c; }
+
+	void setCategory(string category) { this->category = category; }
+
 	double getWeight() const { return weight; }
-	void setWeight(double w) { this->weight = w; }
+
+	void setWeight(double weight) { this->weight = weight; }
+
 	string getModel() const { return model; }
-	void setModel(string m) { model = m; }
+
+	void setModel(string model) { this->model = model; }
 
 	~Electronic(){}
 };
