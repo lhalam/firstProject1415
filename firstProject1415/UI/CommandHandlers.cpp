@@ -124,6 +124,11 @@ Result logIn()
 	else
 	{
 		currentUser = *existingUser;
+		currentUser->getLogin();
+		currentUser->getPassword();
+		currentUser->getId();
+		currentUser->getRole();
+		currentUser->getEmail();
 		cout << Message("Authentication successful\nWelcome, " + name + "!", LOG_MSG);
 	}
 	return Result();
