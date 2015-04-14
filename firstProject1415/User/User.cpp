@@ -60,6 +60,26 @@ ostream& operator<<(ostream& stream, const User& user)
 	return stream;
 }
 
+void User::input()
+{
+	using std::cout;
+	using std::cin;
+	cout << Message("Name", CONTEXT_MSG);
+	cin >> name;
+	cout << Message("Surname", CONTEXT_MSG);
+	cin >> surname;
+	cout << Message("Birthday (day month year)", CONTEXT_MSG);
+	cin >> birthday;
+	cout << Message("Login", CONTEXT_MSG);
+	cin >> login;
+	cout << Message("Password", CONTEXT_MSG);
+	cin >> password;
+	cout << Message("Email", CONTEXT_MSG);
+	cin >> email;
+	cout << Message("Properties", CONTEXT_MSG);
+	cin >> *properties;
+}
+
 void User::changePassword(string newPass)
 {
 	password = newPass;

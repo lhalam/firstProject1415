@@ -23,6 +23,7 @@ public:
 
 	friend ostream& operator<<(ostream&, const User&);
 	friend istream& operator>>(istream&, User&);
+	void input();
 	void changePassword(string);
 	void changeEmail(string);
 	int getId() const;
