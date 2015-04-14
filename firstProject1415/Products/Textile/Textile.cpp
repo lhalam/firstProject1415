@@ -12,22 +12,19 @@ Textile::Textile() :
 // overloading operators istream and ostream 
 istream& operator>>(istream& stream, Textile& obj)
 {
-	getline(stream, obj.name);
-	getline(stream, obj.manufacturer);
-	stream >> obj.price >> obj.id;
+	stream >> Product(obj);
 	getline(stream, obj.material);
+	cin.get();
 	stream >> obj.category;
 	getline(stream, obj.manufacturer);
+	cin.get();
 	stream >> obj.collectionYear;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, Textile& obj)
 {
-	stream << obj.name << endl
-		<< obj.manufacturer	<< endl
-		<< obj.price << endl
-		<< obj.id << endl 
+	stream << Product(obj)
 		<< obj.material	<< endl
 		<< obj.category << endl
 		<< obj.brand << endl
@@ -37,43 +34,59 @@ ostream& operator<<(ostream& stream, Textile& obj)
 
 void Textile::input()
 {
-	cout << "Name : \t";
-	cin >> this->name;
-	cout << "\nManufacturer : \t";
-	cin >> this->manufacturer;
-	cout << "\nPrice : \t";
-	cin >> this->price;
-	cout << "\nId : \t";
-	cin >> this->id;
-	cout << "\nMaterial : \t";
-	cin >> this->material;
-	cout << "\n Category : \t";
-	cin >> this->category;
-	cout << "\nBrand : \t";
-	cin >> this->brand;
-	cout << "\nCollection year : \t";
-	cin >> this->collectionYear;
+	Product::input();
+	
+	string temp;
+
+	cout << Message("Input material: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->material = temp;
+	}
+	temp.clear();
+
+	cout << Message("Input category: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->category = temp[0];
+	}
+	temp.clear();
+	
+	cout << Message("Input brand: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->brand = temp;
+	}
+	temp.clear();
+
+	cout << Message("Input collection year: ", CONTEXT_MSG);
+	getline(cin, temp);
+	if (ifValidString(temp))
+	{
+		this->collectionYear = stoi(temp);
+	}
+	temp.clear();
 }
 
 void Textile::output()
 {
-	cout << "Name : \t" << this->name
-		<< "\nManufacturer : \t" << this->manufacturer
-		<< "\nPrice : \t" << this->price
-		<< "\nId : \t" << this->id
-		<< "\nMaterial : \t" << this->material
-		<< "\nFor : \t";
+	Product::output();
+	cout << Message("Material: " + this->material, INPUT_MSG);
 	switch (this->category)
 	{
-	case 'm': cout << "male";
+	case 'm': cout << Message("Category: male", INPUT_MSG);
 		break;
-	case 'f': cout << "fermale";
+	case 'f': cout << Message("Category: female", INPUT_MSG);
 		break;
-	case 'b': cout << "baby";
+	case 'b': cout << Message("Category: baby", INPUT_MSG);
 		break;
-	default: cout << "unknown";
+	default: cout << Message("Category: unknown", INPUT_MSG);
 		break;
 	}
-	cout << "\nBrand : \t" << this->brand
-		<< "\nCollection year : \t" << this->collectionYear << endl;
+	cout << Message("Brand: " + this->brand, INPUT_MSG)
+		<< Message("Collection year:" + to_string(this->collectionYear), INPUT_MSG);
 }
+
