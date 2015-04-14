@@ -33,4 +33,7 @@ public:
 
 	//Returns a list of products that match a predicate
 	List<Product*> read(function<bool(const Product&)> predicate);
+
+	//Saves information about purchases into a file
+	void saveStatistics(unsigned quantity, int id);
 };

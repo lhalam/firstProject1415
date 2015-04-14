@@ -90,3 +90,9 @@ void DataManager::removeUsers(function<bool(const User&)> predicate)
 	user.removeByPredicate(predicate);
 }
 
+void DataManager::saveStatistics(unsigned quantity, int id)
+{
+	ProductService product;
+	product.saveStatistics(quantity, id);
+
+}

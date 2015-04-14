@@ -33,7 +33,6 @@ public:
 	//Removes all users that match a predicate
 	void removeUsers(function<bool(const User&)> predicate);
 	
-
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
 
@@ -58,4 +57,7 @@ public:
 
 	//Removes all products that match a predicate
 	void removeProducts(function<bool(const Product&)> predicate);
+
+	//Saves information about purchases into a file
+	void saveStatistics(unsigned quantity, int id);
 };
