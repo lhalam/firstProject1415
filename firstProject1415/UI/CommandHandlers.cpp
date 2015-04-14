@@ -5,6 +5,11 @@
 
 /*Command executors listed alphabetically*/
 
+Result addNewProduct()
+{
+	return Result("New product is added to assortment.", SUCCESSFUL);
+}
+
 Result changeAmount()
 {
 	int id;

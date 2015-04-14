@@ -21,7 +21,8 @@ Command commands[] =
 	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN),
 	Command("buy", buyOneElementById, "buy product by id", Access(GUEST | USER)),
 	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
-	Command("buy all products", buyAllProductFromCart, "buy all product from cart", Access(GUEST | USER))
+	Command("buy all products", buyAllProductFromCart, "buy all product from cart", Access(GUEST | USER)),
+	Command("add product", addNewProduct, "add new product", Access(ADMIN))
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);

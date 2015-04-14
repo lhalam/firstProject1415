@@ -21,3 +21,4 @@ Result showUsers();
 Result buyOneElementById();
 Result showPurchaseHistory();
 Result buyAllProductFromCart();
+Result addNewProduct();
