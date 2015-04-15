@@ -12,6 +12,7 @@ Result exit();
 Result help();
 Result logIn();
 Result logOut();
+Result removeProductFromAssortment();
 Result removeProductFromCart();
 Result removeUser();
 Result showCart();

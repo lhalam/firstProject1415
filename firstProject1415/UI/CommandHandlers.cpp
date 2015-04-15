@@ -21,15 +21,15 @@ Result addNewProduct()
 	{
 		cout << Message("Enter type: ", CONTEXT_MSG);
 		cin >> type;
-		//if (type == "appliance")
-		//{
-		//	prod = new Appliance();
-		//}
+		if (type == "appliance")
+		{
+			prod = new Appliance();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			manager.setQuantity(prod->getId());
+		}
 		//...
-		//prod->input();
-		//DataManager manager;
-		//manager.saveProduct(*prod);
-		//manager.setQuantity(prod->getId());
 	}
 	else
 	{
@@ -164,6 +164,17 @@ Result logOut()
 
 	cout << Message("You logged out successfully.", LOG_MSG);
 	return Result();
+}
+
+Result removeProductFromAssortment()
+{
+	int id;
+	cout << Message("Enter id of product you want to remove:", CONTEXT_MSG);
+	cin >> id;
+	DataManager manager;
+	manager.removeProductById(id);
+
+	return Result("Product is removed from assortment.", SUCCESSFUL);
 }
 
 Result removeProductFromCart()
@@ -319,7 +330,7 @@ Result buyOneElementById()
 	cin >> id;
 	cout << Message("You bought: ", LOG_MSG);
 	cout << DataManager().getProductById(id);
-	DataManager().removeProductById(id);
+	DataManager().changeQuantity(id, -1);
 	return Result("Thank you for buying " ,SUCCESSFUL);
 }
 
