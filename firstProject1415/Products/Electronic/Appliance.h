@@ -4,7 +4,7 @@
 class Appliance : public Electronic
 {
 private:
-	int memory_card;
+	int memoryCard;
 public:
 	Appliance();
 

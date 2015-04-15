@@ -1,23 +1,21 @@
 #include "PhotoAndVideoCamera.h"
 
-PhotoAndVideoCamera::PhotoAndVideoCamera() : Electronic(), megapixels(0.0) {}
+PhotoAndVideoCamera::PhotoAndVideoCamera() :
+Electronic(),
+megapixels(0.0)
+{
+}
 
 istream& operator>>(istream& stream, PhotoAndVideoCamera& obj)
 {
-	getline(stream, obj.category);
-	stream >> obj.weight;
-	stream.get();
-	getline(stream, obj.model);
+	stream >> Electronic(obj);
 	stream >> obj.megapixels;
-	stream.get();
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const PhotoAndVideoCamera& obj)
 {
-	stream << obj.category << endl 
-		   << obj.weight << endl
-		   << obj.model << endl
+	stream << Electronic(obj)
 	       << obj.megapixels << endl;
 	return stream;
 }

@@ -1,24 +1,22 @@
 #include "Appliance.h"
 
-Appliance::Appliance() : Electronic(), memory_card(0) {}
+Appliance::Appliance() :
+Electronic(),
+memoryCard(0)
+{
+}
 
 istream& operator>>(istream& stream, Appliance& obj)
 {
-	getline(stream, obj.category);
-	stream >> obj.weight;
-	stream.get();
-	getline(stream, obj.model);
-	stream >> obj.memory_card;
-	stream.get();
+	stream >> Electronic(obj);
+	stream >> obj.memoryCard;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Appliance& obj)
 {
-	stream << obj.category << endl
-		<< obj.weight << endl
-		<< obj.model << endl
-		<< obj.memory_card << endl;
+	stream << Electronic(obj)
+		<< obj.memoryCard << endl;
 	return stream;
 }
 
@@ -31,7 +29,7 @@ void Appliance::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->memory_card = stoi(temp);
+		this->memoryCard = stoi(temp);
 	}
 	temp.clear();
 }
@@ -39,5 +37,5 @@ void Appliance::input()
 void Appliance::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memory_card), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
 }

@@ -1,23 +1,21 @@
 #include "PhoneAndTablet.h"
 
-PhoneAndTablet::PhoneAndTablet() : Electronic(), memoryCard(0) {}
+PhoneAndTablet::PhoneAndTablet() :
+Electronic(),
+memoryCard(0)
+{
+}
 
 istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
-	getline(stream, obj.category);
-	stream >> obj.weight;
-	stream.get();
-	getline(stream, obj.model);
+	stream >> Electronic(obj);
 	stream >> obj.memoryCard;
-	stream.get();
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
 {
-	stream << obj.category << endl 
-		   << obj.weight << endl 
-		   << obj.model << endl 
+	stream << Electronic(obj)
 		   << obj.memoryCard << endl;
 	return stream;
 }

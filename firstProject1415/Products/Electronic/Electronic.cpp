@@ -1,6 +1,12 @@
 #include"Electronic.h"
 
-	Electronic::Electronic(): Product(), category("No category"), weight(0.0), model("No model") { }
+	Electronic::Electronic():
+		Product(),
+		category("No category"),
+		weight(0.0),
+		model("No model")
+	{
+	}
 
 	void Electronic::input()
 	{
@@ -42,15 +48,18 @@
     
     istream& operator>>(istream& stream, Electronic& obj)
     {
+		stream >> Product(obj);
         getline(stream, obj.category);
+		cin.get();
         stream >> obj.weight;
-        stream.get();
         getline(stream, obj.model);
+		cin.get();
         return stream;
     }
     
     ostream& operator<<(ostream& stream, const Electronic& obj)
     {
+		stream << Product(obj);
         stream << "Category: " << obj.category << endl;
 		stream << "Weight: " << obj.weight << endl;
 		stream << "Model: " << obj.model << endl;

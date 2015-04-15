@@ -1,24 +1,18 @@
 #include "AudioAndTv.h"
 
-AudioAndTv::AudioAndTv() : Electronic(), memory_card(0) {}
+AudioAndTv::AudioAndTv() : Electronic(), memoryCard(0) {}
 
 istream& operator>>(istream& stream, AudioAndTv& obj)
 {
-	getline(stream, obj.category);
-	stream >> obj.weight;
-	stream.get();
-	getline(stream, obj.model);
-	stream >> obj.memory_card;
-	stream.get();
+	stream >> Electronic(obj);
+	stream >> obj.memoryCard;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 {
-	stream << obj.category << endl
-		<< obj.weight << endl
-		<< obj.model << endl
-		<< obj.memory_card << endl;
+	stream << Electronic(obj)
+		<< obj.memoryCard << endl;
 	return stream;
 }
 
@@ -31,7 +25,7 @@ void AudioAndTv::input()
 	getline(cin, temp);
 	if(ifValidString(temp))
 	{
-		this->memory_card = stoi(temp);
+		this->memoryCard = stoi(temp);
 	}
 	temp.clear();
 }
@@ -39,5 +33,5 @@ void AudioAndTv::input()
 void AudioAndTv::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memory_card), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
 }
