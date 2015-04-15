@@ -153,6 +153,7 @@ Result logIn()
 	}
 	else
 	{
+		currentUser = *existingUser;
 		cout << Message("Authentication successful\nWelcome, " + name + "!", LOG_MSG);
 	}
 	return Result();

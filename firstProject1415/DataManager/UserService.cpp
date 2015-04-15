@@ -82,7 +82,7 @@ User * UserService::getByLogin(string login, string password)
 
 User* UserService::getById(int id)
 {
-	ifstream stream("Products.txt");
+	ifstream stream("Users.txt");
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for reading.");
