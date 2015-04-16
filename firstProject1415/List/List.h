@@ -66,7 +66,7 @@ public:
 			return ptr->value; 
 		}
 
-		iterator operator++() throw (std::out_of_range)
+		iterator operator++()
 		{
 			if (ptr->next == nullptr)
 			{
@@ -76,7 +76,7 @@ public:
 			return *this;
 		}
 
-		iterator operator++(int) throw (std::out_of_range)
+		iterator operator++(int)
 		{
 			if (ptr->next == nullptr)
 			{
@@ -86,7 +86,7 @@ public:
 			return *this;
 		}
 
-		iterator operator--() throw (std::out_of_range)
+		iterator operator--()
 		{
 			if (ptr->prev == nullptr)
 			{
@@ -96,7 +96,7 @@ public:
 			return *this;
 		}
 
-		iterator operator--(int) throw (std::out_of_range)
+		iterator operator--(int)
 		{
 			if (ptr->prev == nullptr)
 			{

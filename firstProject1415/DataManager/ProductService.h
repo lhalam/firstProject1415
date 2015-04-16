@@ -47,5 +47,5 @@ public:
 	void saveStatistics(unsigned quantity, int id);
 
 	//Returns a list of purchased items and their quantity
-	map<Product*, int> readAllPurchasedItems();
+	map<Product*, int> readStatistics();
 };
