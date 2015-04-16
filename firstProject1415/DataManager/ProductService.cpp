@@ -18,7 +18,7 @@ void ProductService::save(const Product& prod)
 	}
 
 	stream << typeid(prod).name() << endl;
-	stream << prod;
+	saveProduct(prod, stream);
 
 	stream.close();
 }
@@ -205,7 +205,7 @@ Product* ProductService::getById(int id)
 
 void ProductService::removeById(int id)
 {
-	removeByPredicate([id](const Product& product) -> bool {	return id == product.getId(); });
+	removeByPredicate([id](const Product& product) -> bool { return id == product.getId(); });
 }
 
 void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
@@ -239,7 +239,7 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 		if (!predicate(*prod))
 		{
 			temp << typeid(*prod).name() << endl;
-			temp << *prod;
+			saveProduct(*prod, temp);
 		}
 		else
 		{
@@ -284,6 +284,53 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 
 	remove("Assortment.txt");
 	rename("tempAsort.txt", "Assortment.txt");
+}
+
+void ProductService::saveStatistics(unsigned quantity, int id)
+{
+	ofstream stream("Stats.txt", ios_base::app);
+
+	if (!stream.is_open())
+	{
+		 throw exception("Cannot open file for writing.");
+	}
+
+	saveProduct(*getById(id), stream);
+	stream << quantity << endl;
+
+	stream.close();
+}
+
+map<Product*, int> ProductService::readStatistics()
+{
+	ifstream stream("Stats.txt");
+
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	map<Product*, int> productMap;
+
+	while (!stream.eof())
+	{
+		string productType;
+		getline(stream, productType);
+
+		if (productType.empty())
+		{
+			continue;
+		}
+
+		Product* product = getProduct(productType, stream);
+		int quantity;
+		stream >> quantity;
+
+		productMap.insert(std::pair<Product*, int>(product, quantity));
+	}
+
+	stream.close();
+	return productMap;
 }
 
 Product * ProductService::getProduct(string type, istream& stream)
@@ -350,48 +397,49 @@ Product * ProductService::getProduct(string type, istream& stream)
 	return prod;
 }
 
-void ProductService::saveStatistics(unsigned quantity, int id)
+void ProductService::saveProduct(const Product& prod, ostream& stream)
 {
-	ofstream stream("Stats.txt", ios_base::app);
-
-	if (!stream.is_open())
+	if (typeid(prod) == typeid(Appliance))
 	{
-		 throw exception("Cannot open file for writing.");
-	}
-
-	stream << getById(id) << endl;
-	stream << quantity;
-
- stream.close();
-}
-
-map<Product*, int> ProductService::readAllPurchasedItems()
-{
-	ifstream stream("Stats.txt");
-
-	if (!stream.is_open())
+		stream << (Appliance&)prod;
+	} else if (typeid(prod) == typeid(AudioAndTv))
 	{
-		throw exception("Cannot open file for reading.");
-	}
-
-	map<Product*, int> productMap;
-
-	while (!stream.eof())
+		stream << (AudioAndTv&)prod;
+	} else if (typeid(prod) == typeid(LaptopAndComputer))
 	{
-		string productType;
-		getline(stream, productType);
-
-		if (productType.empty())
-		{
-			continue;
-		}
-
-		Product* product = getProduct(productType, stream);
-		int quantity = getQuantity(product->getId());
-
-		productMap.insert(std::pair<Product*, int>(product, quantity));
+		stream << (LaptopAndComputer&)prod;
+	} else if (typeid(prod) == typeid(PhotoAndVideoCamera))
+	{
+		stream << (PhotoAndVideoCamera&)prod;
+	} else if (typeid(prod) == typeid(PhoneAndTablet))
+	{
+		stream << (PhoneAndTablet&)prod;
+	} else if (typeid(prod) == typeid(Food))
+	{
+		stream << (Food&)prod;
+	} else if (typeid(prod) == typeid(Drink))
+	{
+		stream << (Drink&)prod;
+	} else if (typeid(prod) == typeid(Accessory))
+	{
+		stream << (Accessory&)prod;
+	} else if (typeid(prod) == typeid(Clothing))
+	{
+		stream << (Clothing&)prod;
+	} else if (typeid(prod) == typeid(Footwear))
+	{
+		stream << (Footwear&)prod;
+	} else if (typeid(prod) == typeid(Detergent))
+	{
+		stream << (Detergent&)prod;
+	} else if (typeid(prod) == typeid(Cosmetic))
+	{
+		stream << (Cosmetic&)prod;
+	} else if (typeid(prod) == typeid(PersonalHygiene))
+	{
+		stream << (PersonalHygiene&)prod;
+	} else
+	{
+		throw exception("Unknown type of product.");
 	}
-
-	stream.close();
-	return productMap;
 }

@@ -8,8 +8,11 @@ using std::function;
 //Represents a service for reading and writing product info from/into a file
 class ProductService
 {
-	//Returnes the product of the specified type
+	//Reads and returnes the product of the specified type
 	Product *getProduct(string type, istream& stream);
+
+	//Saves the product of the specified type
+	void saveProduct(const Product& prod, ostream& stream);
 public:
 	//Saves product info into a file
 	void save(const Product& prod);
