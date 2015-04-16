@@ -22,12 +22,9 @@ Command commands[] =
 	Command("show all products", showProducts, "shows the list of all products", Access(GUEST | USER | ADMIN)),
 	Command("show all users", showUsers, "shows the list of all users", Access::ADMIN),
 	Command("show cart", showCart, "shows all products added to cart", Access(GUEST | USER)),
+	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
 	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN),
-	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN))
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
 
-	/*void changePassword(string);
-	void changeEmail(string);
-	void changeRole(string);*/

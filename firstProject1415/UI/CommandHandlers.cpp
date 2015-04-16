@@ -10,8 +10,9 @@ Result addNewProduct()
 	Product* prod;
 	string type;
 	string command;
-	cout << Message("Enter [help] to see all the possible product types.", CONTEXT_MSG)
-		<< Message("Enter [continue] to go to creating a new product.", CONTEXT_MSG);
+	cout << Message("Enter [help] to see all the possible product types.", LOG_MSG)
+		<< Message("Enter [continue] to go to creating a new product.", LOG_MSG);
+	getline(cin, command);
 	if (command == "help")
 	{
 		cout << Message("'appliance' , 'audio&TV' , 'laptop&computer' , 'phone&tablet' , 'photocamera&videocamera' , 'drink' , 'food' , 'accessory' , 'clothing' , 'footwear' , 'cosmetics' , 'detergent' , 'personal hygiene'", CONTEXT_MSG);
@@ -19,8 +20,8 @@ Result addNewProduct()
 	}
 	else if (command == "continue")
 	{
-		cout << Message("Enter type: ", CONTEXT_MSG);
-		cin >> type;
+		cout << Message("Enter type", CONTEXT_MSG);
+		getline(cin, type);
 		if (type == "appliance")
 		{
 			prod = new Appliance();
@@ -37,6 +38,35 @@ Result addNewProduct()
 	}
 
 	return Result("New product is added to assortment.", SUCCESSFUL);
+}
+
+Result buyAllProductFromCart()
+{
+	if (cart.size() == 0)
+	{
+		return Result("Your cart is empty.", SUCCESSFUL);
+	} else
+	{
+		List<Product*> allProducts = DataManager().readAllProducts();
+		List<Product*>::iterator end = allProducts.end();
+		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
+		{
+			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
+
+		}
+	}
+	return Result("You bought all products.", SUCCESSFUL);
+}
+
+Result buyOneElementById()
+{
+	cout << Message("Enter product id", CONTEXT_MSG);
+	int id;
+	cin >> id;
+	cout << Message("You bought: ", LOG_MSG);
+	cout << DataManager().getProductById(id);
+	DataManager().changeQuantity(id, -1);
+	return Result("Thank you for buying ", SUCCESSFUL);
 }
 
 Result changeAmount()
@@ -296,6 +326,22 @@ Result showProducts()
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
+Result showPurchaseHistory()
+{
+	DataManager dataManager;
+	List<Product*> products = dataManager.readAllProducts();
+	List<Product*>::iterator cursor = products.begin();
+
+	while (cursor != products.end())
+	{
+		Product* product = *cursor;
+		cout << Message(product->getName(), LOG_MSG);
+		cursor++;
+	}
+
+	return Result();
+}
+
 Result showStats()
 {
 	return Result();
@@ -324,47 +370,3 @@ Result showUsers()
 	return Result("Listing completed.", SUCCESSFUL);
 }
 
-Result buyOneElementById()
-{
-	cout << Message("Enter product id", CONTEXT_MSG);
-	int id;
-	cin >> id;
-	cout << Message("You bought: ", LOG_MSG);
-	cout << DataManager().getProductById(id);
-	DataManager().changeQuantity(id, -1);
-	return Result("Thank you for buying " ,SUCCESSFUL);
-}
-
-Result showPurchaseHistory()
-{
-	DataManager dataManager;
-	List<Product*> products = dataManager.readAllProducts();
-	List<Product*>::iterator cursor = products.begin();
-
-	while (cursor != products.end())
-	{
-		Product* product = *cursor;
-		cout << Message(product->getName(), LOG_MSG);
-		cursor++;
-	}
-
-	return Result();
-}
-Result buyAllProductFromCart()
-{
-	if (cart.size() == 0)
-	{
-		return Result("Your cart is empty.", SUCCESSFUL);
-	}
-	else 
-	{
-		List<Product*> allProducts = DataManager().readAllProducts();
-		List<Product*>::iterator end = allProducts.end();
-		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
-		{
-			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
-			
-		}
-	}
-	return Result("You bought all products.", SUCCESSFUL);
-}

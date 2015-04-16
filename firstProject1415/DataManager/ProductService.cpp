@@ -91,7 +91,7 @@ void ProductService::setQuantity(int id)
 		throw exception("Cannot open file for reading.");
 	}
 
-	ofstream tempAssort("tempAsort");
+	ofstream tempAssort("tempAssort.txt");
 	if (!tempAssort.is_open())
 	{
 		throw exception("Cannot open temporary file for writing.");
