@@ -1,8 +1,9 @@
 #include "PhoneAndTablet.h"
+#include "..\..\UI\Message.h"
 
 PhoneAndTablet::PhoneAndTablet() :
-Electronic(),
-memoryCard(0)
+	Electronic(),
+	memoryCard(0)
 {
 }
 
@@ -37,5 +38,5 @@ void PhoneAndTablet::input()
 void PhoneAndTablet::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), CONTEXT_MSG);
 }

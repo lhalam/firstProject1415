@@ -1,8 +1,9 @@
 #include "LaptopAndComputer.h"
+#include "..\..\UI\Message.h"
 
 LaptopAndComputer::LaptopAndComputer() : 
-Electronic(),
-firm(" ")
+	Electronic(),
+	firm(" ")
 {
 }
 
@@ -16,7 +17,7 @@ istream& operator>>(istream& stream, LaptopAndComputer& obj)
 ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 {
 	stream << Electronic(obj)
-	       << obj.firm << endl;
+		   << obj.firm << endl;
 	return stream;
 }
 
@@ -38,5 +39,5 @@ void LaptopAndComputer::input()
 void LaptopAndComputer::output() const
 {
 	Electronic::output();
-	cout << Message("Firm: " + firm, INPUT_MSG);
+	cout << Message("Firm: " + firm, CONTEXT_MSG);
 }

@@ -1,6 +1,11 @@
 #include "AudioAndTv.h"
+#include "..\..\UI\Message.h"
 
-AudioAndTv::AudioAndTv() : Electronic(), memoryCard(0) {}
+AudioAndTv::AudioAndTv() : 
+	Electronic(), 
+	memoryCard(0) 
+{
+}
 
 istream& operator>>(istream& stream, AudioAndTv& obj)
 {
@@ -12,7 +17,7 @@ istream& operator>>(istream& stream, AudioAndTv& obj)
 ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 {
 	stream << Electronic(obj)
-		<< obj.memoryCard << endl;
+		   << obj.memoryCard << endl;
 	return stream;
 }
 
@@ -33,5 +38,5 @@ void AudioAndTv::input()
 void AudioAndTv::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), CONTEXT_MSG);
 }

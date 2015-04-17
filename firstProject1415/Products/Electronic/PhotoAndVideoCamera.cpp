@@ -1,8 +1,9 @@
 #include "PhotoAndVideoCamera.h"
+#include "..\..\UI\Message.h"
 
 PhotoAndVideoCamera::PhotoAndVideoCamera() :
-Electronic(),
-megapixels(0.0)
+	Electronic(),
+	megapixels(0.0)
 {
 }
 
@@ -16,7 +17,7 @@ istream& operator>>(istream& stream, PhotoAndVideoCamera& obj)
 ostream& operator<<(ostream& stream, const PhotoAndVideoCamera& obj)
 {
 	stream << Electronic(obj)
-	       << obj.megapixels << endl;
+		   << obj.megapixels << endl;
 	return stream;
 }
 
@@ -37,5 +38,5 @@ void PhotoAndVideoCamera::input()
 void PhotoAndVideoCamera::output() const
 {
 	Electronic::output();
-	cout << Message("Megapixels: " + to_string(megapixels), INPUT_MSG);
+	cout << Message("Megapixels: " + to_string(megapixels), CONTEXT_MSG);
 }

@@ -1,4 +1,5 @@
 #include "Cosmetic.h"
+#include "..\..\UI\Message.h"
 
 Cosmetic::Cosmetic() :
 	ChemicalProduct(),
@@ -38,5 +39,5 @@ void Cosmetic::input()
 void Cosmetic::output() const
 {
 	ChemicalProduct::output();
-	cout << Message("Part of body: " + this->part_of_body, INPUT_MSG);
+	cout << Message("Part of body: " + this->part_of_body, CONTEXT_MSG);
 }

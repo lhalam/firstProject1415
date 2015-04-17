@@ -1,11 +1,11 @@
 #include "Accessory.h"
+#include "..\..\UI\Message.h"
 
 Accessory::Accessory() :
 	Textile()
 {
 }
 
-// overloading operators istream and ostream 
 istream& operator>>(istream& stream, Accessory& obj)
 {
 	stream >> Textile(obj);

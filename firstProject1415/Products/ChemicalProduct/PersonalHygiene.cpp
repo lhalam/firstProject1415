@@ -1,4 +1,5 @@
 #include "PersonalHygiene.h"
+#include "..\..\UI\Message.h"
 
 PersonalHygiene::PersonalHygiene() :
 	ChemicalProduct()

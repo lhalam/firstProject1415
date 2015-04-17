@@ -1,4 +1,5 @@
 #include "Footwear.h"
+#include "..\..\UI\Message.h"
 
 Footwear::Footwear() :
 	Textile(),
@@ -7,7 +8,6 @@ Footwear::Footwear() :
 {
 }
 
-// overloading operators istream and ostream 
 istream& operator>>(istream& stream, Footwear& obj)
 {
 	stream >> Textile(obj) >> obj.size >> obj.season;
@@ -17,8 +17,8 @@ istream& operator>>(istream& stream, Footwear& obj)
 ostream& operator<<(ostream& stream, Footwear& obj)
 {
 	stream << Textile(obj)
-		<< obj.size << endl
-		<< obj.season << endl;
+	 	   << obj.size << endl
+		   << obj.season << endl;
 	return stream;
 }
 
@@ -48,15 +48,15 @@ void Footwear::input()
 void Footwear::output()
 {
 	Textile::output();
-	cout << Message("Size:" + to_string(this->size), INPUT_MSG);
+	cout << Message("Size:" + to_string(this->size), CONTEXT_MSG);
 	switch (this->season)
 	{
-	case 'w': cout << Message("Season: winter", INPUT_MSG);
+	case 'w': cout << Message("Season: winter", CONTEXT_MSG);
 		break;
-	case 's': cout << Message("Season: summer", INPUT_MSG);
+	case 's': cout << Message("Season: summer", CONTEXT_MSG);
 		break;
-	case 'a': cout << Message("Season: autumn&spring", INPUT_MSG);
+	case 'a': cout << Message("Season: autumn&spring", CONTEXT_MSG);
 		break;
-	default: cout << Message("Season: unknown", INPUT_MSG);
+	default:  cout << Message("Season: unknown", CONTEXT_MSG);
 	}
 }

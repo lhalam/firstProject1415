@@ -1,4 +1,5 @@
 #include "Food.h"
+#include "..\..\UI\Message.h"
 
 Food::Food() :
 	Nutrition(),
@@ -16,7 +17,7 @@ istream& operator>>(istream& stream, Food& obj)
 ostream& operator<<(ostream& stream, const Food& obj)
 {
 	stream << Nutrition(obj) << endl
-		<< obj.GMOContent << endl;
+		   << obj.GMOContent << endl;
 	return stream;
 }
 
@@ -40,5 +41,5 @@ void Food::input()
 void Food::output() const
 {
 	Nutrition::output();
-	cout << Message("GMO: " + this->GMOContent, INPUT_MSG);
+	cout << Message("GMO: " + this->GMOContent, CONTEXT_MSG);
 }

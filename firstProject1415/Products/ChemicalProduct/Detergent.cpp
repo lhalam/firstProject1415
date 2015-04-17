@@ -1,4 +1,5 @@
 #include "Detergent.h"
+#include "..\..\UI\Message.h"
 
 Detergent::Detergent() :
 	ChemicalProduct()

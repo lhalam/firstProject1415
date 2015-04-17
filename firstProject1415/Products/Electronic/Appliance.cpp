@@ -1,8 +1,9 @@
 #include "Appliance.h"
+#include "..\..\UI\Message.h"
 
 Appliance::Appliance() :
-Electronic(),
-memoryCard(0)
+	Electronic(),
+	memoryCard(0)
 {
 }
 
@@ -16,7 +17,7 @@ istream& operator>>(istream& stream, Appliance& obj)
 ostream& operator<<(ostream& stream, const Appliance& obj)
 {
 	stream << Electronic(obj)
-		<< obj.memoryCard << endl;
+		   << obj.memoryCard << endl;
 	return stream;
 }
 
@@ -37,5 +38,5 @@ void Appliance::input()
 void Appliance::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), INPUT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), CONTEXT_MSG);
 }

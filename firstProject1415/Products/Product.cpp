@@ -1,11 +1,12 @@
 #include "Product.h"
+#include "..\UI\Message.h"
 
 bool ifValidString(string str)
 {
-	if(str[0] == ' ' || str[0] == '\t' || str[0] == '\n' || 
-		str[0] == '\0' || str[0] == '\a' || str[0] == '.' || 
-		str[0] == ',' || str[0] == ':' || str[0] == ';' || 
-		str[0] == '`' || str[0] == '&' || str[0] == '@' )
+	if(str[0] == ' ' || str[0] == '\t'|| str[0] == '\n'|| 
+	   str[0] == '\0'|| str[0] == '\a'|| str[0] == '.' || 
+	   str[0] == ',' || str[0] == ':' || str[0] == ';' || 
+	   str[0] == '`' || str[0] == '&' || str[0] == '@' )
 	{
 		return false;
 	}
@@ -63,10 +64,10 @@ void Product::input()
 
 void Product::output() const
 {
-	cout << Message("Name: " + this->name, INPUT_MSG)
-		 << Message("Manufacturer: " + this->manufacturer, INPUT_MSG)
-		 << Message("Price: " + to_string(this->price), INPUT_MSG)
-		 << Message("ID: " + to_string(this->id), INPUT_MSG);
+	cout << Message("Name: " + this->name, CONTEXT_MSG)
+		 << Message("Manufacturer: " + this->manufacturer, CONTEXT_MSG)
+		 << Message("Price: " + to_string(this->price), CONTEXT_MSG)
+		 << Message("ID: " + to_string(this->id), CONTEXT_MSG);
 }
 
 bool Product::operator==(const Product& prod)

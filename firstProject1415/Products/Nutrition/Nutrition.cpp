@@ -1,4 +1,5 @@
 #include "Nutrition.h"
+#include "..\..\UI\Message.h"
 
 Nutrition::Nutrition():
 	Product(),
@@ -66,7 +67,7 @@ void Nutrition::input()
 void Nutrition::output() const
 {
 	Product::output();
-	cout << Message("Manufacture date: " + this->manufactureDate, INPUT_MSG)
-		 << Message("Expiration date: " + this->expirationDate, INPUT_MSG)
-		 << Message("Ingredients: " + this->ingredients, INPUT_MSG);
+	cout << Message("Manufacture date: " + this->manufactureDate, CONTEXT_MSG)
+	   	 << Message("Expiration date: " + this->expirationDate, CONTEXT_MSG)
+		 << Message("Ingredients: " + this->ingredients, CONTEXT_MSG);
 }

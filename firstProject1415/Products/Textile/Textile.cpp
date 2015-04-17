@@ -1,4 +1,5 @@
 #include "Textile.h"
+#include "..\..\UI\Message.h"
 
 Textile::Textile() :
 	Product(), 
@@ -9,7 +10,6 @@ Textile::Textile() :
 {
 }
 
-// overloading operators istream and ostream 
 istream& operator>>(istream& stream, Textile& obj)
 {
 	stream >> Product(obj);
@@ -77,16 +77,16 @@ void Textile::output()
 	cout << Message("Material: " + this->material, INPUT_MSG);
 	switch (this->category)
 	{
-	case 'm': cout << Message("Category: male", INPUT_MSG);
+	case 'm': cout << Message("Category: male", CONTEXT_MSG);
 		break;
-	case 'f': cout << Message("Category: female", INPUT_MSG);
+	case 'f': cout << Message("Category: female", CONTEXT_MSG);
 		break;
-	case 'b': cout << Message("Category: baby", INPUT_MSG);
+	case 'b': cout << Message("Category: baby", CONTEXT_MSG);
 		break;
-	default: cout << Message("Category: unknown", INPUT_MSG);
+	default:  cout << Message("Category: unknown", CONTEXT_MSG);
 		break;
 	}
-	cout << Message("Brand: " + this->brand, INPUT_MSG)
-		<< Message("Collection year:" + to_string(this->collectionYear), INPUT_MSG);
+	cout << Message("Brand: " + this->brand, CONTEXT_MSG)
+		 << Message("Collection year:" + to_string(this->collectionYear), CONTEXT_MSG);
 }
 
