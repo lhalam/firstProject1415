@@ -8,19 +8,20 @@
 Result addNewProduct()
 {
 	Product* prod;
-	string type;
 	string command;
-	cout << Message("Enter [help] to see all the possible product types.", LOG_MSG)
-		<< Message("Enter [continue] to go to creating a new product.", LOG_MSG);
+	cout << Message("[help] - shows all the possible product types that can be created", LOG_MSG)
+		<< Message("[continue] - goes to creating a new product", LOG_MSG);
 	getline(cin, command);
-	if (command == "help")
+	while (command == "help")
 	{
-		cout << Message("'appliance' , 'audio&TV' , 'laptop&computer' , 'phone&tablet' , 'photocamera&videocamera' , 'drink' , 'food' , 'accessory' , 'clothing' , 'footwear' , 'cosmetics' , 'detergent' , 'personal hygiene'", CONTEXT_MSG);
-		command.clear();
+		cout << Message("'appliance' , 'audio&TV' , 'laptop&computer' , 'phone&tablet' , 'photocamera&videocamera' , 'drink' , 'food' , 'accessory' , 'clothing' , 'footwear' , 'cosmetics' , 'detergent' , 'personal hygiene'", LOG_MSG);
+		getline(cin, command);
 	}
-	else if (command == "continue")
+	if (command == "continue")
 	{
-		cout << Message("Enter type", CONTEXT_MSG);
+		string type;
+		int quantity;
+		cout << Message("Type", CONTEXT_MSG);
 		getline(cin, type);
 		if (type == "appliance")
 		{
@@ -28,15 +29,22 @@ Result addNewProduct()
 			prod->input();
 			DataManager manager;
 			manager.saveProduct(*prod);
-			manager.setQuantity(prod->getId());
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
 		}
 		//...
+		else
+		{
+			throw exception("Unknown type!");
+		}
 	}
 	else
 	{
-		throw exception("Unknown command.");
+		throw exception("Unknown command!");
 	}
 
+	delete[] prod;
 	return Result("New product is added to assortment.", SUCCESSFUL);
 }
 
@@ -72,11 +80,15 @@ Result buyOneElementById()
 Result changeAmount()
 {
 	int id;
-	cout << Message("Enter id", CONTEXT_MSG);
+	cout << Message("Id", CONTEXT_MSG);
 	cin >> id;
 
+	int newQuantity;
 	DataManager manager;
-	manager.setQuantity(id);
+	cout << "Current quantity of product with id " << id << " is - " << manager.getQuantity(id) << endl;
+	cout << Message("New quantity", CONTEXT_MSG);
+	cin >> newQuantity;
+	manager.setQuantity(id, newQuantity);
 
 	return Result("New quantity is added to assortment.", SUCCESSFUL);
 }
@@ -84,13 +96,13 @@ Result changeAmount()
 Result changeProduct()
 {
 	int id = 0;
-	cout << Message("Enter id", CONTEXT_MSG);
+	cout << Message("Id", CONTEXT_MSG);
 	cin >> id;
 
 	DataManager manager;
 	Product *prod = manager.getProductById(id);
 	int quantity = manager.getQuantity(id);
-
+	cout << quantity << endl;
 	prod->input();
 
 	manager.removeProductById(id);

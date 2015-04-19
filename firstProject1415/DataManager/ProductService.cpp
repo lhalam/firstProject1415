@@ -83,7 +83,7 @@ int ProductService::getQuantity(int id)
 	return -1;
 }
 
-void ProductService::setQuantity(int id)
+void ProductService::setQuantity(int id, int newQuantity)
 {
 	ifstream assortment("Assortment.txt");
 	if (!assortment.is_open())

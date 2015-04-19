@@ -22,7 +22,7 @@ public:
 	
 	//Changes a quantity of the product by given id
 	//Sets new quantity
-	void setQuantity(int id);
+	void setQuantity(int id, int newQuantity);
 	
 	//Changes a quantity of the product by given id
 	//Adds to the current quantity
