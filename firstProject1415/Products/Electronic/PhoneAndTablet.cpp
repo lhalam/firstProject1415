@@ -9,8 +9,8 @@ PhoneAndTablet::PhoneAndTablet() :
 
 istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
-	stream >> Electronic(obj);
-	stream >> obj.memoryCard;
+	stream >> Electronic(obj)
+		>> obj.memoryCard;
 	return stream;
 }
 

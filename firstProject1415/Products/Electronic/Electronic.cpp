@@ -60,10 +60,10 @@ istream& operator>>(istream& stream, Electronic& obj)
 
 ostream& operator<<(ostream& stream, const Electronic& obj)
 {
-	stream << Product(obj);
-	stream << "Category: " << obj.category << endl;
-	stream << "Weight: " << obj.weight << endl;
-	stream << "Model: " << obj.model << endl;
+	stream << Product(obj)
+		<< obj.category << endl
+		<< obj.weight << endl
+		<< obj.model << endl;
 	return stream;
 }
 
