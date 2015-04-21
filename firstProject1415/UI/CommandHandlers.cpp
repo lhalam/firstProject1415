@@ -14,20 +14,20 @@ Result addNewProduct()
 	getline(cin, command);
 	while (command == "help")
 	{
-		cout << Message("'Products:' ", LOG_MSG); 
-		cout << Message("'Appliance' ", LOG_MSG); 
-		cout << Message("'Audio&TV' ", LOG_MSG); 
-		cout << Message("'Laptop&computer' ", LOG_MSG); 
-		cout << Message("'Phone&tablet' ", LOG_MSG); 
-		cout << Message("'Photo&videocamera' ", LOG_MSG); 
-		cout << Message("'Drink' ", LOG_MSG); 
-		cout << Message("'Food' ", LOG_MSG); 
-		cout << Message("'Accessory' ", LOG_MSG); 
-		cout << Message("'Clothing' ", LOG_MSG); 
-		cout << Message("'Footwear' ", LOG_MSG); 
-		cout << Message("'Cosmetic' ", LOG_MSG); 
-		cout << Message("'Detergent' ", LOG_MSG); 
-		cout << Message("'Personal hygiene' ", LOG_MSG); 
+	        cout << Message(" Products: ", LOG_MSG); 
+		cout << Message("Appliance ", LOG_MSG); 
+		cout << Message("Audio&TV ", LOG_MSG); 
+		cout << Message("Laptop&computer ", LOG_MSG); 
+		cout << Message("Phone&tablet ", LOG_MSG); 
+		cout << Message("Photo&videocamera ", LOG_MSG); 
+		cout << Message("Drink ", LOG_MSG); 
+		cout << Message("Food ", LOG_MSG); 
+		cout << Message("Accessory ", LOG_MSG); 
+		cout << Message("Clothing ", LOG_MSG); 
+		cout << Message("Footwear ", LOG_MSG); 
+		cout << Message("Cosmetic ", LOG_MSG); 
+		cout << Message("Detergent ", LOG_MSG); 
+		cout << Message("Personal hygiene ", LOG_MSG);
 		getline(cin, command);
 	}
 	if (command == "continue")
