@@ -71,10 +71,19 @@ Result buyOneElementById()
 	cout << Message("Enter product id", CONTEXT_MSG);
 	int id;
 	cin >> id;
+	
+	Product* product = DataManager().getProductById(id);
+	DataManager().changeQuantity(product->getId(), -1);
+	ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
+	if (!stream.is_open())
+	{
+		return Result("Couldn't open file for writing...", TOTAL_ERROR);
+	}
+	stream << *product << '\n';
+
 	cout << Message("You bought: ", LOG_MSG);
-	cout << DataManager().getProductById(id);
-	DataManager().changeQuantity(id, -1);
-	return Result("Thank you for buying ", SUCCESSFUL);
+	cout << *product;
+	return Result();
 }
 
 Result changeAmount()
