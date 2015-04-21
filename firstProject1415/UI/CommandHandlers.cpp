@@ -118,6 +118,7 @@ Result createAdmin()
 	int id;
 	cout << Message("Enter id of the account", CONTEXT_MSG);
 	cin >> id;
+	cin.get();
 
 	DataManager manager;
 	User *user = nullptr;
@@ -127,24 +128,26 @@ Result createAdmin()
 		user = manager.getUserById(id);
 	} catch (exception exp)
 	{
-		cin.get();
 		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
 	if (user == nullptr)
 	{
-		cin.get();
 		return Result("The id is invalid. Please try again.", NOT_SUCCESSFUL);
 	}
 
 	if (user->getRole() == Access::ADMIN)
 	{
-		return Result("The account already has administrator rights.", SUCCESSFUL);
+		cout << Message("The account already has administrator rights.", LOG_MSG);
+		return Result();
 	}
 
 	user->properties->setRole(Access::ADMIN);
+	manager.removeUserById(id);
+	manager.saveUser(*user);
 
-	return Result("The account was granted administrator rights.", SUCCESSFUL);
+	cout << Message("The account was granted administrator rights.", LOG_MSG);
+	return Result();
 }
 
 Result createUser()
@@ -154,6 +157,7 @@ Result createUser()
 	newUser.input();
 	DataManager manager;
 	manager.saveUser(newUser);
+	cin.get();
 
 	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
 }
@@ -280,6 +284,8 @@ Result removeProductFromCart()
 	{
 		return Result(exc.what(), NOT_SUCCESSFUL);
 	}
+
+	return Result();
 }
 
 Result removeUser()

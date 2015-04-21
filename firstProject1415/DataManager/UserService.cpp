@@ -93,7 +93,7 @@ User* UserService::getById(int id)
 	bool isSuccessful = false;
 	while (!stream.eof())
 	{
-		User *user = new User();
+		user = new User();
 		stream >> *user;
 
 		if (user->getId() == id)

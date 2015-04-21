@@ -55,7 +55,8 @@ ostream& operator<<(ostream& stream, const User& user)
 		<< user.login << " "
 		<< user.password << " "
 		<< user.email << " "
-		<< *user.properties;
+		<< *user.properties
+		<< std::endl;
 	stream;
 	return stream;
 }
