@@ -65,6 +65,7 @@ Result buyAllProductFromCart()
 				return Result("Couldn't open file for writing...", TOTAL_ERROR);
 			}
 			stream << *it << '\n';
+			stream.close();
 			
 			(*it)->output();
 		}
@@ -79,6 +80,10 @@ Result buyOneElementById()
 	cin >> id;
 	
 	Product* product = DataManager().getProductById(id);
+	if (product == nullptr)
+	{
+		return Result("There is no product with such an id", NOT_SUCCESSFUL);
+	}
 	DataManager().changeQuantity(product->getId(), -1);
 	ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
 	if (!stream.is_open())
@@ -86,6 +91,7 @@ Result buyOneElementById()
 		return Result("Couldn't open file for writing...", TOTAL_ERROR);
 	}
 	stream << *product << '\n';
+	stream.close();
 
 	cout << Message("You bought: ", LOG_MSG);
 	cout << *product;
@@ -358,15 +364,16 @@ Result showCart()
 Result showProducts()
 {
 	List<Product*> allProducts = DataManager().readAllProducts();
+	if (allProducts.size() == 0)
+	{
+		cout << Message("There are no products in our shop, we are poor as fuck", LOG_MSG);
+		return Result();
+	}
 	auto end = allProducts.end();
 
 	for (auto it = allProducts.begin(); it != end; it++)
 	{
 		(*it)->output();
-		cout << endl;
-//		cout << Message("#" + to_string((*it)->getId()) + ": " +
-//			(*it)->getName() + " " + (*it)->getManufacturer() + " price: " +
-//			to_string((*it)->getPrice()), LOG_MSG) << endl;
 	}
 
 	cout << Message("Listing completed.", LOG_MSG);
@@ -376,15 +383,20 @@ Result showProducts()
 Result showPurchaseHistory()
 {
 	DataManager dataManager;
-	List<Product*> products = dataManager.readAllProducts();
-	List<Product*>::iterator cursor = products.begin();
-
-	while (cursor != products.end())
+	ifstream stream;
+	stream.open(to_string(currentUser.getId()) + ".txt", std::ifstream::in);
+	if (!stream.is_open())
 	{
-		Product* product = *cursor;
-		cout << Message(product->getName(), LOG_MSG);
-		cursor++;
+		return Result("Couldn't open file for writing...", TOTAL_ERROR);
 	}
+
+	while (!stream.eof())
+	{
+		string prod;
+		stream >> prod;
+		cout << Message(prod, LOG_MSG);
+	}
+	stream.close();
 
 	return Result();
 }
