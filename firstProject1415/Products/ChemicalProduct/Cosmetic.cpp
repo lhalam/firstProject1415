@@ -9,14 +9,14 @@ Cosmetic::Cosmetic() :
 
 istream& operator>>(istream& stream, Cosmetic& obj)
 {
-	stream  >> ChemicalProduct(obj);
+	stream  >> (ChemicalProduct&)obj;
 	stream  >> obj.part_of_body;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Cosmetic& obj)
 {
-	stream  << ChemicalProduct(obj);
+	stream << (ChemicalProduct&)obj;
 	stream 	<< obj.part_of_body 
 			<< endl;
 	return stream;

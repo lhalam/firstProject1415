@@ -8,12 +8,12 @@ Detergent::Detergent() :
 
 istream& operator>>(istream& stream, Detergent& obj)
 {
-	stream >> ChemicalProduct(obj);
+	stream >> (ChemicalProduct&)obj;
 	return stream;
 }
 ostream& operator<<(ostream& stream, const Detergent& obj)
 {
-	stream << ChemicalProduct(obj);
+	stream << (ChemicalProduct&)obj;
 	return stream;
 }
 

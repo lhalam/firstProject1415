@@ -362,7 +362,7 @@ Result showProducts()
 //			(*it)->getName() + " " + (*it)->getManufacturer() + " price: " +
 //			to_string((*it)->getPrice()), LOG_MSG) << endl;
 	}
-
+	
 	cout << Message("Listing completed.", LOG_MSG);
 	return Result();
 }

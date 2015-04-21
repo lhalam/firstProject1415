@@ -9,14 +9,14 @@ PhoneAndTablet::PhoneAndTablet() :
 
 istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
-	stream >> Electronic(obj)
+	stream >> (Electronic&)obj
 		>> obj.memoryCard;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
 {
-	stream << Electronic(obj)
+	stream << (Electronic&)obj
 		   << obj.memoryCard << endl;
 	return stream;
 }
