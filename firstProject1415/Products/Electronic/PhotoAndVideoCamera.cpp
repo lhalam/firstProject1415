@@ -38,5 +38,5 @@ void PhotoAndVideoCamera::input()
 void PhotoAndVideoCamera::output() const
 {
 	Electronic::output();
-	cout << Message("Megapixels: " + to_string(megapixels), CONTEXT_MSG);
+	cout << Message("Megapixels: " + to_string(megapixels), LOG_MSG);
 }

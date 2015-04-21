@@ -39,5 +39,5 @@ void LaptopAndComputer::input()
 void LaptopAndComputer::output() const
 {
 	Electronic::output();
-	cout << Message("Firm: " + firm, CONTEXT_MSG);
+	cout << Message("Firm: " + firm, LOG_MSG);
 }

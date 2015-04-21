@@ -67,7 +67,7 @@ void Nutrition::input()
 void Nutrition::output() const
 {
 	Product::output();
-	cout << Message("Manufacture date: " + this->manufactureDate, CONTEXT_MSG)
-	   	 << Message("Expiration date: " + this->expirationDate, CONTEXT_MSG)
-		 << Message("Ingredients: " + this->ingredients, CONTEXT_MSG);
+	cout << Message("Manufacture date: " + this->manufactureDate, LOG_MSG)
+		<< Message("Expiration date: " + this->expirationDate, LOG_MSG)
+		<< Message("Ingredients: " + this->ingredients, LOG_MSG);
 }

@@ -505,7 +505,7 @@ Result showProducts()
 	List<Product*> allProducts = DataManager().readAllProducts();
 	if (allProducts.size() == 0)
 	{
-		cout << Message("There are no products in our shop, we are poor as fuck", LOG_MSG);
+		cout << Message("There are no products in our shop, we are so poor.", LOG_MSG);
 		return Result();
 	}
 	auto end = allProducts.end();
@@ -546,9 +546,11 @@ Result showStats()
 	for (auto it = map.begin(); it != map.end(); ++it)
 	{
 		it->first->output();
-		cout << "\nQuantiy: " << it->second << endl;
+		cout << Message("Quantiy: " + to_string(it->second), LOG_MSG);
 	}
-	return Result("It's all statistic", SUCCESSFUL);
+
+	cout << Message("Listing completed.", LOG_MSG);
+	return Result();
 }
 
 Result showUsers()

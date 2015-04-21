@@ -64,10 +64,10 @@ void Product::input()
 
 void Product::output() const
 {
-	cout << Message("Name: " + this->name, CONTEXT_MSG)
-		 << Message("Manufacturer: " + this->manufacturer, CONTEXT_MSG)
-		 << Message("Price: " + to_string(this->price), CONTEXT_MSG)
-		 << Message("ID: " + to_string(this->id), CONTEXT_MSG);
+	cout << Message("Name: " + this->name, LOG_MSG)
+		<< Message("Manufacturer: " + this->manufacturer, LOG_MSG)
+		<< Message("Price: " + to_string(this->price), LOG_MSG)
+		<< Message("ID: " + to_string(this->id), LOG_MSG);
 }
 
 bool Product::operator==(const Product& prod) const

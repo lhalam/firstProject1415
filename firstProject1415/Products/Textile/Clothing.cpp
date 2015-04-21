@@ -48,15 +48,15 @@ void Clothing::input()
 void Clothing::output()
 {
 	Textile::output();
-	cout << Message("Size:" + this->size, CONTEXT_MSG);
+	cout << Message("Size:" + this->size, LOG_MSG);
 	switch (this->season)
 	{
-	case 'w': cout << Message("Season: winter", CONTEXT_MSG);
-		break;
-	case 's': cout << Message("Season: summer", CONTEXT_MSG);
-		break;
-	case 'a': cout << Message("Season: autumn&spring", CONTEXT_MSG);
-		break;
-	default: cout << Message("Season: unknown", CONTEXT_MSG);
+		case 'w': cout << Message("Season: winter", LOG_MSG);
+			break;
+		case 's': cout << Message("Season: summer", LOG_MSG);
+			break;
+		case 'a': cout << Message("Season: autumn&spring", LOG_MSG);
+			break;
+		default: cout << Message("Season: unknown", LOG_MSG);
 	}
 }

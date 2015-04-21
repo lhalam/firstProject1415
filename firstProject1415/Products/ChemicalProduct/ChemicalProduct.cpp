@@ -50,6 +50,6 @@ void ChemicalProduct::input()
 void ChemicalProduct::output() const
 {
 	Product::output();
-	cout << Message("Manufacture date: " + this->manufactureDate, CONTEXT_MSG);
-	cout << Message("Volume: " + to_string(this->volume), CONTEXT_MSG);
+	cout << Message("Manufacture date: " + this->manufactureDate, LOG_MSG);
+	cout << Message("Volume: " + to_string(this->volume), LOG_MSG);
 }

@@ -42,9 +42,9 @@ void Electronic::input()
 void Electronic::output() const
 {
 	Product::output();
-	cout << Message("Category: " + category, CONTEXT_MSG);
-	cout << Message("Weight: " + to_string(weight), CONTEXT_MSG);
-	cout << Message("Model: " + model, CONTEXT_MSG);
+	cout << Message("Category: " + category, LOG_MSG);
+	cout << Message("Weight: " + to_string(weight), LOG_MSG);
+	cout << Message("Model: " + model, LOG_MSG);
 }
 
 istream& operator>>(istream& stream, Electronic& obj)

@@ -38,5 +38,5 @@ void Drink::input()
 void Drink::output() const
 {
 	Nutrition::output();
-	cout << Message("Volume: " + to_string(this->volume), CONTEXT_MSG);
+	cout << Message("Volume: " + to_string(this->volume), LOG_MSG);
 }

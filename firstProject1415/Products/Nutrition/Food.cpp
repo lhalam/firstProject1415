@@ -41,5 +41,5 @@ void Food::input()
 void Food::output() const
 {
 	Nutrition::output();
-	cout << Message("GMO: " + this->GMOContent, CONTEXT_MSG);
+	cout << Message("GMO: " + this->GMOContent, LOG_MSG);
 }

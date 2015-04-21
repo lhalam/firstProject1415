@@ -39,5 +39,5 @@ void Cosmetic::input()
 void Cosmetic::output() const
 {
 	ChemicalProduct::output();
-	cout << Message("Part of body: " + this->part_of_body, CONTEXT_MSG);
+	cout << Message("Part of body: " + this->part_of_body, LOG_MSG);
 }

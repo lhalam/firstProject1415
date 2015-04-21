@@ -38,5 +38,5 @@ void AudioAndTv::input()
 void AudioAndTv::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), CONTEXT_MSG);
+	cout << Message("Memory card: " + to_string(memoryCard), LOG_MSG);
 }
