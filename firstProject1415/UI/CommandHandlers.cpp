@@ -162,7 +162,7 @@ Result createAdmin()
 		return Result();
 	}
 
-	user->properties->setRole(Access::ADMIN);
+	user->setRole(Access::ADMIN);
 	manager.removeUserById(id);
 	manager.saveUser(*user);
 
