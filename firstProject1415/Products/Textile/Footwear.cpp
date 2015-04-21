@@ -10,13 +10,13 @@ Footwear::Footwear() :
 
 istream& operator>>(istream& stream, Footwear& obj)
 {
-	stream >> Textile(obj) >> obj.size >> obj.season;
+	stream >> (Textile&)obj >> obj.size >> obj.season;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, Footwear& obj)
 {
-	stream << Textile(obj)
+	stream << (Textile&)obj
 	 	   << obj.size << endl
 		   << obj.season << endl;
 	return stream;

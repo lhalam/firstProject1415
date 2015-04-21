@@ -9,14 +9,14 @@ Drink::Drink() :
 
 istream& operator>>(istream& stream, Drink& obj)
 {
-	stream >> Nutrition(obj)
+	stream >> (Nutrition&)obj
 		   >> obj.volume;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Drink& obj)
 {
-	stream << Nutrition(obj) << endl
+	stream << (Nutrition&)obj << endl
 		   << obj.volume << endl;
 	return stream;
 }

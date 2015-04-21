@@ -15,7 +15,7 @@ Nutrition::~Nutrition()
 
 istream& operator>>(istream& stream, Nutrition& obj)
 {
-	stream >> Product(obj);
+	stream >> (Product&)obj;
 	getline(stream, obj.manufactureDate);
 	stream.get();
 	getline(stream, obj.expirationDate);
@@ -27,7 +27,7 @@ istream& operator>>(istream& stream, Nutrition& obj)
 
 ostream& operator<<(ostream& stream, const Nutrition& obj)
 {
-	stream << Product(obj) << endl
+	stream << (Product&)obj << endl
 		   << obj.manufactureDate << endl
 		   << obj.expirationDate << endl
 		   << obj.ingredients << endl;

@@ -10,7 +10,7 @@ ChemicalProduct::ChemicalProduct() :
 
 istream& operator>>(istream& stream, ChemicalProduct& obj)
 {
-	stream >> Product(obj);
+	stream >> (Product&)obj;
 	getline(stream, obj.manufactureDate);
 	stream.get();
 	stream >> obj.volume;
@@ -19,7 +19,7 @@ istream& operator>>(istream& stream, ChemicalProduct& obj)
 
 ostream& operator<<(ostream& stream, const ChemicalProduct& obj)
 {
-	stream << Product(obj)
+	stream << (Product&)obj
 	<< obj.manufactureDate << endl
 	<< obj.volume << endl;
 	return stream;

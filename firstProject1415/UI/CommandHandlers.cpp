@@ -512,7 +512,7 @@ Result showProducts()
 	{
 		(*it)->output();
 	}
-
+	
 	cout << Message("Listing completed.", LOG_MSG);
 	return Result();
 }

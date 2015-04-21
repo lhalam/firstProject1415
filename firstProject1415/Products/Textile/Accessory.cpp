@@ -8,13 +8,13 @@ Accessory::Accessory() :
 
 istream& operator>>(istream& stream, Accessory& obj)
 {
-	stream >> Textile(obj);
+	stream >> (Textile&)obj;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, Accessory& obj)
 {
-	stream << Textile(obj);
+	stream << (Textile&)obj;
 	return stream;
 }
 
