@@ -182,11 +182,16 @@ Result addNewProduct()
 
 Result buyAllProductFromCart()
 {
-	if (cart.size() == 0)
+	if (cart.size() == 1)
 	{
 		return Result("Your cart is empty.", SUCCESSFUL);
 	} else
 	{
+		if (cart.size() == 0)
+		{
+			cout << Message("Your cart is empty", LOG_MSG);
+			return Result();
+		}
 		List<Product*>::iterator end = cart.end();
 		for (List<Product*>::iterator it = cart.begin(); it != end; it++)
 		{
