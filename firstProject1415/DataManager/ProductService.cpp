@@ -11,7 +11,6 @@ using namespace std;
 void ProductService::save(const Product& prod)
 {
 	ofstream stream("Products.txt", ios_base::app);
-
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for writing.");
@@ -23,13 +22,23 @@ void ProductService::save(const Product& prod)
 	stream.close();
 
 	stream.open("Assortment.txt", ios_base::app);
-
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for writing.");
 	}
 
 	stream << prod.getId() << ' ' << 0 << endl;
+
+	stream.close();
+
+	stream.open("Statis.txt", ios_base::app);
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for writing.");
+	}
+
+	stream << typeid(prod).name() << endl;
+	stream << prod << 0 << endl;
 
 	stream.close();
 }
@@ -296,17 +305,45 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	rename("tempAsort.txt", "Assortment.txt");
 }
 
-void ProductService::saveStatistics(unsigned quantity, int id)
+void ProductService::saveStatistics(unsigned newQuantity, int id)
 {
-	ofstream stream("Stats.txt", ios_base::app);
-
+	ifstream stream("Stats.txt");
 	if (!stream.is_open())
 	{
-		 throw exception("Cannot open file for writing.");
+		 throw exception("Cannot open file for reading.");
 	}
 
-	saveProduct(*getById(id), stream);
-	stream << quantity << endl;
+	ofstream temp("Temp.txt");
+	if (!temp.is_open())
+	{
+		throw exception("Cannot open temporary file for writing.");
+	}
+
+	while (!stream.eof())
+	{
+		string type;
+		getline(stream, type);
+
+		if (type.empty())
+		{
+			break;
+		}
+
+		Product *prod = getProduct(type, stream);
+		int quantity;
+		stream >> quantity;
+		stream.get();
+
+		temp << type << endl << prod;
+
+		if (prod->getId() != id)
+		{
+			temp << quantity << endl;
+		} else
+		{
+			temp << newQuantity << endl;
+		}
+	}
 
 	stream.close();
 }
