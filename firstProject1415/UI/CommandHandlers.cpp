@@ -83,31 +83,42 @@ Result changeAmount()
 	cout << Message("Id", CONTEXT_MSG);
 	cin >> id;
 
-	int newQuantity;
+	int quantity;
 	DataManager manager;
-	cout << "Current quantity of product with id " << id << " is - " << manager.getQuantity(id) << endl;
-	cout << Message("New quantity", CONTEXT_MSG);
-	cin >> newQuantity;
-	manager.setQuantity(id, newQuantity);
 
-	return Result("New quantity is added to assortment.", SUCCESSFUL);
+	string message = string("Current quantity of product with id ") + to_string(id) +
+		string(": ") + to_string(manager.getQuantity(id));
+	cout << Message(message, LOG_MSG) << endl;
+
+	cout << Message("Enter new quantity", CONTEXT_MSG);
+	cin >> quantity;
+	manager.setQuantity(id, quantity);
+
+	cout << Message("New quantity is added to the assortment.", LOG_MSG);
+	return Result();
 }
 
 Result changeProduct()
 {
 	int id = 0;
-	cout << Message("Id", CONTEXT_MSG);
+	cout << Message("Enter id", CONTEXT_MSG);
 	cin >> id;
 
 	DataManager manager;
 	Product *prod = manager.getProductById(id);
-	int quantity = manager.getQuantity(id);
-	cout << quantity << endl;
 	prod->input();
 
 	manager.removeProductById(id);
 	manager.saveProduct(*prod);
-	manager.changeQuantity(id, quantity);
+
+	string message = string("Current quantity of product with id ") + to_string(id) +
+		string(": ") + to_string(manager.getQuantity(id));
+	cout << Message(message, LOG_MSG) << endl;
+	cout << Message("Enter new quantity", CONTEXT_MSG);
+	int quantity = 0;
+	cin >> quantity;
+
+	manager.setQuantity(id, quantity);
 
 	delete[] prod;
 	return Result("Product is changed.", SUCCESSFUL);
@@ -332,16 +343,19 @@ Result showCart()
 Result showProducts()
 {
 	List<Product*> allProducts = DataManager().readAllProducts();
-	List<Product*>::iterator end = allProducts.end();
-	for (List<Product*>::iterator it = allProducts.begin();
-		it != end;
-		it++)
+	auto end = allProducts.end();
+
+	for (auto it = allProducts.begin(); it != end; it++)
 	{
-		cout << Message(
-			"#" + to_string((*it)->getId()) + ": " + (*it)->getName() + " " + (*it)->getManufacturer() + " price: " + to_string((*it)->getPrice())
-			, LOG_MSG) << endl;
+		(*it)->output();
+		cout << endl;
+//		cout << Message("#" + to_string((*it)->getId()) + ": " +
+//			(*it)->getName() + " " + (*it)->getManufacturer() + " price: " +
+//			to_string((*it)->getPrice()), LOG_MSG) << endl;
 	}
-	return Result("Listing completed.", SUCCESSFUL);
+
+	cout << Message("Listing completed.", LOG_MSG);
+	return Result();
 }
 
 Result showPurchaseHistory()

@@ -137,7 +137,7 @@ void UserService::removeByPredicate(function<bool(const User&)> predicate)
 		User *user = new User();
 		stream >> *user;
 
-		if (!predicate(*user))
+		if (user->getId() != 0 && !predicate(*user))
 		{
 			temp << *user;
 		}

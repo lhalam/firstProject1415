@@ -14,10 +14,10 @@ istream& operator>>(istream& stream, Textile& obj)
 {
 	stream >> Product(obj);
 	getline(stream, obj.material);
-	cin.get();
+	stream.get();
 	stream >> obj.category;
 	getline(stream, obj.manufacturer);
-	cin.get();
+	stream.get();
 	stream >> obj.collectionYear;
 	return stream;
 }

@@ -51,10 +51,10 @@ istream& operator>>(istream& stream, Electronic& obj)
 {
 	stream >> Product(obj);
 	getline(stream, obj.category);
-	cin.get();
+	stream.get();
 	stream >> obj.weight;
 	getline(stream, obj.model);
-	cin.get();
+	stream.get();
 	return stream;
 }
 

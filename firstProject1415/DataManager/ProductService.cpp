@@ -45,7 +45,7 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 
 		if (type.empty())
 		{
-			continue;
+			break;
 		}
 
 		Product *prod = getProduct(type, stream);
@@ -98,7 +98,6 @@ void ProductService::setQuantity(int id, int newQuantity)
 	}
 
 	unsigned currentId, quant;
-	int new_quantity;
 	while (!assortment.eof())
 	{
 		assortment >> currentId >> quant;
@@ -110,10 +109,7 @@ void ProductService::setQuantity(int id, int newQuantity)
 		}
 		else
 		{
-			cout << "Current quantity of product with id " << id << " is - " << quant << endl;
-			cout << "Enter new quantity : ";
-			cin >> new_quantity;
-			tempAssort << new_quantity;
+			tempAssort << newQuantity;
 		}
 		tempAssort << endl;
 	}
@@ -185,7 +181,7 @@ Product* ProductService::getById(int id)
 			continue;
 		}
 
-		Product *product = getProduct(productType, stream);
+		product = getProduct(productType, stream);
 
 		if (product->getId() == id)
 		{

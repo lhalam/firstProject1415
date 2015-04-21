@@ -80,9 +80,9 @@ istream& operator>>(istream& stream, Product& obj)
 	getline(stream, obj.name);
 	getline(stream, obj.manufacturer);
 	stream >> obj.price;
-	cin.get();
+	stream.get();
 	stream >> obj.id;
-	cin.get();
+	stream.get();
 	return stream;
 }
 

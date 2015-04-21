@@ -17,11 +17,11 @@ istream& operator>>(istream& stream, Nutrition& obj)
 {
 	stream >> Product(obj);
 	getline(stream, obj.manufactureDate);
-	cin.get();
+	stream.get();
 	getline(stream, obj.expirationDate);
-	cin.get();
+	stream.get();
 	getline(stream, obj.ingredients);
-	cin.get();
+	stream.get();
 	return stream;
 }
 

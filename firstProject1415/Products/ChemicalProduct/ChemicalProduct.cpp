@@ -12,7 +12,7 @@ istream& operator>>(istream& stream, ChemicalProduct& obj)
 {
 	stream >> Product(obj);
 	getline(stream, obj.manufactureDate);
-	cin.get();
+	stream.get();
 	stream >> obj.volume;
 	return stream;
 }
