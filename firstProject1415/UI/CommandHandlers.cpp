@@ -14,20 +14,20 @@ Result addNewProduct()
 	getline(cin, command);
 	while (command == "help")
 	{
-	        cout << Message(" Products: ", LOG_MSG); 
-		cout << Message("Appliance ", LOG_MSG); 
-		cout << Message("Audio&TV ", LOG_MSG); 
-		cout << Message("Laptop&computer ", LOG_MSG); 
-		cout << Message("Phone&tablet ", LOG_MSG); 
-		cout << Message("Photo&videocamera ", LOG_MSG); 
-		cout << Message("Drink ", LOG_MSG); 
-		cout << Message("Food ", LOG_MSG); 
-		cout << Message("Accessory ", LOG_MSG); 
-		cout << Message("Clothing ", LOG_MSG); 
-		cout << Message("Footwear ", LOG_MSG); 
-		cout << Message("Cosmetic ", LOG_MSG); 
-		cout << Message("Detergent ", LOG_MSG); 
-		cout << Message("Personal hygiene ", LOG_MSG);
+		cout << Message("Products:", LOG_MSG);
+		cout << Message("Appliance", LOG_MSG); 
+		cout << Message("Audio&TV", LOG_MSG); 
+		cout << Message("Laptop&computer", LOG_MSG); 
+		cout << Message("Phone&tablet", LOG_MSG); 
+		cout << Message("Photo&videocamera", LOG_MSG); 
+		cout << Message("Drink", LOG_MSG); 
+		cout << Message("Food", LOG_MSG); 
+		cout << Message("Accessory", LOG_MSG); 
+		cout << Message("Clothing", LOG_MSG); 
+		cout << Message("Footwear", LOG_MSG); 
+		cout << Message("Cosmetic", LOG_MSG); 
+		cout << Message("Detergent", LOG_MSG); 
+		cout << Message("Personal hygiene", LOG_MSG);
 		getline(cin, command);
 	}
 	if (command == "continue")
@@ -36,7 +36,7 @@ Result addNewProduct()
 		int quantity;
 		cout << Message("Type", CONTEXT_MSG);
 		getline(cin, type);
-		if (type == "Appliance" || "appliance")
+		if (type == "Appliance" || type == "appliance")
 		{
 			prod = new Appliance();
 			prod->input();
@@ -46,7 +46,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Audio&TV" || "audio&TV")
+		else if (type == "Audio&TV" || type == "audio&TV")
 		{
 			prod = new AudioAndTv();
 			prod->input();
@@ -56,7 +56,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Laptop&computer" || "laptop&computer")
+		else if (type == "Laptop&computer" || type == "laptop&computer")
 		{
 			prod = new LaptopAndComputer();
 			prod->input();
@@ -66,7 +66,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Phone&tablet" || "phone&tablet")
+		else if (type == "Phone&tablet" || type == "phone&tablet")
 		{
 			prod = new PhoneAndTablet();
 			prod->input();
@@ -76,7 +76,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Photo&videocamera" || "photo&videocamera")
+		else if (type == "Photo&videocamera" || type == "photo&videocamera")
 		{
 			prod = new PhotoAndVideoCamera();
 			prod->input();
@@ -86,7 +86,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Drink" || "drink")
+		else if (type == "Drink" || type == "drink")
 		{
 			prod = new Drink();
 			prod->input();
@@ -96,7 +96,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Food" || "food")
+		else if (type == "Food" || type == "food")
 		{
 			prod = new Food();
 			prod->input();
@@ -106,7 +106,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Accessory" || "accessory")
+		else if (type == "Accessory" || type == "accessory")
 		{
 			prod = new Accessory();
 			prod->input();
@@ -116,7 +116,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Clothing" || "clothing")
+		else if (type == "Clothing" || type == "clothing")
 		{
 			prod = new Clothing();
 			prod->input();
@@ -126,7 +126,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Footwear" || "footwear")
+		else if (type == "Footwear" || type == "footwear")
 		{
 			prod = new Footwear();
 			prod->input();
@@ -136,7 +136,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Cosmetic" || "cosmetic")
+		else if (type == "Cosmetic" || type == "cosmetic")
 		{
 			prod = new Cosmetic();
 			prod->input();
@@ -146,7 +146,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Detergent" || "detergent")
+		else if (type == "Detergent" || type == "detergent")
 		{
 			prod = new Detergent();
 			prod->input();
@@ -156,7 +156,7 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		if (type == "Personal hygiene" || "personal hygiene")
+		else if (type == "Personal hygiene" || type == "personal hygiene")
 		{
 			prod = new PersonalHygiene();
 			prod->input();
@@ -168,16 +168,18 @@ Result addNewProduct()
 		}
 		else
 		{
-			throw exception("Unknown type!");
+			return Result("Unknown type.", NOT_SUCCESSFUL);
 		}
+		cin.get();
 	}
 	else
 	{
-		throw exception("Unknown command!");
+		return Result("Unknown command.", NOT_SUCCESSFUL);
 	}
 
 	delete[] prod;
-	return Result("New product is added to assortment.", SUCCESSFUL);
+	cout << Message("New product is added to the assortment.", LOG_MSG);
+	return Result();
 }
 
 Result buyAllProductFromCart()
@@ -514,7 +516,6 @@ Result showProducts()
 
 Result showPurchaseHistory()
 {
-	DataManager dataManager;
 	ifstream stream;
 	stream.open(to_string(currentUser.getId()) + ".txt", std::ifstream::in);
 	if (!stream.is_open())
@@ -567,4 +568,3 @@ Result showUsers()
 
 	return Result("Listing completed.", SUCCESSFUL);
 }
-
