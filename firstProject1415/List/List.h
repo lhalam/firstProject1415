@@ -32,6 +32,8 @@ public:
 	{
 	}
 
+	List(const List&);
+
 	class iterator
 	{
 	private:
@@ -55,14 +57,14 @@ public:
 		{
 		}
 
-		T& operator*() 
-		{ 
-			return ptr->value; 
+		T& operator*()
+		{
+			return ptr->value;
 		}
 
-		const T& operator*() const 
-		{ 
-			return ptr->value; 
+		const T& operator*() const
+		{
+			return ptr->value;
 		}
 
 		iterator operator++()
@@ -161,6 +163,35 @@ public:
 };
 
 template <typename T>
+List<T>::List(const List& copy) :
+emptyNode(new Node()),
+s(0)
+{
+	const Node* ptrToCopy = copy.head;
+
+	if (ptrToCopy)
+	{
+		s++;
+		head = tail = new Node(ptrToCopy->value);
+		ptrToCopy = ptrToCopy->next;
+
+		while (ptrToCopy->next)
+		{
+			s++;
+			tail->next = new Node(ptrToCopy->value, nullptr, tail);
+			tail = tail->next;
+			ptrToCopy = ptrToCopy->next;
+		}
+		tail->next = emptyNode;
+		emptyNode->prev = tail;
+	}
+	else
+	{
+		head = tail = nullptr;
+	}
+}
+
+template <typename T>
 List<T>::~List()
 {
 	while (head)
@@ -203,6 +234,8 @@ void List<T>::pushFront(const T & value)
 	else
 	{
 		tail = head = new Node(value);
+		tail->next = emptyNode;
+		emptyNode->prev = tail;
 	}
 }
 
@@ -226,6 +259,7 @@ typename List<T>::iterator List<T>::find(const T& value, const iterator& startSe
 template <typename T>
 void List<T>::insert(iterator& iterToInsert, const T& value)
 {
+	s++;
 	if (iterToInsert == begin())
 	{
 		pushFront(value);
@@ -248,6 +282,7 @@ void List<T>::insert(iterator& iterToInsert, const T& value)
 template <typename T>
 void List<T>::erase(iterator& iterToDel)
 {
+	s--;
 	if (iterToDel.ptr != head)
 	{
 		iterToDel.ptr->prev->next = iterToDel.ptr->next;
@@ -272,6 +307,7 @@ void List<T>::erase(iterator& iterToDel)
 template <typename T>
 T List<T>::popBack()
 {
+	s--;
 	iterator iterToDel = --end();
 	T valueToReturn = *iterToDel;
 	erase(iterToDel);
@@ -281,6 +317,7 @@ T List<T>::popBack()
 template <typename T>
 T List<T>::popFront()
 {
+	s--;
 	iterator iterToDel = begin();
 	T valueToReturn = *iterToDel;
 	erase(iterToDel);
