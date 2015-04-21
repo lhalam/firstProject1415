@@ -72,7 +72,7 @@ Result buyOneElementById()
 	int id;
 	cin >> id;
 	cout << Message("You bought: ", LOG_MSG);
-	cout << DataManager().getProductById(id);
+	//cout << DataManager().getProductById(id);
 	DataManager().changeQuantity(id, -1);
 	return Result("Thank you for buying ", SUCCESSFUL);
 }
@@ -376,6 +376,13 @@ Result showPurchaseHistory()
 
 Result showStats()
 {
+	DataManager manager;
+	map<Product*, int> map = manager.readStatistics();
+	for (auto it = map.begin(); it != map.end(); ++it)
+	{
+		it->first->output();
+		cout << "\nQuantiy: " << it->second << endl;
+	}
 	return Result();
 }
 

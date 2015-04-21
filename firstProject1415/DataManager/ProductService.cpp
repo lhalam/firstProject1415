@@ -102,7 +102,7 @@ void ProductService::setQuantity(int id, int newQuantity)
 	{
 		assortment >> currentId >> quant;
 
-		tempAssort << currentId << " ";
+		tempAssort << currentId << ' ';
 		if (currentId != id)
 		{
 			tempAssort << quant;
@@ -129,7 +129,7 @@ void ProductService::changeQuantity(int id, int add_quantity)
 		throw exception("Cannot open file for reading.");
 	}
 
-	ofstream tempAssort("tempAsort");
+	ofstream tempAssort("tempAssort.txt");
 	if (!tempAssort.is_open())
 	{
 		throw exception("Cannot open temporary file for writing.");
