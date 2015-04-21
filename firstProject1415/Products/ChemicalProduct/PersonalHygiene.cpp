@@ -8,12 +8,12 @@ PersonalHygiene::PersonalHygiene() :
 
 istream& operator>>(istream& stream, PersonalHygiene& obj)
 {
-	stream >> ChemicalProduct(obj);
+	stream >> (ChemicalProduct&)obj;
 	return stream;
 }
 ostream& operator<<(ostream& stream, const PersonalHygiene& obj)
 {
-	stream << ChemicalProduct(obj);
+	stream << (ChemicalProduct&)obj;
 	return stream;
 }
 

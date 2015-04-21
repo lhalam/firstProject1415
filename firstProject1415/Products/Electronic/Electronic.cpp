@@ -49,7 +49,7 @@ void Electronic::output() const
 
 istream& operator>>(istream& stream, Electronic& obj)
 {
-	stream >> Product(obj);
+	stream >> (Product&)obj;
 	getline(stream, obj.category);
 	stream.get();
 	stream >> obj.weight;
@@ -60,7 +60,7 @@ istream& operator>>(istream& stream, Electronic& obj)
 
 ostream& operator<<(ostream& stream, const Electronic& obj)
 {
-	stream << Product(obj)
+	stream << (Product&)obj
 		<< obj.category << endl
 		<< obj.weight << endl
 		<< obj.model << endl;

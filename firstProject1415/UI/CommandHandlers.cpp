@@ -9,12 +9,25 @@ Result addNewProduct()
 {
 	Product* prod;
 	string command;
-	cout << Message("[help] - shows all the possible product types that can be created", LOG_MSG)
-		<< Message("[continue] - goes to creating a new product", LOG_MSG);
+	cout << Message("[help] - shows all the possible product types, that can be created", LOG_MSG)
+		 << Message("[continue] - goes to creating a new product", LOG_MSG);
 	getline(cin, command);
 	while (command == "help")
 	{
-		cout << Message("'appliance' , 'audio&TV' , 'laptop&computer' , 'phone&tablet' , 'photocamera&videocamera' , 'drink' , 'food' , 'accessory' , 'clothing' , 'footwear' , 'cosmetics' , 'detergent' , 'personal hygiene'", LOG_MSG);
+		cout << Message("Products:", LOG_MSG);
+		cout << Message("Appliance", LOG_MSG); 
+		cout << Message("Audio&TV", LOG_MSG); 
+		cout << Message("Laptop&computer", LOG_MSG); 
+		cout << Message("Phone&tablet", LOG_MSG); 
+		cout << Message("Photo&videocamera", LOG_MSG); 
+		cout << Message("Drink", LOG_MSG); 
+		cout << Message("Food", LOG_MSG); 
+		cout << Message("Accessory", LOG_MSG); 
+		cout << Message("Clothing", LOG_MSG); 
+		cout << Message("Footwear", LOG_MSG); 
+		cout << Message("Cosmetic", LOG_MSG); 
+		cout << Message("Detergent", LOG_MSG); 
+		cout << Message("Personal hygiene", LOG_MSG);
 		getline(cin, command);
 	}
 	if (command == "continue")
@@ -23,7 +36,7 @@ Result addNewProduct()
 		int quantity;
 		cout << Message("Type", CONTEXT_MSG);
 		getline(cin, type);
-		if (type == "appliance")
+		if (type == "Appliance" || type == "appliance")
 		{
 			prod = new Appliance();
 			prod->input();
@@ -33,34 +46,167 @@ Result addNewProduct()
 			cin >> quantity;
 			manager.setQuantity(prod->getId(), quantity);
 		}
-		//...
+		else if (type == "Audio&TV" || type == "audio&TV")
+		{
+			prod = new AudioAndTv();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Laptop&computer" || type == "laptop&computer")
+		{
+			prod = new LaptopAndComputer();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Phone&tablet" || type == "phone&tablet")
+		{
+			prod = new PhoneAndTablet();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Photo&videocamera" || type == "photo&videocamera")
+		{
+			prod = new PhotoAndVideoCamera();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Drink" || type == "drink")
+		{
+			prod = new Drink();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Food" || type == "food")
+		{
+			prod = new Food();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Accessory" || type == "accessory")
+		{
+			prod = new Accessory();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Clothing" || type == "clothing")
+		{
+			prod = new Clothing();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Footwear" || type == "footwear")
+		{
+			prod = new Footwear();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Cosmetic" || type == "cosmetic")
+		{
+			prod = new Cosmetic();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Detergent" || type == "detergent")
+		{
+			prod = new Detergent();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
+		else if (type == "Personal hygiene" || type == "personal hygiene")
+		{
+			prod = new PersonalHygiene();
+			prod->input();
+			DataManager manager;
+			manager.saveProduct(*prod);
+			cout << Message("Quantity", CONTEXT_MSG);
+			cin >> quantity;
+			manager.setQuantity(prod->getId(), quantity);
+		}
 		else
 		{
-			throw exception("Unknown type!");
+			return Result("Unknown type.", NOT_SUCCESSFUL);
 		}
+		cin.get();
 	}
 	else
 	{
-		throw exception("Unknown command!");
+		return Result("Unknown command.", NOT_SUCCESSFUL);
 	}
 
 	delete[] prod;
-	return Result("New product is added to assortment.", SUCCESSFUL);
+	cout << Message("New product is added to the assortment.", LOG_MSG);
+	return Result();
 }
 
 Result buyAllProductFromCart()
 {
-	if (cart.size() == 0)
+	if (cart.size() == 1)
 	{
 		return Result("Your cart is empty.", SUCCESSFUL);
 	} else
 	{
-		List<Product*> allProducts = DataManager().readAllProducts();
-		List<Product*>::iterator end = allProducts.end();
-		for (List<Product*>::iterator it = allProducts.begin(); it != end; it++)
+		if (cart.size() == 0)
 		{
-			cout << Message("You bought : " + to_string((*it)->getId()) + " : " + (*it)->getName() + " " + " price: " + to_string((*it)->getPrice()), LOG_MSG) << endl;
-
+			cout << Message("Your cart is empty", LOG_MSG);
+			return Result();
+		}
+		List<Product*>::iterator end = cart.end();
+		for (List<Product*>::iterator it = cart.begin(); it != end; it++)
+		{
+			DataManager().changeQuantity((*it)->getId(), -1);
+			ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
+			if (!stream.is_open())
+			{
+				return Result("Couldn't open file for writing...", TOTAL_ERROR);
+			}
+			stream << *it << '\n';
+			stream.close();
+			
+			(*it)->output();
 		}
 	}
 	return Result("You bought all products.", SUCCESSFUL);
@@ -71,10 +217,24 @@ Result buyOneElementById()
 	cout << Message("Enter product id", CONTEXT_MSG);
 	int id;
 	cin >> id;
+	
+	Product* product = DataManager().getProductById(id);
+	if (product == nullptr)
+	{
+		return Result("There is no product with such an id", NOT_SUCCESSFUL);
+	}
+	DataManager().changeQuantity(product->getId(), -1);
+	ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
+	if (!stream.is_open())
+	{
+		return Result("Couldn't open file for writing...", TOTAL_ERROR);
+	}
+	stream << *product << '\n';
+	stream.close();
+
 	cout << Message("You bought: ", LOG_MSG);
-	//cout << DataManager().getProductById(id);
-	DataManager().changeQuantity(id, -1);
-	return Result("Thank you for buying ", SUCCESSFUL);
+	cout << *product;
+	return Result();
 }
 
 Result changeAmount()
@@ -153,7 +313,7 @@ Result createAdmin()
 		return Result();
 	}
 
-	user->properties->setRole(Access::ADMIN);
+	user->setRole(Access::ADMIN);
 	manager.removeUserById(id);
 	manager.saveUser(*user);
 
@@ -343,33 +503,38 @@ Result showCart()
 Result showProducts()
 {
 	List<Product*> allProducts = DataManager().readAllProducts();
+	if (allProducts.size() == 0)
+	{
+		cout << Message("There are no products in our shop, we are poor as fuck", LOG_MSG);
+		return Result();
+	}
 	auto end = allProducts.end();
 
 	for (auto it = allProducts.begin(); it != end; it++)
 	{
 		(*it)->output();
-		cout << endl;
-//		cout << Message("#" + to_string((*it)->getId()) + ": " +
-//			(*it)->getName() + " " + (*it)->getManufacturer() + " price: " +
-//			to_string((*it)->getPrice()), LOG_MSG) << endl;
 	}
-
+	
 	cout << Message("Listing completed.", LOG_MSG);
 	return Result();
 }
 
 Result showPurchaseHistory()
 {
-	DataManager dataManager;
-	List<Product*> products = dataManager.readAllProducts();
-	List<Product*>::iterator cursor = products.begin();
-
-	while (cursor != products.end())
+	ifstream stream;
+	stream.open(to_string(currentUser.getId()) + ".txt", std::ifstream::in);
+	if (!stream.is_open())
 	{
-		Product* product = *cursor;
-		cout << Message(product->getName(), LOG_MSG);
-		cursor++;
+		return Result("Couldn't open file for writing...", TOTAL_ERROR);
 	}
+
+	while (!stream.eof())
+	{
+		string prod;
+		stream >> prod;
+		cout << Message(prod, LOG_MSG);
+	}
+	stream.close();
 
 	return Result();
 }
@@ -383,7 +548,7 @@ Result showStats()
 		it->first->output();
 		cout << "\nQuantiy: " << it->second << endl;
 	}
-	return Result();
+	return Result("It's all statistic", SUCCESSFUL);
 }
 
 Result showUsers()
@@ -408,4 +573,3 @@ Result showUsers()
 
 	return Result("Listing completed.", SUCCESSFUL);
 }
-

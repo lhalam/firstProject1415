@@ -6,7 +6,6 @@
 #include <string>
 
 #include "Person.h"
-#include "Properties.h"
 #include "../UI/Command.h"
 
 using std::ostream;
@@ -17,13 +16,16 @@ class User : public Person
 {
 public:
 	User();
-	User(string, string, Date, string, string, string, Properties*);
+	User(string, string, Date, string, string, string, Access, int);
 	User(const User&);
 	~User();
 
+	// for writing to file
 	friend ostream& operator<<(ostream&, const User&);
+	// for reading from file
 	friend istream& operator>>(istream&, User&);
-	void input();
+	void input(); // for console use
+	void print(); // for console use
 	void changePassword(string);
 	void changeEmail(string);
 	int getId() const;
@@ -31,15 +33,14 @@ public:
 	string getLogin() const;
 	string getPassword() const;
 	string getEmail() const;
+	void setRole(Access);
 
 private:
 	string login;
 	string password;
 	string email;
-	Properties* properties;
-
-	//createAdmin() must change the role of the user
-	friend Result createAdmin();
+	Access role;
+	int id;
 };
 
 #endif /* USER_H_ */

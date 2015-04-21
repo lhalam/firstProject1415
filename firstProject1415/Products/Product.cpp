@@ -70,9 +70,14 @@ void Product::output() const
 		 << Message("ID: " + to_string(this->id), CONTEXT_MSG);
 }
 
-bool Product::operator==(const Product& prod)
+bool Product::operator==(const Product& prod) const
 {
 	return this->id == prod.id;
+}
+
+bool Product::operator!=(const Product& prod) const
+{
+	return this->id != prod.id;
 }
 
 istream& operator>>(istream& stream, Product& obj)

@@ -9,14 +9,14 @@ LaptopAndComputer::LaptopAndComputer() :
 
 istream& operator>>(istream& stream, LaptopAndComputer& obj)
 {
-	stream >> Electronic(obj);
+	stream >> (Electronic&)obj;
 	getline(stream, obj.firm);
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 {
-	stream << Electronic(obj)
+	stream << (Electronic&)obj
 		   << obj.firm << endl;
 	return stream;
 }

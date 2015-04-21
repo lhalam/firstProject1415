@@ -12,7 +12,7 @@ Textile::Textile() :
 
 istream& operator>>(istream& stream, Textile& obj)
 {
-	stream >> Product(obj);
+	stream >> (Product&)obj;
 	getline(stream, obj.material);
 	stream.get();
 	stream >> obj.category;
@@ -24,7 +24,7 @@ istream& operator>>(istream& stream, Textile& obj)
 
 ostream& operator<<(ostream& stream, Textile& obj)
 {
-	stream << Product(obj)
+	stream << (Product&)obj
 		<< obj.material	<< endl
 		<< obj.category << endl
 		<< obj.brand << endl

@@ -9,14 +9,14 @@ Appliance::Appliance() :
 
 istream& operator>>(istream& stream, Appliance& obj)
 {
-	stream >> Electronic(obj);
+	stream >> (Electronic&)obj;
 	stream >> obj.memoryCard;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Appliance& obj)
 {
-	stream << Electronic(obj)
+	stream << (Electronic&)obj
 		   << obj.memoryCard << endl;
 	return stream;
 }

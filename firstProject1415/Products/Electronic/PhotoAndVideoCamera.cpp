@@ -9,14 +9,14 @@ PhotoAndVideoCamera::PhotoAndVideoCamera() :
 
 istream& operator>>(istream& stream, PhotoAndVideoCamera& obj)
 {
-	stream >> Electronic(obj)
+	stream >> (Electronic&)obj
 		>> obj.megapixels;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const PhotoAndVideoCamera& obj)
 {
-	stream << Electronic(obj)
+	stream << (Electronic&)obj
 		   << obj.megapixels << endl;
 	return stream;
 }

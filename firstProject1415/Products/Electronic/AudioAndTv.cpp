@@ -9,14 +9,14 @@ AudioAndTv::AudioAndTv() :
 
 istream& operator>>(istream& stream, AudioAndTv& obj)
 {
-	stream >> Electronic(obj);
+	stream >> (Electronic&)obj;
 	stream >> obj.memoryCard;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 {
-	stream << Electronic(obj)
+	stream << (Electronic&)obj
 		   << obj.memoryCard << endl;
 	return stream;
 }

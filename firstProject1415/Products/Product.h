@@ -40,7 +40,8 @@ public:
 	virtual void output() const;
 
 	//comparing products by id using its value only
-	bool operator==(const Product&);
+	bool operator==(const Product&) const;
+	bool operator!=(const Product&) const;
 
 	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);

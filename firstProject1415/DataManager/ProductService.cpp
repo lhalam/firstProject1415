@@ -21,6 +21,17 @@ void ProductService::save(const Product& prod)
 	saveProduct(prod, stream);
 
 	stream.close();
+
+	stream.open("Assortment.txt", ios_base::app);
+
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for writing.");
+	}
+
+	stream << prod.getId() << ' ' << 0 << endl;
+
+	stream.close();
 }
 
 List<Product*> ProductService::readAll()
@@ -101,7 +112,10 @@ void ProductService::setQuantity(int id, int newQuantity)
 	while (!assortment.eof())
 	{
 		assortment >> currentId >> quant;
-
+		if (assortment.eof()) //We need to come up with a better decision here
+		{
+			break;
+		}
 		tempAssort << currentId << ' ';
 		if (currentId != id)
 		{

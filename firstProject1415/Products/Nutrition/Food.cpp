@@ -9,14 +9,14 @@ Food::Food() :
 
 istream& operator>>(istream& stream, Food& obj)
 {
-	stream >> Nutrition(obj)
+	stream >> (Nutrition&)obj
 		   >> obj.GMOContent;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Food& obj)
 {
-	stream << Nutrition(obj) << endl
+	stream << (Nutrition&)obj << endl
 		   << obj.GMOContent << endl;
 	return stream;
 }
