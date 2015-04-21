@@ -6,7 +6,6 @@
 #include <string>
 
 #include "Person.h"
-#include "Properties.h"
 #include "../UI/Command.h"
 
 using std::ostream;
@@ -40,12 +39,8 @@ private:
 	string login;
 	string password;
 	string email;
-	Properties* properties;
 	Access role;
 	int id;
-
-	//createAdmin() must change the role of the user
-	friend Result createAdmin();
 };
 
 #endif /* USER_H_ */
