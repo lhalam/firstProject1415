@@ -376,7 +376,14 @@ Result showPurchaseHistory()
 
 Result showStats()
 {
-	return Result();
+	DataManager manager;
+	map<Product*, int> maps = manager.readStatistics();
+	for (auto it = maps.begin(); it != maps.end(); ++it)
+	{
+		it->first->output();
+		cout << "\nQuantity: " << it->second << endl;
+	}
+	return Result("It's all statistic", SUCCESSFUL);
 }
 
 Result showUsers()
