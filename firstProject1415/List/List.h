@@ -38,8 +38,7 @@ public:
 		Node* ptr;
 
 	public:
-		template <typename T>
-		friend class List;
+		friend List<T>;
 
 		iterator() :
 			ptr(nullptr)
@@ -147,21 +146,7 @@ public:
 
 	//returns iterator containing value to find
 	//uses interval to find value (gets also iterator to begin, and iterator to element after last on interval)
-	iterator find(const T& value, const iterator& startSearch, const iterator& endSearch) const
-	{
-		iterator iterToSearch = startSearch;
-
-		do
-		{
-			if (*iterToSearch == value)
-			{
-				return iterToSearch;
-			}
-			iterToSearch++;
-		} while (iterToSearch != endSearch);
-
-		return endSearch;
-	}
+	iterator find(const T& value, const iterator& startSearch, const iterator& endSearch) const;
 
 	//inserts value before element in list
 	void insert(iterator&, const T&);
@@ -219,6 +204,23 @@ void List<T>::pushFront(const T & value)
 	{
 		tail = head = new Node(value);
 	}
+}
+
+template <typename T>
+typename List<T>::iterator List<T>::find(const T& value, const iterator& startSearch, const iterator& endSearch) const
+{
+	iterator iterToSearch = startSearch;
+
+	do
+	{
+		if (*iterToSearch == value)
+		{
+			return iterToSearch;
+		}
+		iterToSearch++;
+	} while (iterToSearch != endSearch);
+
+	return endSearch;
 }
 
 template <typename T>
