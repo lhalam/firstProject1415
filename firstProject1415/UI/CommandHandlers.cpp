@@ -237,6 +237,18 @@ Result buyOneElementById()
 	product->output();
 	return Result();
 }
+Result addProductToCart()
+{
+	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
+	int id;
+	cin >> id;
+	DataManager manager;
+	Product* product = manager.getProductById(id);
+	cart.pushBack(product);
+	cout << Message("You have added to cart : ", LOG_MSG) ;
+	cout << *product;
+	return Result();
+}
 
 Result changeAmount()
 {
