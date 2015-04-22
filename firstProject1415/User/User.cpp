@@ -118,15 +118,28 @@ void User::input()
 
 void User::print()
 {
-	std::cout 
-		<< "Name: " << name
-		<< "\nSurname: " << surname
-		<< "\nBirthday: " << birthday
-		<< "\nLogin: " << login
-		<< "\nPassword: " << password
-		<< "\nEmail: " << email
-		<< "\nRole: " << role
-		<< "\nId: " << id;
+	string message = "Name: " + name +
+					 "\nSurname: " + surname +
+					 "\nBirthday: " + birthday.toString() +
+					 "\nLogin: " + login +
+					 "\nPassword: " + password +
+					 "\nEmail: " + email +
+					 "\nRole: ";
+	switch (role)
+	{
+		case Access::GUEST:
+			message += " guest";
+			break;
+		case Access::USER:
+			message += " user";
+			break;
+		case Access::ADMIN:
+			message += " administrator";
+			break;
+	}
+	message += "\nId: " + to_string(id);
+
+	std::cout << Message(message, LOG_MSG);
 }
 
 void User::changePassword(string newPass)

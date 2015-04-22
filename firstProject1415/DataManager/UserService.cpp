@@ -39,6 +39,11 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 		string str;
 		getline(stream, str);
 
+		if (str.empty())
+		{
+			continue;
+		}
+
 		istringstream isstream(str);
 
 		User *user = new User();
@@ -69,6 +74,11 @@ User * UserService::getByLogin(string login, string password)
 	{
 		string str;
 		getline(stream, str);
+
+		if (str.empty())
+		{
+			continue;
+		}
 
 		istringstream isstream(str);
 
@@ -106,6 +116,11 @@ User* UserService::getById(int id)
 	{
 		string str;
 		getline(stream, str);
+
+		if (str.empty())
+		{
+			continue;
+		}
 
 		istringstream isstream(str);
 
@@ -152,6 +167,11 @@ void UserService::removeByPredicate(function<bool(const User&)> predicate)
 	{
 		string str;
 		getline(stream, str);
+
+		if (str.empty())
+		{
+			continue;
+		}
 
 		istringstream isstream(str);
 

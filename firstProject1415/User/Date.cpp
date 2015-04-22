@@ -39,7 +39,7 @@ istream& operator>>(istream& stream, Date& date)
 
 string Date::toString()
 {
-	return std::to_string(day) + " " +
-		std::to_string(month) + " " +
+	return std::to_string(day) + '/' +
+		std::to_string(month) + '/' +
 		std::to_string(year);
 }

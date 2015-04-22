@@ -237,6 +237,7 @@ Result buyOneElementById()
 	product->output();
 	return Result();
 }
+
 Result addProductToCart()
 {
 	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
@@ -586,21 +587,24 @@ Result showUsers()
 {
 	DataManager manager;
 	List<User*> list = manager.readAllUsers();
-	List<User*>::iterator iter = list.begin();
+	auto iter = list.begin();
 
 	while(iter != list.end())
 	{
 		int temp = 0;
-		cout << (*iter);
+		(*iter)->print();
 		temp ++;
 		iter ++;
 
 		if((temp % 5) == 0)
 		{
-			cout << Message("Press Enter to continue... ", LOG_MSG);
+			cout << Message("Press Enter to continue.", LOG_MSG);
 			cin.get();
 		}
+
+		cout << endl;
 	}
 
-	return Result("Listing completed.", SUCCESSFUL);
+	cout << Message("Listing completed.", LOG_MSG);
+	return Result();
 }
