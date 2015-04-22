@@ -3,9 +3,11 @@
 #define DATE_H_
 
 #include <iostream>
+#include <string>
 
 using std::ostream;
 using std::istream;
+using std::string;
 
 class Date
 {
@@ -16,6 +18,8 @@ public:
 
 	friend ostream& operator<<(ostream&, const Date&);
 	friend istream& operator>>(istream&, Date&);
+
+	string toString();
 
 private:
 	int day;

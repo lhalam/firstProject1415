@@ -36,3 +36,10 @@ istream& operator>>(istream& stream, Date& date)
 		>> date.year;
 	return stream;
 }
+
+string Date::toString()
+{
+	return std::to_string(day) + " " +
+		std::to_string(month) + " " +
+		std::to_string(year);
+}
