@@ -387,6 +387,7 @@ Result logIn()
 	
 	if (existingUser == nullptr) //User with this login exists
 	{
+		cin.get();
 		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
 	}
 	else
@@ -410,10 +411,12 @@ Result removeProductFromAssortment()
 	int id;
 	cout << Message("Enter id of product you want to remove:", CONTEXT_MSG);
 	cin >> id;
+	cin.get();
 	DataManager manager;
 	manager.removeProductById(id);
 
-	return Result("Product is removed from assortment.", SUCCESSFUL);
+	cout << Message("The product is removed from the assortment.", LOG_MSG);
+	return Result();
 }
 
 Result removeProductFromCart()

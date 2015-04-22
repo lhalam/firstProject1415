@@ -1,5 +1,6 @@
 #include "ProductService.h"
 #include <fstream>
+#include <sstream>
 #include <exception>
 #include <typeinfo>
 #include <string>
@@ -122,11 +123,15 @@ void ProductService::setQuantity(int id, int newQuantity)
 	while (!assortment.eof())
 	{
 		assortment >> currentId >> quant;
+		assortment.get();
+
 		if (assortment.eof()) //We need to come up with a better decision here
 		{
 			break;
 		}
+
 		tempAssort << currentId << ' ';
+
 		if (currentId != id)
 		{
 			tempAssort << quant;
@@ -164,6 +169,12 @@ void ProductService::changeQuantity(int id, int add_quantity)
 	while (!assortment.eof())
 	{
 		assortment >> currentId >> quant;
+		assortment.get();
+
+		if (assortment.eof()) //We need to come up with a better decision here
+		{
+			break;
+		}
 
 		tempAssort << currentId << " ";
 		if (currentId != id)
@@ -273,37 +284,48 @@ void ProductService::removeByPredicate(function<bool(const Product&)> predicate)
 	remove("Products.txt");
 	rename("Temp.txt", "Products.txt");
 
-	ifstream asortment("Assortment.txt");
-	if (!asortment.is_open())
+	ifstream assortment("Assortment.txt");
+	if (!assortment.is_open())
 	{
 		throw exception("Cannot open file for reading.");
 	}
 
-	ofstream tempAsort("tempAsort");
-	if (!tempAsort.is_open())
+	ofstream tempAssort("tempAssort.txt");
+	if (!tempAssort.is_open())
 	{
 		throw exception("Cannot open temporary file for writing.");
 	}
 
 	unsigned currentId, quant;
 
-	while (!asortment.eof())
+	while (!assortment.eof())
 	{
-		asortment >> currentId >> quant;
+		string str;
+		getline(assortment, str);
 
-		if (ids.front() != currentId)
+		if (str.empty())
 		{
-			tempAsort << currentId << ' ' << quant << endl;
+			break;
 		}
 
-		ids.erase(ids.begin());
+		istringstream isstream(str);
+
+		isstream >> currentId >> quant;
+
+		if (ids.size() == 0 || ids.front() != currentId)
+		{
+			tempAssort << currentId << ' ' << quant << endl;
+		} else if (ids.size() != 0)
+		{
+			ids.erase(ids.begin());
+		}
 	}
 
-	tempAsort.close();
-	asortment.close();
+	tempAssort.close();
+	assortment.close();
 
 	remove("Assortment.txt");
-	rename("tempAsort.txt", "Assortment.txt");
+	rename("tempAssort.txt", "Assortment.txt");
 }
 
 void ProductService::saveStatistics(unsigned newQuantity, int id)
