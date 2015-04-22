@@ -330,7 +330,8 @@ Result createUser()
 	manager.saveUser(newUser);
 	cin.get();
 
-	return Result("Your account was successfully created\nWelcome, ", SUCCESSFUL);
+	cout << Message("The account was created successfully", LOG_MSG);
+	return Result();
 }
 
 Result exit()
@@ -508,11 +509,19 @@ Result showProducts()
 		cout << Message("There are no products in our shop, we are so poor.", LOG_MSG);
 		return Result();
 	}
+
 	auto end = allProducts.end();
 
 	for (auto it = allProducts.begin(); it != end; it++)
 	{
+		cout << Message(string(typeid(**it).name()).substr(6), LOG_MSG);
 		(*it)->output();
+		cout << endl;
+	}
+
+	for (auto it = allProducts.begin(); it != end; it++)
+	{
+		delete *it;
 	}
 	
 	cout << Message("Listing completed.", LOG_MSG);

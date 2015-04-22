@@ -72,6 +72,8 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 
 		if (predicate(*prod))
 			list.pushBack(prod);
+
+		stream.get();
 	}
 
 	stream.close();

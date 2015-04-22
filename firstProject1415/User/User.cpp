@@ -96,14 +96,23 @@ void User::input()
 	role = USER;
 
 	/* id autogenerating */
-	fstream fin("Users.txt");
+	ifstream fin("Users.txt", ios_base::app);
 	int i = 0;
-	while (fin.get() != ',')
+
+	fin.seekg(0, fin.end);
+	if (int(fin.tellg()) == 0) //If file is empty
 	{
-		fin.seekg(--i, fin.end); // go to i spots before the EOF
+		id = 1;
+	} else
+	{
+		do
+		{
+			fin.seekg(--i, fin.end); // go to i spots before the EOF
+		} while (fin.get() != ',');
+		fin >> id;
+		++id;
 	}
-	fin >> id;
-	++id;
+
 	fin.close();
 }
 
