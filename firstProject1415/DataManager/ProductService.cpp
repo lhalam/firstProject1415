@@ -38,7 +38,8 @@ void ProductService::save(const Product& prod)
 	}
 
 	stream << typeid(prod).name() << endl;
-	stream << prod << 0 << endl;
+	saveProduct(prod, stream);
+	stream << 0 << endl;
 
 	stream.close();
 }
@@ -334,7 +335,8 @@ void ProductService::saveStatistics(unsigned newQuantity, int id)
 		stream >> quantity;
 		stream.get();
 
-		temp << type << endl << prod;
+		temp << type << endl;
+		saveProduct(*prod, temp);
 
 		if (prod->getId() != id)
 		{
@@ -370,7 +372,7 @@ map<Product*, int> ProductService::readStatistics()
 
 		if (productType.empty())
 		{
-			continue;
+			break;
 		}
 
 		Product* product = getProduct(productType, stream);

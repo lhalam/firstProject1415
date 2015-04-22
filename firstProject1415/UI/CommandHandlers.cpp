@@ -217,6 +217,7 @@ Result buyOneElementById()
 	cout << Message("Enter product id", CONTEXT_MSG);
 	int id;
 	cin >> id;
+	cin.get();
 	
 	Product* product = DataManager().getProductById(id);
 	if (product == nullptr)
@@ -233,7 +234,7 @@ Result buyOneElementById()
 	stream.close();
 
 	cout << Message("You bought: ", LOG_MSG);
-	cout << *product;
+	product->output();
 	return Result();
 }
 
@@ -263,9 +264,15 @@ Result changeProduct()
 	int id = 0;
 	cout << Message("Enter id", CONTEXT_MSG);
 	cin >> id;
+	cin.get();
 
 	DataManager manager;
 	Product *prod = manager.getProductById(id);
+	if (prod == nullptr)
+	{
+		return Result("Invalid id.", NOT_SUCCESSFUL);
+	}
+
 	prod->input();
 
 	manager.removeProductById(id);
@@ -555,7 +562,8 @@ Result showStats()
 	for (auto it = map.begin(); it != map.end(); ++it)
 	{
 		it->first->output();
-		cout << Message("Quantiy: " + to_string(it->second), LOG_MSG);
+		cout << Message("Quantity: " + to_string(it->second), LOG_MSG);
+		cout << endl;
 	}
 
 	cout << Message("Listing completed.", LOG_MSG);

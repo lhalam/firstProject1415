@@ -112,7 +112,7 @@ void User::input()
 		fin >> id;
 		++id;
 	}
-
+	
 	fin.close();
 }
 

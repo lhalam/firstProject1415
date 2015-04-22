@@ -17,7 +17,7 @@ istream& operator>>(istream& stream, Food& obj)
 
 ostream& operator<<(ostream& stream, const Food& obj)
 {
-	stream << (Nutrition&)obj << endl
+	stream << (Nutrition&)obj
 		   << obj.GMOContent << endl;
 	return stream;
 }

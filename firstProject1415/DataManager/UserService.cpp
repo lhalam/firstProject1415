@@ -1,5 +1,6 @@
 #include "UserService.h"
 #include <fstream>
+#include <sstream>
 #include <exception>
 
 using namespace std;
@@ -35,8 +36,13 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 
 	while (!stream.eof())
 	{
+		string str;
+		getline(stream, str);
+
+		istringstream isstream(str);
+
 		User *user = new User();
-		stream >> *user;
+		isstream >> *user;
 		if (predicate(*user))
 		{
 			list.pushBack(user);
@@ -61,8 +67,13 @@ User * UserService::getByLogin(string login, string password)
 
 	while (!stream.eof())
 	{
-		user = new User();
-		stream >> *user;
+		string str;
+		getline(stream, str);
+
+		istringstream isstream(str);
+
+		User *user = new User();
+		isstream >> *user;
 
 		if (user->getLogin() == login && user->getPassword() == password)
 		{
@@ -93,8 +104,13 @@ User* UserService::getById(int id)
 	bool isSuccessful = false;
 	while (!stream.eof())
 	{
+		string str;
+		getline(stream, str);
+
+		istringstream isstream(str);
+
 		user = new User();
-		stream >> *user;
+		isstream >> *user;
 
 		if (user->getId() == id)
 		{
@@ -134,8 +150,13 @@ void UserService::removeByPredicate(function<bool(const User&)> predicate)
 
 	while (!stream.eof())
 	{
+		string str;
+		getline(stream, str);
+
+		istringstream isstream(str);
+
 		User *user = new User();
-		stream >> *user;
+		isstream >> *user;
 
 		if (user->getId() != 0 && !predicate(*user))
 		{
