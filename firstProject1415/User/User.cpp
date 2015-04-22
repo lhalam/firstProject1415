@@ -80,8 +80,7 @@ ostream& operator<<(ostream& stream, const User& user)
 
 void User::input()
 {
-	using std::cout;
-	using std::cin;
+	using namespace std;
 	cout << Message("Name", CONTEXT_MSG);
 	cin >> name;
 	cout << Message("Surname", CONTEXT_MSG);
@@ -95,26 +94,17 @@ void User::input()
 	cout << Message("Email", CONTEXT_MSG);
 	cin >> email;
 	role = USER;
-	id = 0;
-	//id autogenerating
-	/* soon
-	DataManager manager;
-	List<User*> list = manager.readAllUsers();
-	int lastUserId = (*(--list.end()))->getId();
-	std::ifstream file("Text.txt", std::ios::binary);
-	file.seekg(0, std::ios::end);
-	int length = file.tellg();
-	file.open("Text.txt");
-	file.seekg(length-1);
-	char mid;
-	file >> mid;
-	
-	file.unget();
-	id = (int)mid + 1;
-	
-	
-	file.close();
-	*/
+
+	/* id autogenerating */
+	fstream fin("Users.txt");
+	int i = 0;
+	while (fin.get() != ',')
+	{
+		fin.seekg(--i, fin.end); // go to i spots before the EOF
+	}
+	fin >> id;
+	++id;
+	fin.close();
 }
 
 void User::print()
