@@ -11,6 +11,7 @@ istream& operator>>(istream& stream, AudioAndTv& obj)
 {
 	stream >> (Electronic&)obj;
 	stream >> obj.memoryCard;
+	stream.get();
 	return stream;
 }
 

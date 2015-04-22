@@ -11,6 +11,7 @@ istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
 	stream >> (Electronic&)obj
 		>> obj.memoryCard;
+	stream.get();
 	return stream;
 }
 

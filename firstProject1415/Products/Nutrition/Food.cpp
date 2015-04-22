@@ -11,6 +11,7 @@ istream& operator>>(istream& stream, Food& obj)
 {
 	stream >> (Nutrition&)obj
 		   >> obj.GMOContent;
+	stream.get();
 	return stream;
 }
 
@@ -41,5 +42,5 @@ void Food::input()
 void Food::output() const
 {
 	Nutrition::output();
-	cout << Message("GMO: " + this->GMOContent, LOG_MSG);
+	cout << Message(string("GMO: ") + (this->GMOContent ? "yes" : "no"), LOG_MSG);
 }

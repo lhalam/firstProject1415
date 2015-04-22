@@ -17,17 +17,14 @@ istream& operator>>(istream& stream, Nutrition& obj)
 {
 	stream >> (Product&)obj;
 	getline(stream, obj.manufactureDate);
-	stream.get();
 	getline(stream, obj.expirationDate);
-	stream.get();
 	getline(stream, obj.ingredients);
-	stream.get();
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Nutrition& obj)
 {
-	stream << (Product&)obj << endl
+	stream << (Product&)obj
 		   << obj.manufactureDate << endl
 		   << obj.expirationDate << endl
 		   << obj.ingredients << endl;

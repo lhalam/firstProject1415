@@ -51,10 +51,9 @@ istream& operator>>(istream& stream, Electronic& obj)
 {
 	stream >> (Product&)obj;
 	getline(stream, obj.category);
-	stream.get();
 	stream >> obj.weight;
-	getline(stream, obj.model);
 	stream.get();
+	getline(stream, obj.model);
 	return stream;
 }
 

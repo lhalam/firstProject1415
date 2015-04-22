@@ -3,8 +3,8 @@
 
 PersonalHygiene::PersonalHygiene() :
 	ChemicalProduct()
-	{
-	}
+{
+}
 
 istream& operator>>(istream& stream, PersonalHygiene& obj)
 {

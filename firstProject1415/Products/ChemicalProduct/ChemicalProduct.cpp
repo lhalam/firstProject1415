@@ -12,8 +12,8 @@ istream& operator>>(istream& stream, ChemicalProduct& obj)
 {
 	stream >> (Product&)obj;
 	getline(stream, obj.manufactureDate);
-	stream.get();
 	stream >> obj.volume;
+	stream.get();
 	return stream;
 }
 

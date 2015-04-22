@@ -11,6 +11,7 @@ istream& operator>>(istream& stream, PhotoAndVideoCamera& obj)
 {
 	stream >> (Electronic&)obj
 		>> obj.megapixels;
+	stream.get();
 	return stream;
 }
 

@@ -11,6 +11,7 @@ Footwear::Footwear() :
 istream& operator>>(istream& stream, Footwear& obj)
 {
 	stream >> (Textile&)obj >> obj.size >> obj.season;
+	stream.get();
 	return stream;
 }
 

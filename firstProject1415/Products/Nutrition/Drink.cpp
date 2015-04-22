@@ -11,12 +11,13 @@ istream& operator>>(istream& stream, Drink& obj)
 {
 	stream >> (Nutrition&)obj
 		   >> obj.volume;
+	stream.get();
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Drink& obj)
 {
-	stream << (Nutrition&)obj << endl
+	stream << (Nutrition&)obj
 		   << obj.volume << endl;
 	return stream;
 }

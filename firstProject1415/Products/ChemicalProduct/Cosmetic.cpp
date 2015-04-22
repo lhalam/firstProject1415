@@ -9,8 +9,9 @@ Cosmetic::Cosmetic() :
 
 istream& operator>>(istream& stream, Cosmetic& obj)
 {
-	stream  >> (ChemicalProduct&)obj;
-	stream  >> obj.part_of_body;
+	stream >> (ChemicalProduct&)obj;
+	stream >> obj.part_of_body;
+	stream.get();
 	return stream;
 }
 
@@ -39,5 +40,17 @@ void Cosmetic::input()
 void Cosmetic::output() const
 {
 	ChemicalProduct::output();
-	cout << Message("Part of body: " + this->part_of_body, LOG_MSG);
+
+	switch (this->part_of_body)
+	{
+		case 'f':
+			cout << Message(string("Part of body: face"), LOG_MSG);
+			break;
+		case 'h':
+			cout << Message(string("Part of body: hands"), LOG_MSG);
+			break;
+		case 'b':
+			cout << Message(string("Part of body: body"), LOG_MSG);
+			break;
+	}
 }

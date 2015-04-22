@@ -31,7 +31,7 @@ void ProductService::save(const Product& prod)
 
 	stream.close();
 
-	stream.open("Statis.txt", ios_base::app);
+	stream.open("Stats.txt", ios_base::app);
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for writing.");
@@ -65,15 +65,13 @@ List<Product*> ProductService::read(function<bool(const Product&)> predicate)
 
 		if (type.empty())
 		{
-			break;
+			continue;
 		}
 
 		Product *prod = getProduct(type, stream);
 
 		if (predicate(*prod))
 			list.pushBack(prod);
-
-		stream.get();
 	}
 
 	stream.close();
@@ -348,6 +346,10 @@ void ProductService::saveStatistics(unsigned newQuantity, int id)
 	}
 
 	stream.close();
+	temp.close();
+
+	remove("Stats.txt");
+	rename("Temt.txt", "Stats.txt");
 }
 
 map<Product*, int> ProductService::readStatistics()
