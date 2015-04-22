@@ -23,3 +23,4 @@ Result showProducts();
 Result showPurchaseHistory();
 Result showStats();
 Result showUsers();
+Result addProductToCart();
