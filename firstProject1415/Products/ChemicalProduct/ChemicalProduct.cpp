@@ -1,5 +1,6 @@
 #include "ChemicalProduct.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
 ChemicalProduct::ChemicalProduct() :
 	Product(),
