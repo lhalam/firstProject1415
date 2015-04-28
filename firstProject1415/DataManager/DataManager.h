@@ -69,7 +69,7 @@ public:
 	Product* getProductById(int id);
 
 	//Using UserService saveToHistory
-	void saveToUserHistory(int id, const Product& prod, unsigned quantity);
+	void saveToUserHistory(const Product& prod, unsigned quantity);
 
 	//Removes a product with a given id
 	void removeProductById(int id);
