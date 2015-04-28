@@ -1,5 +1,6 @@
 #pragma once
 #include "../User/User.h"
+#include "../Products/Products.h"
 #include "../List/List.h"
 #include <functional>
 #include <exception>
