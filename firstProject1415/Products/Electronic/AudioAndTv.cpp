@@ -1,4 +1,5 @@
 #include "AudioAndTv.h"
+#include "..\..\UI\Globals.h"
 #include "..\..\UI\Message.h"
 
 AudioAndTv::AudioAndTv() : 
@@ -25,15 +26,9 @@ ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 void AudioAndTv::input()
 {
 	Electronic::input();
-	string temp;
 
 	cout << Message("Input memory card: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->memoryCard = stoi(temp);
-	}
-	temp.clear();
+	forInput(memoryCard, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void AudioAndTv::output() const
