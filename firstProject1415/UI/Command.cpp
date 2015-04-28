@@ -11,6 +11,7 @@ Command commands[] =
 	Command("change amount", changeAmount, "changes amount of products", Access::ADMIN),
 	Command("change product", changeProduct, "changes product settings", Access::ADMIN),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
+	Command("export -p", exportProdXML, "exports all existing products to XML file", Access::ADMIN),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
 	Command("log in", logIn, "performs user authentication", Access::GUEST),
 	Command("log out", logOut, "exits user profile", Access(USER | ADMIN)),

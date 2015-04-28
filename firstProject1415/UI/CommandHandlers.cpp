@@ -247,6 +247,12 @@ Result exit()
 	return Result(EXIT);
 }
 
+Result exportProdXML()
+{
+	cout << Message("Done.", LOG_MSG);
+	return Result();
+}
+
 Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
