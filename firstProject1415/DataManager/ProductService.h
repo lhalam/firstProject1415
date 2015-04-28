@@ -33,9 +33,6 @@ public:
 	//Adds to the current quantity
 	void changeQuantity(int id, int add_quantity);
 
-	//Creates and returns a product with a given type
-	Product* identifyType(string type);
-
 	//Returns a product with a given id
 	Product *getById(int id);
 
