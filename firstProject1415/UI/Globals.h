@@ -7,7 +7,9 @@
 extern User currentUser; // User that is using our program
 extern List<Product*> cart; // Current session's shopping cart
 
-/*Global functions*/
+/* Declarations of all global functions */
+extern void toLowercase(string& line);
+
 template <typename T>
 void forInput(T &obj, const Message& warningMessage)
 {
