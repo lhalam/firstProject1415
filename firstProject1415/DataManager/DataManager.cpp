@@ -12,6 +12,12 @@ void DataManager::saveProduct(const Product& prod)
 	service.save(prod);
 }
 
+void DataManager::saveAllProducts(List<Product*> list)
+{
+	ProductService service;
+	service.saveAll(list);
+}
+
 List<User*> DataManager::readAllUsers()
 {
 	UserService service;
