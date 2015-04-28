@@ -48,129 +48,9 @@ Result addNewProduct()
 			getline(cin, type);
 			toLowercase(type);
 
-			if (type == "appliance")
+			if(identifyType(type) != nullptr)
 			{
-				prod = new Appliance();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "audio&tv")
-			{
-				prod = new AudioAndTv();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "laptop&computer")
-			{
-				prod = new LaptopAndComputer();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "phone&tablet")
-			{
-				prod = new PhoneAndTablet();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "photo&videocamera")
-			{
-				prod = new PhotoAndVideoCamera();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "drink")
-			{
-				prod = new Drink();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "food")
-			{
-				prod = new Food();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "accessory")
-			{
-				prod = new Accessory();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "clothing")
-			{
-				prod = new Clothing();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "footwear")
-			{
-				prod = new Footwear();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "cosmetic")
-			{
-				prod = new Cosmetic();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "detergent")
-			{
-				prod = new Detergent();
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				manager.setQuantity(prod->getId(), quantity);
-			}
-			else if (type == "personal hygiene")
-			{
-				prod = new PersonalHygiene();
+				Product* prod = identifyType(type);
 				prod->input();
 				DataManager manager;
 				manager.saveProduct(*prod);
@@ -182,11 +62,6 @@ Result addNewProduct()
 			{
 				return Result("Unknown type.", NOT_SUCCESSFUL);
 			}
-			cin.get();
-		}
-		else
-		{
-			return Result("Unknown command.", NOT_SUCCESSFUL);
 		}
 	}
 	delete[] prod;
