@@ -53,14 +53,23 @@ ostream& operator<<(ostream& stream, Message _msg)
 	return stream;
 }
 
+Result::Result() :
+	Message("", ALERT_MSG),
+	id(SUCCESSFUL)
+{
+}
 
+Result::Result(ResultId _id) :
+	Message("", ALERT_MSG),
+	id(_id)
+{
+}
 
-Result::Result() : Message("", ALERT_MSG), id(SUCCESSFUL)
-{}
-Result::Result(ResultId _id) : Message("", ALERT_MSG), id(_id)
-{}
-Result::Result(string _msg, ResultId _id) : Message(_msg, ALERT_MSG), id(_id)
-{}
+Result::Result(string _msg, ResultId _id) :
+	Message(_msg, ALERT_MSG),
+	id(_id)
+{
+}
 
 ResultId Result::getId() const
 {
