@@ -2,13 +2,13 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
-Cosmetic::Cosmetic():
+Cosmetics::Cosmetics():
 	ChemicalProduct(),
 	part_of_body(' ')
 {
 }
 
-istream& operator>>(istream& stream, Cosmetic& obj)
+istream& operator>>(istream& stream, Cosmetics& obj)
 {
 	stream >> (ChemicalProduct&)obj;
 	stream >> obj.part_of_body;
@@ -16,7 +16,7 @@ istream& operator>>(istream& stream, Cosmetic& obj)
 	return stream;
 }
 
-ostream& operator<<(ostream& stream, const Cosmetic& obj)
+ostream& operator<<(ostream& stream, const Cosmetics& obj)
 {
 	stream << (ChemicalProduct&)obj;
 	stream 	<< obj.part_of_body 
@@ -24,7 +24,7 @@ ostream& operator<<(ostream& stream, const Cosmetic& obj)
 	return stream;
 }
 
-void Cosmetic::input()
+void Cosmetics::input()
 {
 	ChemicalProduct::input();
 
@@ -32,7 +32,7 @@ void Cosmetic::input()
 	forInput(part_of_body, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
-void Cosmetic::output() const
+void Cosmetics::output() const
 {
 	ChemicalProduct::output();
 

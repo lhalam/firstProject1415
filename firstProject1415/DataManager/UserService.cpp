@@ -1,6 +1,7 @@
 #include "UserService.h"
 #include "ProductService.h"
 #include "../Products/Products.h"
+#include "../UI/Globals.h"
 #include <fstream>
 #include <sstream>
 #include <exception>
@@ -173,8 +174,9 @@ User* UserService::getById(int id)
 	return user;
 }
 
-void UserService::saveToHistory(int id, const Product& prod, unsigned quantity)
+void UserService::saveToHistory(const Product& prod, unsigned quantity)
 {
+	int id = currentUser.getId();
 	ofstream stream (to_string(id) + ".txt", ios_base::app);
 	if (!stream.is_open())
 	{
