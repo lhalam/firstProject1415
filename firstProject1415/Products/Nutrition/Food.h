@@ -18,4 +18,11 @@ public:
 
 	void setGMOContent(bool GMO_content_) { this->GMOContent = GMO_content_; }
 	bool getGMOContent() const { return GMOContent; }
+
+	virtual  List<pair<string, string>> metadata()
+	{
+		List<pair<string, string>> result = Nutrition::metadata();
+		result.pushBack(make_pair("GMOContent", to_string(GMOContent)));
+		return result;
+	}
 };
