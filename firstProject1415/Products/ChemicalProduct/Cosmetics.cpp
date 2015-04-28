@@ -1,5 +1,6 @@
 #include "Cosmetics.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
 Cosmetic::Cosmetic() :
 	ChemicalProduct(),
