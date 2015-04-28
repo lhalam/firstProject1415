@@ -136,3 +136,8 @@ map<Product*, int> DataManager::readStatistics()
 	ProductService product;
 	return product.readStatistics();
 }
+
+void DataManager::exportXML()
+{
+	XMLService().exportXML();
+}

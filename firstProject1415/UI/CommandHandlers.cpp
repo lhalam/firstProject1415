@@ -2,6 +2,7 @@
 #include "../DataManager/DataManager.h"
 #include "Globals.h"
 #include "../Products/Products.h"
+
 using namespace std;
 
 /*Command executors listed alphabetically*/
@@ -273,6 +274,7 @@ Result exit()
 
 Result exportProdXML()
 {
+	DataManager().exportXML();
 	cout << Message("Done.", LOG_MSG);
 	return Result();
 }

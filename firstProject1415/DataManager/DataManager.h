@@ -86,4 +86,7 @@ public:
 
 	//Returns a list of purchased items and their quantity
 	map<Product*, int> readStatistics();
+
+	// Saves all products in XML
+	void exportXML();
 };
