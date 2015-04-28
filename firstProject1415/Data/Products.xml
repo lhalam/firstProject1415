@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <products>
   <food>
-    <name>Name</name>
-    <manufacturer>Manufacturer</manufacturer>
-    <price>1.0</price>
+    <name>Meat</name>
+    <manufacturer>Cow</manufacturer>
+    <price>11.7</price>
     <id>1</id>
   </food>
 </products>

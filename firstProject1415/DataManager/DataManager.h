@@ -37,6 +37,9 @@ public:
 	
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
+	
+	//Saves all products ifo into a file
+	void saveAllProducts(List<Product*> list);
 
 	//Saves user`s bying story in HTML 
 	void writeInHTML(int id, const Date& start, const Date& end) const;
@@ -60,10 +63,6 @@ public:
 	//Changes quantity of the product with a given id
 	//Adds to the current quantity
 	void changeQuantity(int id, int add_quantity);
-	
-	//Creates and returns a product with a given type
-	//Returns nullptr if a given type is wrong
-	Product* identifyProductType(string type);
 
 	//Returns a product with a given id
 	//Returns nullptr is there is no such product

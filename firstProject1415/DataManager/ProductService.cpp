@@ -45,6 +45,14 @@ void ProductService::save(const Product& prod)
 	stream.close();
 }
 
+void ProductService::saveAll(List<Product*> list)
+{
+	while (!list.isEmpty())
+	{
+		save(*list.popBack());
+	}
+}
+
 List<Product*> ProductService::readAll()
 {
 	return read([](const Product& prod) { return true; });
@@ -193,18 +201,6 @@ void ProductService::changeQuantity(int id, int add_quantity)
 
 	remove("Assortment.txt");
 	rename("tempAssort.txt", "Assortment.txt");
-}
-
-Product* ProductService::identifyType(string type)
-{
-	Product* prod = nullptr;
-	if (type == "Appliance" || type == "appliance")
-	{
-		prod = new Appliance();
-		return prod;
-	}
-	//else if ...
-	return prod;
 }
 
 Product* ProductService::getById(int id)

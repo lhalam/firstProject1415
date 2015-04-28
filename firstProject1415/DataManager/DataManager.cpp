@@ -12,6 +12,12 @@ void DataManager::saveProduct(const Product& prod)
 	service.save(prod);
 }
 
+void DataManager::saveAllProducts(List<Product*> list)
+{
+	ProductService service;
+	service.saveAll(list);
+}
+
 List<User*> DataManager::readAllUsers()
 {
 	UserService service;
@@ -85,12 +91,6 @@ void DataManager::changeQuantity(int id, int add_quantity)
 {
 	ProductService quantity;
 	quantity.changeQuantity(id, add_quantity);
-}
-
-Product* DataManager::identifyProductType(string type)
-{
-	ProductService product;
-	return product.identifyType(type);
 }
 
 Product* DataManager::getProductById(int id)

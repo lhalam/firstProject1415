@@ -1,5 +1,6 @@
 #include "XMLService.h"
 #include "DataManager.h"
+#include "../UI/Globals.h"
 #include <fstream>
 #include <string>
 
@@ -12,18 +13,39 @@ List<Product*> XMLService::read()
 	}
 
 	List<Product*> list;
-	DataManager manager;
 
+	string type;
 	while (!products.eof())
 	{
 		string line;
 		if (products.get() == '<')
 		{
 			getline(products, line, '>');
-			if (manager.identifyProductType(line) != nullptr)
+			if (identifyType(line) != nullptr)
 			{
-				Product* prod = manager.identifyProductType(line);
+				type = line;
+				Product *prod = identifyType(type);
 				list.pushBack(prod);
+			}
+			if (line == "name")
+			{
+				getline(products, line, '<');
+				list.back()->setName(line);
+			}
+			else if (line == "manufacturer")
+			{
+				getline(products, line, '<');
+				list.back()->setManufacturer(line);
+			}
+			else if (line == "price")
+			{
+				getline(products, line, '<');
+				list.popBack()->setPrice(stod(line));
+			}
+			else if (line == "id")
+			{
+				getline(products, line, '<');
+				list.back()->setId(stoi(line));
 			}
 		}
 	}
