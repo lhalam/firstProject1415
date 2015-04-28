@@ -3,8 +3,8 @@
 
 Nutrition::Nutrition():
 	Product(),
-	manufactureDate("01.01.1970"),
-	expirationDate("01.01.1970"),
+	manufactureDate("00.00.0000"),
+	expirationDate("00.00.0000"),
 	ingredients("No ingredients")
 {
 }
