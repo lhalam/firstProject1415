@@ -15,8 +15,8 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 				  "<title>Purchase history</title>\n"
 				  "<meta charset=\"UTF-8\"/>\n"
 				  "<style type=\"text/css\">\n"
-				  "* { font-family: Verdana; font-weight: normal; }"
-				  "h1 { font-size: 2em; text-align: center; }"
+				  "* { font-family: Verdana; }"
+				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }"
 				  "p { font-size: 1.25em; }"
 				  "</style>\n"
 				  "</head>";
