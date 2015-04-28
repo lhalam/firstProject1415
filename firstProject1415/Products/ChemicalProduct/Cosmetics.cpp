@@ -29,12 +29,7 @@ void Cosmetic::input()
 	ChemicalProduct::input();
 
 	cout << Message("Input part of body it is used for: ", CONTEXT_MSG);
-	getline(cin, part_of_body);
-	while(!ifValidString(part_of_body))
-	{
-		cout << Message("Bad input. Try Again:", ALERT_MSG);
-		getline(cin, part_of_body);
-	}
+	forInput(part_of_body, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Cosmetic::output() const
