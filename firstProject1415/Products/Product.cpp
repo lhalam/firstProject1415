@@ -16,47 +16,35 @@ Product::~Product()
 
 void Product::input()
 {
-	string temp;
-
 	cout << Message("Input name: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
+	getline(cin, name);
+	if(!ifValidString(name))
 	{
-		this->name = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, name);
 	}
-	temp.clear();
-
+	
 	cout << Message("Input manufacturer: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
+	getline(cin, manufacturer);
+	if(!ifValidString(manufacturer))
 	{
-		this->manufacturer = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, manufacturer);
 	}
-	temp.clear();
 
 	cout << Message("Input price: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->price = stod(temp);
-	}
-	temp.clear();
+	forInput(price, Message("Bad input. Try Again:", ALERT_MSG));
 
 	cout << Message("Input id: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->id = stoi(temp);
-	}
-	temp.clear();
+	forInput(id, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Product::output() const
 {
 	cout << Message("Name: " + this->name, LOG_MSG)
-		<< Message("Manufacturer: " + this->manufacturer, LOG_MSG)
-		<< Message("Price: " + to_string(this->price), LOG_MSG)
-		<< Message("ID: " + to_string(this->id), LOG_MSG);
+		 << Message("Manufacturer: " + this->manufacturer, LOG_MSG)
+		 << Message("Price: " + to_string(this->price), LOG_MSG)
+		 << Message("ID: " + to_string(this->id), LOG_MSG);
 }
 
 bool Product::operator==(const Product& prod) const

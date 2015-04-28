@@ -17,6 +17,7 @@ int main()
 		cout << Message("Execute", CONTEXT_MSG);
 		string userCommand;
 		getline(cin, userCommand, '\n');
+		toLowercase(userCommand);
 
 		if (userCommand == "exit")
 		{
