@@ -42,6 +42,11 @@ void DataManager::removeUserById(int id)
 	user.removeById(id);
 }
 
+void DataManager::writeInHTML(int id, const Date& start, const Date& end)
+{
+	HTMLService().write(id, start, end);
+}
+
 List<Product*> DataManager::readAllProducts()
 {
 	ProductService service;
@@ -52,6 +57,11 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 {
 	ProductService service;
 	return service.read(predicate);
+}
+
+List<Product*> DataManager::getAllFromUserStory(int id)
+{
+	return UserService().getAllFromStory(id);
 }
 
 int DataManager::getQuantity(int id)

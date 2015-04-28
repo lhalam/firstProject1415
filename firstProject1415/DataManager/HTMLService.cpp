@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void HTMLService::write(const Date& start, const Date& end)
+void HTMLService::write(int id, const Date& start, const Date& end)
 {
 	//Change the direction if you want
 	ofstream file("History.html");
@@ -21,13 +21,17 @@ void HTMLService::write(const Date& start, const Date& end)
 				  "</style>\n"
 				  "</head>";
 
-	//Change cycle as you wish
-	file << "<body>\n";
-	for (unsigned i = 0; i < 5; i++)
-	{
-		//file << "<p>" << i <<"</p>";
-	}
-	file << "</body>\n";
+	file << head;
+
+	string body = "<body>\n";
+
+	ifstream history(to_string(id) + ".txt");
+
+	//Someone please write the loop
+
+	body += "</body>\n";
+
+	file << body;
 
 	file << "</html>";
 	file.close();

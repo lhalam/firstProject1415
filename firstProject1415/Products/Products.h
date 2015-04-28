@@ -12,5 +12,5 @@
 #include "../Products/Textile/Clothing.h"
 #include "../Products/Textile/Footwear.h"
 #include "../Products/ChemicalProduct/Detergent.h"
-#include "../Products/ChemicalProduct/Cosmetic.h"
+#include "../Products/ChemicalProduct/Cosmetics.h"
 #include "../Products/ChemicalProduct/PersonalHygiene.h"

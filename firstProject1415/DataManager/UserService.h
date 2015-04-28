@@ -18,7 +18,7 @@ public:
 	//Calls read(always true)
 	List<User*> readAll();
 
-	//Returns a list of bought (by current user) products
+	//Returns a list of bought (by users id) products
 	List<Product*> getAllFromStory(int id) const;
 
 	//Returns a list of users that match a predicate

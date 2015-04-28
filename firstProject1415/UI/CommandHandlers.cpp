@@ -262,10 +262,11 @@ Result changeAmount()
 
 	string message = string("Current quantity of product with id ") + to_string(id) +
 		string(": ") + to_string(manager.getQuantity(id));
-	cout << Message(message, LOG_MSG) << endl;
+	cout << Message(message, LOG_MSG);
 
 	cout << Message("Enter new quantity", CONTEXT_MSG);
 	cin >> quantity;
+	cin.get();
 	manager.setQuantity(id, quantity);
 
 	cout << Message("New quantity is added to the assortment.", LOG_MSG);
@@ -288,16 +289,16 @@ Result changeProduct()
 
 	prod->input();
 
-	manager.removeProductById(id);
-	manager.saveProduct(*prod);
-
 	string message = string("Current quantity of product with id ") + to_string(id) +
 		string(": ") + to_string(manager.getQuantity(id));
-	cout << Message(message, LOG_MSG) << endl;
+	cout << Message(message, LOG_MSG);
 	cout << Message("Enter new quantity", CONTEXT_MSG);
 	int quantity = 0;
 	cin >> quantity;
+	cin.get();
 
+	manager.removeProductById(id);
+	manager.saveProduct(*prod);
 	manager.setQuantity(id, quantity);
 
 	delete[] prod;
