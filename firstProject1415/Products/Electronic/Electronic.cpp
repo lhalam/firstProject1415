@@ -1,4 +1,5 @@
 #include"Electronic.h"
+#include "..\..\UI\Globals.h"
 #include "..\..\UI\Message.h"
 
 Electronic::Electronic():
@@ -12,31 +13,25 @@ Electronic::Electronic():
 void Electronic::input()
 {
 	Product::input();
-	string temp;
-
+	
 	cout << Message("Input category: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
+	getline(cin, category);
+	while(!ifValidString(category))
 	{
-		this->category = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, category);
 	}
-	temp.clear();
 
 	cout << Message("Input weight: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->weight = stod(temp);
-	}
-	temp.clear();
+	forInput(weight, Message("Bad input. Try Again:", ALERT_MSG));
 
 	cout << Message("Input model: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
+	getline(cin, model);
+	while (!ifValidString(model))
 	{
-		this->model = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, model);
 	}
-	temp.clear();
 }
 
 void Electronic::output() const

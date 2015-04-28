@@ -7,5 +7,31 @@
 extern User currentUser; // User that is using our program
 extern List<Product*> cart; // Current session's shopping cart
 
-/* Declarations of all global functions (all extern )*/
-extern void toLowercase(string& line);
+/*Global functions*/
+template <typename T>
+void forInput(T &obj, const Message& warningMessage)
+{
+	cin >> obj;
+
+	while (true)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+			}
+			cout << warningMessage;
+			cin >> obj;
+		}
+		else if (cin.get() != '\n')
+		{
+			while (cin.get() != '\n')
+			{
+			}
+			cout << warningMessage;
+			cin >> obj;
+		}
+		else return;
+	}
+}
