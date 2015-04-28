@@ -40,36 +40,26 @@ void Textile::input()
 	string temp;
 
 	cout << Message("Input material: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, material);
+	while(!ifValidString(material))
 	{
-		this->material = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, material);
 	}
-	temp.clear();
 
 	cout << Message("Input category: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
-	{
-		this->category = temp[0];
-	}
-	temp.clear();
+	forInput(category, Message("Bad input. Try Again:", ALERT_MSG));
 	
 	cout << Message("Input brand: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, brand);
+	while(!ifValidString(brand))
 	{
-		this->brand = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, brand);
 	}
-	temp.clear();
 
 	cout << Message("Input collection year: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
-	{
-		this->collectionYear = stoi(temp);
-	}
-	temp.clear();
+	forInput(collectionYear, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Textile::output()
