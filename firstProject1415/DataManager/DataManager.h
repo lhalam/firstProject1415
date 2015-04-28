@@ -39,7 +39,7 @@ public:
 	void saveProduct(const Product& prod);
 
 	//Saves user`s bying story in HTML 
-	void writeInHTML(int id, const Date& start, const Date& end);
+	void writeInHTML(int id, const Date& start, const Date& end) const;
 
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();
