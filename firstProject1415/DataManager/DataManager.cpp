@@ -82,12 +82,6 @@ void DataManager::changeQuantity(int id, int add_quantity)
 	quantity.changeQuantity(id, add_quantity);
 }
 
-Product* DataManager::identifyProductType(string type)
-{
-	ProductService product;
-	return product.identifyType(type);
-}
-
 Product* DataManager::getProductById(int id)
 {
 	ProductService product;
