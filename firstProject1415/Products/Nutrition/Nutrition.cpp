@@ -35,31 +35,30 @@ ostream& operator<<(ostream& stream, const Nutrition& obj)
 void Nutrition::input()
 {
 	Product::input();
-	string temp;
 
 	cout << Message("Input manufacture date: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, manufactureDate);
+	while(!ifValidString(manufactureDate))
 	{
-		this->manufactureDate = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, manufactureDate);
 	}
-	temp.clear();
 
 	cout << Message("Input expiration date: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, expirationDate);
+	while(!ifValidString(expirationDate))
 	{
-		this->expirationDate = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, expirationDate);
 	}
-	temp.clear();
 
 	cout << Message("Input ingredients: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, ingredients);
+	while(!ifValidString(ingredients))
 	{
-		this->ingredients = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, ingredients);
 	}
-	temp.clear();
 }
 
 void Nutrition::output() const
