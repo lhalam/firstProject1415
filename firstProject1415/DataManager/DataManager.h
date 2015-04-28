@@ -54,6 +54,10 @@ public:
 	//Adds to the current quantity
 	void changeQuantity(int id, int add_quantity);
 	
+	//Creates and returns a product with a given type
+	//Returns nullptr if a given type is wrong
+	Product* identifyProductType(string type);
+
 	//Returns a product with a given id
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);

@@ -17,7 +17,7 @@ public:
 	//Saves product info into a file
 	void save(const Product& prod);
 	
-	//Returnes a quantity of the product by given id
+	//Returns a quantity of the product by given id
 	int getQuantity(int id);
 	
 	//Changes a quantity of the product by given id
@@ -27,6 +27,9 @@ public:
 	//Changes a quantity of the product by given id
 	//Adds to the current quantity
 	void changeQuantity(int id, int add_quantity);
+
+	//Creates and returns a product with a given type
+	Product* identifyType(string type);
 
 	//Returns a product with a given id
 	Product *getById(int id);
