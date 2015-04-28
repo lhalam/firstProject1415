@@ -1,4 +1,5 @@
 #include "PhoneAndTablet.h"
+#include "..\..\UI\Globals.h"
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
@@ -26,15 +27,9 @@ ostream& operator<<(ostream& stream, const PhoneAndTablet& obj)
 void PhoneAndTablet::input()
 {
 	Electronic::input();
-	string temp;
 
 	cout << Message("Input memory card: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->memoryCard = stoi(temp);
-	}
-	temp.clear();
+	forInput(memoryCard, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void PhoneAndTablet::output() const

@@ -1,4 +1,5 @@
 #include "LaptopAndComputer.h"
+#include "..\..\UI\Globals.h"
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
@@ -26,15 +27,14 @@ ostream& operator<<(ostream& stream, const LaptopAndComputer& obj)
 void LaptopAndComputer::input()
 {
 	Electronic::input();
-	string temp;
 
 	cout << Message("Input firm: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
+	getline(cin, firm);
+	while (!ifValidString(firm))
 	{
-		this->firm = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, firm);
 	}
-	temp.clear();
 }
 
 void LaptopAndComputer::output() const

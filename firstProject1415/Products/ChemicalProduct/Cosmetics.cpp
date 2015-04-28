@@ -27,15 +27,14 @@ ostream& operator<<(ostream& stream, const Cosmetic& obj)
 void Cosmetic::input()
 {
 	ChemicalProduct::input();
-	string temp;
 
 	cout << Message("Input part of body it is used for: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	getline(cin, part_of_body);
+	while(!ifValidString(part_of_body))
 	{
-		this->part_of_body = temp[0];
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, part_of_body);
 	}
-	temp.clear();
 }
 
 void Cosmetic::output() const

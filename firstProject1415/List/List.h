@@ -160,7 +160,12 @@ public:
 	T popFront();
 
 	int size() const { return s; }
-};
+
+	bool isEmpty() const
+	{
+		return s == 0;
+	}
+}; 
 
 template <typename T>
 List<T>::List(const List& copy):

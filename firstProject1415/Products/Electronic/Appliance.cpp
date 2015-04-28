@@ -25,15 +25,9 @@ ostream& operator<<(ostream& stream, const Appliance& obj)
 void Appliance::input()
 {
 	Electronic::input();
-	string temp;
 
 	cout << Message("Input memory card: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if(ifValidString(temp))
-	{
-		this->memoryCard = stoi(temp);
-	}
-	temp.clear();
+	forInput(memoryCard, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Appliance::output() const
