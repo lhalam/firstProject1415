@@ -82,7 +82,7 @@ User * UserService::getByLogin(string login, string password)
 
 		istringstream isstream(str);
 
-		User *user = new User();
+		user = new User();
 		isstream >> *user;
 
 		if (user->getLogin() == login && user->getPassword() == password)

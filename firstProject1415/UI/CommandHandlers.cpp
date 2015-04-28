@@ -387,7 +387,6 @@ Result logIn()
 	
 	if (existingUser == nullptr) //User with this login exists
 	{
-		cin.get();
 		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
 	}
 	else
@@ -395,6 +394,8 @@ Result logIn()
 		currentUser = *existingUser;
 		cout << Message("Authentication successful\nWelcome, " + name + "!", LOG_MSG);
 	}
+
+	delete existingUser;
 	return Result();
 }
 
