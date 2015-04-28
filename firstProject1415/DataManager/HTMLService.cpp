@@ -13,8 +13,11 @@ void HTMLService::write(const Date& start, const Date& end)
 
 	string head = "<head>\n"
 				  "<title>Purchase history</title>\n"
-				  "<meta charset=\"UTF-8\"/>\n" 
+				  "<meta charset=\"UTF-8\"/>\n"
 				  "<style type=\"text/css\">\n"
+				  "* { font-family: Verdana; font-weight: normal; }"
+				  "h1 { font-size: 2em; text-align: center; }"
+				  "p { font-size: 1.25em; }"
 				  "</style>\n"
 				  "</head>";
 
