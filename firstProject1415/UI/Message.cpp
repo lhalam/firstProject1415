@@ -7,10 +7,17 @@ using std::cerr;
 
 HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-Message::Message() : msg(""), type(LOG_MSG)
-{}
-Message::Message(string _msg, MsgType _type) : msg(_msg), type(_type)
-{}
+Message::Message() : 
+	msg(""), 
+	type(LOG_MSG)
+{
+}
+
+Message::Message(string _msg, MsgType _type) : 
+	msg(_msg),
+	type(_type)
+{
+}
 
 string Message::getMsg() const
 {
