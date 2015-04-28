@@ -195,18 +195,6 @@ void ProductService::changeQuantity(int id, int add_quantity)
 	rename("tempAssort.txt", "Assortment.txt");
 }
 
-Product* ProductService::identifyType(string type)
-{
-	Product* prod = nullptr;
-	if (type == "Appliance" || type == "appliance")
-	{
-		prod = new Appliance();
-		return prod;
-	}
-	//else if ...
-	return prod;
-}
-
 Product* ProductService::getById(int id)
 {
 	ifstream stream("Products.txt");
