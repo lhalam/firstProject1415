@@ -1,7 +1,8 @@
 #include "PhotoAndVideoCamera.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-PhotoAndVideoCamera::PhotoAndVideoCamera() :
+PhotoAndVideoCamera::PhotoAndVideoCamera():
 	Electronic(),
 	megapixels(0.0)
 {
@@ -10,7 +11,7 @@ PhotoAndVideoCamera::PhotoAndVideoCamera() :
 istream& operator>>(istream& stream, PhotoAndVideoCamera& obj)
 {
 	stream >> (Electronic&)obj
-		>> obj.megapixels;
+		   >> obj.megapixels;
 	stream.get();
 	return stream;
 }

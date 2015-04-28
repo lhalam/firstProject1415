@@ -1,7 +1,8 @@
 #include "Drink.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-Drink::Drink() :
+Drink::Drink():
 	Nutrition(),
 	volume(0.0)
 {

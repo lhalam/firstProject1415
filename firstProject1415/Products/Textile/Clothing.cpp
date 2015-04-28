@@ -1,5 +1,6 @@
 #include "Clothing.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
 Clothing::Clothing() :
 	Textile(),

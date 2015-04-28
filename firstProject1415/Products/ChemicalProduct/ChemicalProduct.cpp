@@ -1,12 +1,13 @@
 #include "ChemicalProduct.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-ChemicalProduct::ChemicalProduct() :
+ChemicalProduct::ChemicalProduct():
 	Product(),
 	manufactureDate("00.00.0000"), 
 	volume(0.0) 
-	{
-	}
+{
+}
 
 istream& operator>>(istream& stream, ChemicalProduct& obj)
 {

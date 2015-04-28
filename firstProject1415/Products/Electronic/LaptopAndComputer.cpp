@@ -1,7 +1,8 @@
 #include "LaptopAndComputer.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-LaptopAndComputer::LaptopAndComputer() : 
+LaptopAndComputer::LaptopAndComputer(): 
 	Electronic(),
 	firm(" ")
 {

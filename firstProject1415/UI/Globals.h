@@ -8,7 +8,14 @@ extern User currentUser; // User that is using our program
 extern List<Product*> cart; // Current session's shopping cart
 
 /* Declarations of all global functions */
+
+//a variation of tolowercase function
+//for whole string
 extern void toLowercase(string& line);
+
+//predicate for correct command prompt input 
+//or skipping entering a field when modifying
+extern bool ifValidString(const string& str);
 
 template <typename T>
 void forInput(T &obj, const Message& warningMessage)

@@ -1,5 +1,6 @@
 #pragma once
 
+/* All product ierarchy included for external use */
 #include "Product.h"
 #include "../Products/Electronic/Appliance.h"
 #include "../Products/Electronic/AudioAndTv.h"

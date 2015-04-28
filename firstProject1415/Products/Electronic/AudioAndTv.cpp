@@ -1,7 +1,8 @@
 #include "AudioAndTv.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-AudioAndTv::AudioAndTv() : 
+AudioAndTv::AudioAndTv(): 
 	Electronic(), 
 	memoryCard(0) 
 {

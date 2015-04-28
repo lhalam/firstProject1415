@@ -1,10 +1,11 @@
 #include "Detergent.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-Detergent::Detergent() :
+Detergent::Detergent():
 	ChemicalProduct()
-	{
-	}
+{
+}
 
 istream& operator>>(istream& stream, Detergent& obj)
 {

@@ -1,7 +1,8 @@
 #include "Food.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-Food::Food() :
+Food::Food():
 	Nutrition(),
 	GMOContent(0)
 {

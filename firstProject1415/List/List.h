@@ -163,9 +163,9 @@ public:
 };
 
 template <typename T>
-List<T>::List(const List& copy) :
-emptyNode(new Node()),
-s(0)
+List<T>::List(const List& copy):
+	emptyNode(new Node()),
+	s(0)
 {
 	const Node* ptrToCopy = copy.head;
 

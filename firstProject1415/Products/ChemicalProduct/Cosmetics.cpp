@@ -1,11 +1,12 @@
 #include "Cosmetics.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-Cosmetic::Cosmetic() :
+Cosmetic::Cosmetic():
 	ChemicalProduct(),
 	part_of_body(' ')
-	{
-	}
+{
+}
 
 istream& operator>>(istream& stream, Cosmetic& obj)
 {

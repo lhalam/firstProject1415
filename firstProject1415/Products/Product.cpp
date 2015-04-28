@@ -1,17 +1,6 @@
 #include "Product.h"
 #include "..\UI\Message.h"
-
-bool ifValidString(string str)
-{
-	if(str[0] == ' ' || str[0] == '\t'|| str[0] == '\n'|| 
-	   str[0] == '\0'|| str[0] == '\a'|| str[0] == '.' || 
-	   str[0] == ',' || str[0] == ':' || str[0] == ';' || 
-	   str[0] == '`' || str[0] == '&' || str[0] == '@' )
-	{
-		return false;
-	}
-	return true;
-}
+#include "..\UI\Globals.h"
 
 Product::Product():
 	name("No name"), 

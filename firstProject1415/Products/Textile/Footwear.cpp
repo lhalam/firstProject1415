@@ -1,5 +1,6 @@
 #include "Footwear.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
 Footwear::Footwear() :
 	Textile(),

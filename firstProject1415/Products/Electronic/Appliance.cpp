@@ -1,7 +1,8 @@
 #include "Appliance.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-Appliance::Appliance() :
+Appliance::Appliance():
 	Electronic(),
 	memoryCard(0)
 {

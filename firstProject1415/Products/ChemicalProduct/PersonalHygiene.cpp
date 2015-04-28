@@ -1,7 +1,8 @@
 #include "PersonalHygiene.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-PersonalHygiene::PersonalHygiene() :
+PersonalHygiene::PersonalHygiene():
 	ChemicalProduct()
 {
 }

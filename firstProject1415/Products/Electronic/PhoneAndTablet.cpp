@@ -1,7 +1,8 @@
 #include "PhoneAndTablet.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
-PhoneAndTablet::PhoneAndTablet() :
+PhoneAndTablet::PhoneAndTablet():
 	Electronic(),
 	memoryCard(0)
 {
@@ -10,7 +11,7 @@ PhoneAndTablet::PhoneAndTablet() :
 istream& operator>>(istream& stream, PhoneAndTablet& obj)
 {
 	stream >> (Electronic&)obj
-		>> obj.memoryCard;
+		   >> obj.memoryCard;
 	stream.get();
 	return stream;
 }

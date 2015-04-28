@@ -4,10 +4,6 @@
 
 using namespace std;
 
-//predicate for correct command prompt input 
-//or skipping entering a field when modifying
-bool ifValidString(string str);
-
 class Product
 {
 protected:

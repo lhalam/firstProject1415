@@ -1,6 +1,6 @@
 #include"Electronic.h"
-#include "..\..\UI\Globals.h"
 #include "..\..\UI\Message.h"
+#include "..\..\UI\Globals.h"
 
 Electronic::Electronic():
 	Product(),
