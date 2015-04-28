@@ -33,7 +33,7 @@ public:
 	User *getById(int id);
 
 	//Saves each product, bought by user
-	void saveToHistory(int id, const Product& prod, unsigned quantity);
+	void saveToHistory(const Product& prod, unsigned quantity);
 
 	//Removes a user from file ("Users.txt") if the predicate is true
 	void removeByPredicate(function<bool(const User&)> predicate);

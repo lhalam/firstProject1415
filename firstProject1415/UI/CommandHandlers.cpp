@@ -31,7 +31,7 @@ Result addNewProduct()
 			cout << Message("Accessory", LOG_MSG); 
 			cout << Message("Clothing", LOG_MSG); 
 			cout << Message("Footwear", LOG_MSG); 
-			cout << Message("Cosmetic", LOG_MSG); 
+			cout << Message("Cosmetics", LOG_MSG); 
 			cout << Message("Detergent", LOG_MSG); 
 			cout << Message("Personal hygiene", LOG_MSG)
 				 << Message("\nInput command", INPUT_MSG);
@@ -56,6 +56,7 @@ Result addNewProduct()
 				cin >> quantity;
 				cin.get();
 				manager.setQuantity(prod->getId(), quantity);
+				break;
 			}
 			else
 			{
@@ -270,6 +271,12 @@ Result exit()
 	return Result(EXIT);
 }
 
+Result exportProdXML()
+{
+	cout << Message("Done.", LOG_MSG);
+	return Result();
+}
+
 Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
@@ -428,10 +435,10 @@ Result showCart()
 		return Result(SUCCESSFUL);
 	}
 
-	List<Product*>::iterator end = cart.end();
-	for (List<Product*>::iterator iterator = cart.begin(); iterator != end; iterator++)
+	auto end = cart.end();
+	for (auto iterator = cart.begin(); iterator != end; iterator++)
 	{
-		cout << *iterator;
+		(**iterator).output();
 	}
 	return Result();
 }

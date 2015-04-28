@@ -1,17 +1,17 @@
 #pragma once
 #include "ChemicalProduct.h"
 
-class Cosmetic : public ChemicalProduct
+class Cosmetics : public ChemicalProduct
 {
 private:
 	char part_of_body; // for face - 'f'; for hands - 'h'; for body - 'b'.
 public:
-	Cosmetic();
+	Cosmetics();
 
-	friend istream& operator>>(istream& stream, Cosmetic& obj);
-	friend ostream& operator<<(ostream& stream, const Cosmetic& obj);
+	friend istream& operator>>(istream& stream, Cosmetics& obj);
+	friend ostream& operator<<(ostream& stream, const Cosmetics& obj);
 
-	~Cosmetic() {}
+	~Cosmetics() {}
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product

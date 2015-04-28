@@ -66,9 +66,9 @@ Product* identifyType(string type)
 		prod = new Footwear();
 		return prod;
 	}
-	else if (type == "cosmetic")
+	else if(type == "cosmetics")
 	{
-		prod = new Cosmetic();
+		prod = new Cosmetics();
 		return prod;
 	}
 	else if (type == "detergent")

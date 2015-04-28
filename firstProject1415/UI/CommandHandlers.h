@@ -14,6 +14,7 @@ Result changeProduct();
 Result createAdmin();
 Result createUser();
 Result exit();
+Result exportProdXML();
 Result help();
 Result logIn();
 Result logOut();
