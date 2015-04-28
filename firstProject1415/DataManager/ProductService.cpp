@@ -45,6 +45,14 @@ void ProductService::save(const Product& prod)
 	stream.close();
 }
 
+void ProductService::saveAll(List<Product*> list)
+{
+	while (!list.isEmpty())
+	{
+		save(*list.popBack());
+	}
+}
+
 List<Product*> ProductService::readAll()
 {
 	return read([](const Product& prod) { return true; });
