@@ -464,10 +464,10 @@ Product * ProductService::getProduct(string type, istream& stream)
 	{
 		prod = new Detergent();
 		stream >> (Detergent&)*prod;
-	} else if (type == typeid(Cosmetic).name())
+	} else if (type == typeid(Cosmetics).name())
 	{
-		prod = new Cosmetic();
-		stream >> (Cosmetic&)*prod;
+		prod = new Cosmetics();
+		stream >> (Cosmetics&)*prod;
 	} else if (type == typeid(PersonalHygiene).name())
 	{
 		prod = new PersonalHygiene();
@@ -515,9 +515,9 @@ void ProductService::saveProduct(const Product& prod, ostream& stream)
 	} else if (typeid(prod) == typeid(Detergent))
 	{
 		stream << (Detergent&)prod;
-	} else if (typeid(prod) == typeid(Cosmetic))
+	} else if (typeid(prod) == typeid(Cosmetics))
 	{
-		stream << (Cosmetic&)prod;
+		stream << (Cosmetics&)prod;
 	} else if (typeid(prod) == typeid(PersonalHygiene))
 	{
 		stream << (PersonalHygiene&)prod;

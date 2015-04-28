@@ -33,7 +33,7 @@ Result addNewProduct()
 			cout << Message("Accessory", LOG_MSG); 
 			cout << Message("Clothing", LOG_MSG); 
 			cout << Message("Footwear", LOG_MSG); 
-			cout << Message("Cosmetic", LOG_MSG); 
+			cout << Message("Cosmetics", LOG_MSG); 
 			cout << Message("Detergent", LOG_MSG); 
 			cout << Message("Personal hygiene", LOG_MSG)
 				 << Message("\nInput command", INPUT_MSG);
@@ -56,7 +56,9 @@ Result addNewProduct()
 				manager.saveProduct(*prod);
 				cout << Message("Quantity", CONTEXT_MSG);
 				cin >> quantity;
+				cin.get();
 				manager.setQuantity(prod->getId(), quantity);
+				break;
 			}
 			else
 			{
@@ -130,11 +132,12 @@ Result addProductToCart()
 	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
 	int id;
 	cin >> id;
+	cin.get();
 	DataManager manager;
 	Product* product = manager.getProductById(id);
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG) ;
-	cout << *product;
+	(*product).output();
 	return Result();
 }
 
@@ -411,10 +414,10 @@ Result showCart()
 		return Result(SUCCESSFUL);
 	}
 
-	List<Product*>::iterator end = cart.end();
-	for (List<Product*>::iterator iterator = cart.begin(); iterator != end; iterator++)
+	auto end = cart.end();
+	for (auto iterator = cart.begin(); iterator != end; iterator++)
 	{
-		cout << *iterator;
+		(**iterator).output();
 	}
 	return Result();
 }
