@@ -28,23 +28,11 @@ void Clothing::input()
 {
 	Textile::input();
 
-	string temp;
-
 	cout << Message("Input size: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
-	{
-		this->size = temp[0];
-	}
-	temp.clear();
-
+	forInput(size, Message("Bad input. Try Again:", ALERT_MSG));
+	
 	cout << Message("Input season: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
-	{
-		this->season = temp[0];
-	}
-	temp.clear();
+	forInput(season, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Clothing::output()
