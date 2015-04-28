@@ -69,6 +69,9 @@ public:
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
 
+	//Using UserService saveToHistory
+	void saveToUserHistory(int id, const Product& prod, unsigned quantity);
+
 	//Removes a product with a given id
 	void removeProductById(int id);
 

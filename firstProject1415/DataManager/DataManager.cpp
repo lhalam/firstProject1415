@@ -36,6 +36,11 @@ User* DataManager::getUserById(int id)
 	return user.getById(id);
 }
 
+void saveToUserHistory(int id, const Product& prod, unsigned quantity)
+{
+	UserService().saveToHistory(id, prod, quantity);
+}
+
 void DataManager::removeUserById(int id)
 {
 	UserService user;

@@ -173,6 +173,19 @@ User* UserService::getById(int id)
 	return user;
 }
 
+void UserService::saveToHistory(int id, const Product& prod, unsigned quantity)
+{
+	ofstream stream (to_string(id) + ".txt", ios_base::app);
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+	stream << quantity << endl;
+	stream << prod << endl;
+
+	stream.close();
+}
+
 void UserService::removeById(int id)
 {
 	removeByPredicate([id](const User& user) -> bool {	return id == user.getId(); });
