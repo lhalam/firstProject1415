@@ -3,7 +3,7 @@
 
 ChemicalProduct::ChemicalProduct() :
 	Product(),
-	manufactureDate("01.01.1970"), 
+	manufactureDate("00.00.0000"), 
 	volume(0.0) 
 	{
 	}
