@@ -28,23 +28,17 @@ ostream& operator<<(ostream& stream, const ChemicalProduct& obj)
 void ChemicalProduct::input()
 {
 	Product::input();
-	string temp;
-
-	cout << Message("Input manufacture date: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
+	
+	cout << Message("Input manufactureDate: ", CONTEXT_MSG);
+	getline(cin, manufactureDate);
+	while(!ifValidString(manufactureDate))
 	{
-		this->manufactureDate = temp;
+		cout << Message("Bad input. Try Again:", ALERT_MSG);
+		getline(cin, manufactureDate);
 	}
-	temp.clear();
 
 	cout << Message("Input volume: ", CONTEXT_MSG);
-	getline(cin, temp);
-	if (ifValidString(temp))
-	{
-		this->volume = stod(temp);
-	}
-	temp.clear();
+	forInput(volume, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void ChemicalProduct::output() const
