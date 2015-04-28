@@ -37,6 +37,9 @@ public:
 	
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
+	
+	//Saves all products ifo into a file
+	void saveAllProducts(List<Product*> list);
 
 	//Saves user`s bying story in HTML 
 	void writeInHTML(int id, const Date& start, const Date& end) const;

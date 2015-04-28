@@ -22,6 +22,9 @@ public:
 	//Saves product info into a file
 	void save(const Product& prod);
 	
+	//Saves all products info into a file
+	void saveAll(List<Product*> list);
+	
 	//Returns a quantity of the product by given id
 	int getQuantity(int id);
 	
