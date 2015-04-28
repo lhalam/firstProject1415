@@ -1,6 +1,7 @@
 #pragma once
 #include "../Products/Product.h"
 #include "../List/List.h"
+#include "../DataManager/UserService.h"
 #include <functional>
 #include <map>
 using std::function;
@@ -8,6 +9,10 @@ using std::function;
 //Represents a service for reading and writing product info from/into a file
 class ProductService
 {
+	//Gives to UserService possibility
+	//to take a product from file 
+	friend class UserService;
+
 	//Reads and returnes the product of the specified type
 	Product *getProduct(string type, istream& stream);
 

@@ -4,6 +4,5 @@
 class HTMLService
 {
 public:
-
 	void write(int id, const Date& start, const Date& end);
 };

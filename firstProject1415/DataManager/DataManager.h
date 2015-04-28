@@ -1,6 +1,7 @@
 #pragma once
 #include "UserService.h"
 #include "ProductService.h"
+#include "HTMLService.h"
 #include "../User/User.h"
 #include "../Products/Product.h"
 #include "../List/List.h"
@@ -37,11 +38,17 @@ public:
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
 
+	//Saves user`s bying story in HTML 
+	void writeInHTML(int id, const Date& start, const Date& end);
+
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();
 
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
+
+	//Returns a list of all bought (by user) products
+	List<Product*> getAllFromUserStory(int id);
 	
 	//Returns quantity of the product with a given id
 	int getQuantity(int id);

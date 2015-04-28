@@ -1,4 +1,6 @@
 #include "UserService.h"
+#include "ProductService.h"
+#include "../Products/Products.h"
 #include <fstream>
 #include <sstream>
 #include <exception>
@@ -55,6 +57,34 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 	}
 
 	stream.close();
+	return list;
+}
+
+List<Product*> UserService::getAllFromStory(int id) const
+{
+	ifstream stream(to_string(id ) + ".txt");
+	if (!stream.is_open())
+	{
+		throw exception("Cannot open file for reading.");
+	}
+
+	List<Product*> list;
+
+	while (!stream.eof())
+	{
+		string str;
+		getline(stream, str);
+
+		if (str.empty())
+		{
+			continue;
+		}
+
+		Product* product = ProductService().getProduct(str, stream);
+		list.pushBack(product);
+	}
+	stream.close();
+
 	return list;
 }
 
