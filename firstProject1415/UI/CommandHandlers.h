@@ -5,6 +5,8 @@
 /*Command executors listed alphabetically*/
 
 Result addNewProduct();
+Result addNewProductsFromXML();
+Result addProductToCart();
 Result buyAllProductFromCart();
 Result buyOneElementById();
 Result changeAmount();
@@ -23,4 +25,3 @@ Result showProducts();
 Result showPurchaseHistory();
 Result showStats();
 Result showUsers();
-Result addProductToCart();

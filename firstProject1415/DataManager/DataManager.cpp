@@ -58,6 +58,12 @@ void DataManager::writeInHTML(int id, const Date& start, const Date& end) const
 	HTMLService().write(id, start, end);
 }
 
+List<Product*> DataManager::readFromXML()
+{
+	XMLService service;
+	return service.read();
+}
+
 List<Product*> DataManager::readAllProducts()
 {
 	ProductService service;
