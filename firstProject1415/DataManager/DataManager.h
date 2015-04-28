@@ -2,6 +2,7 @@
 #include "UserService.h"
 #include "ProductService.h"
 #include "HTMLService.h"
+#include "XMLService.h"
 #include "../User/User.h"
 #include "../Products/Product.h"
 #include "../List/List.h"
@@ -43,6 +44,9 @@ public:
 
 	//Saves user`s bying story in HTML 
 	void writeInHTML(int id, const Date& start, const Date& end) const;
+
+	//Returns a list of all products in XML
+	List<Product*> readFromXML();
 
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();

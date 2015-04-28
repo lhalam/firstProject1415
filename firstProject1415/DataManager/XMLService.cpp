@@ -14,16 +14,17 @@ List<Product*> XMLService::read()
 
 	List<Product*> list;
 
+	string line;
 	string type;
 	while (!products.eof())
 	{
-		string line;
 		if (products.get() == '<')
 		{
 			getline(products, line, '>');
 			if (identifyType(line) != nullptr)
 			{
 				type = line;
+				toLowercase(type);
 				Product *prod = identifyType(type);
 				list.pushBack(prod);
 			}
@@ -40,7 +41,7 @@ List<Product*> XMLService::read()
 			else if (line == "price")
 			{
 				getline(products, line, '<');
-				list.popBack()->setPrice(stod(line));
+				list.back()->setPrice(stod(line));
 			}
 			else if (line == "id")
 			{

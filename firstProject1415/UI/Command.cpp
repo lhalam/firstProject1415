@@ -6,6 +6,7 @@
 Command commands[] = 
 { 
 	Command("add product", addNewProduct, "adds new product", Access::ADMIN),
+	Command("add product to cart", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("buy", buyOneElementById, "buys product by id", Access::USER),
 	Command("buy all products", buyAllProductFromCart, "buys all product from cart", Access::USER),
 	Command("change amount", changeAmount, "changes amount of products", Access::ADMIN),
@@ -13,6 +14,7 @@ Command commands[] =
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
 	Command("export -p", exportProdXML, "exports all existing products to XML file", Access::ADMIN),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
+	Command("import", addNewProductsFromXML, "adds new products from .xml file", Access::ADMIN),
 	Command("log in", logIn, "performs user authentication", Access::GUEST),
 	Command("log out", logOut, "exits user profile", Access(USER | ADMIN)),
 	Command("register", createUser, "creates a new account", Access(GUEST | ADMIN)),
@@ -24,8 +26,7 @@ Command commands[] =
 	Command("show all users", showUsers, "shows the list of all users", Access::ADMIN),
 	Command("show cart", showCart, "shows all products added to cart", Access(GUEST | USER)),
 	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
-	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN),
-	Command("add product to cart", addProductToCart ,"add product to cart by id ", Access(GUEST | USER | ADMIN)),
+	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN)
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
