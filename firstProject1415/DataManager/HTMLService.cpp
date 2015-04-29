@@ -1,5 +1,6 @@
 #include "HTMLService.h"
 #include "ProductService.h"
+#include "List.h"
 
 #include <fstream>
 #include <string>
@@ -30,15 +31,26 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	ifstream history(to_string(id) + ".txt");
 	UserService *user;
 	Product *product;
+	List<Product*> list = user->getAllFromStory(id);;
+
 	while (!history.eof())
 	{
-		string text = "<p>"
+		for (auto iter = list.begin(); iter != list.end(); iter++)
+		{ 
+			product = *iter;
+			string text = "<p>"
 					  "Name: " + product->getName() + "\n"
 					  "Manufacturer: " + product->getManufacturer() + "\n"
 					   "Price: " + to_string(product->getPrice()) + "\n"
 					   "</p>";
 
 		file << text;
+		}
+	}
+
+	for (auto iter = list.begin(); iter != list.end(); iter++)
+	{
+		delete *iter;
 	}
 
 	body += "</body>\n";
