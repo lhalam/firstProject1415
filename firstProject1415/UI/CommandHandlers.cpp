@@ -274,6 +274,11 @@ Result exportProdXML()
 	return Result();
 }
 
+Result exportHistoryToHTML()
+{
+	return Result();
+}
+
 Result help()
 {
 	for (int i = 0; i < numOfCommands; i++)
@@ -555,7 +560,8 @@ Result enterMatrix()
 		cin >> x;
 	}
 	Sleep(1000);
-	cout << "Congrat, bro !)";
+	cout << "Congrat, bro !)\n";
 	Sleep(1000);
+	cin.get();
 	return Result();
 }
