@@ -4,7 +4,8 @@
 
 /*Initialization of commands; commands are listed alphabetically*/
 Command commands[] = 
-{ 
+{
+	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER | ADMIN)),
 	Command("add -p", addNewProduct, "adds new product", Access::ADMIN),
 	Command("add -pc", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("buy", buyOneElementById, "buys product by id", Access::USER),
@@ -28,9 +29,10 @@ Command commands[] =
 	Command("show -c", showCart, "shows all products added to cart", Access(GUEST | USER)),
 	Command("show -h", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
 	Command("show -s", showStats, "shows the statistics of all bought products", Access::ADMIN),
-	Command("add -c", addProductToCart ,"add product to cart by id ", Access(GUEST | USER | ADMIN)),
+	
 
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
+
 
