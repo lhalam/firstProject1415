@@ -19,7 +19,7 @@ public:
 	//Calls read(always true)
 	List<User*> readAll();
 
-	//Returns a list of bought (by users id) products
+	//Returns a list of each user`s purchases
 	List<Product*> getAllFromStory(int id) const;
 
 	//Returns a list of users that match a predicate
@@ -32,7 +32,7 @@ public:
 	//Returns a user with a given id
 	User *getById(int id);
 
-	//Saves each product, bought by user
+	//Saves each user`s purchases
 	void saveToHistory(const Product& prod, unsigned quantity);
 
 	//Removes a user from file ("Users.txt") if the predicate is true

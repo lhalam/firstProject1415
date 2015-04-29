@@ -39,10 +39,10 @@ public:
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
 	
-	//Saves all products ifo into a file
+	//Saves all products info into a file
 	void saveAllProducts(List<Product*> list);
 
-	//Saves user`s bying story in HTML 
+	//Saves a purchase history of each user in HTML 
 	void writeInHTML(int id, const Date& start, const Date& end) const;
 
 	//Returns a list of all products in XML
@@ -54,7 +54,7 @@ public:
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 
-	//Returns a list of all bought (by user) products
+	//Returns a list of each user`s purchases
 	List<Product*> getAllFromUserStory(int id);
 	
 	//Returns quantity of the product with a given id
@@ -72,7 +72,7 @@ public:
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
 
-	//Using UserService saveToHistory
+	//Saves each user`s purchases
 	void saveToUserHistory(const Product& prod, unsigned quantity);
 
 	//Removes a product with a given id
