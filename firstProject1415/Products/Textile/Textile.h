@@ -35,4 +35,14 @@ public:
 	// leading input/output from the console.
 	virtual void input();
 	virtual void output();
+
+	virtual  List<pair<string, string>> metadata()
+	{
+		List<pair<string, string>> result = Product::metadata();
+		result.pushBack(make_pair("material", material));
+		result.pushBack(make_pair("category", to_string(category)));
+		result.pushBack(make_pair("brand", brand));
+		result.pushBack(make_pair("collectionYear", to_string(collectionYear)));
+		return result;
+	}
 };

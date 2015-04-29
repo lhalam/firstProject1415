@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "../List/List.h"
+#include <utility>
 
 using namespace std;
 
@@ -42,4 +44,14 @@ public:
 	//overloaded operators for file\console reading\output
 	friend istream& operator>>(istream& stream, Product& obj);
 	friend ostream& operator<<(ostream& stream, const Product& obj);
+
+	virtual  List<pair<string, string>> metadata()
+	{
+		List<pair<string, string>> result;
+		result.pushBack(make_pair("name", name));
+		result.pushBack(make_pair("manufacturer", manufacturer));
+		result.pushBack(make_pair("price", to_string(price)));
+		result.pushBack(make_pair("id", to_string(id)));
+		return result;
+	}
 };

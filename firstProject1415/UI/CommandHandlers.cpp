@@ -3,13 +3,12 @@
 #include "Globals.h"
 #include "../Products/Products.h"
 
+using namespace std;
+
 /*Command executors listed alphabetically*/
 
 Result addNewProduct()
 {
-	using std::cout;
-	using std::cin;
-
 	Product* prod = nullptr;
 	string command;
 	cout << Message("[help] - shows all the possible product types, that can be created", LOG_MSG)
@@ -68,7 +67,44 @@ Result addNewProduct()
 	}
 	delete[] prod;
 	cout << Message("New product is added to the assortment.", LOG_MSG);
-	return Result();
+	return Result("New product was added.", SUCCESSFUL);
+}
+
+Result addNewProductsFromXML()
+{
+	char res;
+	cout << Message("File you want to add products from is Products.xml (y/n)", LOG_MSG);
+	cin >> res;
+	cin.get();
+	if (res == 'y')
+	{
+		DataManager manager;
+		List<Product*> list = manager.readFromXML();
+		manager.saveAllProducts(list);
+		return Result("New products are added.", SUCCESSFUL);
+	}
+	else if (res == 'n')
+	{
+		return Result("New products are not added.", SUCCESSFUL);
+	}
+	else
+	{
+		return Result("Unknown command", NOT_SUCCESSFUL);
+	}
+}
+
+Result addProductToCart()
+{
+	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
+	int id;
+	cin >> id;
+	cin.get();
+	DataManager manager;
+	Product* product = manager.getProductById(id);
+	cart.pushBack(product);
+	cout << Message("You have added to cart : ", LOG_MSG);
+	cout << *product;
+	return Result("Product is added to cart", SUCCESSFUL);
 }
 
 Result buyAllProductFromCart()
@@ -118,20 +154,6 @@ Result buyOneElementById()
 
 	cout << Message("You bought: ", LOG_MSG);
 	product->output();
-	return Result();
-}
-
-Result addProductToCart()
-{
-	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
-	int id;
-	cin >> id;
-	cin.get();
-	DataManager manager;
-	Product* product = manager.getProductById(id);
-	cart.pushBack(product);
-	cout << Message("You have added to cart : ", LOG_MSG) ;
-	(*product).output();
 	return Result();
 }
 
@@ -246,6 +268,7 @@ Result exit()
 
 Result exportProdXML()
 {
+	DataManager().exportXML();
 	cout << Message("Done.", LOG_MSG);
 	return Result();
 }

@@ -16,67 +16,67 @@ void toLowercase(string& line)
 Product* identifyType(string type)
 {
 	Product* prod = nullptr;
-	if (type == "Appliance" || type == "appliance")
+	if (type == "appliance")
 	{
 		prod = new Appliance();
 		return prod;
 	}
-	else if (type == "Audio&TV" || type == "audio&TV")
+	else if (type == "audio&TV")
 	{
 		prod = new AudioAndTv();
 		return prod;
 	}
-	else if (type == "Laptop&computer" || type == "laptop&computer")
+	else if (type == "laptop&computer")
 	{
 		prod = new LaptopAndComputer();
 		return prod;
 	}
-	else if (type == "Phone&tablet" || type == "phone&tablet")
+	else if (type == "phone&tablet")
 	{
 		prod = new PhoneAndTablet();
 		return prod;
 	}
-	else if (type == "Photo&videocamera" || type == "photo&videocamera")
+	else if (type == "photo&videocamera")
 	{
 		prod = new PhotoAndVideoCamera();
 		return prod;
 	}
-	else if (type == "Drink" || type == "drink")
+	else if (type == "drink")
 	{
 		prod = new Drink();
 		return prod;
 	}
-	else if (type == "Food" || type == "food")
+	else if (type == "food")
 	{
 		prod = new Food();
 		return prod;
 	}
-	else if (type == "Accessory" || type == "accessory")
+	else if (type == "accessory")
 	{
 		prod = new Accessory();
 		return prod;
 	}
-	else if (type == "Clothing" || type == "clothing")
+	else if (type == "clothing")
 	{
 		prod = new Clothing();
 		return prod;
 	}
-	else if (type == "Footwear" || type == "footwear")
+	else if (type == "footwear")
 	{
 		prod = new Footwear();
 		return prod;
 	}
-	else if (type == "Cosmetics" || type == "cosmetics")
+	else if(type == "cosmetics")
 	{
 		prod = new Cosmetics();
 		return prod;
 	}
-	else if (type == "Detergent" || type == "detergent")
+	else if (type == "detergent")
 	{
 		prod = new Detergent();
 		return prod;
 	}
-	else if (type == "Personal hygiene" || type == "personal hygiene")
+	else if (type == "personal hygiene")
 	{
 		prod = new PersonalHygiene();
 		return prod;

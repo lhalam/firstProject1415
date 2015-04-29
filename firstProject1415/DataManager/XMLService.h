@@ -7,4 +7,5 @@ class XMLService
 {
 public:
 	List<Product*> read();
+	void exportXML();
 };

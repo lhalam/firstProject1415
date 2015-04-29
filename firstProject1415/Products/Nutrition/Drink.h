@@ -18,4 +18,11 @@ public:
 
 	void setVolume(double volume_) { this->volume = volume_; }
 	double getVolume() const { return volume; }
+
+	virtual  List<pair<string, string>> metadata()
+	{
+		List<pair<string, string>> result = Nutrition::metadata();
+		result.pushBack(make_pair("volume", to_string(volume)));
+		return result;
+	}
 };
