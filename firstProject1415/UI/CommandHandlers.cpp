@@ -73,30 +73,24 @@ Result addNewProduct()
 
 Result buyAllProductFromCart()
 {
-	if (cart.size() == 1)
+	if (cart.size() == 0)
 	{
-		return Result("Your cart is empty.", SUCCESSFUL);
-	} else
+		cout << Message("Your cart is empty", LOG_MSG);
+		return Result();
+	}
+	auto end = cart.end();
+	for (auto it = cart.begin(); it != end; it++)
 	{
-		if (cart.size() == 0)
+		DataManager().changeQuantity((**it).getId(), -1);
+		ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
+		if (!stream.is_open())
 		{
-			cout << Message("Your cart is empty", LOG_MSG);
-			return Result();
+			return Result("Couldn't open file for writing...", TOTAL_ERROR);
 		}
-		List<Product*>::iterator end = cart.end();
-		for (List<Product*>::iterator it = cart.begin(); it != end; it++)
-		{
-			DataManager().changeQuantity((*it)->getId(), -1);
-			ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
-			if (!stream.is_open())
-			{
-				return Result("Couldn't open file for writing...", TOTAL_ERROR);
-			}
-			stream << *it << '\n';
-			stream.close();
-			
-			(*it)->output();
-		}
+		stream << (**it) << '\n';
+		stream.close();
+
+		cart.popFront()->output();
 	}
 	return Result("You bought all products.", SUCCESSFUL);
 }

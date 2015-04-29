@@ -7,7 +7,7 @@ Command commands[] =
 { 
 	Command("add product", addNewProduct, "adds new product", Access::ADMIN),
 	Command("buy", buyOneElementById, "buys product by id", Access::USER),
-	Command("buy all products", buyAllProductFromCart, "buys all product from cart", Access::USER),
+	Command("buy all products", buyAllProductFromCart, "buys all product from cart", Access(USER | GUEST)),
 	Command("change amount", changeAmount, "changes amount of products", Access::ADMIN),
 	Command("change product", changeProduct, "changes product settings", Access::ADMIN),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
@@ -25,7 +25,7 @@ Command commands[] =
 	Command("show cart", showCart, "shows all products added to cart", Access(GUEST | USER)),
 	Command("show purchase history", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
 	Command("show stats", showStats, "shows the statistics of all bought products", Access::ADMIN),
-	Command("add product to cart", addProductToCart ,"add product to cart by id ", Access(GUEST | USER | ADMIN)),
+	Command("add to cart", addProductToCart ,"add product to cart by id ", Access(GUEST | USER | ADMIN)),
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);

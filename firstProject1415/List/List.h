@@ -284,6 +284,7 @@ void List<T>::insert(iterator& iterToInsert, const T& value)
 	iterToInsert.ptr->prev = insertNode;
 }
 
+/*		БОДЯ!ВИПРАВ ЦЮ ФІГНЮ, через неї все крашиться(у методі buyAllProducts).		*/
 template <typename T>
 void List<T>::erase(iterator& iterToDel)
 {
@@ -296,6 +297,7 @@ void List<T>::erase(iterator& iterToDel)
 	{
 		head = iterToDel.ptr->next;
 	}
+
 	if (iterToDel.ptr != tail)
 	{
 		iterToDel.ptr->next->prev = iterToDel.ptr->prev;
@@ -305,14 +307,18 @@ void List<T>::erase(iterator& iterToDel)
 		tail = iterToDel.ptr->prev;
 		emptyNode->prev = tail;
 	}
+
 	delete iterToDel.ptr;
-	iterToDel.ptr = nullptr;
 }
 
 template <typename T>
 T List<T>::popBack()
 {
-	s--;
+	if (isEmpty())
+	{
+		throw exception("List is empty.");
+	}
+
 	iterator iterToDel = --end();
 	T valueToReturn = *iterToDel;
 	erase(iterToDel);
@@ -322,7 +328,11 @@ T List<T>::popBack()
 template <typename T>
 T List<T>::popFront()
 {
-	s--;
+	if (isEmpty())
+	{
+		throw exception("List is empty.");
+	}
+
 	iterator iterToDel = begin();
 	T valueToReturn = *iterToDel;
 	erase(iterToDel);
