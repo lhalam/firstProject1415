@@ -276,6 +276,8 @@ Result exportProdXML()
 
 Result exportHistoryToHTML()
 {
+	DataManager().writeInHTML(currentUser.getId(), Date(1, 1, 1), Date(1000, 1000, 1000));
+	cout << Message("Written history to HTML", LOG_MSG);
 	return Result();
 }
 

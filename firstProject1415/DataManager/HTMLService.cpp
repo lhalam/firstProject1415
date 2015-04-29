@@ -18,34 +18,31 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 				  "<title>Purchase history</title>\n"
 				  "<meta charset=\"UTF-8\"/>\n"
 				  "<style type=\"text/css\">\n"
-				  "* { font-family: Verdana; }"
-				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }"
-				  "p { font-size: 1.25em; }"
+				  "* { font-family: Verdana; }\n"
+				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }\n"
+				  "p { font-size: 1.25em; }\n"
 				  "</style>\n"
 				  "</head>";
 
 	file << head;
 
 	file << "<body>\n";
+	file << "<h1>Purchase history</h1>\n";
 
-	ifstream history(to_string(id) + ".txt");
 	UserService user;
-	Product *product;
+	Product *product = nullptr;
 	List<Product*> list = user.getAllFromStory(id);
 
-	while (!history.eof())
-	{
-		for (auto iter = list.begin(); iter != list.end(); iter++)
-		{ 
-			product = *iter;
-			string text = "<p>"
-					  "Name: " + product->getName() + "\n"
-					  "Manufacturer: " + product->getManufacturer() + "\n"
-					   "Price: " + to_string(product->getPrice()) + "\n"
-					   "</p>";
+	for (auto iter = list.begin(); iter != list.end(); iter++)
+	{ 
+		product = *iter;
+		string text = "<p>\n"
+				  	  "Name: " + product->getName() + "<br/>\n"
+					  "Manufacturer: " + product->getManufacturer() + "<br/>\n"
+					  "Price: " + to_string(product->getPrice()) + "<br/>\n"
+					  "</p>\n";
 
-			file << text;
-		}
+		file << text;
 	}
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
@@ -54,6 +51,6 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	}
 
 	file << "</body>\n";
-	file << "</html>";
+	file << "</html>\n";
 	file.close();
 }

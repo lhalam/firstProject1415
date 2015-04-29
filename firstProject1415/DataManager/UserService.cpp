@@ -63,7 +63,7 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 
 List<Product*> UserService::getAllFromStory(int id) const
 {
-	ifstream stream(to_string(id ) + ".txt");
+	ifstream stream(to_string(id) + ".txt");
 	if (!stream.is_open())
 	{
 		throw exception("Cannot open file for reading.");
