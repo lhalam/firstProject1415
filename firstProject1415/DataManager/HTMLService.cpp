@@ -26,12 +26,12 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 
 	file << head;
 
-	string body = "<body>\n";
+	file << "<body>\n";
 
 	ifstream history(to_string(id) + ".txt");
-	UserService *user = new UserService();
+	UserService user;
 	Product *product;
-	List<Product*> list = user->getAllFromStory(id);
+	List<Product*> list = user.getAllFromStory(id);
 
 	while (!history.eof())
 	{
@@ -44,7 +44,7 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 					   "Price: " + to_string(product->getPrice()) + "\n"
 					   "</p>";
 
-		file << text;
+			file << text;
 		}
 	}
 
@@ -53,10 +53,7 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 		delete *iter;
 	}
 
-	body += "</body>\n";
-
-	file << body;
-
+	file << "</body>\n";
 	file << "</html>";
 	file.close();
 }

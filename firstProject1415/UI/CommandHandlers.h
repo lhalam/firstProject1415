@@ -16,6 +16,7 @@ Result createUser();
 Result enterMatrix();
 Result exit();
 Result exportProdXML();
+Result exportHistoryToHTML();
 Result help();
 Result logIn();
 Result logOut();
