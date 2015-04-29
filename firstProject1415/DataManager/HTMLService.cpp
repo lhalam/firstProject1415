@@ -22,7 +22,7 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }\n"
 				  "p { font-size: 1.25em; }\n"
 				  "</style>\n"
-				  "</head>";
+				  "</head>\n";
 
 	file << head;
 
@@ -35,14 +35,16 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{ 
-		product = *iter;
-		string text = "<p>\n"
-				  	  "Name: " + product->getName() + "<br/>\n"
-					  "Manufacturer: " + product->getManufacturer() + "<br/>\n"
-					  "Price: " + to_string(product->getPrice()) + "<br/>\n"
-					  "</p>\n";
-
-		file << text;
+		auto metadataList = (*iter)->metadata();
+		file << "<p>\n";
+		string type = typeid(**iter).name();
+		type = type.substr(6);
+		file << type << ":<br/>\n";
+		for (auto metadataIter = metadataList.begin(); metadataIter != metadataList.end(); metadataIter++)
+		{
+			file << (*metadataIter).first << ": " << (*metadataIter).second << "<br/>\n";
+		}
+		file << "</p>\n";
 	}
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
