@@ -29,9 +29,9 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	string body = "<body>\n";
 
 	ifstream history(to_string(id) + ".txt");
-	UserService *user = new UserService();
+	UserService user;
 	Product *product;
-	List<Product*> list = user->getAllFromStory(id);
+	List<Product*> list = user.getAllFromStory(id);
 
 	while (!history.eof())
 	{
