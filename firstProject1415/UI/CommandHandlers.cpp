@@ -103,7 +103,7 @@ Result addProductToCart()
 	Product* product = manager.getProductById(id);
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
-	cout << *product;
+	(*product).output(); // Don`t even try to change it t0 "cout << *product  (!)"
 	return Result("Product is added to cart", SUCCESSFUL);
 }
 
