@@ -28,18 +28,17 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	string body = "<body>\n";
 
 	ifstream history(to_string(id) + ".txt");
+	UserService *user;
 	Product *product;
 	while (!history.eof())
 	{
 		string text = "<p>"
 					  "Name: " + product->getName() + "\n"
-					  "Manufacturer: " + product->getManufacturer() + "\n";
+					  "Manufacturer: " + product->getManufacturer() + "\n"
+					   "Price: " + to_string(product->getPrice()) + "\n"
+					   "</p>";
 
 		file << text;
-		file << "Price: ";
-		file << product->getPrice();
-		file << "\n";
-		file << "</p>";
 	}
 
 	body += "</body>\n";

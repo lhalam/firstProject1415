@@ -180,7 +180,7 @@ void UserService::saveToHistory(const Product& prod, unsigned quantity)
 	ofstream stream (to_string(id) + ".txt", ios_base::app);
 	if (!stream.is_open())
 	{
-		throw exception("Cannot open file for reading.");
+		throw exception("Cannot open file for writing.");
 	}
 	stream << quantity << endl;
 	stream << prod << endl;
