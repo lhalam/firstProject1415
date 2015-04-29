@@ -441,12 +441,15 @@ Result showCart()
 	for (auto iterator = cart.begin(); iterator != end; iterator++)
 	{
 		(**iterator).output();
+		cout << endl;
 	}
 	return Result();
 }
 
 Result showProducts()
 {
+	cout.precision(2);
+
 	List<Product*> allProducts = DataManager().readAllProducts();
 	if (allProducts.size() == 0)
 	{
