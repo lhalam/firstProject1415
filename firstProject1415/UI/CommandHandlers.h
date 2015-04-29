@@ -13,6 +13,7 @@ Result changeAmount();
 Result changeProduct();
 Result createAdmin();
 Result createUser();
+Result enterMatrix();
 Result exit();
 Result exportProdXML();
 Result help();

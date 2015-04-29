@@ -17,6 +17,7 @@ Command commands[] =
 	Command("import", addNewProductsFromXML, "adds new products from .xml file", Access::ADMIN),
 	Command("log in", logIn, "performs user authentication", Access::GUEST),
 	Command("log out", logOut, "exits user profile", Access(USER | ADMIN)),
+	Command("matrix", enterMatrix, "just a fun", Access(GUEST | USER | ADMIN)),
 	Command("register", createUser, "creates a new account", Access(GUEST | ADMIN)),
 	Command("register admin", createAdmin, "makes a normal user an administrator", Access::ADMIN),
 	Command("remove -u", removeUser, "deletes a specified user account", Access::ADMIN),

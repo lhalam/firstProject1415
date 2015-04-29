@@ -2,6 +2,7 @@
 #include "../DataManager/DataManager.h"
 #include "Globals.h"
 #include "../Products/Products.h"
+#include <Windows.h>
 
 using namespace std;
 
@@ -103,7 +104,7 @@ Result addProductToCart()
 	Product* product = manager.getProductById(id);
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
-	(*product).output(); // Don`t even try to change it t0 "cout << *product  (!)"
+	cout << *product;
 	return Result("Product is added to cart", SUCCESSFUL);
 }
 
@@ -524,5 +525,37 @@ Result showUsers()
 	}
 
 	cout << Message("Listing completed.", LOG_MSG);
+	return Result();
+}
+
+void delay(string a)
+{
+	for (int i = 0; i < a.length(); i++)
+	{
+		Sleep(100);
+		cout << a[i];
+	}
+}
+
+Result enterMatrix()
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	delay("Hi, Neo!");
+	cout << endl;
+	Sleep(2000);
+	delay("U must save the matrix bcs U are programmer!");
+	cout << endl;
+	Sleep(2000);
+	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant not equal zero");
+	Sleep(2000);
+	int x = 0;
+	while (x == 0)
+	{
+		delay("\nYour answer: ");
+		cin >> x;
+	}
+	Sleep(1000);
+	cout << "Congrat, bro !)";
+	Sleep(1000);
 	return Result();
 }
