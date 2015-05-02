@@ -49,15 +49,6 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{
-		string text = "<p>";
-					  "Name: " + product->getName() + "\n"
-					  "Manufacturer: " + product->getManufacturer() + "\n";
-
-		file << text;
-		file << "Price: ";
-		file << product->getPrice();
-		file << "\n";
-		file << "</p>";
 		delete *iter;
 	}
 
