@@ -14,6 +14,7 @@ Command commands[] =
 	Command("change -p", changeProduct, "changes product settings", Access::ADMIN),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
 	Command("export -p", exportProdXML, "exports all existing products to XML file", Access::ADMIN),
+	Command("export -html", exportHistoryToHTML, "exports purchase history to a web-document", Access::USER),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
 	Command("import", addNewProductsFromXML, "adds new products from .xml file", Access::ADMIN),
 	Command("log in", logIn, "performs user authentication", Access::GUEST),
@@ -29,8 +30,6 @@ Command commands[] =
 	Command("show -c", showCart, "shows all products added to cart", Access(GUEST | USER)),
 	Command("show -h", showPurchaseHistory, "shows the history of the purchases of the user", Access(USER | ADMIN)),
 	Command("show -s", showStats, "shows the statistics of all bought products", Access::ADMIN),
-	
-
 };
 
 const int numOfCommands = sizeof(commands) / sizeof(commands[0]);

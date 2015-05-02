@@ -1,5 +1,6 @@
 #include "HTMLService.h"
 #include "ProductService.h"
+#include "../List/List.h"
 
 #include <fstream>
 #include <string>
@@ -17,19 +18,36 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 				  "<title>Purchase history</title>\n"
 				  "<meta charset=\"UTF-8\"/>\n"
 				  "<style type=\"text/css\">\n"
-				  "* { font-family: Verdana; }"
-				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }"
-				  "p { font-size: 1.25em; }"
+				  "* { font-family: Verdana; }\n"
+				  "h1 { font-size: 2em; font-weight: normal; text-align: center; }\n"
+				  "p { font-size: 1.25em; }\n"
 				  "</style>\n"
-				  "</head>";
+				  "</head>\n";
 
 	file << head;
 
-	string body = "<body>\n";
+	file << "<body>\n";
+	file << "<h1>Purchase history</h1>\n";
 
-	ifstream history(to_string(id) + ".txt");
-	Product *product;
-	while (!history.eof())
+	UserService user;
+	Product *product = nullptr;
+	List<Product*> list = user.getAllFromStory(id);
+
+	for (auto iter = list.begin(); iter != list.end(); iter++)
+	{ 
+		auto metadataList = (*iter)->metadata();
+		file << "<p>\n";
+		string type = typeid(**iter).name();
+		type = type.substr(6);
+		file << type << ":<br/>\n";
+		for (auto metadataIter = metadataList.begin(); metadataIter != metadataList.end(); metadataIter++)
+		{
+			file << (*metadataIter).first << ": " << (*metadataIter).second << "<br/>\n";
+		}
+		file << "</p>\n";
+	}
+
+	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{
 		string text = "<p>";
 					  "Name: " + product->getName() + "\n"
@@ -40,12 +58,10 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 		file << product->getPrice();
 		file << "\n";
 		file << "</p>";
+		delete *iter;
 	}
 
-	body += "</body>\n";
-
-	file << body;
-
-	file << "</html>";
+	file << "</body>\n";
+	file << "</html>\n";
 	file.close();
 }

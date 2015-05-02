@@ -104,7 +104,7 @@ Result addProductToCart()
 	Product* product = manager.getProductById(id);
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
-	cout << *product;
+	(*product).output();
 	return Result("Product is added to cart", SUCCESSFUL);
 }
 
@@ -115,8 +115,10 @@ Result buyAllProductFromCart()
 		cout << Message("Your cart is empty", LOG_MSG);
 		return Result();
 	}
-	auto end = cart.end();
-	for (auto it = cart.begin(); it != end; it++)
+
+	cout << Message("You've bought: ", LOG_MSG) << endl;
+	auto it = cart.begin();
+	while(cart.size() != 0)
 	{
 		DataManager().changeQuantity((**it).getId(), -1);
 		ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
@@ -127,7 +129,9 @@ Result buyAllProductFromCart()
 		stream << (**it) << '\n';
 		stream.close();
 
+		it++;
 		cart.popFront()->output();
+		cout << endl;
 	}
 	return Result("You bought all products.", SUCCESSFUL);
 }
@@ -271,6 +275,13 @@ Result exportProdXML()
 {
 	DataManager().exportXML();
 	cout << Message("Done.", LOG_MSG);
+	return Result();
+}
+
+Result exportHistoryToHTML()
+{
+	DataManager().writeInHTML(currentUser.getId(), Date(1, 1, 1), Date(1000, 1000, 1000));
+	cout << Message("Written history to HTML", LOG_MSG);
 	return Result();
 }
 
@@ -428,7 +439,7 @@ Result showCart()
 {
 	if(cart.begin() == cart.end())
 	{
-		cout << Message("Your cart is empty.", CONTEXT_MSG);
+		cout << Message("Your cart is empty.", LOG_MSG);
 		return Result(SUCCESSFUL);
 	}
 
@@ -436,12 +447,15 @@ Result showCart()
 	for (auto iterator = cart.begin(); iterator != end; iterator++)
 	{
 		(**iterator).output();
+		cout << endl;
 	}
 	return Result();
 }
 
 Result showProducts()
 {
+	cout.precision(2);
+
 	List<Product*> allProducts = DataManager().readAllProducts();
 	if (allProducts.size() == 0)
 	{
@@ -528,11 +542,11 @@ Result showUsers()
 	return Result();
 }
 
-void delay(string a)
+void delay(string a, unsigned sleepDelay = 100)
 {
-	for (int i = 0; i < a.length(); i++)
+	for (unsigned i = 0; i < a.length(); i++)
 	{
-		Sleep(100);
+		Sleep(sleepDelay);
 		cout << a[i];
 	}
 }
@@ -540,22 +554,65 @@ void delay(string a)
 Result enterMatrix()
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-	delay("Hi, Neo!");
+	system("cls");
+	Sleep(3000);
+
+	delay("Hello, Mr. Anderson.");
 	cout << endl;
-	Sleep(2000);
-	delay("U must save the matrix bcs U are programmer!");
+	Sleep(3000);
+
+	system("cls");
+	delay("U must save the matrix bcs U are a programmer!");
 	cout << endl;
-	Sleep(2000);
+	Sleep(3000);
+	system("cls");
+
 	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant not equal zero");
 	Sleep(2000);
 	int x = 0;
-	while (x == 0)
+	while (x != 69)
 	{
+		if(x == 1337 || x == 228)
+		{
+			delay("Mama ama criminaaaaal...");
+			Sleep(2000);
+			break;
+		}
+		if(x == 1488)
+		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), RED);
+			delay("Die Fahne hoch! Die Reihen fest geschlossen!\n"
+				"SA marschiert mit ruhig festem Schritt.\n"
+				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				"Marschier'n im Geist in unser'n Reihen mit.\n"
+				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				"Marschier'n im Geist in unser'n Reihen mit. \n");
+			Sleep(1000);
+			delay("Nazi power!");
+			Sleep(2000);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+			break;
+		}
 		delay("\nYour answer: ");
 		cin >> x;
 	}
 	Sleep(1000);
-	cout << "Congrat, bro !)";
+	cout << "My congratulations, Mr.Anderson.";
+	Sleep(2000);
+	system("cls");
+
+	delay("....", 1000);
+	system("cls");
+	delay("But you hear that Mr. Anderson?...\n");
 	Sleep(1000);
+
+	delay("That is the sound of inevitability...\n");
+	Sleep(1000);
+
+	delay("It is the sound of your death...\n");
+	Sleep(1000);
+
+	delay("Goodbye, Mr. Anderson...\n");
+	Sleep(2000);
 	return Result();
 }
