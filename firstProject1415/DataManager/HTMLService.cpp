@@ -31,7 +31,7 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	Product *product;
 	while (!history.eof())
 	{
-		string text = "<p>"
+		string text = "<p>";
 					  "Name: " + product->getName() + "\n"
 					  "Manufacturer: " + product->getManufacturer() + "\n";
 
