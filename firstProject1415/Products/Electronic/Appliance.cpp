@@ -4,21 +4,21 @@
 
 Appliance::Appliance():
 	Electronic(),
-	memoryCard(0)
+	height(0.0)
 {
 }
 
 istream& operator>>(istream& stream, Appliance& obj)
 {
 	stream >> (Electronic&)obj;
-	stream >> obj.memoryCard;
+	stream >> obj.height;
 	return stream;
 }
 
 ostream& operator<<(ostream& stream, const Appliance& obj)
 {
 	stream << (Electronic&)obj
-		   << obj.memoryCard << endl;
+		   << obj.height << endl;
 	return stream;
 }
 
@@ -26,12 +26,12 @@ void Appliance::input()
 {
 	Electronic::input();
 
-	cout << Message("Input memory card: ", CONTEXT_MSG);
-	forInput(memoryCard, Message("Bad input. Try Again:", ALERT_MSG));
+	cout << Message("Height: ", CONTEXT_MSG);
+	forInput(height, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void Appliance::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), LOG_MSG);
+	cout << Message("Height: " + to_string(height), LOG_MSG);
 }
