@@ -1,4 +1,5 @@
 #include "Product.h"
+#include "../UI/UI.h"
 
 Product::Product():
 	name("No name"), 

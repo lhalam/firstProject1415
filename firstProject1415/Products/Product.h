@@ -3,8 +3,6 @@
 #include <iostream>
 #include "../List/List.h"
 #include <utility>
-#include "..\UI\Message.h"
-#include "..\UI\Globals.h"
 
 using namespace std;
 
