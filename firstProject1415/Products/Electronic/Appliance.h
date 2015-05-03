@@ -4,7 +4,7 @@
 class Appliance : public Electronic
 {
 private:
-	int memoryCard;
+        double height;
 public:
 	Appliance();
 
@@ -16,7 +16,7 @@ public:
 	virtual  List<pair<string, string>> metadata()
 	{
 		List<pair<string, string>> result = Electronic::metadata();
-		result.pushBack(make_pair("memorycard", to_string(memoryCard)));
+		result.pushBack(make_pair("height", to_string(height)));
 		return result;
 	}
 
