@@ -5,14 +5,14 @@
 
 AudioAndTv::AudioAndTv(): 
 	Electronic(), 
-	memoryCard(0) 
+	screenSize(0.0) 
 {
 }
 
 istream& operator>>(istream& stream, AudioAndTv& obj)
 {
 	stream >> (Electronic&)obj;
-	stream >> obj.memoryCard;
+	stream >> obj.screenSize;
 	stream.get();
 	return stream;
 }
@@ -20,7 +20,7 @@ istream& operator>>(istream& stream, AudioAndTv& obj)
 ostream& operator<<(ostream& stream, const AudioAndTv& obj)
 {
 	stream << (Electronic&)obj
-		   << obj.memoryCard << endl;
+		   << obj.screenSize << endl;
 	return stream;
 }
 
@@ -28,12 +28,12 @@ void AudioAndTv::input()
 {
 	Electronic::input();
 
-	cout << Message("Input memory card: ", CONTEXT_MSG);
-	forInput(memoryCard, Message("Bad input. Try Again:", ALERT_MSG));
+	cout << Message("Input screen size: ", CONTEXT_MSG);
+	forInput(screenSize, Message("Bad input. Try Again:", ALERT_MSG));
 }
 
 void AudioAndTv::output() const
 {
 	Electronic::output();
-	cout << Message("Memory card: " + to_string(memoryCard), LOG_MSG);
+	cout << Message("Screen size: " + to_string(screenSize), LOG_MSG);
 }
