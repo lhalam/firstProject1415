@@ -1,6 +1,4 @@
 #include "Nutrition.h"
-#include "..\..\UI\Message.h"
-#include "..\..\UI\Globals.h"
 
 Nutrition::Nutrition():
 	Product(),
@@ -67,4 +65,43 @@ void Nutrition::output() const
 	cout << Message("Manufacture date: " + this->manufactureDate, LOG_MSG)
 		 << Message("Expiration date: " + this->expirationDate, LOG_MSG)
 		 << Message("Ingredients: " + this->ingredients, LOG_MSG);
+}
+
+List<pair<string, string>> Nutrition::metadata()
+{
+	List<pair<string, string>> result = Product::metadata();
+	result.pushBack(make_pair("manufactureDate", manufactureDate));
+	result.pushBack(make_pair("expirationDate", expirationDate));
+	result.pushBack(make_pair("ingredients", ingredients));
+	return result;
+}
+
+void Nutrition::fill(string source)
+{
+	this->Product::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0, k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		switch (k)
+		{
+		case 4: manufactureDate = field;
+			break;
+		case 5: expirationDate = field;
+			break;
+		case 6: ingredients = field;
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
 }

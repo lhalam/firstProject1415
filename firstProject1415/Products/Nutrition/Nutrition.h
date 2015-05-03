@@ -29,12 +29,9 @@ public:
 	string getIngredients() const { return ingredients; }
 	void setIngredients(string ing) { this->ingredients = ing; }
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Product::metadata();
-		result.pushBack(make_pair("manufactureDate", manufactureDate));
-		result.pushBack(make_pair("expirationDate", expirationDate));
-		result.pushBack(make_pair("ingredients", ingredients));
-		return result;
-	}
+	//returns list of pairs(first - name of field, second - its value)
+	virtual  List<pair<string, string>> metadata();
+
+	//fills all the fields in class (values taken from given string)
+	virtual void fill(string);
 };

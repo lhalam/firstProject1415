@@ -3,6 +3,8 @@
 #include <iostream>
 #include "../List/List.h"
 #include <utility>
+#include "..\UI\Message.h"
+#include "..\UI\Globals.h"
 
 using namespace std;
 
@@ -45,13 +47,9 @@ public:
 	friend istream& operator>>(istream& stream, Product& obj);
 	friend ostream& operator<<(ostream& stream, const Product& obj);
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result;
-		result.pushBack(make_pair("name", name));
-		result.pushBack(make_pair("manufacturer", manufacturer));
-		result.pushBack(make_pair("price", to_string(price)));
-		result.pushBack(make_pair("id", to_string(id)));
-		return result;
-	}
+	//returns list of pairs(first - name of field, second - its value)
+	virtual  List<pair<string, string>> metadata();
+
+	//fills all the fields in class (values taken from given string)
+	virtual void fill(string);
 };

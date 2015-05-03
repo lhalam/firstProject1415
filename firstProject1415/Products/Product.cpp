@@ -1,6 +1,4 @@
 #include "Product.h"
-#include "..\UI\Message.h"
-#include "..\UI\Globals.h"
 
 Product::Product():
 	name("No name"), 
@@ -75,4 +73,45 @@ ostream& operator<<(ostream& stream, const Product& obj)
 		   << obj.price << '\n' 
 		   << obj.id << endl;
 	return stream;
+}
+
+List<pair<string, string>> Product::metadata()
+{
+	List<pair<string, string>> result;
+	result.pushBack(make_pair("name", name));
+	result.pushBack(make_pair("manufacturer", manufacturer));
+	result.pushBack(make_pair("price", to_string(price)));
+	result.pushBack(make_pair("id", to_string(id)));
+	return result;
+}
+
+void Product::fill(string source)
+{
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0, k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		switch (k)
+		{
+		case 0: name = field;
+			break;
+		case 1: manufacturer = field;
+			break;
+		case 2: price = stod(field);
+			break;
+		case 3: id = stoul(field);
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
 }

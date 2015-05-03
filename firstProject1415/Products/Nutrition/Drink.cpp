@@ -1,6 +1,4 @@
 #include "Drink.h"
-#include "..\..\UI\Message.h"
-#include "..\..\UI\Globals.h"
 
 Drink::Drink():
 	Nutrition(),
@@ -35,4 +33,36 @@ void Drink::output() const
 {
 	Nutrition::output();
 	cout << Message("Volume: " + to_string(this->volume), LOG_MSG);
+}
+
+List<pair<string, string>> Drink::metadata()
+{
+	List<pair<string, string>> result = Nutrition::metadata();
+	result.pushBack(make_pair("volume", to_string(volume)));
+	return result;
+}
+
+void Drink::fill(string source)
+{
+	this->Nutrition::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0, k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		if (k == 7)
+		{
+			volume = stod(field);
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
 }

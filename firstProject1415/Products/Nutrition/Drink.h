@@ -19,10 +19,9 @@ public:
 	void setVolume(double volume_) { this->volume = volume_; }
 	double getVolume() const { return volume; }
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Nutrition::metadata();
-		result.pushBack(make_pair("volume", to_string(volume)));
-		return result;
-	}
+	//returns list of pairs(first - name of field, second - its value)
+	virtual  List<pair<string, string>> metadata();
+
+	//fills all the fields in class (values taken from given string)
+	virtual void fill(string);
 };
