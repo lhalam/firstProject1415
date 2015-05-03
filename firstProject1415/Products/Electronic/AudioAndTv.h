@@ -4,7 +4,7 @@
 class AudioAndTv : public Electronic
 {
 private:
-	int memoryCard;
+	double screenSize;
 public:
 	AudioAndTv();
 
@@ -16,7 +16,7 @@ public:
 	virtual  List<pair<string, string>> metadata()
 	{
 		List<pair<string, string>> result = Electronic::metadata();
-		result.pushBack(make_pair("memorycard", to_string(memoryCard)));
+		result.pushBack(make_pair("screenSize", to_string(screenSize)));
 		return result;
 	}
 
