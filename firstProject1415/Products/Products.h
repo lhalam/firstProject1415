@@ -2,11 +2,11 @@
 
 /* All product ierarchy included for external use */
 #include "Product.h"
-#include "../Products/Electronic/Appliance.h"
-#include "../Products/Electronic/AudioAndTv.h"
-#include "../Products/Electronic/LaptopAndComputer.h"
-#include "../Products/Electronic/PhotoAndVideoCamera.h"
-#include "../Products/Electronic/PhoneAndTablet.h"
+#include "../Products/Electronics/Appliance.h"
+#include "../Products/Electronics/AudioAndTv.h"
+#include "../Products/Electronics/LaptopAndComputer.h"
+#include "../Products/Electronics/PhotoAndVideoCamera.h"
+#include "../Products/Electronics/PhoneAndTablet.h"
 #include "../Products/Nutrition/Food.h"
 #include "../Products/Nutrition/Drink.h"
 #include "../Products/Textile/Accessory.h"
