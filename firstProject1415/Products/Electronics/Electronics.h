@@ -30,14 +30,9 @@ public:
 
 	void setModel(string model) { this->model = model; }
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Product::metadata();
-		result.pushBack(make_pair("category", category));
-		result.pushBack(make_pair("weight", to_string(weight)));
-		result.pushBack(make_pair("model", model));
-		return result;
-	}
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string);
 
 	~Electronics(){}
 };
