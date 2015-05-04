@@ -13,12 +13,6 @@ public:
 
 	virtual void input();
 	virtual void output() const;
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Electronics::metadata();
-		result.pushBack(make_pair("screenSize", to_string(screenSize)));
-		return result;
-	}
 
 	virtual  List<pair<string, string>> metadata();
 
