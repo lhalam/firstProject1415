@@ -61,4 +61,43 @@ ostream& operator<<(ostream& stream, const Electronics& obj)
 	return stream;
 }
 
+List<pair<string, string>> Electronics::metadata()
+{
+	List<pair<string, string>> result = Product::metadata();
+	result.pushBack(make_pair("category", category));
+	result.pushBack(make_pair("weight", to_string(weight)));
+	result.pushBack(make_pair("model", model));
+	return result;
+}
+
+void Electronics::fill(string source)
+{
+	this->Product::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0, k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		switch (k)
+		{
+		case 4: category = field;
+			break;
+		case 5: weight = stod(field);
+			break;
+		case 6: model = field;
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
+}
+
 
