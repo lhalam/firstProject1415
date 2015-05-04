@@ -34,13 +34,9 @@ public:
 	virtual void input();
 	virtual void output() const;
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Product::metadata();
-		result.pushBack(make_pair("manufactureDate", manufactureDate));
-		result.pushBack(make_pair("volume", to_string(volume)));
-		return result;
-	}
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string);
 
 	virtual ~ChemicalProduct(){}
 };
