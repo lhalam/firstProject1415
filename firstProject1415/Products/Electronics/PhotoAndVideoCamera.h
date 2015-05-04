@@ -18,12 +18,9 @@ public:
 	virtual void input();
 	virtual void output() const;
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Electronics::metadata();
-		result.pushBack(make_pair("megapixels", to_string(megapixels)));
-		return result;
-	}
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string);
 
 	~PhotoAndVideoCamera(){}
 };
