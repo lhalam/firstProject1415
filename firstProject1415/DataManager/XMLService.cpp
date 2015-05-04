@@ -17,6 +17,8 @@ List<Product*> XMLService::read()
 
 	string line;
 	string type;
+	string source = "";
+	Product* prod = nullptr;
 	while (!products.eof())
 	{
 		if (products.get() == '<')
@@ -25,32 +27,33 @@ List<Product*> XMLService::read()
 			if (identifyType(line) != nullptr)
 			{
 				type = line;
-				toLowercase(type);
-				Product *prod = identifyType(type);
+				prod = identifyType(type);
+				int k = 0;
+				while (line != ('/' + type))
+				{
+					if (k == 0)
+					{
+						getline(products, line, '>');
+						if (line == ('/' + type)) break;
+						getline(products, line, '<');
+						source += line;
+						k = 1;
+					}
+					else
+					{
+						getline(products, line, '<');
+						source += ',';
+						k = 0;
+					}
+				}
+				prod->fill(source);
+				source.empty();
 				list.pushBack(prod);
-			}
-			if (line == "name")
-			{
-				getline(products, line, '<');
-				list.back()->setName(line);
-			}
-			else if (line == "manufacturer")
-			{
-				getline(products, line, '<');
-				list.back()->setManufacturer(line);
-			}
-			else if (line == "price")
-			{
-				getline(products, line, '<');
-				list.back()->setPrice(stod(line));
-			}
-			else if (line == "id")
-			{
-				getline(products, line, '<');
-				list.back()->setId(stoi(line));
+				prod = nullptr;
 			}
 		}
 	}
+	delete[] prod;
 	products.close();
 	return list;
 }

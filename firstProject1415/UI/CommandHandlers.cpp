@@ -74,7 +74,7 @@ Result addNewProduct()
 Result addNewProductsFromXML()
 {
 	char res;
-	cout << Message("File you want to add products from is Products.xml (y/n)", LOG_MSG);
+	cout << Message("File you want to add products from is Products.xml? (y/n)", LOG_MSG);
 	cin >> res;
 	cin.get();
 	if (res == 'y')

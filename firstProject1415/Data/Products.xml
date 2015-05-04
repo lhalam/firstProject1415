@@ -5,5 +5,19 @@
     <manufacturer>Cow</manufacturer>
     <price>11.7</price>
     <id>1</id>
+    <manufactureDate>03/05/2015</manufactureDate>
+    <expirationDate>28/05/2015</expirationDate>
+    <ingredients>olsoh sjdbsj; sjsjs; sjsjsjd</ingredients>
+    <GMOContent>0</GMOContent>
   </food>
+  <drink>
+    <name>Meat</name>
+    <manufacturer>Cow</manufacturer>
+    <price>11.7</price>
+    <id>1</id>
+    <manufactureDate>03/05/2015</manufactureDate>
+    <expirationDate>28/05/2015</expirationDate>
+    <ingredients>olsoh sjdbsj; sjsjs; sjsjsjd</ingredients>
+    <volume>0.5</volume>
+  </drink>
 </products>
