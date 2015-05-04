@@ -48,3 +48,39 @@ void ChemicalProduct::output() const
 	cout << Message("Manufacture date: " + this->manufactureDate, LOG_MSG);
 	cout << Message("Volume: " + to_string(this->volume), LOG_MSG);
 }
+
+List<pair<string, string>> ChemicalProduct::metadata()
+{
+	List<pair<string, string>> result = Product::metadata();
+	result.pushBack(make_pair("manufactureDate", manufactureDate));
+	result.pushBack(make_pair("volume", to_string(volume)));
+	return result;
+}
+
+void ChemicalProduct::fill(string source)
+{
+	this->Product::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0, k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		switch (k)
+		{
+		case 4: manufactureDate = field;
+			break;
+		case 5: volume = stod(field);
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
+}
