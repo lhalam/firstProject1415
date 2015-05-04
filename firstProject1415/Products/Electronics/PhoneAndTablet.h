@@ -25,6 +25,10 @@ public:
 		return result;
 	}
 
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string);
+
 	~PhoneAndTablet(){}
 };
 
