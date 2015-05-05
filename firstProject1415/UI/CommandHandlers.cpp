@@ -560,7 +560,17 @@ void delay(string a, unsigned sleepDelay = 100)
 
 Result enterMatrix()
 {
+	system("cls");
+	Sleep(100);
+
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+
+	for (int i = 0; i < 3000; i++)
+	{
+		cout << rand();
+	}
+
+	Sleep(100);
 	system("cls");
 	Sleep(3000);
 
@@ -574,7 +584,7 @@ Result enterMatrix()
 	Sleep(3000);
 	system("cls");
 
-	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant not equal zero");
+	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant is not equal to zero");
 	Sleep(2000);
 	int x = 0;
 	while (x != 69)
@@ -589,11 +599,11 @@ Result enterMatrix()
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), RED);
 			delay("Die Fahne hoch! Die Reihen fest geschlossen!\n"
-				"SA marschiert mit ruhig festem Schritt.\n"
-				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
-				"Marschier'n im Geist in unser'n Reihen mit.\n"
-				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
-				"Marschier'n im Geist in unser'n Reihen mit. \n");
+				  "SA marschiert mit ruhig festem Schritt.\n"
+				  "Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				  "Marschier'n im Geist in unser'n Reihen mit.\n"
+				  "Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				  "Marschier'n im Geist in unser'n Reihen mit. \n");
 			Sleep(1000);
 			delay("Nazi power!");
 			Sleep(2000);
@@ -621,5 +631,10 @@ Result enterMatrix()
 
 	delay("Goodbye, Mr. Anderson...\n");
 	Sleep(2000);
+
+	cin.get();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+	clear();
+
 	return Result();
 }
