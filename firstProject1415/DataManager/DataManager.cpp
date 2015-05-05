@@ -1,5 +1,6 @@
 #include "DataManager.h"
 
+
 void DataManager::saveUser(const User& user)
 {
 	UserService service;

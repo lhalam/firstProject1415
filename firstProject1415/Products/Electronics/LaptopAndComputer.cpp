@@ -3,6 +3,7 @@
 #include "..\..\UI\Message.h"
 
 
+
 LaptopAndComputer::LaptopAndComputer(): 
 	Electronics(),
 	firm(" ")

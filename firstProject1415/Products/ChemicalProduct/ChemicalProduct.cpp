@@ -2,6 +2,7 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
+
 ChemicalProduct::ChemicalProduct():
 	Product(),
 	manufactureDate("00.00.0000"), 

@@ -2,6 +2,7 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
+
 PhotoAndVideoCamera::PhotoAndVideoCamera():
 	Electronics(),
 	megapixels(0.0)

@@ -2,6 +2,7 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
+
 Textile::Textile() :
 	Product(), 
 	material("Unknown material"), 

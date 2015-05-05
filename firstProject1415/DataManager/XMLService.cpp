@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 
+
 List<Product*> XMLService::read()
 {
 	ifstream products("Products.xml");

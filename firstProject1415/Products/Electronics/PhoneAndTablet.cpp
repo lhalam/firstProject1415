@@ -3,6 +3,7 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
+
 PhoneAndTablet::PhoneAndTablet():
 	Electronics(),
 	memoryCard(0)

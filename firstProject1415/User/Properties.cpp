@@ -1,5 +1,7 @@
+#include "stdafx.h"
 #include "Properties.h"
 #include "../UI/Message.h"
+
 
 Properties::Properties() :
 	role(GUEST),

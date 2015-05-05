@@ -2,6 +2,7 @@
 #include "..\..\UI\Message.h"
 #include "..\..\UI\Globals.h"
 
+
 Appliance::Appliance():
 	Electronics(),
 	height(0.0)
