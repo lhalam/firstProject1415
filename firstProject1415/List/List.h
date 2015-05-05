@@ -20,6 +20,21 @@ private:
 
 	Node* head;
 	Node* tail;
+
+	//have to save pointer to element after last 
+	//because this one is always existing
+	//as alternative I can omit saving tail ptr
+	//because emptyNode->prev is tail
+	//but then will be complication in writing and reading code
+
+	//if I make nullptr as empty node
+	//I won't come back to tail
+	//because nullptr->prev doesnt make sense
+	//For instance, I cant write "listObject.end()--"
+
+	//I also cant save empty Node as tail->next (not to save it explicitly)
+	//because if list is empty, tail equals nullptr (nullptr->next is error!)
+
 	Node* emptyNode;
 	int s;
 
@@ -121,11 +136,11 @@ public:
 	//returns iterator to first element
 	iterator begin() const
 	{
-		if (head == nullptr)
+		if (head)
 		{
-			return iterator(emptyNode);
+			return iterator(head);
 		}
-		return iterator(head);
+		return iterator(emptyNode);
 	}
 
 	//returns iterator to element after last one
@@ -165,12 +180,12 @@ public:
 	{
 		return s == 0;
 	}
-}; 
+};
 
 template <typename T>
-List<T>::List(const List& copy):
-	emptyNode(new Node()),
-	s(0)
+List<T>::List(const List& copy) :
+emptyNode(new Node()),
+s(0)
 {
 	const Node* ptrToCopy = copy.head;
 
@@ -213,15 +228,12 @@ void List<T>::pushBack(const T & value)
 	s++;
 	if (tail)
 	{
-		tail->next = new Node(value, nullptr, tail);
+		tail->next = new Node(value, emptyNode, tail);
 		tail = tail->next;
-		tail->next = emptyNode;
 	}
-
 	else
 	{
-		tail = head = new Node(value);
-		tail->next = emptyNode;
+		tail = head = new Node(value, emptyNode);
 	}
 
 	emptyNode->prev = tail;
@@ -233,13 +245,11 @@ void List<T>::pushFront(const T & value)
 	s++;
 	if (head)
 	{
-		head->prev = new Node(value, head, head->next);
-		head = head->prev;
+		head = head->prev = new Node(value, head);
 	}
 	else
 	{
-		tail = head = new Node(value);
-		tail->next = emptyNode;
+		tail = head = new Node(value, emptyNode);
 		emptyNode->prev = tail;
 	}
 }
@@ -264,19 +274,19 @@ typename List<T>::iterator List<T>::find(const T& value, const iterator& startSe
 template <typename T>
 void List<T>::insert(iterator& iterToInsert, const T& value)
 {
-	s++;
 	if (iterToInsert == begin())
 	{
 		pushFront(value);
 		return;
 	}
 
-	else if (iterToInsert == end())
+	if (iterToInsert == end())
 	{
 		pushBack(value);
 		return;
 	}
 
+	s++;
 	Node* insertNode = new Node(value, iterToInsert.ptr);
 
 	iterToInsert.ptr->prev->next = insertNode;
@@ -284,30 +294,23 @@ void List<T>::insert(iterator& iterToInsert, const T& value)
 	iterToInsert.ptr->prev = insertNode;
 }
 
-/*		БОДЯ!ВИПРАВ ЦЮ ФІГНЮ, через неї все крашиться(у методі buyAllProducts).		*/
 template <typename T>
 void List<T>::erase(iterator& iterToDel)
 {
+	if (iterToDel.ptr == head)
+	{
+		popFront();
+		return;
+	}
+	if (iterToDel.ptr == tail)
+	{
+		popBack();
+		return;
+	}
 	s--;
-	if (iterToDel.ptr != head)
-	{
-		iterToDel.ptr->prev->next = iterToDel.ptr->next;
-	}
-	else
-	{
-		head = iterToDel.ptr->next;
-	}
-
-	if (iterToDel.ptr != tail)
-	{
-		iterToDel.ptr->next->prev = iterToDel.ptr->prev;
-	}
-	else
-	{
-		tail = iterToDel.ptr->prev;
-		emptyNode->prev = tail;
-	}
-
+	iterToDel->next->prev = iterToDel->prev;
+	iterToDel->prev->next = iterToDel->next;
+	
 	delete iterToDel.ptr;
 }
 
@@ -319,9 +322,22 @@ T List<T>::popBack()
 		throw exception("List is empty.");
 	}
 
-	iterator iterToDel = --end();
-	T valueToReturn = *iterToDel;
-	erase(iterToDel);
+	s--;
+	T valueToReturn = tail->value;
+	Node* ptrToDel = tail;
+
+	tail = tail->prev;
+	if (tail)
+	{
+		tail->next = emptyNode;
+	}
+	else
+	{
+		head = nullptr;
+	}
+	emptyNode->prev = tail;
+
+	delete ptrToDel;
 	return valueToReturn;
 }
 
@@ -333,8 +349,20 @@ T List<T>::popFront()
 		throw exception("List is empty.");
 	}
 
-	iterator iterToDel = begin();
-	T valueToReturn = *iterToDel;
-	erase(iterToDel);
+	s--;
+	T valueToReturn = head->value;
+	Node* ptrToDel = head;
+
+	//if head is last value in list
+	//head cant move to emptyNode
+	if (head == tail)
+	{
+		tail = head = nullptr;
+	}
+	else
+	{
+		head = head->next;
+	}
+	delete ptrToDel;
 	return valueToReturn;
 }

@@ -11,6 +11,7 @@ Result buyAllProductFromCart();
 Result buyOneElementById();
 Result changeAmount();
 Result changeProduct();
+Result clear();
 Result createAdmin();
 Result createUser();
 Result enterMatrix();

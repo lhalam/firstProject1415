@@ -102,6 +102,11 @@ Result addProductToCart()
 	cin.get();
 	DataManager manager;
 	Product* product = manager.getProductById(id);
+	if (product == nullptr)
+	{
+		return Result("There is no product with such id", NOT_SUCCESSFUL);
+	}
+
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
 	(*product).output();
@@ -120,14 +125,9 @@ Result buyAllProductFromCart()
 	auto it = cart.begin();
 	while(cart.size() != 0)
 	{
-		DataManager().changeQuantity((**it).getId(), -1);
-		ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
-		if (!stream.is_open())
-		{
-			return Result("Couldn't open file for writing...", TOTAL_ERROR);
-		}
-		stream << (**it) << '\n';
-		stream.close();
+		DataManager manager;
+		manager.changeQuantity((**it).getId(), -1);
+		manager.saveToUserHistory(**it, 1);
 
 		it++;
 		cart.popFront()->output();
@@ -142,20 +142,17 @@ Result buyOneElementById()
 	int id;
 	cin >> id;
 	cin.get();
+
+	DataManager manager;
 	
-	Product* product = DataManager().getProductById(id);
+	Product* product = manager.getProductById(id);
 	if (product == nullptr)
 	{
-		return Result("There is no product with such an id", NOT_SUCCESSFUL);
+		return Result("There is no product with such id", NOT_SUCCESSFUL);
 	}
-	DataManager().changeQuantity(product->getId(), -1);
-	ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
-	if (!stream.is_open())
-	{
-		return Result("Couldn't open file for writing...", TOTAL_ERROR);
-	}
-	stream << *product << '\n';
-	stream.close();
+
+	manager.changeQuantity(product->getId(), -1);
+	manager.saveToUserHistory(*product, 1);
 
 	cout << Message("You bought: ", LOG_MSG);
 	product->output();
@@ -214,6 +211,16 @@ Result changeProduct()
 
 	delete[] prod;
 	return Result("Product is changed.", SUCCESSFUL);
+}
+
+Result clear()
+{
+	system("cls");
+	cout << "Welcome to our shop!" << endl;
+	cout << "Type 'help' for list of available commands" << endl;
+	cout << "________________________________________________________________________________" << endl;
+
+	return Result();
 }
 
 Result createAdmin()
@@ -553,7 +560,17 @@ void delay(string a, unsigned sleepDelay = 100)
 
 Result enterMatrix()
 {
+	system("cls");
+	Sleep(100);
+
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+
+	for (int i = 0; i < 3000; i++)
+	{
+		cout << rand();
+	}
+
+	Sleep(100);
 	system("cls");
 	Sleep(3000);
 
@@ -567,7 +584,7 @@ Result enterMatrix()
 	Sleep(3000);
 	system("cls");
 
-	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant not equal zero");
+	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant is not equal to zero");
 	Sleep(2000);
 	int x = 0;
 	while (x != 69)
@@ -582,11 +599,11 @@ Result enterMatrix()
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), RED);
 			delay("Die Fahne hoch! Die Reihen fest geschlossen!\n"
-				"SA marschiert mit ruhig festem Schritt.\n"
-				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
-				"Marschier'n im Geist in unser'n Reihen mit.\n"
-				"Kam'raden, die Rotfront und Reaktion erschossen,\n"
-				"Marschier'n im Geist in unser'n Reihen mit. \n");
+				  "SA marschiert mit ruhig festem Schritt.\n"
+				  "Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				  "Marschier'n im Geist in unser'n Reihen mit.\n"
+				  "Kam'raden, die Rotfront und Reaktion erschossen,\n"
+				  "Marschier'n im Geist in unser'n Reihen mit. \n");
 			Sleep(1000);
 			delay("Nazi power!");
 			Sleep(2000);
@@ -614,5 +631,10 @@ Result enterMatrix()
 
 	delay("Goodbye, Mr. Anderson...\n");
 	Sleep(2000);
+
+	cin.get();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), WHITE);
+	clear();
+
 	return Result();
 }

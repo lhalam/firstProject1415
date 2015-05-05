@@ -32,25 +32,26 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 
 	UserService user;
 	Product *product = nullptr;
-	List<Product*> list = user.getAllFromStory(id);
+	auto list = user.getAllFromHistory(id);
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{ 
-		auto metadataList = (*iter)->metadata();
+		auto metadataList = (*iter).first->metadata();
 		file << "<p>\n";
-		string type = typeid(**iter).name();
+		string type = typeid(*((*iter).first)).name();
 		type = type.substr(6);
 		file << type << ":<br/>\n";
 		for (auto metadataIter = metadataList.begin(); metadataIter != metadataList.end(); metadataIter++)
 		{
 			file << (*metadataIter).first << ": " << (*metadataIter).second << "<br/>\n";
 		}
+		file << "Quantity: " << (*iter).second << "<br/>\n";
 		file << "</p>\n";
 	}
 
 	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{
-		delete *iter;
+		delete (*iter).first;
 	}
 
 	file << "</body>\n";

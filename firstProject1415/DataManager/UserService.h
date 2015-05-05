@@ -20,7 +20,7 @@ public:
 	List<User*> readAll();
 
 	//Returns a list of each user`s purchases
-	List<Product*> getAllFromStory(int id) const;
+	List<pair<Product*, int>> getAllFromHistory(int id) const;
 
 	//Returns a list of users that match a predicate
 	List<User*> read(function<bool(const User&)> predicate);

@@ -43,7 +43,7 @@ User* DataManager::getUserById(int id)
 	return user.getById(id);
 }
 
-void saveToUserHistory(const Product& prod, unsigned quantity)
+void DataManager::saveToUserHistory(const Product& prod, unsigned quantity)
 {
 	UserService().saveToHistory(prod, quantity);
 }
@@ -77,9 +77,9 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 	return service.read(predicate);
 }
 
-List<Product*> DataManager::getAllFromUserStory(int id)
+List<pair<Product*, int>> DataManager::getAllFromUserStory(int id)
 {
-	return UserService().getAllFromStory(id);
+	return UserService().getAllFromHistory(id);
 }
 
 int DataManager::getQuantity(int id)

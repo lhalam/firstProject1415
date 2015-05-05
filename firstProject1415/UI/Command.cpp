@@ -5,16 +5,16 @@
 /*Initialization of commands; commands are listed alphabetically*/
 Command commands[] = 
 {
-	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER | ADMIN)),
+	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("add -p", addNewProduct, "adds new product", Access::ADMIN),
-	Command("add -pc", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("buy", buyOneElementById, "buys product by id", Access::USER),
 	Command("buy -a", buyAllProductFromCart, "buys all product from cart", Access(USER | GUEST)),
 	Command("change amount", changeAmount, "changes amount of products", Access::ADMIN),
 	Command("change -p", changeProduct, "changes product settings", Access::ADMIN),
+	Command("clear", clear, "clears the screen", Access(GUEST | USER | ADMIN)),
 	Command("exit", exit, "exits the program", Access(GUEST | USER | ADMIN)),
 	Command("export -p", exportProdXML, "exports all existing products to XML file", Access::ADMIN),
-	Command("export -html", exportHistoryToHTML, "exports purchase history to a web-document", Access::USER),
+	Command("export -h", exportHistoryToHTML, "exports purchase history to a web-document", Access::USER),
 	Command("help", help, "provides you with the list of available commands and their description", Access(GUEST | USER | ADMIN)),
 	Command("import", addNewProductsFromXML, "adds new products from .xml file", Access::ADMIN),
 	Command("log in", logIn, "performs user authentication", Access::GUEST),

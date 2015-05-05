@@ -28,3 +28,14 @@ void Detergent::output() const
 {
 	ChemicalProduct::output();
 }
+
+List<pair<string, string>> Detergent::metadata()
+{
+	List<pair<string, string>> result = ChemicalProduct::metadata();
+	return result;
+}
+
+void Detergent::fill(string source)
+{
+	this->ChemicalProduct::fill(source);	
+}

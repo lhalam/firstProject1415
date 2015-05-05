@@ -29,3 +29,14 @@ void Accessory::output()
 {
 	Textile::output();
 }
+
+List<pair<string, string>> Accessory::metadata()
+{
+	List<pair<string, string>> result = Textile::metadata();
+	return result;
+}
+
+void Accessory::fill(string source)
+{
+	this->Textile::fill(source);
+}

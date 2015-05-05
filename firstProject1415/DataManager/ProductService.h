@@ -9,8 +9,6 @@ using std::function;
 //Represents a service for reading and writing product info from/into a file
 class ProductService
 {
-	//Gives to UserService possibility
-	//to take a product from file 
 	friend class UserService;
 
 	//Reads and returnes the product of the specified type
