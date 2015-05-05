@@ -87,18 +87,33 @@ void User::input()
 	cin >> surname;
 	cout << Message("Birthday (day month year)", CONTEXT_MSG);
 	cin >> birthday;
-	cout << Message("Login", CONTEXT_MSG);
-	cin >> login;
+
+	List<User*> lst = DataManager().readAllUsers();
+	List<User*>::iterator it = lst.begin();
+	do
+	{
+		cout << Message("Login", CONTEXT_MSG);
+		cin >> login;
+		for (it = lst.begin(); it != lst.end(); ++it)
+		{
+			if ((*it)->getLogin() == login)
+			{
+				break;
+			}
+		}
+	} while (it != lst.end());
+	
 	cout << Message("Password", CONTEXT_MSG);
 	cin >> password;
 	cout << Message("Email", CONTEXT_MSG);
 	cin >> email;
 	role = USER;
-
-	/* id autogenerating */
+	id = (*(--it))->getId();
+	++id;
+	
+	/* id autogenerating *//*
 	ifstream fin("Users.txt", ios_base::app);
 	int i = 0;
-
 	fin.seekg(0, fin.end);
 	if (int(fin.tellg()) == 0) //If file is empty
 	{
@@ -112,8 +127,8 @@ void User::input()
 		fin >> id;
 		++id;
 	}
-	
 	fin.close();
+	*/
 }
 
 void User::print()
