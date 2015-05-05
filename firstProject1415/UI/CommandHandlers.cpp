@@ -120,14 +120,9 @@ Result buyAllProductFromCart()
 	auto it = cart.begin();
 	while(cart.size() != 0)
 	{
-		DataManager().changeQuantity((**it).getId(), -1);
-		ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
-		if (!stream.is_open())
-		{
-			return Result("Couldn't open file for writing...", TOTAL_ERROR);
-		}
-		stream << (**it) << '\n';
-		stream.close();
+		DataManager manager;
+		manager.changeQuantity((**it).getId(), -1);
+		manager.saveToUserHistory(**it, 1);
 
 		it++;
 		cart.popFront()->output();
@@ -142,20 +137,17 @@ Result buyOneElementById()
 	int id;
 	cin >> id;
 	cin.get();
+
+	DataManager manager;
 	
-	Product* product = DataManager().getProductById(id);
+	Product* product = manager.getProductById(id);
 	if (product == nullptr)
 	{
 		return Result("There is no product with such an id", NOT_SUCCESSFUL);
 	}
-	DataManager().changeQuantity(product->getId(), -1);
-	ofstream stream(to_string(currentUser.getId()) + ".txt", ios_base::app);
-	if (!stream.is_open())
-	{
-		return Result("Couldn't open file for writing...", TOTAL_ERROR);
-	}
-	stream << *product << '\n';
-	stream.close();
+
+	manager.changeQuantity(product->getId(), -1);
+	manager.saveToUserHistory(*product, 1);
 
 	cout << Message("You bought: ", LOG_MSG);
 	product->output();

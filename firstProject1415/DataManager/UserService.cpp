@@ -61,7 +61,7 @@ List<User*> UserService::read(function<bool(const User&)> predicate)
 	return list;
 }
 
-List<Product*> UserService::getAllFromStory(int id) const
+List<pair<Product*, int>> UserService::getAllFromHistory(int id) const
 {
 	ifstream stream(to_string(id) + ".txt");
 	if (!stream.is_open())
@@ -69,20 +69,26 @@ List<Product*> UserService::getAllFromStory(int id) const
 		throw exception("Cannot open file for reading.");
 	}
 
-	List<Product*> list;
+	List<pair<Product*, int>> list;
 
 	while (!stream.eof())
 	{
-		string str;
-		getline(stream, str);
+		pair<Product*, int> p;
 
-		if (str.empty())
+		string type;
+		getline(stream, type);
+
+		if (type.empty())
 		{
 			continue;
 		}
 
-		Product* product = ProductService().getProduct(str, stream);
-		list.pushBack(product);
+		Product* product = ProductService().getProduct(type, stream);
+		p.first = product;
+
+		stream >> p.second;
+
+		list.pushBack(p);
 	}
 	stream.close();
 
@@ -182,8 +188,10 @@ void UserService::saveToHistory(const Product& prod, unsigned quantity)
 	{
 		throw exception("Cannot open file for writing.");
 	}
+
+	stream << typeid(prod).name() << endl;
+	ProductService().saveProduct(prod, stream);
 	stream << quantity << endl;
-	stream << prod << endl;
 
 	stream.close();
 }

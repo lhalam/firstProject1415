@@ -55,7 +55,7 @@ public:
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
 
 	//Returns a list of each user`s purchases
-	List<Product*> getAllFromUserStory(int id);
+	List<pair<Product*, int>> getAllFromUserStory(int id);
 	
 	//Returns quantity of the product with a given id
 	int getQuantity(int id);
@@ -72,7 +72,7 @@ public:
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
 
-	//Saves each user`s purchases
+	//Saves purchases of current user
 	void saveToUserHistory(const Product& prod, unsigned quantity);
 
 	//Removes a product with a given id
