@@ -102,6 +102,11 @@ Result addProductToCart()
 	cin.get();
 	DataManager manager;
 	Product* product = manager.getProductById(id);
+	if (product == nullptr)
+	{
+		return Result("There is no product with such id", NOT_SUCCESSFUL);
+	}
+
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
 	(*product).output();
@@ -143,7 +148,7 @@ Result buyOneElementById()
 	Product* product = manager.getProductById(id);
 	if (product == nullptr)
 	{
-		return Result("There is no product with such an id", NOT_SUCCESSFUL);
+		return Result("There is no product with such id", NOT_SUCCESSFUL);
 	}
 
 	manager.changeQuantity(product->getId(), -1);
@@ -206,6 +211,16 @@ Result changeProduct()
 
 	delete[] prod;
 	return Result("Product is changed.", SUCCESSFUL);
+}
+
+Result clear()
+{
+	system("cls");
+	cout << "Welcome to our shop!" << endl;
+	cout << "Type 'help' for list of available commands" << endl;
+	cout << "________________________________________________________________________________" << endl;
+
+	return Result();
 }
 
 Result createAdmin()
