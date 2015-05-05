@@ -3,21 +3,42 @@
   <food>
     <name>Meat</name>
     <manufacturer>Cow</manufacturer>
-    <price>11.7</price>
+    <price>80.7</price>
     <id>1</id>
     <manufactureDate>03/05/2015</manufactureDate>
     <expirationDate>28/05/2015</expirationDate>
-    <ingredients>olsoh sjdbsj; sjsjs; sjsjsjd</ingredients>
+    <ingredients>meat</ingredients>
     <GMOContent>0</GMOContent>
   </food>
-  <drink>
+  <food>
     <name>Meat</name>
-    <manufacturer>Cow</manufacturer>
-    <price>11.7</price>
-    <id>1</id>
-    <manufactureDate>03/05/2015</manufactureDate>
-    <expirationDate>28/05/2015</expirationDate>
-    <ingredients>olsoh sjdbsj; sjsjs; sjsjsjd</ingredients>
+    <manufacturer>Pig</manufacturer>
+    <price>90.1</price>
+    <id>3</id>
+    <manufactureDate>04/05/2015</manufactureDate>
+    <expirationDate>29/05/2015</expirationDate>
+    <ingredients>meat</ingredients>
+    <GMOContent>0</GMOContent>
+  </food>
+    </food>
+    <food>
+    <name>Chips</name>
+    <manufacturer>Lay's</manufacturer>
+    <price>15.7</price>
+    <id>4</id>
+    <manufactureDate>04/12/2014</manufactureDate>
+    <expirationDate>29/11/2015</expirationDate>
+    <ingredients>potato; spices</ingredients>
+    <GMOContent>1</GMOContent>
+  </food>
+  <drink>
+    <name>Cola</name>
+    <manufacturer>Cocky</manufacturer>
+    <price>17.7</price>
+    <id>2</id>
+    <manufactureDate>27/04/2015</manufactureDate>
+    <expirationDate>28/10/2015</expirationDate>
+    <ingredients>water; chemicals</ingredients>
     <volume>0.5</volume>
   </drink>
 </products>

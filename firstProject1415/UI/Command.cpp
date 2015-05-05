@@ -5,9 +5,8 @@
 /*Initialization of commands; commands are listed alphabetically*/
 Command commands[] = 
 {
-	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER | ADMIN)),
+	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("add -p", addNewProduct, "adds new product", Access::ADMIN),
-	Command("add -pc", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("buy", buyOneElementById, "buys product by id", Access::USER),
 	Command("buy -a", buyAllProductFromCart, "buys all product from cart", Access(USER | GUEST)),
 	Command("change amount", changeAmount, "changes amount of products", Access::ADMIN),
