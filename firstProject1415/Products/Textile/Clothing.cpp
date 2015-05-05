@@ -50,3 +50,42 @@ void Clothing::output()
 		default: cout << Message("Season: unknown", LOG_MSG);
 	}
 }
+
+List<pair<string, string>> Clothing::metadata()
+{
+	List<pair<string, string>> result = Textile::metadata();
+	result.pushBack(make_pair("size", to_string(size)));
+	result.pushBack(make_pair("season", to_string(season)));
+	return result;
+}
+
+void Clothing::fill(string source)
+{
+	this->Textile::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int i = 0;
+	int k = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source[i];
+		}
+		switch (k)
+		{
+		case 8: size = stoi(field);
+			break;
+		case 9: season = field[0];
+			break;
+		default:
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find_first_of(',', posStart);
+		if (posEnd == string::npos) break;
+	}
+}

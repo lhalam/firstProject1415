@@ -1,0 +1,76 @@
+﻿Build started 05.05.2015 23:03:18.
+     1>Project "E:\Nastya\lnu\Project\firstProject1415\firstProject1415\firstProject1415.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt DataManager\DataManager.cpp DataManager\HTMLService.cpp DataManager\ProductService.cpp DataManager\UserService.cpp DataManager\XMLService.cpp Products\ChemicalProduct\ChemicalProduct.cpp Products\ChemicalProduct\Cosmetics.cpp Products\ChemicalProduct\Detergent.cpp Products\ChemicalProduct\PersonalHygiene.cpp Products\Electronics\Appliance.cpp Products\Electronics\AudioAndTv.cpp Products\Electronics\Electronics.cpp Products\Electronics\LaptopAndComputer.cpp Products\Electronics\PhoneAndTablet.cpp Products\Electronics\PhotoAndVideoCamera.cpp Products\Nutrition\Drink.cpp Products\Nutrition\Food.cpp Products\Nutrition\Nutrition.cpp Products\Product.cpp Products\Textile\Accessory.cpp Products\Textile\Clothing.cpp Products\Textile\Footwear.cpp Products\Textile\Textile.cpp UI\Command.cpp UI\CommandHandlers.cpp UI\Globals.cpp User\User.cpp main.cpp
+         Footwear.cpp
+         Clothing.cpp
+         PersonalHygiene.cpp
+         Detergent.cpp
+         Cosmetics.cpp
+         Generating Code...
+         Compiling...
+         main.cpp
+         User.cpp
+         Globals.cpp
+         CommandHandlers.cpp
+         Command.cpp
+         Textile.cpp
+         Accessory.cpp
+         Product.cpp
+         Nutrition.cpp
+         Food.cpp
+         Drink.cpp
+         PhotoAndVideoCamera.cpp
+         PhoneAndTablet.cpp
+         LaptopAndComputer.cpp
+         Electronics.cpp
+         AudioAndTv.cpp
+         Appliance.cpp
+         ChemicalProduct.cpp
+         XMLService.cpp
+         UserService.cpp
+         Generating Code...
+         Compiling...
+         ProductService.cpp
+         HTMLService.cpp
+         DataManager.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Nastya\lnu\Project\firstProject1415\Debug\firstProject1415.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Nastya\lnu\Project\firstProject1415\Debug\firstProject1415.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Nastya\lnu\Project\firstProject1415\Debug\firstProject1415.lib" /MACHINE:X86 Debug\DataManager.obj
+         Debug\HTMLService.obj
+         Debug\ProductService.obj
+         Debug\UserService.obj
+         Debug\XMLService.obj
+         Debug\main.obj
+         Debug\ChemicalProduct.obj
+         Debug\Cosmetics.obj
+         Debug\Detergent.obj
+         Debug\PersonalHygiene.obj
+         Debug\Appliance.obj
+         Debug\AudioAndTv.obj
+         Debug\Electronics.obj
+         Debug\LaptopAndComputer.obj
+         Debug\PhoneAndTablet.obj
+         Debug\PhotoAndVideoCamera.obj
+         Debug\Drink.obj
+         Debug\Food.obj
+         Debug\Nutrition.obj
+         Debug\Product.obj
+         Debug\Accessory.obj
+         Debug\Clothing.obj
+         Debug\Footwear.obj
+         Debug\Textile.obj
+         Debug\Command.obj
+         Debug\CommandHandlers.obj
+         Debug\Globals.obj
+         Debug\Message.obj
+         Debug\Date.obj
+         Debug\Person.obj
+         Debug\Properties.obj
+         Debug\User.obj
+         firstProject1415.vcxproj -> E:\Nastya\lnu\Project\firstProject1415\Debug\firstProject1415.exe
+     1>Done Building Project "E:\Nastya\lnu\Project\firstProject1415\firstProject1415\firstProject1415.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:02:06.29

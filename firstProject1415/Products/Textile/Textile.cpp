@@ -81,3 +81,47 @@ void Textile::output()
 		 << Message("Collection year:" + to_string(this->collectionYear), LOG_MSG);
 }
 
+List<pair<string, string>> Textile::metadata()
+{
+	List<pair<string, string>> result = Product::metadata();
+	result.pushBack(make_pair("material", material));
+	result.pushBack(make_pair("category", to_string(category)));
+	result.pushBack(make_pair("brand", brand));
+	result.pushBack(make_pair("collectionYear", to_string(collectionYear)));
+	return result;
+}
+
+void Textile::fill(string source)
+{
+	this->Product::fill(source);
+	int posStart = 0;
+	int posEnd = source.find_first_of(',');
+	string field = "";
+	int k = 0;
+	int i = 0;
+	while (source[i] != '\n')
+	{
+		for (i = posStart; i < posEnd; i++)
+		{
+			field += source;
+		}
+		switch (k)
+		{
+		case 4: material = field;
+			break;
+		case 5: category = field[0];
+			break;
+		case 6: brand = field;
+			break;
+		case 7: collectionYear = stoi(field);
+			break;
+		default:
+			break;
+		}
+		field.clear();
+		k++;
+		posStart = posEnd + 1;
+		posEnd = source.find(',', posStart);
+		if (posEnd == string::npos)	break;
+	}
+}

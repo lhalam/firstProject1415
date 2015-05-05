@@ -14,11 +14,9 @@ public:
 	void input();
 	void output() const;
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = ChemicalProduct::metadata();
-		return result;
-	}
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string source);
 
 	~Detergent() { }
 };

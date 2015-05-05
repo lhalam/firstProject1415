@@ -23,13 +23,9 @@ public:
 	virtual void input();
 	virtual void output();
 
-	virtual  List<pair<string, string>> metadata()
-	{
-		List<pair<string, string>> result = Product::metadata();
-		result.pushBack(make_pair("size", to_string(size)));
-		result.pushBack(make_pair("season", to_string(season)));
-		return result;
-	}
+	virtual  List<pair<string, string>> metadata();
+
+	virtual void fill(string source);
 
 	~Footwear(){}
 };
