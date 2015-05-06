@@ -125,8 +125,5 @@ void Textile::fill(string source)
 		posEnd = source.find(',', posStart);
 		if (posEnd == string::npos)	break;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c38813c536a89f56e1723032ffce0bc4e560baf5
+

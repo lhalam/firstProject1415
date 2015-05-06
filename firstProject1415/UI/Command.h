@@ -55,9 +55,12 @@ public:
 
 	Result execute()
 	{
-		/* If User global variable has greater access */
-		return executor();
-		/* Else return */
+//		if (currentUser.getRole() & this->access)
+//	{
+			return executor();
+	//	}
+		
+		//else return Result("Access not granted", ACCESS_ERROR);
 		/* return Result("Access not granted", ACCESS_ERROR); */
 	}
 };
