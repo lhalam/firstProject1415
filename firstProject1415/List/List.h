@@ -308,8 +308,8 @@ void List<T>::erase(iterator& iterToDel)
 		return;
 	}
 	s--;
-	iterToDel.prt->next->prev = iterToDel->prev;//".prt" added
-	iterToDel.prt->prev->next = iterToDel->next;//".prt" added
+	iterToDel.ptr->next->prev = iterToDel.ptr->prev;//".prt" added
+	iterToDel.ptr->prev->next = iterToDel.ptr->next;//".prt" added
 	
 	delete iterToDel.ptr;
 }
