@@ -50,7 +50,15 @@ namespace TolikPylypchukTests
 				"test", "pass", "test@test.com", Access::USER, 4);
 
 			DataManager manager;
-			manager.writeInHTML(currentUser.getId(), Date(), Date());
+
+			try
+			{
+				manager.writeInHTML(currentUser.getId(), Date(), Date());
+			} catch (exception e)
+			{
+				Logger::WriteMessage(e.what());
+				Assert::Fail(L"An exception in writeInHTML method has occured.");
+			}
 
 			//I have no idea what to check here
 			//I guess I just have to have a look on the file myself after the test
