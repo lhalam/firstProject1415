@@ -6,17 +6,17 @@ class AudioAndTv : public Electronics
 private:
 	double screenSize;
 public:
-	AudioAndTv();
+	DLL AudioAndTv();
 
-	friend istream& operator>>(istream& stream, AudioAndTv& obj);
-	friend ostream& operator<<(ostream& stream, const AudioAndTv& obj);
+	friend DLL istream& operator>>(istream& stream, AudioAndTv& obj);
+	friend DLL ostream& operator<<(ostream& stream, const AudioAndTv& obj);
 
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 
-	~AudioAndTv(){}
+	DLL ~AudioAndTv(){}
 };

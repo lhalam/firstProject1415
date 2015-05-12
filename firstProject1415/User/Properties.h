@@ -15,16 +15,16 @@ using std::string;
 class Properties
 {
 public:
-	Properties();
-	Properties(Access, int);
-	Properties(const Properties&);
+	DLL Properties();
+	DLL Properties(Access, int);
+	DLL Properties(const Properties&);
 
-	friend ostream& operator<<(ostream&, const Properties&);
-	friend istream& operator>>(istream&, Properties&);
-	Access getRole();
-	void setRole(Access);
-	int getId();
-	void setId(int);
+	friend DLL ostream& operator<<(ostream&, const Properties&);
+	friend DLL istream& operator>>(istream&, Properties&);
+	DLL Access getRole();
+	DLL void setRole(Access);
+	DLL int getId();
+	DLL void setId(int);
 
 private:
 	Access role;

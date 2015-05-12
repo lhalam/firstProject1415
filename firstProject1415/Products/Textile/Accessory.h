@@ -4,17 +4,17 @@
 class Accessory: public Textile
 {
 public:
-	Accessory();
+	DLL Accessory();
 
-	friend istream& operator>>(istream& stream, Accessory& obj);
-	friend ostream& operator<<(ostream& stream, Accessory& obj);
+	friend DLL istream& operator>>(istream& stream, Accessory& obj);
+	friend DLL ostream& operator<<(ostream& stream, Accessory& obj);
 
-	virtual void input();
-	virtual void output();
+	virtual DLL void input();
+	virtual DLL void output();
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string source);
+	virtual DLL void fill(string source);
 
-	~Accessory(){}
+	~Accessory() { }
 };

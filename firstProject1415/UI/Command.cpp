@@ -3,7 +3,7 @@
 #include "CommandHandlers.h"
 
 /*Initialization of commands; commands are listed alphabetically*/
-Command commands[] = 
+DLL Command commands[] =
 {
 	Command("add -c", addProductToCart, "add product to cart by id ", Access(GUEST | USER)),
 	Command("add -p", addNewProduct, "adds new product", Access::ADMIN),
@@ -32,6 +32,6 @@ Command commands[] =
 	Command("show -s", showStats, "shows the statistics of all bought products", Access::ADMIN),
 };
 
-const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
+DLL const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
 
 

@@ -13,30 +13,33 @@ public:
 	{
 		this->manufactureDate = md;
 	}
+
 	string getManufactureDate() const
 	{ 
 		return manufactureDate;
 	}
+
 	void setVolume(double vol)
 	{
 		this->volume = vol;
 	}
+
 	double getVolume() const
 	{
 		return volume;
 	}
 
-	friend istream& operator>>(istream& stream, ChemicalProduct& obj);
-	friend ostream& operator<<(ostream& stream, const ChemicalProduct& obj);
+	friend DLL istream& operator>>(istream& stream, ChemicalProduct& obj);
+	friend DLL ostream& operator<<(ostream& stream, const ChemicalProduct& obj);
 
-	//intput\output methods for command prompt 
+	//intput/output methods for command prompt 
 	//in order to create new\modify existing product
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 
-	virtual ~ChemicalProduct(){}
+	virtual DLL ~ChemicalProduct(){}
 };

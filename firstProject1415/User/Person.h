@@ -15,8 +15,8 @@ public:
 	virtual ~Person();
 
 protected:
-	Person();
-	Person(string, string, Date);
+	DLL Person();
+	DLL Person(string, string, Date);
 
 	string name;
 	string surname;

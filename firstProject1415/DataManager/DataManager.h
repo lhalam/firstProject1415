@@ -10,7 +10,7 @@
 #include <map>
 
 //Represents a simle interface for user and product services
-class DataManager
+class DLL DataManager
 {
 public:
 	//Saves user info into a file
@@ -35,27 +35,25 @@ public:
 
 	//Removes all users that match a predicate
 	void removeUsers(function<bool(const User&)> predicate);
-	
+
+	//Saves purchases of current user
+	void saveToUserHistory(const Product& prod, unsigned quantity);
+
+	//Returns a list of each user`s purchases
+	List<pair<Product*, int>> getAllFromUserStory(int id);
+
+
 	//Saves product info into a file
 	void saveProduct(const Product& prod);
 	
 	//Saves all products info into a file
 	void saveAllProducts(List<Product*> list);
-
-	//Saves a purchase history of each user in HTML 
-	void writeInHTML(int id, const Date& start, const Date& end) const;
-
-	//Returns a list of all products in XML
-	List<Product*> readFromXML();
-
+	
 	//Returns a list of all saved products
 	List<Product*> readAllProducts();
 
 	//Returns a list of products that match a predicate
 	List<Product*> readProducts(function<bool(const Product&)> predicate);
-
-	//Returns a list of each user`s purchases
-	List<pair<Product*, int>> getAllFromUserStory(int id);
 	
 	//Returns quantity of the product with a given id
 	int getQuantity(int id);
@@ -72,14 +70,12 @@ public:
 	//Returns nullptr is there is no such product
 	Product* getProductById(int id);
 
-	//Saves purchases of current user
-	void saveToUserHistory(const Product& prod, unsigned quantity);
-
 	//Removes a product with a given id
 	void removeProductById(int id);
 
 	//Removes all products that match a predicate
 	void removeProducts(function<bool(const Product&)> predicate);
+
 
 	//Saves information about purchases into a file
 	void saveStatistics(unsigned quantity, int id);
@@ -87,6 +83,14 @@ public:
 	//Returns a list of purchased items and their quantity
 	map<Product*, int> readStatistics();
 
+
 	// Saves all products in XML
 	void exportXML();
+	
+	//Returns a list of all products in XML
+	List<Product*> readFromXML();
+
+	
+	//Saves a purchase history of each user in HTML 
+	void writeInHTML(int id, const Date& start, const Date& end) const;
 };

@@ -1,3 +1,5 @@
+#define DLL_IMPORT
+
 #include <iostream>
 #include "UI/UI.h"
 
@@ -12,7 +14,7 @@ int main()
 	cout << "Type 'help' for list of available commands" << endl;
 	cout << "________________________________________________________________________________" << endl;
 
-	while (1)
+	while (true)
 	{
 		cout << Message("Execute", CONTEXT_MSG);
 		string userCommand;

@@ -11,10 +11,10 @@ protected:
 	unsigned collectionYear;
 	Textile();
 public:
-	virtual ~Textile(){}
+	virtual ~Textile() { }
 
-	friend istream& operator>>(istream& stream, Textile& obj);
-	friend ostream& operator<<(ostream& stream, Textile& obj);
+	friend DLL istream& operator>>(istream& stream, Textile& obj);
+	friend DLL ostream& operator<<(ostream& stream, Textile& obj);
 
 	string getMaterial() const { return material; }
 
@@ -33,10 +33,10 @@ public:
 	void setCollectionYear(unsigned collectionYear) { this->collectionYear = collectionYear; }
 
 	// leading input/output from the console.
-	virtual void input();
-	virtual void output();
+	virtual DLL void input();
+	virtual DLL void output();
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string source);
+	virtual DLL void fill(string source);
 };

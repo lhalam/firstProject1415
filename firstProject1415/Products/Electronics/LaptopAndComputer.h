@@ -6,21 +6,21 @@ class LaptopAndComputer : public Electronics
 private:
 	string firm;
 public:
-	LaptopAndComputer();
+	DLL LaptopAndComputer();
 
-	friend istream& operator>>(istream& stream, LaptopAndComputer& obj);
-	friend ostream& operator<<(ostream& stream, const LaptopAndComputer& obj);
+	friend DLL istream& operator>>(istream& stream, LaptopAndComputer& obj);
+	friend DLL ostream& operator<<(ostream& stream, const LaptopAndComputer& obj);
 
-	string getFirm () { return firm; }
+	string getFirm() { return firm; }
 
-	void setFirm (string firm) { this->firm = firm; }
+	void setFirm(string firm) { this->firm = firm; }
 
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 	
-	~LaptopAndComputer(){}
+	DLL ~LaptopAndComputer() { }
 };

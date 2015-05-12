@@ -1,6 +1,12 @@
 #pragma once
 #include <string>
 
+#ifndef DLL_IMPORT
+#define DLL __declspec(dllexport)
+#else
+#define DLL __declspec(dllimport)
+#endif
+
 using std::ostream;
 using std::string;
 
@@ -29,12 +35,12 @@ private:
 	MsgType type;
 
 public:
-	Message();
-	Message(string _msg, MsgType _type = LOG_MSG);
+	DLL Message();
+	DLL Message(string _msg, MsgType _type = LOG_MSG);
 
-	string getMsg() const;
+	DLL string getMsg() const;
 
-	friend ostream& operator<<(ostream& stream, Message _msg);
+	friend DLL ostream& operator<<(ostream& stream, Message _msg);
 };
 
 //Possible Result IDs
@@ -53,11 +59,11 @@ private:
 	ResultId id;
 
 public:
-	Result();
-	Result(ResultId _id);
-	Result(string _msg, ResultId _id);
+	DLL Result();
+	DLL Result(ResultId _id);
+	DLL Result(string _msg, ResultId _id);
 	
-	ResultId getId() const;
+	DLL ResultId getId() const;
 
-	friend ostream& operator<<(ostream& stream, const Result&);
+	friend DLL ostream& operator<<(ostream& stream, const Result&);
 };

@@ -4,6 +4,12 @@
 #include "../List/List.h"
 #include <utility>
 
+#ifndef DLL_IMPORT
+#define DLL __declspec(dllexport)
+#else
+#define DLL __declspec(dllimport)
+#endif
+
 using namespace std;
 
 class Product
@@ -15,39 +21,39 @@ protected:
 	unsigned id;
 	Product();
 public:
-	virtual ~Product();
+	virtual DLL ~Product();
 
-	string getName() const { return name; }
-	void setName(string name) { this->name = name; }
+	DLL string getName() const { return name; }
+	DLL void setName(string name) { this->name = name; }
 
-	string getManufacturer() const { return manufacturer; }
-	void setManufacturer(string manufacturer) { this->manufacturer = manufacturer; }
+	DLL string getManufacturer() const { return manufacturer; }
+	DLL void setManufacturer(string manufacturer) { this->manufacturer = manufacturer; }
 
-	double getPrice() const { return price; }
-	void setPrice(double price) { this->price = price; }
+	DLL double getPrice() const { return price; }
+	DLL void setPrice(double price) { this->price = price; }
 
-	unsigned getId() const { return id; }
-	void setId(unsigned id)	{ this->id = id; }
+	DLL unsigned getId() const { return id; }
+	DLL void setId(unsigned id)	{ this->id = id; }
 
 	//intput method for command prompt 
 	//in order to create new\modify existing product
-	virtual void input();
+	virtual DLL void input();
 
 	//output method for command prompt 
 	//in order to create new\modify existing product
-	virtual void output() const;
+	virtual DLL void output() const;
 
 	//comparing products by id using its value only
-	bool operator==(const Product&) const;
-	bool operator!=(const Product&) const;
+	DLL bool operator==(const Product&) const;
+	DLL bool operator!=(const Product&) const;
 
 	//overloaded operators for file\console reading\output
-	friend istream& operator>>(istream& stream, Product& obj);
-	friend ostream& operator<<(ostream& stream, const Product& obj);
+	friend DLL istream& operator>>(istream& stream, Product& obj);
+	friend DLL ostream& operator<<(ostream& stream, const Product& obj);
 
 	//returns list of pairs(first - name of field, second - its value)
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL  List<pair<string, string>> metadata();
 
 	//fills all the fields in class (values taken from given string)
-	virtual void fill(string);
+	virtual DLL void fill(string);
 };

@@ -15,25 +15,25 @@ using std::string;
 class User : public Person
 {
 public:
-	User();
-	User(string, string, Date, string, string, string, Access, int);
-	User(const User&);
-	~User();
+	DLL User();
+	DLL User(string, string, Date, string, string, string, Access, int);
+	DLL User(const User&);
+	DLL ~User();
 
 	// for writing to file
-	friend ostream& operator<<(ostream&, const User&);
+	friend DLL ostream& operator<<(ostream&, const User&);
 	// for reading from file
-	friend istream& operator>>(istream&, User&);
-	void input(); // for console use
-	void print(); // for console use
-	void changePassword(string);
-	void changeEmail(string);
-	int getId() const;
-	Access getRole() const;
-	string getLogin() const;
-	string getPassword() const;
-	string getEmail() const;
-	void setRole(Access);
+	friend DLL istream& operator>>(istream&, User&);
+	void DLL input(); // for console use
+	void DLL print(); // for console use
+	void DLL changePassword(string);
+	void DLL changeEmail(string);
+	int DLL getId() const;
+	Access DLL getRole() const;
+	string DLL getLogin() const;
+	string DLL getPassword() const;
+	string DLL getEmail() const;
+	void DLL setRole(Access);
 
 private:
 	string login;

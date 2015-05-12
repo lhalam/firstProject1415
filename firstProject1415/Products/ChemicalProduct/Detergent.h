@@ -4,20 +4,20 @@
 class Detergent : public ChemicalProduct
 {
 public:
-	Detergent();
+	DLL Detergent();
 
-	friend istream& operator>>(istream& stream, Detergent& obj);
-	friend ostream& operator<< (ostream& stream, const Detergent& obj);
+	friend DLL istream& operator>>(istream& stream, Detergent& obj);
+	friend DLL ostream& operator<< (ostream& stream, const Detergent& obj);
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
-	void input();
-	void output() const;
+	void DLL input();
+	void DLL output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string source);
+	virtual DLL void fill(string source);
 
-	~Detergent() { }
+	DLL ~Detergent() { }
 };
 

@@ -55,18 +55,15 @@ public:
 
 	Result execute()
 	{
-//		if (currentUser.getRole() & this->access)
-//	{
-			return executor();
-	//	}
+		return executor();
 		
-		//else return Result("Access not granted", ACCESS_ERROR);
-		/* return Result("Access not granted", ACCESS_ERROR); */
+		
+		/* else return Result("Access not granted", ACCESS_ERROR); */
 	}
 };
 
 /*Array of all Command objects available*/
-extern Command commands[];
+DLL extern Command commands[];
 
 /*Number of available commands*/
-extern const int numOfCommands;
+DLL extern const int numOfCommands;

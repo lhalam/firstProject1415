@@ -1,6 +1,6 @@
 #pragma once
 
+#include "Message.h"
 #include "System.h"
 #include "Command.h"
-#include "Message.h"
 #include "Globals.h"

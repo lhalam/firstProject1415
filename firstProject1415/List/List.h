@@ -22,17 +22,17 @@ private:
 	Node* tail;
 
 	//have to save pointer to element after last 
-	//because this one is always existing
+	//because this one always exists
 	//as alternative I can omit saving tail ptr
 	//because emptyNode->prev is tail
-	//but then will be complication in writing and reading code
+	//but then there will be complication in writing and reading code
 
 	//if I make nullptr as empty node
 	//I won't come back to tail
 	//because nullptr->prev doesnt make sense
-	//For instance, I cant write "listObject.end()--"
+	//For instance, I can't write "listObject.end()--"
 
-	//I also cant save empty Node as tail->next (not to save it explicitly)
+	//I also can't save empty Node as tail->next (not to save it explicitly)
 	//because if list is empty, tail equals nullptr (nullptr->next is error!)
 
 	Node* emptyNode;

@@ -5,12 +5,12 @@ class Footwear : public Textile
 {
 protected:
 	unsigned size;
-	char season; // summer - 's'; winter - 'w'; autumn&spring - 'a'.
+	char season; // summer - 's'; winter - 'w'; autumn & spring - 'a'.
 public:
-	Footwear();
+	DLL Footwear();
 
-	friend istream& operator>>(istream& stream, Footwear& obj);
-	friend ostream& operator<<(ostream& stream, Footwear& obj);
+	friend DLL istream& operator>>(istream& stream, Footwear& obj);
+	friend DLL ostream& operator<<(ostream& stream, Footwear& obj);
 
 	unsigned getSize() const { return this->size; }
 
@@ -20,12 +20,12 @@ public:
 
 	void setSeason(char season) { this->season = season; }
 
-	virtual void input();
-	virtual void output();
+	virtual DLL void input();
+	virtual DLL void output();
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string source);
+	virtual DLL void fill(string source);
 
-	~Footwear(){}
+	~Footwear() { }
 };

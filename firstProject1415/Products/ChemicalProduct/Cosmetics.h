@@ -4,25 +4,25 @@
 class Cosmetics : public ChemicalProduct
 {
 private:
-	char part_of_body; // for face - 'f'; for hands - 'h'; for body - 'b'.
+	char part_of_body; // face - 'f'; hands - 'h'; body - 'b'.
 public:
-	Cosmetics();
+	DLL Cosmetics();
 
-	friend istream& operator>>(istream& stream, Cosmetics& obj);
-	friend ostream& operator<<(ostream& stream, const Cosmetics& obj);
+	friend DLL istream& operator>>(istream& stream, Cosmetics& obj);
+	friend DLL ostream& operator<<(ostream& stream, const Cosmetics& obj);
 
-	~Cosmetics() {}
+	DLL ~Cosmetics() {}
 
 	//intput\output methods for command prompt 
 	//in order to create new\modify existing product
-	void input();
-	void output() const;
+	void DLL input();
+	void DLL output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	void setPartOfBody(char part_of_body_) { this->part_of_body = part_of_body_; }
-	char getPartOfBody() const { return part_of_body; }
+	void DLL setPartOfBody(char part_of_body_) { this->part_of_body = part_of_body_; }
+	char DLL getPartOfBody() const { return part_of_body; }
 
-	virtual void fill(string source);
+	virtual DLL void fill(string source);
 };
 

@@ -96,4 +96,3 @@ bool ifValidString(const string& str)
 	}
 	return true;
 }
-

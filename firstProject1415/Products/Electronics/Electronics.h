@@ -12,11 +12,11 @@ protected:
 	
 public:
 	//intput/output methods for user to input/output date
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	friend istream& operator>>(istream&, Electronics&);
-	friend ostream& operator<<(ostream&, const Electronics&);
+	friend DLL istream& operator>>(istream&, Electronics&);
+	friend DLL ostream& operator<<(ostream&, const Electronics&);
 
 	string getCategory() const { return category; }
 
@@ -30,9 +30,9 @@ public:
 
 	void setModel(string model) { this->model = model; }
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 
-	~Electronics(){}
+	~Electronics() { }
 };

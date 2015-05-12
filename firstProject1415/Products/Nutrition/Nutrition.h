@@ -10,15 +10,15 @@ protected:
 	string ingredients;
 	Nutrition();
 public:
-	virtual ~Nutrition();
+	virtual DLL ~Nutrition();
 	
-	friend istream& operator>>(istream& stream, Nutrition& obj);
-	friend ostream& operator<<(ostream& stream, const Nutrition& obj);
+	friend DLL istream& operator>>(istream& stream, Nutrition& obj);
+	friend DLL ostream& operator<<(ostream& stream, const Nutrition& obj);
 
-	//intput\output methods for command prompt 
+	//intput/output methods for command prompt 
 	//in order to create new\modify existing product
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
 	string getManufactureDate() const { return manufactureDate; }
 	void setManufactureDate(string m_d) { this->manufactureDate = m_d; }
@@ -29,9 +29,9 @@ public:
 	string getIngredients() const { return ingredients; }
 	void setIngredients(string ing) { this->ingredients = ing; }
 
-	//returns list of pairs(first - name of field, second - its value)
-	virtual  List<pair<string, string>> metadata();
+	//returns list of pairs (first - name of field, second - its value)
+	virtual DLL List<pair<string, string>> metadata();
 
 	//fills all the fields in class (values taken from given string)
-	virtual void fill(string);
+	virtual DLL void fill(string);
 };

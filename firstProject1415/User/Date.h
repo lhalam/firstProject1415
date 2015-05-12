@@ -2,6 +2,12 @@
 #ifndef DATE_H_
 #define DATE_H_
 
+#ifndef DLL_IMPORT
+#define DLL __declspec(dllexport)
+#else
+#define DLL __declspec(dllimport)
+#endif
+
 #include <iostream>
 #include <string>
 
@@ -12,14 +18,14 @@ using std::string;
 class Date
 {
 public:
-	Date();
-	Date(int, int, int);
-	Date(const Date&);
+	DLL Date();
+	DLL Date(int, int, int);
+	DLL Date(const Date&);
 
-	friend ostream& operator<<(ostream&, const Date&);
-	friend istream& operator>>(istream&, Date&);
+	friend DLL ostream& operator<<(ostream&, const Date&);
+	friend DLL istream& operator>>(istream&, Date&);
 
-	string toString();
+	DLL string toString();
 
 private:
 	int day;

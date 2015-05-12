@@ -6,22 +6,22 @@ class PhoneAndTablet : public Electronics
 private:
 	int memoryCard;
 public:
-	PhoneAndTablet();
+	DLL PhoneAndTablet();
 
-	friend istream& operator>>(istream& stream, PhoneAndTablet& obj);
-	friend ostream& operator<<(ostream& stream, const PhoneAndTablet& obj);
+	friend DLL istream& operator>>(istream& stream, PhoneAndTablet& obj);
+	friend DLL ostream& operator<<(ostream& stream, const PhoneAndTablet& obj);
 
 	int getMemoryCard() { return memoryCard; }
 
 	void setMemoryCard(int memoryCard) { this->memoryCard = memoryCard; }
 
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 
-	~PhoneAndTablet(){}
+	DLL ~PhoneAndTablet() { }
 };
 

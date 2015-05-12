@@ -6,17 +6,17 @@ class Appliance : public Electronics
 private:
         double height;
 public:
-	Appliance();
+	DLL Appliance();
 
-	friend istream& operator>>(istream& stream, Appliance& obj);
-	friend ostream& operator<<(ostream& stream, const Appliance& obj);
+	friend DLL istream& operator>>(istream& stream, Appliance& obj);
+	friend DLL ostream& operator<<(ostream& stream, const Appliance& obj);
 
-	virtual void input();
-	virtual void output() const;
+	virtual DLL void input();
+	virtual DLL void output() const;
 
-	virtual  List<pair<string, string>> metadata();
+	virtual DLL List<pair<string, string>> metadata();
 
-	virtual void fill(string);
+	virtual DLL void fill(string);
 
-	~Appliance(){}
+	DLL ~Appliance(){}
 };
