@@ -73,25 +73,11 @@ Result addNewProduct()
 
 Result addNewProductsFromXML()
 {
-	char res;
-	cout << Message("File you want to add products from is Products.xml? (y/n)", LOG_MSG);
-	cin >> res;
-	cin.get();
-	if (res == 'y')
-	{
-		DataManager manager;
-		List<Product*> list = manager.readFromXML();
-		manager.saveAllProducts(list);
-		return Result("New products are added.", SUCCESSFUL);
-	}
-	else if (res == 'n')
-	{
-		return Result("New products are not added.", SUCCESSFUL);
-	}
-	else
-	{
-		return Result("Unknown command", NOT_SUCCESSFUL);
-	}
+	DataManager manager;
+	List<Product*> list = manager.readFromXML();
+	manager.saveAllProducts(list);
+	cout << Message("New products are added.", LOG_MSG);
+	return Result();
 }
 
 Result addProductToCart()
