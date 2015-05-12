@@ -81,5 +81,21 @@ namespace tests
 			Assert::AreNotEqual(7, test);
 		}
 
+		TEST_METHOD(SaveToHistory)
+		{
+			Product* product = new Food();
+
+			DataManager manager;
+
+			try
+			{
+				manager.saveToUserHistory(*product, 5);
+			}
+			catch (exception& ex)
+			{
+				Logger::WriteMessage(ex.what());
+				Assert::Fail();
+			}
+		}
 	};
 }
