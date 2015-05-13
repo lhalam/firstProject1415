@@ -81,6 +81,29 @@ namespace tests
 			Assert::AreNotEqual(7, test);
 		}
 
+		TEST_METHOD(ReadUsers)
+		{
+			DataManager manager;
+
+			int test;
+
+			auto lambda = [](const User& user)
+			{
+				return user.getLogin() == "test1";
+			};
+
+			try
+			{
+				test = (manager.readUsers(lambda).popBack())->getId();
+			}
+			catch (exception& ex)
+			{
+				Logger::WriteMessage(ex.what());
+				Assert::Fail();
+			}
+			Assert::AreEqual(1, test);
+		}
+
 		TEST_METHOD(SaveToHistory)
 		{
 			Product* product = new Food();
