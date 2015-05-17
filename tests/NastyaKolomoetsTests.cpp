@@ -13,7 +13,7 @@ namespace NastyaKolomoetsTests
 	{
 	public:
 		
-		TEST_METHOD(RemoveProdutFromAssortmentTest)
+		TEST_METHOD(RemoveProductFromAssortmentTest)
 		{
 			int id = 3;
 			string inputId = to_string(id) + "\n";
