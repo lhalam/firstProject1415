@@ -48,7 +48,7 @@ List<Product*> XMLService::read()
 					}
 				}
 				prod->fill(source);
-				source.empty();
+				source.clear();
 				list.pushBack(prod);
 				prod = nullptr;
 			}

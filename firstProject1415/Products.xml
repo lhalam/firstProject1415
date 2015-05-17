@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+	<drink>
+		<name>vodka</name>
+		<manufacturer>noname</manufacturer>
+		<price>15.000000</price>
+		<id>1</id>
+		<manufactureDate>doesn't matter</manufactureDate>
+		<expirationDate>non-expired</expirationDate>
+		<ingredients>alcohol</ingredients>
+		<volume>50.000000</volume>
+	</drink>
+	<drink>
+		<name>water</name>
+		<manufacturer>SimpleWater</manufacturer>
+		<price>5.000000</price>
+		<id>2</id>
+		<manufactureDate>idk</manufactureDate>
+		<expirationDate>non-expired</expirationDate>
+		<ingredients>water</ingredients>
+		<volume>0.000000</volume>
+	</drink>
+	<footwear>
+		<name>boots</name>
+		<manufacturer>Addibbass</manufacturer>
+		<price>40.000000</price>
+		<id>3</id>
+		<size>43</size>
+		<season>97</season>
+	</footwear>
+	<footwear>
+		<name>flyingBoots</name>
+		<manufacturer>Nikke</manufacturer>
+		<price>5000.000000</price>
+		<id>4</id>
+		<size>42</size>
+		<season>119</season>
+	</footwear>
+	<phoneandtablet>
+		<name>phone</name>
+		<manufacturer>Epple</manufacturer>
+		<price>10000.000000</price>
+		<id>5</id>
+		<category>major</category>
+		<weight>100.000000</weight>
+		<model>10s</model>
+		<memorycard>0</memorycard>
+	</phoneandtablet>
+</products>
