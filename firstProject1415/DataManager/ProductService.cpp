@@ -382,7 +382,7 @@ void ProductService::saveStatistics(unsigned newQuantity, int id)
 	temp.close();
 
 	remove("Stats.txt");
-	rename("Temt.txt", "Stats.txt");
+	rename("Temp.txt", "Stats.txt");
 }
 
 map<Product*, int> ProductService::readStatistics()

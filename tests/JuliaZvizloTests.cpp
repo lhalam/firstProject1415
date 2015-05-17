@@ -74,7 +74,7 @@ namespace tests
 			Assert::AreEqual(3, test);
 		}
 
-		TEST_METHOD(ReadUsers)
+		TEST_METHOD(ReadUsersByPredicate)
 		{
 			DataManager manager;
 
@@ -97,6 +97,20 @@ namespace tests
 			Assert::AreEqual(1, test);
 		}
 
+		TEST_METHOD(ReadAllUsers)
+		{
+			DataManager manager;
+
+			try
+			{
+				manager.readAllUsers();
+			}
+			catch (exception& ex)
+			{
+				Assert::Fail();
+			}
+		}
+
 		TEST_METHOD(SaveToHistory)
 		{
 			Product* product = new Food();
@@ -106,6 +120,39 @@ namespace tests
 			try
 			{
 				manager.saveToUserHistory(*product, 5);
+			}
+			catch (exception& ex)
+			{
+				Assert::Fail();
+			}
+		}
+
+		TEST_METHOD(RemoveUsersByPredicate)
+		{
+			DataManager manager;
+
+			auto lambda = [](const User& user)
+			{
+				return user.getId() == 1;
+			};
+
+			try
+			{
+				manager.removeUsers(lambda);
+			}
+			catch (exception & ex)
+			{
+				Assert::Fail();
+			}
+		}
+
+		TEST_METHOD(RemoveUsersById)
+		{
+			DataManager manager;
+
+			try
+			{
+				manager.removeUserById(3);
 			}
 			catch (exception& ex)
 			{
