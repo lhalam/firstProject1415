@@ -5,7 +5,6 @@
 
 #include "DataManager/DataManager.h"
 #include "UI/UI.h"
-#include "Products\Products.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -59,6 +58,7 @@ namespace NataliaSlobodianiukTests
 					Assert::AreEqual(x.what(), "List is empty.");
 				}
 			}
+			fin.close();
 		}
 		
 		TEST_METHOD(AddNewProductsFromXML)

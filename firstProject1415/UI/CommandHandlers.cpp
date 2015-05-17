@@ -68,7 +68,7 @@ Result addNewProduct()
 	}
 	delete[] prod;
 	cout << Message("New product is added to the assortment.", LOG_MSG);
-	return Result("New product was added.", SUCCESSFUL);
+	return Result();
 }
 
 Result addNewProductsFromXML()
@@ -96,7 +96,7 @@ Result addProductToCart()
 	cart.pushBack(product);
 	cout << Message("You have added to cart : ", LOG_MSG);
 	(*product).output();
-	return Result("Product is added to cart", SUCCESSFUL);
+	return Result();
 }
 
 Result buyAllProductFromCart()
@@ -119,7 +119,8 @@ Result buyAllProductFromCart()
 		cart.popFront()->output();
 		cout << endl;
 	}
-	return Result("You bought all products.", SUCCESSFUL);
+	cout << Message("You bought all products.", LOG_MSG);
+	return Result();
 }
 
 Result buyOneElementById()
@@ -196,7 +197,8 @@ Result changeProduct()
 	manager.setQuantity(id, quantity);
 
 	delete[] prod;
-	return Result("Product is changed.", SUCCESSFUL);
+	cout << Message("Product is changed.", LOG_MSG);
+	return Result();
 }
 
 Result clear()
@@ -248,7 +250,6 @@ Result createAdmin()
 
 Result createUser()
 {
-	using std::cin;
 	User newUser;
 	newUser.input();
 	DataManager manager;
@@ -388,10 +389,12 @@ Result removeProductFromCart()
 		case 'y': 
 			DataManager manager;
 			cart.erase(option ? cart.begin() : cart.find(manager.getProductById(ID), cart.begin(), cart.end()));
-			return Result("Operation successful.", SUCCESSFUL);
+			cout << Message("Operation successful.", LOG_MSG);
+			return Result();
 			break;
 		case 'n': 
-			return Result("Operation cancelled.", SUCCESSFUL);
+			cout << Message("Operation cancelled.", LOG_MSG);
+			return Result();
 			break;
 		}
 	}
@@ -425,7 +428,8 @@ Result removeUser()
 		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
-	return Result("The user was deleted successfully.", SUCCESSFUL);
+	cout << Message("The user was deleted successfully.", LOG_MSG);
+	return Result();
 }
 
 Result showCart()
