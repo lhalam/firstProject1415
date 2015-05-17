@@ -58,7 +58,20 @@ namespace YaroslavKormushynTests
 			test->input();
 			try
 			{
+				stringstream sstream;
+				streambuf* coutstream = cout.rdbuf(sstream.rdbuf());
 				test->output();
+				string act_out = sstream.str();
+				cout.rdbuf(coutstream);
+				string exp_out = "Name: Name\n"
+								 "Manufacturer: Manuf\n"
+								 "Price: 130.000000\n"
+								 "ID: 2\n"
+								 "Manufacture date: 18 18 1996\n"
+								 "Expiration date: 32 12 2014\n"
+								 "Ingredients: Water\n"
+								 "Volume: 34.000000\n";
+				Assert::AreEqual(exp_out, act_out);
 			}
 			catch(...)
 			{
@@ -78,16 +91,19 @@ namespace YaroslavKormushynTests
 			Assert::IsTrue(*test != *test2);
 		}
 	};
-	/*
+	
 	TEST_CLASS(CommandHandlersTest)
 	{
 		TEST_METHOD(RemoveProductFromCartTest)
 		{
 			Product* test = new Drink();
-			
+			cart.pushBack(test);
+			string input = "y\n";
+			stringbuf in(input);
+			cin.rdbuf(&in);
 			try
 			{
-				//remove command execution
+				//'remove' command execution
 				commands[19].execute(); 
 			}
 			catch(...)
@@ -99,19 +115,30 @@ namespace YaroslavKormushynTests
 
 		TEST_METHOD(ShowCartTest)
 		{
-			int delta = 6;
 			Product* test = new Drink();
-			for (int i = 0; i < delta; i++)
+			cart.pushBack(test);
+			try
 			{
-				//independent adding to cart
+				stringstream sstream;
+				streambuf* coutstream = cout.rdbuf(sstream.rdbuf());
+				commands[22].execute();
+				string act_out = sstream.str();
+				cout.rdbuf(coutstream);
+				string exp_out = "Name: No name\n"
+								 "Manufacturer: No manufacturer\n"
+								 "Price: 0.000000\n"
+								 "ID: 0\n"
+								 "Manufacture date: 00.00.0000\n"
+								 "Expiration date: 00.00.0000\n"
+								 "Ingredients: No ingredients\n"
+								 "Volume: 0.000000\n\n";
+				Assert::AreEqual(exp_out, act_out);
 			}
-			for (int i = 0; i < delta; i++)
+			catch(...)
 			{
-				//here - reading cart and comparing
-				Assert::IsTrue();
+				Assert::Fail();
 			}
 		}
-
 	};
-	*/
+	
 }
