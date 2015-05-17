@@ -319,7 +319,7 @@ T List<T>::popBack()
 {
 	if (isEmpty())
 	{
-		throw exception("List is empty.");
+		throw std::exception("List is empty.");
 	}
 
 	s--;
@@ -346,7 +346,7 @@ T List<T>::popFront()
 {
 	if (isEmpty())
 	{
-		throw exception("List is empty.");
+		throw std::exception("List is empty.");
 	}
 
 	s--;
