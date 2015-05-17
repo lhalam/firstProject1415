@@ -3,9 +3,9 @@
 
 #define DLL_IMPORT
 
-#include "firstProject1415/UI/UI.h"
-#include "firstProject1415/Products/Products.h"
-#include "firstProject1415/DataManager/DataManager.h"
+#include "UI/UI.h"
+#include "Products/Products.h"
+#include "DataManager/DataManager.h"
 
 using namespace std;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
