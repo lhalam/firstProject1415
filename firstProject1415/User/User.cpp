@@ -108,7 +108,14 @@ void User::input()
 	cout << Message("Email", CONTEXT_MSG);
 	cin >> email;
 	role = USER;
-	id = (*(--it))->getId();
+	
+	if (!lst.isEmpty())
+	{
+		id = (*(--it))->getId();
+	} else
+	{
+		id = 0;
+	}
 	++id;
 	
 	/* id autogenerating *//*
