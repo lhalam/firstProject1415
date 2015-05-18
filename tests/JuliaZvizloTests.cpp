@@ -36,12 +36,12 @@ namespace tests
 				"passd", "test2@test.com", Access::USER, 2);
 
 			DataManager manager;
+			manager.saveUser(user2);
 
 			int test;
 
 			try
 			{
-				manager.saveUser(user2);
 				test = (manager.getUserById(2))->getId();
 			}
 			catch (exception& ex)
@@ -58,12 +58,12 @@ namespace tests
 				"pd", "test3@test.com", Access::USER, 3);
 
 			DataManager manager;
-			
+			manager.saveUser(user3);
+
 			int test;
 
 			try
 			{
-				manager.saveUser(user3);
 				test = (manager.getUserByLogin("test3", "pd"))->getId();
 			}
 			catch (exception& ex)
@@ -127,19 +127,25 @@ namespace tests
 			}
 		}
 
-		TEST_METHOD(GetAllFromHistory)
+/*		TEST_METHOD(GetAllFromHistory)
 		{
 			DataManager manager;
+			Product *product = new Drink();
+			manager.saveToUserHistory(*product, 5);
+
+			double test;
 
 			try
 			{
-				manager.getAllFromUserStory(5);
+				test = (manager.getAllFromUserStory(5))->getVolume();
 			}
 			catch (exception& ex)
 			{
 				Assert::Fail();
 			}
-		}
+
+			Assert::AreEqual(test, 0.0);
+		}*/
 
 		TEST_METHOD(RemoveUsersByPredicate)
 		{
