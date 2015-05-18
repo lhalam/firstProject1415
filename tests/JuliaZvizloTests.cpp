@@ -127,6 +127,20 @@ namespace tests
 			}
 		}
 
+		TEST_METHOD(GetAllFromHistory)
+		{
+			DataManager manager;
+
+			try
+			{
+				manager.getAllFromUserStory(5);
+			}
+			catch (exception& ex)
+			{
+				Assert::Fail();
+			}
+		}
+
 		TEST_METHOD(RemoveUsersByPredicate)
 		{
 			DataManager manager;
