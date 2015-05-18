@@ -6,52 +6,48 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PruductServiceTest
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(PruductServiceTest)
 	{
 	public:
+
+		TEST_METHOD(SaveAllTest)
+		{
+			DataManager service;
+			Product *prod1 = new Appliance();
+
+			List<Product*> list;
+			list.pushBack(prod1);
+
+			service.saveAllProducts(list);
+			int id = 0;
+			try
+			{
+				id = ((service.readAllProducts()).popBack())->getId();
+			}
+			catch (exception e)
+			{
+				Assert::Fail();//AreEqual(e.what(),"Cannot open file for writing.");
+			}
+			Assert::AreEqual(id, 0);
+		}
 		
 		TEST_METHOD(GetQuantityTest)
 		{
-			//must create Assortment.txt with line "10 10"
 			DataManager service;
 			int test = 0;
 			try
 			{
-				test = service.getQuantity(10);
+				test = service.getQuantity(0);
 			}
 			catch (...)
 			{
 				Assert::Fail();
 			}
-			Assert::AreEqual(test, 10);
+			Assert::AreEqual(test, 0);
 		}
-		
-	//must have clean text files
-	TEST_METHOD(SaveAllTest)
-		{
-			DataManager service;
-			Product *prod1 = new Clothing();
-
-			List<Product*> list;
-			list.pushBack(prod1);
-
-			service.saveAllProducts(list); 
-			int id = 0;
-			try
-			{
-				id = ((service.readAllProducts()).popFront())->getId();
-			}
-			catch (exception e)
-			{
-				Assert::AreEqual(e.what(),"Cannot open file for writing.");
-			}
-			Assert::AreEqual(id, 0);
-		}
-	
 		
 		TEST_METHOD(ReadTest)
 		{
-			//must create Products.txt with default product
 			DataManager service;
 			string str = "";
 			try
@@ -72,40 +68,37 @@ namespace PruductServiceTest
 		
 		TEST_METHOD(ChangeQuantityTest)
 		{
-			//must create Assortment.txt with line "8 8"
 			DataManager service;
 			int test = 0;
 			try
 			{
-				test = service.getQuantity(8);
-				service.changeQuantity(8, 2);
-				test = service.getQuantity(8);
+				test = service.getQuantity(0);
+				service.changeQuantity(0,0);
+				test = service.getQuantity(0);
 			}
 			catch (exception e)
 			{
 				Assert::Fail();
 			}
-			Assert::AreEqual(test, 10);
+			Assert::AreEqual(test, 0);
 		}
 				
 		TEST_METHOD(GetByIdTest)
 		{
-			//must create Products.txt with default product and change id(4),price(3.0)"
 			DataManager service;
 			double test = 0;
 			try
 			{
-				test = (service.getProductById(4))->getPrice();
+				test = (service.getProductById(0))->getPrice();
 			}
 			catch (exception e)
 			{
 				Assert::Fail();
 			}
 			
-			Assert::AreEqual(test, 3.0);
+			Assert::AreEqual(test, 0.0);
 		}
-		
-		//must add default product
+				
 		TEST_METHOD(ReadStatisticsTest)
 		{
 			map<Product*, int> productMap;
