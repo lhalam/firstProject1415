@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include <fstream>
 #include <iostream>
+
 #define DLL_IMPORT
 #include "UI\CommandHandlers.h"
 #include "DataManager\DataManager.h"
@@ -11,13 +12,13 @@ using namespace std;
 
 namespace Test
 {		
-	TEST_CLASS(buyElementById)
+	TEST_CLASS(BuyProduct)
 	{
 		ifstream fin;
-	    ofstream fout;
+	    	ofstream fout;
 
 		public:
-			buyElementById()
+			BuyProduct()
 			{
 				fin.open("input.txt");
 				if (!fin.is_open())
@@ -38,15 +39,20 @@ namespace Test
 				cout.rdbuf(out);
 			}
 
-			~buyElementById()
+			~BuyProduct()
 			{
 				fin.close();
 				fout.close();
 			}
 
-		TEST_METHOD(TestMethod1)
+			TEST_METHOD(buyOneProductById)
 		{
 			buyOneElementById();
+		}
+
+		TEST_METHOD(buyAllProductsFromCart)
+		{
+			buyAllProductFromCart();
 		}
 
 	};

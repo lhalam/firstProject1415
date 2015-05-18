@@ -26,7 +26,7 @@ namespace PruductServiceTest
 			Assert::AreEqual(test, 10);
 		}
 		
-	/*no done
+	//must have clean text files
 	TEST_METHOD(SaveAllTest)
 		{
 			DataManager service;
@@ -47,7 +47,7 @@ namespace PruductServiceTest
 			}
 			Assert::AreEqual(id, 0);
 		}
-	*/
+	
 		
 		TEST_METHOD(ReadTest)
 		{
@@ -105,7 +105,7 @@ namespace PruductServiceTest
 			Assert::AreEqual(test, 3.0);
 		}
 		
-		/*no done
+		//must add default product
 		TEST_METHOD(ReadStatisticsTest)
 		{
 			map<Product*, int> productMap;
@@ -123,7 +123,7 @@ namespace PruductServiceTest
 				Assert::Fail();
 			}
 			Assert::AreEqual(iter, 5);
-		}*/
+		}
 			
 	};
 }

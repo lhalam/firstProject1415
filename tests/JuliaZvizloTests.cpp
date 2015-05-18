@@ -18,70 +18,63 @@ namespace tests
 			User user1("name1", "surname1", Date(1, 2, 1997), "test1", 
 				"password", "test1@test.com", Access::USER, 1);
 
-			User user2("name2", "surname2", Date(3, 4, 1996), "test2", 
-				"pass", "test2@test.com", Access::USER, 2);
-
 			DataManager manager;
 
 			try
 			{
 				manager.saveUser(user1);
-				manager.saveUser(user2);
 			}
 			catch (exception& ex)
 			{
-				Logger::WriteMessage(ex.what());
 				Assert::Fail();
 			}
 		}
 
 		TEST_METHOD(GetUserById)
 		{
-			User user3("name3", "surname3", Date(5, 5, 1995), "test3", 
-				"passd", "test3@test.com", Access::USER, 3);
+			User user2("name2", "surname2", Date(5, 5, 1995), "test2", 
+				"passd", "test2@test.com", Access::USER, 2);
 
 			DataManager manager;
+			manager.saveUser(user2);
 
 			int test;
 
 			try
 			{
-				manager.saveUser(user3);
-				test = (manager.getUserById(3))->getId();
+				test = (manager.getUserById(2))->getId();
 			}
 			catch (exception& ex)
 			{
-				Logger::WriteMessage(ex.what());
+				Assert::Fail();
+			}
+
+			Assert::AreEqual(2, test);
+		}
+
+		TEST_METHOD(GetUserByLogin)
+		{
+			User user3("name3", "surname3", Date(7, 8, 1997), "test3", 
+				"pd", "test3@test.com", Access::USER, 3);
+
+			DataManager manager;
+			manager.saveUser(user3);
+
+			int test;
+
+			try
+			{
+				test = (manager.getUserByLogin("test3", "pd"))->getId();
+			}
+			catch (exception& ex)
+			{
 				Assert::Fail();
 			}
 
 			Assert::AreEqual(3, test);
 		}
 
-		TEST_METHOD(GetUserByLogin)
-		{
-			User user4("name4", "surname4", Date(7, 8, 1997), "test4", 
-				"pd", "test4@test.com", Access::USER, 4);
-
-			DataManager manager;
-
-			int test;
-
-			try
-			{
-				manager.saveUser(user4);
-				test = (manager.getUserByLogin("test4", "pd"))->getId();
-			}
-			catch (exception& ex)
-			{
-				Logger::WriteMessage(ex.what());
-				Assert::Fail();
-			}
-
-			Assert::AreNotEqual(7, test);
-		}
-
-		TEST_METHOD(ReadUsers)
+		TEST_METHOD(ReadUsersByPredicate)
 		{
 			DataManager manager;
 
@@ -98,10 +91,24 @@ namespace tests
 			}
 			catch (exception& ex)
 			{
-				Logger::WriteMessage(ex.what());
 				Assert::Fail();
 			}
+
 			Assert::AreEqual(1, test);
+		}
+
+		TEST_METHOD(ReadAllUsers)
+		{
+			DataManager manager;
+
+			try
+			{
+				manager.readAllUsers();
+			}
+			catch (exception& ex)
+			{
+				Assert::Fail();
+			}
 		}
 
 		TEST_METHOD(SaveToHistory)
@@ -116,7 +123,59 @@ namespace tests
 			}
 			catch (exception& ex)
 			{
-				Logger::WriteMessage(ex.what());
+				Assert::Fail();
+			}
+		}
+
+/*		TEST_METHOD(GetAllFromHistory)
+		{
+			DataManager manager;
+			Product *product = new Drink();
+			manager.saveToUserHistory(*product, 5);
+
+			double test;
+
+			try
+			{
+				test = (manager.getAllFromUserStory(5))->getVolume();
+			}
+			catch (exception& ex)
+			{
+				Assert::Fail();
+			}
+
+			Assert::AreEqual(test, 0.0);
+		}*/
+
+		TEST_METHOD(RemoveUsersByPredicate)
+		{
+			DataManager manager;
+
+			auto lambda = [](const User& user)
+			{
+				return user.getId() == 1;
+			};
+
+			try
+			{
+				manager.removeUsers(lambda);
+			}
+			catch (exception & ex)
+			{
+				Assert::Fail();
+			}
+		}
+
+		TEST_METHOD(RemoveUsersById)
+		{
+			DataManager manager;
+
+			try
+			{
+				manager.removeUserById(3);
+			}
+			catch (exception& ex)
+			{
 				Assert::Fail();
 			}
 		}
