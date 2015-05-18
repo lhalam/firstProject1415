@@ -15,33 +15,34 @@ namespace MyroslavVyspyanskyTests
 	TEST_CLASS(UnitTest1)
 	{
 	public:
+
 		//doesn`t works
-		/*
 		TEST_METHOD(Statistics)
 		{
-			Clothing clothes;
-			DataManager service;
+			try
+			{
+				Clothing clothes;
+				DataManager service;
 
-			ifstream file("Stats.txt");
-			//file.clear();
-			service.saveStatistics(5, clothes.getId());
-			
-			int quantity = 0, id = 0;
-			Product* temp = new Clothing();
-			file >> *temp >> id >> quantity;
+				ofstream stream("Stats.txt");
+				stream.close();
 
-			file.close();
+				service.saveStatistics(5, clothes.getId());
+				int quantity;
 
-			ifstream fin("Assortment.txt");
-			fin.clear();
-			fin.close();
+				ifstream file("Stats.txt");
 
-			ifstream stream("Products.txt");
-			stream.clear();
-			stream.close();
+				file >> clothes >> quantity;
 
-			Assert::AreEqual(quantity, 5);
-		}*/
+				file.close();
+
+				Assert::AreEqual(5, quantity);
+			}
+			catch (...)
+			{
+				Assert::Fail();
+			}
+		}
 
 		TEST_METHOD(SaveAndReadAllFuntions) // and also read function
 		{
@@ -57,11 +58,6 @@ namespace MyroslavVyspyanskyTests
 				ofstream stream_1("Products.txt");
 				ofstream stream_2("Assortment.txt");
 				ofstream stream_3("Stats.txt");
-
-				stream_1.clear();
-				stream_2.clear();
-				stream_3.clear();
-
 				stream_1.close();
 				stream_2.close();
 				stream_3.close();
@@ -134,54 +130,6 @@ namespace MyroslavVyspyanskyTests
 			{
 				Assert::Fail();
 			}
-
-			Clothing clothes;
-			DataManager service;
-			service.saveProduct(clothes);
-
-			service.removeProductById(clothes.getId());
-
-			
-			ifstream file("Stats.txt");
-			file.clear();
-			file.close();
-			/*
-			ifstream fin("Assortment.txt");
-			string str;
-			fin >> str;
-			fin.clear();
-			fin.close();
-
-			Assert::IsTrue(str.empty());*/
 		}
 	};
 }
-
-/*
-void save(const Product& prod);
- 
- Це можеш на моє глянути може зможеш виправити але нє обовязково
- void saveAll(List<Product*> list);
-  
-  void setQuantity(int id, int newQuantity);
- 
- 
- void removeById(int id);
-
- 
- void removeByPredicate(function<bool(const Product&)> predicate);
-
- 
- List<Product*> readAll();
-
-
- List<Product*> read(function<bool(const Product&)> predicate);
-
- 
- void saveStatistics(unsigned quantity, int id);
-
- /це мені ще треба але я не знаю ще як
- map<Product*, int> readStatistics();
-
-
-*/
