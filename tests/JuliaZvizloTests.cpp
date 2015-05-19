@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include <string>
 
 #define DLL_IMPORT
 
@@ -18,16 +19,22 @@ namespace tests
 			User user1("name1", "surname1", Date(1, 2, 1997), "test1", 
 				"password", "test1@test.com", Access::USER, 1);
 
+			int test;
 			DataManager manager;
 
 			try
 			{
 				manager.saveUser(user1);
+				test = (manager.getUserByLogin("test1", "password"))->getId();
 			}
 			catch (exception& ex)
 			{
 				Assert::Fail();
 			}
+
+			Assert::AreEqual(1, test);
+
+			delete user1;
 		}
 
 		TEST_METHOD(GetUserById)
