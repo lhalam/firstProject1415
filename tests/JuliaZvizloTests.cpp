@@ -19,6 +19,7 @@ namespace tests
 				"password", "test1@test.com", Access::USER, 1);
 
 			DataManager manager;
+			int test;
 
 			try
 			{
@@ -28,6 +29,10 @@ namespace tests
 			{
 				Assert::Fail();
 			}
+
+			test = (manager.getUserByLogin("test1", "password"))->getId();
+			Assert::AreEqual(1, test);
+			manager.removeUserById(1);
 		}
 
 		TEST_METHOD(GetUserById)
@@ -50,6 +55,7 @@ namespace tests
 			}
 
 			Assert::AreEqual(2, test);
+			manager.removeUserById(2);
 		}
 
 		TEST_METHOD(GetUserByLogin)
@@ -72,11 +78,16 @@ namespace tests
 			}
 
 			Assert::AreEqual(3, test);
+			manager.removeUserById(3);
 		}
 
 		TEST_METHOD(ReadUsersByPredicate)
 		{
+			User user1("name1", "surname1", Date(1, 2, 1997), "test1", 
+				"password", "test1@test.com", Access::USER, 1);
+
 			DataManager manager;
+			manager.saveUser(user1);
 
 			int test;
 
@@ -95,10 +106,15 @@ namespace tests
 			}
 
 			Assert::AreEqual(1, test);
+			manager.removeUserById(1);
 		}
 
 		TEST_METHOD(ReadAllUsers)
 		{
+			
+			User user5("name5", "surname5", Date(17, 8, 1997), "test5", 
+				"passd", "test5@test.com", Access::USER, 5);
+
 			DataManager manager;
 
 			try
@@ -109,6 +125,8 @@ namespace tests
 			{
 				Assert::Fail();
 			}
+
+			manager.removeUserById(5);
 		}
 
 		TEST_METHOD(SaveToHistory)
@@ -125,6 +143,8 @@ namespace tests
 			{
 				Assert::Fail();
 			}
+
+			delete product;
 		}
 
 /*		TEST_METHOD(GetAllFromHistory)
@@ -149,7 +169,11 @@ namespace tests
 
 		TEST_METHOD(RemoveUsersByPredicate)
 		{
+			User user1("name1", "surname1", Date(1, 2, 1997), "test1", 
+				"password", "test1@test.com", Access::USER, 1);
+
 			DataManager manager;
+			manager.saveUser(user1);
 
 			auto lambda = [](const User& user)
 			{
@@ -168,7 +192,11 @@ namespace tests
 
 		TEST_METHOD(RemoveUsersById)
 		{
+			User user3("name3", "surname3", Date(7, 8, 1997), "test3", 
+				"pd", "test3@test.com", Access::USER, 3);
+
 			DataManager manager;
+			manager.saveUser(user3);
 
 			try
 			{
