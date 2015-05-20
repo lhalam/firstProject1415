@@ -1,9 +1,9 @@
 #include "HTMLService.h"
 #include "ProductService.h"
-#include "../List/List.h"
+#include "../UI/Globals.h"
 
 #include <fstream>
-#include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -27,15 +27,25 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	file << head;
 
 	file << "<body>\n";
-	file << "<h1>Purchase history</h1>\n";
+	file << "<h1>Purchase history of " << currentUser.getName() << ' '
+		 << currentUser.getSurname() << "</h1>\n";
 
 	UserService user;
 	Product *product = nullptr;
 	auto list = user.getAllFromHistory(id);
 
+	if (list.isEmpty())
+	{
+		file << "<p>No items were purchased.</p>\n";
+		file.close();
+		return;
+	}
+
 	for (auto iter = list.begin(); iter != list.end(); iter++)
 	{ 
 		auto metadataList = (*iter).first->metadata();
+		this->format(metadataList);
+
 		file << "<p>\n";
 		string type = typeid(*((*iter).first)).name();
 		type = type.substr(6);
@@ -56,4 +66,29 @@ void HTMLService::write(int id, const Date& start, const Date& end)
 	file << "</body>\n";
 	file << "</html>\n";
 	file.close();
+}
+
+void HTMLService::format(List<pair<string, string>>& list)
+{
+	for (auto iter = list.begin(); iter != list.end(); iter++)
+	{
+		int length = (*iter).first.length();
+
+		if ((*iter).first == "GMOContent")
+		{
+			(*iter).first = "GMO Content";
+			(*iter).second = ((*iter).second == "1" ? "yes" : "no");
+			continue;
+		}
+
+		for (int i = 1; i < length; i++)
+		{
+			if (isupper((*iter).first[i]))
+			{
+				(*iter).first.insert(i, 1, ' ');
+			}
+		}
+
+		(*iter).first[0] = toupper((*iter).first[0]);
+	}
 }

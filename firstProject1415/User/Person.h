@@ -14,6 +14,10 @@ public:
 	Person(const Person&);
 	virtual ~Person();
 
+	string getName() const { return name; }
+	string getSurname() const { return surname; }
+	Date getBirthday() const { return birthday; }
+
 protected:
 	DLL Person();
 	DLL Person(string, string, Date);
