@@ -35,8 +35,7 @@ int main()
 				Result executionResult = commands[i].execute();
 				if (executionResult.getId() != SUCCESSFUL)
 				{
-					cerr << executionResult;
-					cin.get();
+					cerr << executionResult << endl;
 				}
 			}
 		}

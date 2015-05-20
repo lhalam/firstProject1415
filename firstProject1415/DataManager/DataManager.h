@@ -39,8 +39,8 @@ public:
 	//Saves purchases of current user
 	void saveToUserHistory(const Product& prod, unsigned quantity);
 
-	//Returns a list of each user`s purchases
-	List<pair<Product*, int>> getAllFromUserStory(int id);
+	//Returns a list of each user's purchases
+	List<pair<Product*, int>> getAllFromUserHistory(int id);
 
 
 	//Saves product info into a file

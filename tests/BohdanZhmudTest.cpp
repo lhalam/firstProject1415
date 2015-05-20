@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "List.h"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest9

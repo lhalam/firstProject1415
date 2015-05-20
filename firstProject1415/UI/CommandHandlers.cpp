@@ -11,61 +11,69 @@ using namespace std;
 Result addNewProduct()
 {
 	Product* prod = nullptr;
-	string command;
-	cout << Message("[help] - shows all the possible product types, that can be created", LOG_MSG)
-		 << Message("[continue] - goes to creating a new product", LOG_MSG)
-		 << Message("[exit] - exits product creating mode", LOG_MSG);
-	getline(cin, command);
-	toLowercase(command);
 
-	while (command != "exit")
+	try
 	{
-		if(command == "help")
-		{
-			cout << Message("Products:", LOG_MSG);
-			cout << Message("Appliance", LOG_MSG); 
-			cout << Message("Audio&TV", LOG_MSG); 
-			cout << Message("Laptop&computer", LOG_MSG); 
-			cout << Message("Phone&tablet", LOG_MSG); 
-			cout << Message("Photo&videocamera", LOG_MSG); 
-			cout << Message("Drink", LOG_MSG); 
-			cout << Message("Food", LOG_MSG); 
-			cout << Message("Accessory", LOG_MSG); 
-			cout << Message("Clothing", LOG_MSG); 
-			cout << Message("Footwear", LOG_MSG); 
-			cout << Message("Cosmetics", LOG_MSG); 
-			cout << Message("Detergent", LOG_MSG); 
-			cout << Message("Personal hygiene", LOG_MSG)
-				 << Message("\nInput command", INPUT_MSG);
+		string command;
+		cout << Message("[help] - shows all the possible product types, that can be created", LOG_MSG)
+			<< Message("[continue] - goes to creating a new product", LOG_MSG)
+			<< Message("[exit] - exits product creating mode", LOG_MSG);
+		getline(cin, command);
+		toLowercase(command);
 
-			getline(cin, command);
-		}
-		if (command == "continue")
+		while (command != "exit")
 		{
-			string type;
-			int quantity;
-			cout << Message("Type", CONTEXT_MSG);
-			getline(cin, type);
-			toLowercase(type);
+			if (command == "help")
+			{
+				cout << Message("Products:", LOG_MSG);
+				cout << Message("Appliance", LOG_MSG);
+				cout << Message("Audio&TV", LOG_MSG);
+				cout << Message("Laptop&computer", LOG_MSG);
+				cout << Message("Phone&tablet", LOG_MSG);
+				cout << Message("Photo&videocamera", LOG_MSG);
+				cout << Message("Drink", LOG_MSG);
+				cout << Message("Food", LOG_MSG);
+				cout << Message("Accessory", LOG_MSG);
+				cout << Message("Clothing", LOG_MSG);
+				cout << Message("Footwear", LOG_MSG);
+				cout << Message("Cosmetics", LOG_MSG);
+				cout << Message("Detergent", LOG_MSG);
+				cout << Message("Personal hygiene", LOG_MSG)
+					<< Message("\nInput command", INPUT_MSG);
 
-			if(identifyType(type) != nullptr)
-			{
-				Product* prod = identifyType(type);
-				prod->input();
-				DataManager manager;
-				manager.saveProduct(*prod);
-				cout << Message("Quantity", CONTEXT_MSG);
-				cin >> quantity;
-				cin.get();
-				manager.setQuantity(prod->getId(), quantity);
-				break;
+				getline(cin, command);
 			}
-			else
+			if (command == "continue")
 			{
-				return Result("Unknown type.", NOT_SUCCESSFUL);
+				string type;
+				int quantity;
+				cout << Message("Type", CONTEXT_MSG);
+				getline(cin, type);
+				toLowercase(type);
+
+				if (identifyType(type) != nullptr)
+				{
+					Product* prod = identifyType(type);
+					prod->input();
+					DataManager manager;
+					manager.saveProduct(*prod);
+					cout << Message("Quantity", CONTEXT_MSG);
+					cin >> quantity;
+					cin.get();
+					manager.setQuantity(prod->getId(), quantity);
+					break;
+				} else
+				{
+					return Result("Unknown type.", NOT_SUCCESSFUL);
+				}
 			}
 		}
+	} catch (exception& exp)
+	{
+		delete[] prod;
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
+
 	delete[] prod;
 	cout << Message("New product is added to the assortment.", LOG_MSG);
 	return Result();
@@ -73,29 +81,43 @@ Result addNewProduct()
 
 Result addNewProductsFromXML()
 {
-	DataManager manager;
-	List<Product*> list = manager.readFromXML();
-	manager.saveAllProducts(list);
+	try
+	{
+		DataManager manager;
+		List<Product*> list = manager.readFromXML();
+		manager.saveAllProducts(list);
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
 	cout << Message("New products are added.", LOG_MSG);
 	return Result();
 }
 
 Result addProductToCart()
 {
-	cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
-	int id;
-	cin >> id;
-	cin.get();
-	DataManager manager;
-	Product* product = manager.getProductById(id);
-	if (product == nullptr)
+	try
 	{
-		return Result("There is no product with such id", NOT_SUCCESSFUL);
+		cout << Message("Enter id of product you want to add to cart : ", LOG_MSG);
+		int id;
+		cin >> id;
+		cin.get();
+		DataManager manager;
+		Product* product = manager.getProductById(id);
+		if (product == nullptr)
+		{
+			return Result("There is no product with such id", NOT_SUCCESSFUL);
+		}
+
+		cart.pushBack(product);
+		cout << Message("You have added to cart : ", LOG_MSG);
+		(*product).output();
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
-	cart.pushBack(product);
-	cout << Message("You have added to cart : ", LOG_MSG);
-	(*product).output();
 	return Result();
 }
 
@@ -107,62 +129,85 @@ Result buyAllProductFromCart()
 		return Result();
 	}
 
-	cout << Message("You've bought: ", LOG_MSG) << endl;
-	auto it = cart.begin();
-	while(cart.size() != 0)
+	try
 	{
-		DataManager manager;
-		manager.changeQuantity((**it).getId(), -1);
-		manager.saveToUserHistory(**it, 1);
+		cout << Message("You've bought: ", LOG_MSG) << endl;
+		auto it = cart.begin();
+		while (cart.size() != 0)
+		{
+			DataManager manager;
+			manager.changeQuantity((**it).getId(), -1);
+			manager.saveToUserHistory(**it, 1);
 
-		it++;
-		cart.popFront()->output();
-		cout << endl;
+			it++;
+			cart.popFront()->output();
+			cout << endl;
+		}
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
+
 	cout << Message("You bought all products.", LOG_MSG);
 	return Result();
 }
 
 Result buyOneElementById()
 {
-	cout << Message("Enter product id", CONTEXT_MSG);
-	int id;
-	cin >> id;
-	cin.get();
-
-	DataManager manager;
-	
-	Product* product = manager.getProductById(id);
-	if (product == nullptr)
+	Product* product = nullptr;
+	try
 	{
-		return Result("There is no product with such id", NOT_SUCCESSFUL);
+		cout << Message("Enter product id", CONTEXT_MSG);
+		int id;
+		cin >> id;
+		cin.get();
+
+		DataManager manager;
+
+		product = manager.getProductById(id);
+		if (product == nullptr)
+		{
+			return Result("There is no product with such id", NOT_SUCCESSFUL);
+		}
+
+		manager.changeQuantity(product->getId(), -1);
+		manager.saveToUserHistory(*product, 1);
+
+		cout << Message("You bought: ", LOG_MSG);
+		product->output();
+		delete product;
+	} catch (exception& exp)
+	{
+		delete product;
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
-	manager.changeQuantity(product->getId(), -1);
-	manager.saveToUserHistory(*product, 1);
-
-	cout << Message("You bought: ", LOG_MSG);
-	product->output();
 	return Result();
 }
 
 Result changeAmount()
 {
-	int id;
-	cout << Message("Id ", CONTEXT_MSG);
-	cin >> id;
+	try
+	{
+		int id;
+		cout << Message("Id ", CONTEXT_MSG);
+		cin >> id;
 
-	int quantity;
-	DataManager manager;
+		int quantity;
+		DataManager manager;
 
-	string message = string("Current quantity of product with id ") + to_string(id) +
-		string(": ") + to_string(manager.getQuantity(id));
-	cout << Message(message, LOG_MSG);
+		string message = string("Current quantity of product with id ") + to_string(id) +
+			string(": ") + to_string(manager.getQuantity(id));
+		cout << Message(message, LOG_MSG);
 
-	cout << Message("Enter new quantity", CONTEXT_MSG);
-	cin >> quantity;
-	cin.get();
-	manager.setQuantity(id, quantity);
+		cout << Message("Enter new quantity", CONTEXT_MSG);
+		cin >> quantity;
+		cin.get();
+		manager.setQuantity(id, quantity);
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
 
 	cout << Message("New quantity is added to the assortment.", LOG_MSG);
 	return Result();
@@ -170,33 +215,41 @@ Result changeAmount()
 
 Result changeProduct()
 {
-	int id = 0;
-	cout << Message("Enter id", CONTEXT_MSG);
-	cin >> id;
-	cin.get();
-
-	DataManager manager;
-	Product *prod = manager.getProductById(id);
-	if (prod == nullptr)
+	Product *prod = nullptr;
+	try
 	{
-		return Result("Invalid id.", NOT_SUCCESSFUL);
+		int id = 0;
+		cout << Message("Enter id", CONTEXT_MSG);
+		cin >> id;
+		cin.get();
+
+		DataManager manager;
+		prod = manager.getProductById(id);
+		if (prod == nullptr)
+		{
+			return Result("Invalid id.", NOT_SUCCESSFUL);
+		}
+
+		prod->input();
+
+		string message = string("Current quantity of product with id ") + to_string(id) +
+			string(": ") + to_string(manager.getQuantity(id));
+		cout << Message(message, LOG_MSG);
+		cout << Message("Enter new quantity", CONTEXT_MSG);
+		int quantity = 0;
+		cin >> quantity;
+		cin.get();
+
+		manager.removeProductById(id);
+		manager.saveProduct(*prod);
+		manager.setQuantity(id, quantity);
+
+		delete prod;
+	} catch (exception& exp)
+	{
+		delete prod;
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
-
-	prod->input();
-
-	string message = string("Current quantity of product with id ") + to_string(id) +
-		string(": ") + to_string(manager.getQuantity(id));
-	cout << Message(message, LOG_MSG);
-	cout << Message("Enter new quantity", CONTEXT_MSG);
-	int quantity = 0;
-	cin >> quantity;
-	cin.get();
-
-	manager.removeProductById(id);
-	manager.saveProduct(*prod);
-	manager.setQuantity(id, quantity);
-
-	delete[] prod;
 	cout << Message("Product is changed.", LOG_MSG);
 	return Result();
 }
@@ -213,36 +266,37 @@ Result clear()
 
 Result createAdmin()
 {
-	int id;
-	cout << Message("Enter id of the account", CONTEXT_MSG);
-	cin >> id;
-	cin.get();
-
-	DataManager manager;
 	User *user = nullptr;
-
 	try
 	{
+		int id;
+		cout << Message("Enter id of the account", CONTEXT_MSG);
+		cin >> id;
+		cin.get();
+
+		DataManager manager;
+
 		user = manager.getUserById(id);
-	} catch (exception exp)
+
+		if (user == nullptr)
+		{
+			return Result("The id is invalid. Please try again.", NOT_SUCCESSFUL);
+		}
+
+		if (user->getRole() == Access::ADMIN)
+		{
+			cout << Message("The account already has administrator rights.", LOG_MSG);
+			return Result();
+		}
+
+		user->setRole(Access::ADMIN);
+		manager.removeUserById(id);
+		manager.saveUser(*user);
+	} catch (exception& exp)
 	{
+		delete user;
 		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
-
-	if (user == nullptr)
-	{
-		return Result("The id is invalid. Please try again.", NOT_SUCCESSFUL);
-	}
-
-	if (user->getRole() == Access::ADMIN)
-	{
-		cout << Message("The account already has administrator rights.", LOG_MSG);
-		return Result();
-	}
-
-	user->setRole(Access::ADMIN);
-	manager.removeUserById(id);
-	manager.saveUser(*user);
 
 	cout << Message("The account was granted administrator rights.", LOG_MSG);
 	return Result();
@@ -250,11 +304,17 @@ Result createAdmin()
 
 Result createUser()
 {
-	User newUser;
-	newUser.input();
-	DataManager manager;
-	manager.saveUser(newUser);
-	cin.get();
+	try
+	{
+		User newUser;
+		newUser.input();
+		DataManager manager;
+		manager.saveUser(newUser);
+		cin.get();
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
 
 	cout << Message("The account was created successfully", LOG_MSG);
 	return Result();
@@ -267,14 +327,28 @@ Result exit()
 
 Result exportProdXML()
 {
-	DataManager().exportXML();
+	try
+	{
+		DataManager().exportXML();
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
 	cout << Message("Done.", LOG_MSG);
 	return Result();
 }
 
 Result exportHistoryToHTML()
 {
-	DataManager().writeInHTML(currentUser.getId(), Date(1, 1, 1), Date(1000, 1000, 1000));
+	try
+	{
+		DataManager().writeInHTML(currentUser.getId(), Date(1, 1, 1), Date(1000, 1000, 1000));
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
 	cout << Message("Written history to HTML", LOG_MSG);
 	return Result();
 }
@@ -291,8 +365,6 @@ Result help()
 
 Result logIn()
 {
-	using std::cin;
-
 	cout << Message("Name", CONTEXT_MSG);
 	string name;
 	getline(cin, name, '\n');
@@ -303,13 +375,19 @@ Result logIn()
 	/* Checking the database */
 	
 	DataManager dataManager;
-	User* existingUser = dataManager.getUserByLogin(name, password);
-	
+	User* existingUser = nullptr;
+	try
+	{
+		existingUser = dataManager.getUserByLogin(name, password);
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
+
 	if (existingUser == nullptr) //User with this login exists
 	{
-		return Result("Authentication failed\nPlease, check your name, password and try again", NOT_SUCCESSFUL);
-	}
-	else
+		return Result("Authentication failed\nPlease, check your name, password and try again.", NOT_SUCCESSFUL);
+	} else
 	{
 		currentUser = *existingUser;
 		cout << Message("Authentication successful\nWelcome, " + name + "!", LOG_MSG);
@@ -329,12 +407,18 @@ Result logOut()
 
 Result removeProductFromAssortment()
 {
-	int id;
-	cout << Message("Enter id of product you want to remove:", CONTEXT_MSG);
-	cin >> id;
-	cin.get();
-	DataManager manager;
-	manager.removeProductById(id);
+	try
+	{
+		int id;
+		cout << Message("Enter id of product you want to remove:", CONTEXT_MSG);
+		cin >> id;
+		cin.get();
+		DataManager manager;
+		manager.removeProductById(id);
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
 
 	cout << Message("The product is removed from the assortment.", LOG_MSG);
 	return Result();
@@ -382,6 +466,7 @@ Result removeProductFromCart()
 		cout << Message("Are you sure you want to remove this product? (y/n)", CONTEXT_MSG);
 		cin >> answer;
 	}
+
 	try
 	{
 		switch(answer)
@@ -398,9 +483,9 @@ Result removeProductFromCart()
 			break;
 		}
 	}
-	catch(exception exc)
+	catch(exception& exp)
 	{
-		return Result(exc.what(), NOT_SUCCESSFUL);
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
 	return Result();
@@ -422,7 +507,7 @@ Result removeUser()
 	try
 	{
 		manager.removeUserById(id);
-	} catch (exception exp)
+	} catch (exception& exp)
 	{
 		cin.get();
 		return Result(exp.what(), NOT_SUCCESSFUL);
@@ -451,9 +536,15 @@ Result showCart()
 
 Result showProducts()
 {
-	cout.precision(2);
+	List<Product*> allProducts;
+	try
+	{
+		allProducts = DataManager().readAllProducts();
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
+	}
 
-	List<Product*> allProducts = DataManager().readAllProducts();
 	if (allProducts.size() == 0)
 	{
 		cout << Message("There are no products in our shop, we are so poor.", LOG_MSG);
@@ -480,33 +571,58 @@ Result showProducts()
 
 Result showPurchaseHistory()
 {
-	ifstream stream;
-	stream.open(to_string(currentUser.getId()) + ".txt", std::ifstream::in);
-	if (!stream.is_open())
+	try
 	{
-		return Result("Couldn't open file for writing...", TOTAL_ERROR);
-	}
+		DataManager manager;
+		auto list = manager.getAllFromUserHistory(currentUser.getId());
 
-	while (!stream.eof())
+		if (list.isEmpty())
+		{
+			cout << Message("You haven't bought anything.", LOG_MSG);
+			return Result();
+		}
+
+		auto end = list.end();
+		for (auto iter = list.begin(); iter != end; iter++)
+		{
+			cout << Message(string(typeid(*(*iter).first).name()).substr(6), LOG_MSG);
+			(*iter).first->output();
+			cout << Message("Quantity: " + to_string((*iter).second), LOG_MSG);
+			cout << endl;
+		}
+
+		for (auto iter = list.begin(); iter != end; iter++)
+		{
+			delete (*iter).first;
+		}
+	} catch (exception& exp)
 	{
-		string prod;
-		stream >> prod;
-		cout << Message(prod, LOG_MSG);
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
-	stream.close();
 
 	return Result();
 }
 
 Result showStats()
 {
-	DataManager manager;
-	map<Product*, int> map = manager.readStatistics();
-	for (auto it = map.begin(); it != map.end(); ++it)
+	try
 	{
-		it->first->output();
-		cout << Message("Quantity: " + to_string(it->second), LOG_MSG);
-		cout << endl;
+		DataManager manager;
+		map<Product*, int> map = manager.readStatistics();
+		for (auto it = map.begin(); it != map.end(); ++it)
+		{
+			it->first->output();
+			cout << Message("Quantity: " + to_string(it->second), LOG_MSG);
+			cout << endl;
+		}
+
+		for (auto it = map.begin(); it != map.end(); ++it)
+		{
+			delete it->first;
+		}
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
 	cout << Message("Listing completed.", LOG_MSG);
@@ -515,24 +631,30 @@ Result showStats()
 
 Result showUsers()
 {
-	DataManager manager;
-	List<User*> list = manager.readAllUsers();
-	auto iter = list.begin();
-
-	while(iter != list.end())
+	try
 	{
-		int temp = 0;
-		(*iter)->print();
-		temp ++;
-		iter ++;
+		DataManager manager;
+		List<User*> list = manager.readAllUsers();
+		auto iter = list.begin();
 
-		if((temp % 5) == 0)
+		while (iter != list.end())
 		{
-			cout << Message("Press Enter to continue.", LOG_MSG);
-			cin.get();
-		}
+			int temp = 0;
+			(*iter)->print();
+			temp++;
+			iter++;
 
-		cout << endl;
+			if ((temp % 5) == 0)
+			{
+				cout << Message("Press Enter to continue.", LOG_MSG);
+				cin.get();
+			}
+
+			cout << endl;
+		}
+	} catch (exception& exp)
+	{
+		return Result(exp.what(), NOT_SUCCESSFUL);
 	}
 
 	cout << Message("Listing completed.", LOG_MSG);
@@ -574,7 +696,7 @@ Result enterMatrix()
 	Sleep(3000);
 	system("cls");
 
-	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant is not equal to zero");
+	delay("So solve the next:\n8 1\nx 0\nEnter x such that determinant is not equal to zero.");
 	Sleep(2000);
 	int x = 0;
 	while (x != 69)

@@ -77,7 +77,7 @@ List<Product*> DataManager::readProducts(function<bool(const Product&)> predicat
 	return service.read(predicate);
 }
 
-List<pair<Product*, int>> DataManager::getAllFromUserStory(int id)
+List<pair<Product*, int>> DataManager::getAllFromUserHistory(int id)
 {
 	return UserService().getAllFromHistory(id);
 }
