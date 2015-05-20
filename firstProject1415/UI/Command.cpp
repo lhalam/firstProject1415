@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Command.h"
 #include "CommandHandlers.h"
+#include "Globals.h"
 
 /*Initialization of commands; commands are listed alphabetically*/
 DLL Command commands[] =
@@ -34,4 +35,16 @@ DLL Command commands[] =
 
 DLL const int numOfCommands = sizeof(commands) / sizeof(commands[0]);
 
+Result Command::execute()
+{
+	if (currentUser.getRole() & this->access)
+	{
+		return executor();
+	} else
+	{
+		return Result("Access not granted.", ACCESS_ERROR);
+	}
 
+
+	/* else return Result("Access not granted", ACCESS_ERROR); */
+}

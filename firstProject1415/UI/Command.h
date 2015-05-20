@@ -53,13 +53,7 @@ public:
 		return access;
 	}
 
-	Result execute()
-	{
-		return executor();
-		
-		
-		/* else return Result("Access not granted", ACCESS_ERROR); */
-	}
+	DLL Result execute();
 };
 
 /*Array of all Command objects available*/

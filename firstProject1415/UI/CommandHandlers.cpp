@@ -536,33 +536,32 @@ Result showCart()
 
 Result showProducts()
 {
-	List<Product*> allProducts;
 	try
 	{
-		allProducts = DataManager().readAllProducts();
+		auto allProducts = DataManager().readAllProducts();
+
+		if (allProducts.size() == 0)
+		{
+			cout << Message("There are no products in our shop, we are so poor.", LOG_MSG);
+			return Result();
+		}
+
+		auto end = allProducts.end();
+
+		for (auto it = allProducts.begin(); it != end; it++)
+		{
+			cout << Message(string(typeid(**it).name()).substr(6), LOG_MSG);
+			(*it)->output();
+			cout << endl;
+		}
+
+		for (auto it = allProducts.begin(); it != end; it++)
+		{
+			delete *it;
+		}
 	} catch (exception& exp)
 	{
 		return Result(exp.what(), NOT_SUCCESSFUL);
-	}
-
-	if (allProducts.size() == 0)
-	{
-		cout << Message("There are no products in our shop, we are so poor.", LOG_MSG);
-		return Result();
-	}
-
-	auto end = allProducts.end();
-
-	for (auto it = allProducts.begin(); it != end; it++)
-	{
-		cout << Message(string(typeid(**it).name()).substr(6), LOG_MSG);
-		(*it)->output();
-		cout << endl;
-	}
-
-	for (auto it = allProducts.begin(); it != end; it++)
-	{
-		delete *it;
 	}
 	
 	cout << Message("Listing completed.", LOG_MSG);
